@@ -107,16 +107,21 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleMovement();
 
+            //Handling of the different inputs
+
+            //Running
             if (_parent.playerInputHandlerComponent.GetRunningInput() && _parent.CurrentPlayerState != PlayerState.Crouch)
             {
                 _parent.ChangeState(PlayerState.Run);
             }
 
+            //Crouching
             else if (_parent.playerInputHandlerComponent.GetCrouchingInput())
             {
                 _parent.ChangeState(PlayerState.Crouch);
             }
 
+            //Walking
             else
             {
                 _parent.ChangeState(PlayerState.Walk);
