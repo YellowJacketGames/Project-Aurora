@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     //Bool variable to know if the player should be able to move
-    bool shouldWalk => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
+    bool shouldMove => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
         _parent.playerInputHandlerComponent.GetMovementDirection().x != 0;
 
 
@@ -67,14 +67,6 @@ public class PlayerMovement : MonoBehaviour
             _parent.ChangeState(PlayerState.Idle);
         }
 
-        //if not he's moving. We will check if crouching or running are enabled in this else statement as well.
-        else
-        {
-            if (_parent.CurrentPlayerState == PlayerState.Walk)
-                return;
-            _parent.ChangeState(PlayerState.Walk);
-        }
-
         //Handle next state changes when inputs are added
 
     }
@@ -111,7 +103,29 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //If the player is able to meet the requirements to move, he can move.
-        if(shouldWalk)
-        HandleMovement();
+        if (shouldMove)
+        {
+            HandleMovement();
+
+            if (_parent.playerInputHandlerComponent.GetRunningInput() && _parent.CurrentPlayerState != PlayerState.Crouch)
+            {
+                _parent.ChangeState(PlayerState.Run);
+            }
+
+            else if (_parent.playerInputHandlerComponent.GetCrouchingInput())
+            {
+                _parent.ChangeState(PlayerState.Crouch);
+            }
+
+            else
+            {
+                _parent.ChangeState(PlayerState.Walk);
+            }
+        }
+
+
+
+        //If the player is pressing the run input, it runs
+
     }
 }
