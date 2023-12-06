@@ -16,8 +16,11 @@ public class PlayerInputHandler : PlayerComponent
     private bool runningInput;    //Button values for running
     private bool crouchingInput;  //Button values for running
     private bool jumpingInput;    //Button values for jumping
+    private bool interactInput;   //Button values for interacting
 
-
+    //Controls to check which type of control the player is using
+    private Gamepad gamepad;
+    private Keyboard keyboard;
     public override void Awake()
     {
         base.Awake();
@@ -48,6 +51,8 @@ public class PlayerInputHandler : PlayerComponent
         _playerInput.PlayerMovement.Jump.performed += OnJumpingPerformed;
         _playerInput.PlayerMovement.Jump.canceled += OnJumpingCanceled;
 
+        _playerInput.PlayerMovement.Interact.performed += OnInteractPerformed;
+        _playerInput.PlayerMovement.Interact.canceled += OnInteractCanceled;
     }
 
     private void OnDisable()
@@ -67,8 +72,12 @@ public class PlayerInputHandler : PlayerComponent
         _playerInput.PlayerMovement.Jump.performed -= OnJumpingPerformed;
         _playerInput.PlayerMovement.Jump.canceled -= OnJumpingCanceled;
 
+        _playerInput.PlayerMovement.Interact.performed -= OnInteractPerformed;
+        _playerInput.PlayerMovement.Interact.canceled -= OnInteractCanceled;
+
     }
     #endregion
+
 
     //This region holds the different events that store the values of the inputs in variables and are added as listeners to the input actions
     #region InputEvents
@@ -111,14 +120,19 @@ public class PlayerInputHandler : PlayerComponent
     {
         jumpingInput = false;
     }
-    #endregion
 
-    public PlayerInputAsset GetInput()
+    private void OnInteractPerformed(InputAction.CallbackContext value)
     {
-        return _playerInput;
+        interactInput = true;
     }
 
-    //This region stores the methods that return the input values when accessed by other scripts
+    private void OnInteractCanceled(InputAction.CallbackContext value)
+    {
+        interactInput = false;
+    }
+    #endregion
+
+    
     #region GetInputValues
     //Returning the value of the moving Vector, we will only be using the x values for now.
     public Vector2 GetMovementDirection()
@@ -143,8 +157,29 @@ public class PlayerInputHandler : PlayerComponent
 
     }
 
+    public bool GetInteractInput()
+    {
+        return interactInput;
+    }
+
     #endregion
 
+    private void Update()
+    {
+        gamepad = Gamepad.current;
+        keyboard = Keyboard.current;
 
-    
+        if (gamepad != null)
+        {
+            _parent.currentControl = ControlType.Gamepad;
+            return;
+        }
+
+        if (keyboard != null)
+        {
+            _parent.currentControl = ControlType.Keyboard;
+            return;
+        }
+    }
+
 }

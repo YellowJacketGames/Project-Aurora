@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 
 //This script is used as a parent and main communicator between the other player scripts like movement or conversations
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public PlayerAnimations playerAnimationComponent;
     [HideInInspector] public PlayerCollisions playerCollisionsComponent;
     [HideInInspector] public PlayerUI playerUIComponent;
+    [HideInInspector] public PlayerInteract playerInteractComponent;
 
     //PlayerComponents
     [Header("Player Components")]
@@ -65,11 +67,18 @@ public class PlayerController : MonoBehaviour
     [Header("Player UI Components")]
     public GameObject keyboardControls;   //Placeholder for contextual keyboard and mouse controls
     public GameObject gamepadControls; //Placeholder for contextual gamepad controls
+    public GameObject interactablePromptObject;
+    public TextMeshProUGUI interactableText;
+    public GameObject keyboardInteractPrompt;
+    public GameObject controllerInteractPrompt;
     //This is just for testing purposes
     [Header("Testing variables")]
-    [SerializeField] bool seeStateChange;
+    [SerializeField] bool seeStateChange;  //Variable to check for status in console for player states
+    public bool seeControls;               //Variable to check for the context controls in the player UI
     #endregion
 
+    [Header("Player controls")] //Control enum to check the current controls of the player
+    public ControlType currentControl;
 
     //This region stores all events to handle the entrance and exit of the different player states.
 
@@ -261,6 +270,16 @@ public class PlayerController : MonoBehaviour
         {
             //Warning so that we know what the issue is in the console
             Debug.LogWarning("Player UI component is missing in the player object");
+        }
+
+        if (TryGetComponent<PlayerInteract>(out PlayerInteract interact))
+        {
+            playerInteractComponent = interact;
+        }
+        else
+        {
+            //Warning so that we know what the issue is in the console
+            Debug.LogWarning("Player Interact component is missing in the player object");
         }
     }
 
