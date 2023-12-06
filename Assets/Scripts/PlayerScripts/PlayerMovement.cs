@@ -46,8 +46,6 @@ public class PlayerMovement : PlayerComponent
         //We then set that value to the velocity of the player gameobject.
         //We have to preserve the y value so that is doesn't mess with the jump, which also alters the y velocity
         _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, movementValue * _currentSpeed);
-
-        //transform.position += new Vector3(transform.position.x, transform.position.y, movementValue);
     }
     
 
@@ -139,6 +137,14 @@ public class PlayerMovement : PlayerComponent
     {
         //Handling different movement state changes
         HandleMovementStates();
+
+
+        //We also handle the movement directions here
+        //if the player is moving, we set the direction that the player is moving
+        //This will be later replaced with animations
+        if(_parent.playerInputHandlerComponent.GetMovementDirection().x != 0)
+        _parent.playerAnimationComponent.HandleModelDirection(_parent.playerInputHandlerComponent.GetMovementDirection().x);
+
     }
 
     private void FixedUpdate()

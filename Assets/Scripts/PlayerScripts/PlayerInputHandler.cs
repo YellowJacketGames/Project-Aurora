@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : PlayerComponent
 {
     //The input class for the player actions
-    private PlayerInput _playerInput = null;
+    private PlayerInputAsset _playerInput = null;
 
     //Stick and movement value for the player movement and UI traversal.
     private Vector2 movementInput;
@@ -21,7 +21,7 @@ public class PlayerInputHandler : PlayerComponent
     public override void Awake()
     {
         base.Awake();
-        _playerInput = new PlayerInput();
+        _playerInput = new PlayerInputAsset();
     }
 
     #region HandleDisableAndEnable
@@ -113,6 +113,10 @@ public class PlayerInputHandler : PlayerComponent
     }
     #endregion
 
+    public PlayerInputAsset GetInput()
+    {
+        return _playerInput;
+    }
 
     //This region stores the methods that return the input values when accessed by other scripts
     #region GetInputValues
@@ -140,4 +144,7 @@ public class PlayerInputHandler : PlayerComponent
     }
 
     #endregion
+
+
+    
 }

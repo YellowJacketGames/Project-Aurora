@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public PlayerInputHandler playerInputHandlerComponent;
     [HideInInspector] public PlayerAnimations playerAnimationComponent;
     [HideInInspector] public PlayerCollisions playerCollisionsComponent;
+    [HideInInspector] public PlayerUI playerUIComponent;
 
     //PlayerComponents
     [Header("Player Components")]
@@ -60,8 +61,10 @@ public class PlayerController : MonoBehaviour
     public GameObject crouchingModel;
     //We will use a rigid component so that the jump physics are a bit more realistic and collisions are easier to handle.
     [HideInInspector] public Rigidbody playerRigid;
-
-
+    [Space]
+    [Header("Player UI Components")]
+    public GameObject keyboardControls;   //Placeholder for contextual keyboard and mouse controls
+    public GameObject gamepadControls; //Placeholder for contextual gamepad controls
     //This is just for testing purposes
     [Header("Testing variables")]
     [SerializeField] bool seeStateChange;
@@ -247,6 +250,17 @@ public class PlayerController : MonoBehaviour
         {
             //Warning so that we know what the issue is in the console
             Debug.LogWarning("Player Collisions component is missing in the player object");
+        }
+
+        //We use 'TryGetComponent' so that if the component is missing in the player object it doesn't crash the game with a missing reference.
+        if (TryGetComponent<PlayerUI>(out PlayerUI ui))
+        {
+            playerUIComponent = ui;
+        }
+        else
+        {
+            //Warning so that we know what the issue is in the console
+            Debug.LogWarning("Player UI component is missing in the player object");
         }
     }
 

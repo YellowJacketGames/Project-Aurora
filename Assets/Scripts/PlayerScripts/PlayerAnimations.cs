@@ -28,4 +28,55 @@ public class PlayerAnimations : PlayerComponent
         _parent.crouchingModel.gameObject.SetActive(true);
         _parent.idleModel.gameObject.SetActive(false);
     }
+
+    public void ChangeModelToTheLeft() //This is a placeholder method before we get a proper character model
+    {
+        //We check in which state is the player so that he looks in the correct direction
+        switch (_parent.CurrentPlayerState)
+        {
+            case PlayerState.Idle:
+                _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                break;
+            case PlayerState.Walk:
+                _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
+
+                break;
+            case PlayerState.Crouch:
+                _parent.crouchingModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ChangeModelToTheRight() //This is a placeholder method before we get a proper character model
+    {
+        //We check in which state is the player so that he looks in the correct direction
+        switch (_parent.CurrentPlayerState)
+        {
+            case PlayerState.Idle:
+                _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case PlayerState.Walk:
+                _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case PlayerState.Crouch:
+                _parent.crouchingModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void HandleModelDirection(float value)
+    {
+        if(value < 0)
+        {
+            ChangeModelToTheLeft();
+        }
+        else
+        {
+            ChangeModelToTheRight();
+        }
+    }
 }
