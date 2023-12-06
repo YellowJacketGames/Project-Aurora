@@ -5,38 +5,24 @@ using UnityEngine.InputSystem;
 
 //This script handles input for the different player actions.
 
-public class PlayerInputHandler : MonoBehaviour
+public class PlayerInputHandler : PlayerComponent
 {
-    //Parent class
-    private PlayerController _parent;
     //The input class for the player actions
     private PlayerInput _playerInput = null;
 
     //Stick and movement value for the player movement and UI traversal.
     private Vector2 movementInput;
 
-    //Button values for running and crouching
-    private bool runningInput;
-    private bool crouchingInput;
+    private bool runningInput;    //Button values for running
+    private bool crouchingInput;  //Button values for running
+    private bool jumpingInput;    //Button values for jumping
 
-    private void Awake()
+
+    public override void Awake()
     {
+        base.Awake();
         _playerInput = new PlayerInput();
-
-
-        //We use try get component so that if the component is missing it doesn't crash the game.
-        if (TryGetComponent<PlayerController>(out PlayerController p))
-        {
-            _parent = p;
-        }
-
-        else
-        {
-            //Warning for knowing what the issue is in the console.
-            Debug.LogWarning("Player Controller component is missing in the gameobject");
-        }
     }
-
 
     #region HandleDisableAndEnable
 
@@ -59,6 +45,9 @@ public class PlayerInputHandler : MonoBehaviour
         _playerInput.PlayerMovement.Crouching.performed += OnCrouchingPerformed;
         _playerInput.PlayerMovement.Crouching.canceled += OnCrouchingCanceled;
 
+        _playerInput.PlayerMovement.Jump.performed += OnJumpingPerformed;
+        _playerInput.PlayerMovement.Jump.canceled += OnJumpingCanceled;
+
     }
 
     private void OnDisable()
@@ -75,6 +64,9 @@ public class PlayerInputHandler : MonoBehaviour
         _playerInput.PlayerMovement.Crouching.performed -= OnCrouchingPerformed;
         _playerInput.PlayerMovement.Crouching.canceled -= OnCrouchingCanceled;
 
+        _playerInput.PlayerMovement.Jump.performed -= OnJumpingPerformed;
+        _playerInput.PlayerMovement.Jump.canceled -= OnJumpingCanceled;
+
     }
     #endregion
 
@@ -83,9 +75,10 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnMovementPerformed(InputAction.CallbackContext value)
     {
         movementInput = value.ReadValue<Vector2>();
+
+        //We normalize the vector so that it always gives a flat number.
         movementInput.Normalize();
     }
-
     private void OnMovementCanceled(InputAction.CallbackContext value)
     {
         movementInput = Vector2.zero;
@@ -108,6 +101,16 @@ public class PlayerInputHandler : MonoBehaviour
     {
         crouchingInput = false;
     }
+
+    private void OnJumpingPerformed(InputAction.CallbackContext value)
+    {
+        jumpingInput = true;
+    }
+
+    private void OnJumpingCanceled(InputAction.CallbackContext value)
+    {
+        jumpingInput = false;
+    }
     #endregion
 
 
@@ -127,6 +130,14 @@ public class PlayerInputHandler : MonoBehaviour
     public bool GetCrouchingInput()
     {
         return crouchingInput;
+
     }
+
+    public bool GetJumpingInput()
+    {
+        return jumpingInput;
+
+    }
+
     #endregion
 }

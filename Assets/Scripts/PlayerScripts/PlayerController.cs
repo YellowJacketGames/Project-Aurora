@@ -40,6 +40,34 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
+    //This region handles the variables for the different player components such as movement and conversation
+    //In said scripts, the components will store a 'parent' variable to access this components.
+
+    #region PlayerComponents
+    //This are public variables so the 'children' in this components can access each other without having to require a reference to each other
+    //in their scripts.
+
+    //Scripts
+    [HideInInspector] public PlayerMovement playerMovementComponent;
+    [HideInInspector] public PlayerInputHandler playerInputHandlerComponent;
+    [HideInInspector] public PlayerAnimations playerAnimationComponent;
+    [HideInInspector] public PlayerCollisions playerCollisionsComponent;
+
+    //PlayerComponents
+    [Header("Player Components")]
+    //This is just placeholder to check the crouch
+    public GameObject idleModel;
+    public GameObject crouchingModel;
+    //We will use a rigid component so that the jump physics are a bit more realistic and collisions are easier to handle.
+    [HideInInspector] public Rigidbody playerRigid;
+
+
+    //This is just for testing purposes
+    [Header("Testing variables")]
+    [SerializeField] bool seeStateChange;
+    #endregion
+
+
     //This region stores all events to handle the entrance and exit of the different player states.
 
     #region PlayerStateEvents
@@ -65,19 +93,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] UnityEvent _exitTransition;
 
     #endregion
-
-    //This region handles the variables for the different player components such as movement and conversation
-    //In said scripts, the components will store a 'parent' variable to access this components.
-
-    #region PlayerComponents
-    //This are public variables so the 'children' in this components can access each other without having to require a reference to each other
-    //in their scripts.
-    
-    [HideInInspector] public PlayerMovement playerMovementComponent;
-    [HideInInspector] public PlayerInputHandler playerInputHandlerComponent;
-
-    #endregion
-
 
     //This region holds the methods to handle exiting and entering states in the PlayerStates variable, as well as the method to change the current player state
 
@@ -164,7 +179,11 @@ public class PlayerController : MonoBehaviour
     public void ChangeState(PlayerState _newState)
     {
         CurrentPlayerState = _newState;
-        Debug.Log("Current State: " + _newState);
+
+        if (seeStateChange)
+        {
+            Debug.Log("Current State: " + _newState);
+        }
     }
 
     #endregion
@@ -173,8 +192,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         //Get references of the different children components.
-        //We use 'TryGetComponent' so that if the component is missing in the player object it doesn't crash the game with a missing reference.
 
+        //We use 'TryGetComponent' so that if the component is missing in the player object it doesn't crash the game with a missing reference.
         if(TryGetComponent<PlayerMovement>(out PlayerMovement movement))
         {
             playerMovementComponent = movement;
@@ -185,6 +204,7 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("Player Movement component is missing in the player object");
         }
 
+        //We use 'TryGetComponent' so that if the component is missing in the player object it doesn't crash the game with a missing reference.
         if (TryGetComponent<PlayerInputHandler>(out PlayerInputHandler handler))
         {
             playerInputHandlerComponent = handler;
@@ -193,6 +213,40 @@ public class PlayerController : MonoBehaviour
         {
             //Warning so that we know what the issue is in the console
             Debug.LogWarning("Player Input Handler component is missing in the player object");
+        }
+
+
+        //We use 'TryGetComponent' so that if the component is missing in the player object it doesn't crash the game with a missing reference.
+        if (TryGetComponent<Rigidbody>(out Rigidbody rigid))
+        {
+            playerRigid = rigid;
+        }
+        else
+        {
+            //Warning so that we know what the issue is in the console
+            Debug.LogWarning("Rigidbody component is missing in the player object");
+        }
+
+        //We use 'TryGetComponent' so that if the component is missing in the player object it doesn't crash the game with a missing reference.
+        if (TryGetComponent<PlayerAnimations>(out PlayerAnimations animations))
+        {
+            playerAnimationComponent = animations;
+        }
+        else
+        {
+            //Warning so that we know what the issue is in the console
+            Debug.LogWarning("Player Animations component is missing in the player object");
+        }
+
+        //We use 'TryGetComponent' so that if the component is missing in the player object it doesn't crash the game with a missing reference.
+        if (TryGetComponent<PlayerCollisions>(out PlayerCollisions collisions))
+        {
+            playerCollisionsComponent = collisions;
+        }
+        else
+        {
+            //Warning so that we know what the issue is in the console
+            Debug.LogWarning("Player Collisions component is missing in the player object");
         }
     }
 

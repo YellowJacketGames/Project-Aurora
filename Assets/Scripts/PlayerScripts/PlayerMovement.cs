@@ -4,27 +4,34 @@ using UnityEngine;
 
 //This script is gonna handle the main movement for the character, such as walking, running, and crouching.
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PlayerComponent
 {
-    //Parent class
-    private PlayerController _parent;
-
     //Movement Variables
     [Header("Movement Variables")]
     //The current speed of the player, it's value is only assigned through the other variables and their respective methods.
     [SerializeField] private float _currentSpeed;
 
     //The different player speeds.
+    [Header("Player Speeds")]
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float crouchSpeed;
+    [Space]
 
+    [Header("Jump Values")]
+    [SerializeField] private float jumpForce;
 
     //Bool variable to know if the player should be able to move
     bool shouldMove => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
         _parent.playerInputHandlerComponent.GetMovementDirection().x != 0;
 
+    //Bool variable to know if the player should be able to jump.
+    bool shouldJump => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
+        _parent.CurrentPlayerState != PlayerState.Jump && _parent.CurrentPlayerState != PlayerState.Crouch && _parent.playerInputHandlerComponent.GetJumpingInput();
 
+    //Bool variable to check if the player should be able to crouch
+    bool shouldCrouch => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
+        _parent.CurrentPlayerState != PlayerState.Jump && _parent.playerInputHandlerComponent.GetCrouchingInput();
     #region PlayerMovementFunctions
 
     public void HandleMovement()    //This method will move the player with different speeds depending on the current state, which will be handled in a different method
@@ -36,10 +43,39 @@ public class PlayerMovement : MonoBehaviour
         movementValue = _parent.playerInputHandlerComponent.GetMovementDirection().x * _currentSpeed * Time.deltaTime;
 
 
-        //We then set that value to the transform.position of the player gameobject.
-        transform.position += new Vector3(transform.position.x, transform.position.y, movementValue);
+        //We then set that value to the velocity of the player gameobject.
+        //We have to preserve the y value so that is doesn't mess with the jump, which also alters the y velocity
+        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, movementValue * _currentSpeed);
+
+        //transform.position += new Vector3(transform.position.x, transform.position.y, movementValue);
+    }
+    
+
+    //Method to handle player Jump
+    public void HandleJump()
+    {
+        _parent.playerRigid.AddForce(Vector3.up * jumpForce);
+        _parent.ChangeState(PlayerState.Jump);
     }
 
+    //When the player falls, it should change the state back to whatever it was
+    public void HandleFall()
+    {
+        //We only check for the Y value because it's the only one whose affected in the jump
+        if (_parent.playerRigid.velocity.y == 0)
+            _parent.ChangeState(PlayerState.Idle);
+    }
+
+    public void HandleUncrouch() //This method handles if the player should be able to uncrouch, for example if he's in a tunnel and can't get up
+    {
+        if(_parent.CurrentPlayerState == PlayerState.Crouch)
+        {
+            if (!_parent.playerInputHandlerComponent.GetCrouchingInput() && !_parent.playerCollisionsComponent.CheckCrouching())
+            {
+                _parent.ChangeState(PlayerState.Idle);
+            }
+        }
+    }
     //The next three methods handle the different player speeds
     public void ChangeToWalkSpeed()    //This method changes the speed value to the walk value
     {
@@ -56,42 +92,47 @@ public class PlayerMovement : MonoBehaviour
         _currentSpeed = crouchSpeed;
     }
 
+    public void ChangeToIdleSpeed()
+    {
+        _currentSpeed = 0;
+
+        //The only value that remains the same is the Y value so that if the player is jumping it doesn't stop them midair.
+        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, 0);
+    }
     public void HandleMovementStates()
     {
-        //If the player isn't pressing any direction, it's state should be idle.
-
+        //If the player isn't pressing any direction and isn't jumping, it's state should be idle.
         if(_parent.playerInputHandlerComponent.GetMovementDirection().x == 0)
         {
+
             if (_parent.CurrentPlayerState == PlayerState.Idle)
                 return;
-            _parent.ChangeState(PlayerState.Idle);
+
+            if(_parent.CurrentPlayerState != PlayerState.Jump && _parent.CurrentPlayerState != PlayerState.Crouch)
+            {
+                ChangeToIdleSpeed();
+                _parent.ChangeState(PlayerState.Idle);
+
+            }
         }
 
-        //Handle next state changes when inputs are added
 
+        if(_parent.CurrentPlayerState == PlayerState.Jump)
+        {
+            HandleFall();
+        }
     }
+
+    
 
     #endregion
 
 
-    private void Awake()
-    {
-        //We use try get component so that if the component is missing it doesn't crash the game.
-        if (TryGetComponent<PlayerController>(out PlayerController p))
-        {
-            _parent = p;
-        }
 
-        else
-        {
-            //Warning for knowing what the issue is in the console.
-            Debug.LogWarning("Player Controller component is missing in the gameobject");
-        }
-    }
     private void Start()
     {
-        //On the start we will set the speed to walking
-        ChangeToWalkSpeed();
+        //On the start we will set the speed to idle, which means 0
+        ChangeToIdleSpeed();
     }
 
     private void Update()
@@ -110,27 +151,33 @@ public class PlayerMovement : MonoBehaviour
             //Handling of the different inputs
 
             //Running
-            if (_parent.playerInputHandlerComponent.GetRunningInput() && _parent.CurrentPlayerState != PlayerState.Crouch)
+            if (_parent.playerInputHandlerComponent.GetRunningInput() && _parent.CurrentPlayerState != PlayerState.Crouch && _parent.CurrentPlayerState != PlayerState.Jump)
             {
                 _parent.ChangeState(PlayerState.Run);
             }
 
-            //Crouching
-            else if (_parent.playerInputHandlerComponent.GetCrouchingInput())
-            {
-                _parent.ChangeState(PlayerState.Crouch);
-            }
-
             //Walking
-            else
+            else if(_parent.CurrentPlayerState != PlayerState.Jump && _parent.CurrentPlayerState != PlayerState.Crouch)
             {
                 _parent.ChangeState(PlayerState.Walk);
             }
         }
 
 
+        //We check in the update method if the player should jump
+        if (shouldJump)
+        {
+            HandleJump();
+        }
 
-        //If the player is pressing the run input, it runs
+        //We check in the update method if the player should crouch
+        if (shouldCrouch)
+        {
+            _parent.ChangeState(PlayerState.Crouch);
+        }
 
+
+        //We check in the update method if the player should be able to uncrouch
+        HandleUncrouch();
     }
 }
