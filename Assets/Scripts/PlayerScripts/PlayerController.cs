@@ -55,22 +55,40 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public PlayerCollisions playerCollisionsComponent;
     [HideInInspector] public PlayerUI playerUIComponent;
     [HideInInspector] public PlayerInteract playerInteractComponent;
+    [HideInInspector] public PlayerConversation playerConversationComponent;
 
     //PlayerComponents
     [Header("Player Components")]
     //This is just placeholder to check the crouch
+    [Header("Models")]
     public GameObject idleModel;
     public GameObject crouchingModel;
     //We will use a rigid component so that the jump physics are a bit more realistic and collisions are easier to handle.
     [HideInInspector] public Rigidbody playerRigid;
     [Space]
     [Header("Player UI Components")]
+    [Space]
+
+    [Header("Controls")]
     public GameObject keyboardControls;   //Placeholder for contextual keyboard and mouse controls
     public GameObject gamepadControls; //Placeholder for contextual gamepad controls
-    public GameObject interactablePromptObject;
-    public TextMeshProUGUI interactableText;
-    public GameObject keyboardInteractPrompt;
-    public GameObject controllerInteractPrompt;
+    [Space]
+
+    [Header("Interactable Prompts")]
+    public GameObject interactablePromptObject; //Parent object of the interactable prompt
+    public TextMeshProUGUI interactableText;    //Text component for the interactable prompt
+    public GameObject keyboardInteractPrompt;   //Keyboard button for the interactable prompt
+    public GameObject controllerInteractPrompt; //Controller button for the interactable prompt
+    [Space]
+
+    [Header("Dialogue")]
+    public GameObject dialogueBox;
+    public TextMeshProUGUI dialogueText;
+    public GameObject keyboardContinueButton;
+    public GameObject controllerContinueButton;
+    public DialogueLayoutClass[] dialogueLayouts;
+    [Space]
+
     //This is just for testing purposes
     [Header("Testing variables")]
     [SerializeField] bool seeStateChange;  //Variable to check for status in console for player states
@@ -203,10 +221,11 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        #region Get Children References
         //Get references of the different children components.
 
         //We use 'TryGetComponent' so that if the component is missing in the player object it doesn't crash the game with a missing reference.
-        if(TryGetComponent<PlayerMovement>(out PlayerMovement movement))
+        if (TryGetComponent<PlayerMovement>(out PlayerMovement movement))
         {
             playerMovementComponent = movement;
         }
@@ -281,10 +300,33 @@ public class PlayerController : MonoBehaviour
             //Warning so that we know what the issue is in the console
             Debug.LogWarning("Player Interact component is missing in the player object");
         }
+
+        if (TryGetComponent<PlayerConversation>(out PlayerConversation conversation))
+        {
+            playerConversationComponent = conversation;
+        }
+        else
+        {
+            //Warning so that we know what the issue is in the console
+            Debug.LogWarning("Player Conversation component is missing in the player object");
+        }
+        #endregion
+
+
     }
 
     private void Start()
     {
+        #region Give Game Manager Reference
+        GameManager.instance.currentController = this;
+        #endregion
+
+        #region Alter Events
+
+        //We add this through code so that we don't have to reference it in the editor every time we enter a new scene
+        _enterConversation.AddListener(GameManager.instance.currentCameraManager.ChangeToDialogueCamera);
+        _exitConversation.AddListener(GameManager.instance.currentCameraManager.ChangeToLevelCamera);
+        #endregion 
         //We will set the beginning state to idle, since the player isn't moving when the game begins.
         ChangeState(PlayerState.Idle);
     }

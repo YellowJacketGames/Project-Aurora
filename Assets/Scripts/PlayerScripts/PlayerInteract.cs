@@ -19,7 +19,6 @@ public class PlayerInteract : PlayerComponent
 
     private void Update()
     {
-        Debug.Log(shouldInteract);
         if (shouldInteract) //We check every frame if the player can interact
         {
             if(!currentElement.hasBeenInteracted)

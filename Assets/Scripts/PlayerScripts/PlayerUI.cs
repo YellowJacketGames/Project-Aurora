@@ -11,7 +11,7 @@ public class PlayerUI : PlayerComponent
     private Gamepad gamepad; //This variable is used to see if the player is using a gamepad
     private Keyboard keyboard; //This variable is used to see if the player is using a gamepad
 
-
+    private DialogueLayoutClass currentDialogueLayout = new DialogueLayoutClass(); //Variable to hold the current layout displayed to 
     //Region to hold the show context control methods
     #region Context Controls
     private void ShowKeyboardControls() //This methods changes the current display controls to the keyboard
@@ -77,6 +77,38 @@ public class PlayerUI : PlayerComponent
 
     #endregion
 
+    #region Conversations
+
+    public void ShowConversationBox()
+    {
+        _parent.dialogueBox.SetActive(true);
+
+        switch (_parent.currentControl)
+        {
+            case ControlType.Gamepad:
+                _parent.controllerContinueButton.SetActive(true);
+                _parent.keyboardContinueButton.SetActive(false);
+                break;
+            case ControlType.Keyboard:
+                _parent.keyboardContinueButton.SetActive(true);
+                _parent.controllerContinueButton.SetActive(false);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void HideConversationBox()
+    {
+        _parent.dialogueBox.SetActive(false);
+    }
+
+    public void ChangeConversationText(string newText)
+    {
+        _parent.dialogueText.SetText(newText);
+    }
+
+    #endregion
     private void Update()
     {
         if (_parent.seeControls)
@@ -95,5 +127,15 @@ public class PlayerUI : PlayerComponent
         }
     }
 
+    public void SetDialogueLayout(Speaker currentSpeaker)
+    {
+        if (currentDialogueLayout != _parent.dialogueLayouts[currentSpeaker.layoutOrder])
+        {
+            currentDialogueLayout.DeactivateLayout();
+            currentDialogueLayout = _parent.dialogueLayouts[currentSpeaker.layoutOrder];
+        }
+
+        currentDialogueLayout.FillLayout(currentSpeaker);
+    }
 
 }

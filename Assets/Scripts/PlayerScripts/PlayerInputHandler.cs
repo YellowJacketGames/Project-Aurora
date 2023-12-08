@@ -17,7 +17,7 @@ public class PlayerInputHandler : PlayerComponent
     private bool crouchingInput;  //Button values for running
     private bool jumpingInput;    //Button values for jumping
     private bool interactInput;   //Button values for interacting
-
+    private bool acceptInput;
     //Controls to check which type of control the player is using
     private Gamepad gamepad;
     private Keyboard keyboard;
@@ -25,6 +25,7 @@ public class PlayerInputHandler : PlayerComponent
     {
         base.Awake();
         _playerInput = new PlayerInputAsset();
+        ChangeToLevelControls();
     }
 
     #region HandleDisableAndEnable
@@ -53,6 +54,10 @@ public class PlayerInputHandler : PlayerComponent
 
         _playerInput.PlayerMovement.Interact.performed += OnInteractPerformed;
         _playerInput.PlayerMovement.Interact.canceled += OnInteractCanceled;
+
+        _playerInput.PlayerUI.Accept.performed += OnAcceptPerformed;
+        _playerInput.PlayerUI.Accept.canceled += OnAcceptCanceled;
+
     }
 
     private void OnDisable()
@@ -130,9 +135,19 @@ public class PlayerInputHandler : PlayerComponent
     {
         interactInput = false;
     }
+
+    private void OnAcceptPerformed(InputAction.CallbackContext value)
+    {
+        acceptInput = true;
+    }
+
+    private void OnAcceptCanceled(InputAction.CallbackContext value)
+    {
+        acceptInput = false;
+    }
     #endregion
 
-    
+
     #region GetInputValues
     //Returning the value of the moving Vector, we will only be using the x values for now.
     public Vector2 GetMovementDirection()
@@ -162,6 +177,11 @@ public class PlayerInputHandler : PlayerComponent
         return interactInput;
     }
 
+    public bool GetAcceptInput()
+    {
+        return acceptInput;
+    }
+
     #endregion
 
     private void Update()
@@ -182,4 +202,19 @@ public class PlayerInputHandler : PlayerComponent
         }
     }
 
+    #region Change Action Maps
+    public void ChangeToUIControls()
+    {
+        _playerInput.PlayerMovement.Disable();
+        _playerInput.PlayerUI.Enable();
+    }
+
+    public void ChangeToLevelControls()
+    {
+        _playerInput.PlayerMovement.Enable();
+        _playerInput.PlayerUI.Disable();
+    }
+
+
+    #endregion
 }

@@ -99,6 +99,10 @@ public class PlayerMovement : PlayerComponent
     }
     public void HandleMovementStates()
     {
+        //If the player is in another restrictive state, they can't enter idle
+        if (_parent.CurrentPlayerState == PlayerState.Conversation || _parent.CurrentPlayerState == PlayerState.Transition)
+            return;
+
         //If the player isn't pressing any direction and isn't jumping, it's state should be idle.
         if(_parent.playerInputHandlerComponent.GetMovementDirection().x == 0)
         {
@@ -152,6 +156,7 @@ public class PlayerMovement : PlayerComponent
         //If the player is able to meet the requirements to move, he can move.
         if (shouldMove)
         {
+            Debug.Log("ShouldMove");
             HandleMovement();
 
             //Handling of the different inputs

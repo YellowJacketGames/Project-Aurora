@@ -273,6 +273,56 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerUI"",
+            ""id"": ""ab495360-8e34-4384-a7a8-469d0880f04e"",
+            ""actions"": [
+                {
+                    ""name"": ""Accept"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d4fc4e7-180b-4157-b4af-37d37d59258d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c945e585-f6e8-41cb-8c3b-64d093395abe"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49c694e8-b447-477e-8d9e-755a9d639003"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcee9396-c54e-4d7c-8611-5b3e7302ce73"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -284,6 +334,9 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         m_PlayerMovement_Crouching = m_PlayerMovement.FindAction("Crouching", throwIfNotFound: true);
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
+        // PlayerUI
+        m_PlayerUI = asset.FindActionMap("PlayerUI", throwIfNotFound: true);
+        m_PlayerUI_Accept = m_PlayerUI.FindAction("Accept", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -419,6 +472,52 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // PlayerUI
+    private readonly InputActionMap m_PlayerUI;
+    private List<IPlayerUIActions> m_PlayerUIActionsCallbackInterfaces = new List<IPlayerUIActions>();
+    private readonly InputAction m_PlayerUI_Accept;
+    public struct PlayerUIActions
+    {
+        private @PlayerInputAsset m_Wrapper;
+        public PlayerUIActions(@PlayerInputAsset wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Accept => m_Wrapper.m_PlayerUI_Accept;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerUIActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Add(instance);
+            @Accept.started += instance.OnAccept;
+            @Accept.performed += instance.OnAccept;
+            @Accept.canceled += instance.OnAccept;
+        }
+
+        private void UnregisterCallbacks(IPlayerUIActions instance)
+        {
+            @Accept.started -= instance.OnAccept;
+            @Accept.performed -= instance.OnAccept;
+            @Accept.canceled -= instance.OnAccept;
+        }
+
+        public void RemoveCallbacks(IPlayerUIActions instance)
+        {
+            if (m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerUIActions @PlayerUI => new PlayerUIActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -426,5 +525,9 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         void OnCrouching(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IPlayerUIActions
+    {
+        void OnAccept(InputAction.CallbackContext context);
     }
 }
