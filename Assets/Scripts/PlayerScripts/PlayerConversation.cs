@@ -56,8 +56,6 @@ public class PlayerConversation : PlayerComponent
                 FinishStory();
             }
         }
-
-        
     }
 
     #region Story 
