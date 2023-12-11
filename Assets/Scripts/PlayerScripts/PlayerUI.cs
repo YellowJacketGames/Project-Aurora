@@ -35,7 +35,6 @@ public class PlayerUI : PlayerComponent
 
     #endregion
 
-
     //This region holds the methods related to interact prompt
     #region Interact Prompt
     public void ShowInteractPrompt(InteractableElement element)
@@ -83,6 +82,7 @@ public class PlayerUI : PlayerComponent
 
     #endregion
 
+    //This region holds all methods related to conversations
     #region Conversations
 
     //Method to activate the conversation box and set the appropiate control layout
@@ -127,13 +127,12 @@ public class PlayerUI : PlayerComponent
 
         currentDialogueLayout.FillLayout(currentSpeaker);
     }
-    
-    
+
 
     //Coroutine to show the dialogue text one letter at a time like a typewriter.
     public IEnumerator DisplayLine(string line)
     {
-        typingLine = true;
+        typingLine = true; //Setting the typing status to true
         _parent.dialogueText.text = ""; //First we empty the component for the next line
 
         //We then through every character in our line in a loop
@@ -144,20 +143,26 @@ public class PlayerUI : PlayerComponent
             yield return new WaitForSeconds(typingSpeed);
         }
 
+        //When we're done, we display any choices avaible
         _parent.playerConversationComponent.DisplayChoices();
+
+        //Setting the typing status to false
         typingLine = false;
-        //_parent.playerConversationComponent.DisplayChoices();
     }
 
-    public bool ReturnTypingStatus()
+    #region Typing Status
+    public bool ReturnTypingStatus() //Method to get the typing status
     {
         return typingLine;
     }
-    public void SetTypingStatus(bool value)
+    public void SetTypingStatus(bool value) //Method to Set the typing status
     {
         typingLine = value;
     }
     #endregion
+
+    #endregion 
+
     private void Update()
     {
         if (_parent.seeControls)

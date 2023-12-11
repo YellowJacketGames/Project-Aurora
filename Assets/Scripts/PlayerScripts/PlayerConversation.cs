@@ -44,85 +44,108 @@ public class PlayerConversation : PlayerComponent
 
     public void FixedUpdate()
     {
-        if (_parent.CurrentPlayerState == PlayerState.Conversation)
+        if (_parent.CurrentPlayerState == PlayerState.Conversation) //We only execute this if we're in the conversation state
         {
-            if (_parent.playerInputHandlerComponent.GetAcceptInput())
+            if (_parent.playerInputHandlerComponent.GetAcceptInput()) //If we input the continue button, it will continue the story
             {
-                if (currentDialogue.canContinue)
-                {
-                    if (!_parent.playerUIComponent.ReturnTypingStatus())
-                    {
-                        //skipLineCooldown = true;
-                        displayLine = StartCoroutine(_parent.playerUIComponent.DisplayLine(currentDialogue.Continue()));
-                        HandleSpeakers();
-                    }
-                    else
-                    {
-                        if (displayLine != null)
-                        {
-                            StopCoroutine(displayLine);
-                            displayLine = null;
-                        }
+                ContinueStory();
+            }
 
-                        _parent.dialogueText.text = currentDialogue.currentText;
-                        _parent.playerUIComponent.SetTypingStatus(false);
-                        DisplayChoices();
-                    }
-                }
-                else
-                {
-                    if (_parent.playerUIComponent.ReturnTypingStatus())
-                    {
-                        if (displayLine != null)
-                        {
-                            StopCoroutine(displayLine);
-                            displayLine = null;
-                        }
-
-                        _parent.dialogueText.text = currentDialogue.currentText;
-                        _parent.playerUIComponent.SetTypingStatus(false);
-                        DisplayChoices();
-                    }
-                    else
-                    {
-                        if(currentDialogue.currentChoices.Count <= 0)
-                        {
-                            _parent.playerUIComponent.HideConversationBox();
-                            storyfinished = true;
-                        }
-                    }
-
-                }
+            if (storyfinished) //if the story is done, we clean it up
+            {
+                FinishStory();
             }
         }
 
-        if (storyfinished)
-        {
-            storyFinishedTimer -= Time.deltaTime;
-
-            if (storyFinishedTimer <= 0)
-            {
-                storyFinishedTimer = 2f;
-                storyfinished = false;
-                _parent.ChangeState(PlayerState.Idle);
-            }
-        }
+        
     }
 
-    public void ClearLineCoroutine()
+    #region Story 
+    public void ContinueStory() //Method to make story continue
     {
-        StopCoroutine(displayLine);
-        displayLine = null;
+        if (currentDialogue.canContinue) // The first condition is if the story can continue to the next line
+        {
+            if (!_parent.playerUIComponent.ReturnTypingStatus()) //Check to make sure we're not overwriting 
+            {
+                //If we're not, we begin the write text coroutine
+                displayLine = StartCoroutine(_parent.playerUIComponent.DisplayLine(currentDialogue.Continue()));
+
+                //We check which speaker is actually talking to set the portraits
+                HandleSpeakers();
+            }
+            else
+            {
+                //If we want to continue the story but the text is appearing currently we skip over to the next line
+
+                if (displayLine != null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
+                {
+                    StopCoroutine(displayLine);
+                    displayLine = null;
+                }
+
+                //We reset the dialogue to the current text
+                _parent.dialogueText.text = currentDialogue.currentText;
+
+                //Since we're no longer typing, we stop the bool in the player UI
+                _parent.playerUIComponent.SetTypingStatus(false);
+
+                //If there are any choices avaible, we display them
+                DisplayChoices();
+            }
+        }
+        else
+        {
+            //This part of the continue story method is reserved for finishing the story or waiting for choices to be answered
+
+            if (_parent.playerUIComponent.ReturnTypingStatus()) //If this is the last line before the story can move on, we display it fully
+            {
+                if (displayLine != null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
+                {
+                    StopCoroutine(displayLine);
+                    displayLine = null;
+                }
+
+                //We reset the dialogue to the current text
+                _parent.dialogueText.text = currentDialogue.currentText;
+
+                //Since we're no longer typing, we stop the bool in the player UI
+                _parent.playerUIComponent.SetTypingStatus(false);
+
+                //If there are any choices avaible, we display them
+                DisplayChoices();
+            }
+            else
+            {
+                if (currentDialogue.currentChoices.Count <= 0) //If there are no choices to be answered (since that also makes the dialogue not able to continue) we finish the story
+                {
+                    _parent.playerUIComponent.HideConversationBox(); //Deactivating the dialogue ui
+
+                    storyfinished = true;
+                }
+            }
+
+        }
     }
-    public void SetCurrentDialogue(Story dialogue)
+    
+    public void FinishStory() //This method is only performed when there is no more dialogue in the current story
+    {
+        //We set a timer so that the accept and jump input don't overlap
+        storyFinishedTimer -= Time.deltaTime;
+
+        if (storyFinishedTimer <= 0) //When it's done, we reset the timer and set the new state
+        {
+            storyFinishedTimer = 2f;
+            storyfinished = false;
+            _parent.ChangeState(PlayerState.Idle);
+        }
+    }
+    public void SetCurrentDialogue(Story dialogue) //Method to change the Current Dialogue
     {
         currentDialogue = dialogue;
     }
 
-    public bool ReturnSkipLineStatus()
-    {
-        return skipLineCooldown;
-    }
+    #endregion
+
     #region Choices
     public void DisplayChoices() //Method to display the different choices
     {
@@ -163,7 +186,6 @@ public class PlayerConversation : PlayerComponent
 
 
     #endregion
-
 
     #region Speakers
 
