@@ -513,7 +513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &80125190
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4041,7 +4041,7 @@ MonoBehaviour:
   - speakerName: {fileID: 1516590228}
     speakerPortrait: {fileID: 912210210}
     parent: {fileID: 567838161}
-  seeStateChange: 1
+  seeStateChange: 0
   seeControls: 0
   currentControl: 0
   _enterIdle:
@@ -4290,6 +4290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a76cac07b354c45bbba0f3d4537d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typingSpeed: 0.05
 --- !u!114 &1238627656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4345,7 +4346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438470226a62a9b40b2cd957394fb019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipLineTimer: 0.5
+  skipLineTimer: 0.3
   storyFinishedTimer: 0.1
   dialogueChoices:
   - choiceText: {fileID: 2008211663}

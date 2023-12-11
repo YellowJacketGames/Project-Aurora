@@ -28,7 +28,6 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeToLevelCamera()
     {
-        Debug.Log("Changed");
         levelCamera.Priority = 1;
         dialogueCamera.Priority = 0;
     }

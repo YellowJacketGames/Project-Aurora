@@ -156,7 +156,6 @@ public class PlayerMovement : PlayerComponent
         //If the player is able to meet the requirements to move, he can move.
         if (shouldMove)
         {
-            Debug.Log("ShouldMove");
             HandleMovement();
 
             //Handling of the different inputs

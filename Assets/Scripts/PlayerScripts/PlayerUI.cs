@@ -12,6 +12,12 @@ public class PlayerUI : PlayerComponent
     private Keyboard keyboard; //This variable is used to see if the player is using a gamepad
 
     private DialogueLayoutClass currentDialogueLayout = new DialogueLayoutClass(); //Variable to hold the current layout displayed to 
+
+
+    [Header("Dialogue Variables")]
+    [SerializeField] private float typingSpeed; //Variable to change the speed of which the text appear in dialogue boxes.
+    bool typingLine;
+    bool skipValue;
     //Region to hold the show context control methods
     #region Context Controls
     private void ShowKeyboardControls() //This methods changes the current display controls to the keyboard
@@ -79,6 +85,7 @@ public class PlayerUI : PlayerComponent
 
     #region Conversations
 
+    //Method to activate the conversation box and set the appropiate control layout
     public void ShowConversationBox()
     {
         _parent.dialogueBox.SetActive(true);
@@ -97,17 +104,59 @@ public class PlayerUI : PlayerComponent
                 break;
         }
     }
-
+    //Method to deactivate the conversation box
     public void HideConversationBox()
     {
         _parent.dialogueBox.SetActive(false);
     }
 
+    //Method to change the dialogue text, we will replace this in the future with a coroutine that displays text with each letter appearing one at a time
     public void ChangeConversationText(string newText)
     {
         _parent.dialogueText.SetText(newText);
     }
 
+    //Method to set the dialogue layout to the current speaker.
+    public void SetDialogueLayout(Speaker currentSpeaker)
+    {
+        if (currentDialogueLayout != _parent.dialogueLayouts[currentSpeaker.layoutOrder])
+        {
+            currentDialogueLayout.DeactivateLayout();
+            currentDialogueLayout = _parent.dialogueLayouts[currentSpeaker.layoutOrder];
+        }
+
+        currentDialogueLayout.FillLayout(currentSpeaker);
+    }
+    
+    
+
+    //Coroutine to show the dialogue text one letter at a time like a typewriter.
+    public IEnumerator DisplayLine(string line)
+    {
+        typingLine = true;
+        _parent.dialogueText.text = ""; //First we empty the component for the next line
+
+        //We then through every character in our line in a loop
+
+        foreach(char letter in line.ToCharArray())
+        {
+            _parent.dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        _parent.playerConversationComponent.DisplayChoices();
+        typingLine = false;
+        //_parent.playerConversationComponent.DisplayChoices();
+    }
+
+    public bool ReturnTypingStatus()
+    {
+        return typingLine;
+    }
+    public void SetTypingStatus(bool value)
+    {
+        typingLine = value;
+    }
     #endregion
     private void Update()
     {
@@ -127,15 +176,6 @@ public class PlayerUI : PlayerComponent
         }
     }
 
-    public void SetDialogueLayout(Speaker currentSpeaker)
-    {
-        if (currentDialogueLayout != _parent.dialogueLayouts[currentSpeaker.layoutOrder])
-        {
-            currentDialogueLayout.DeactivateLayout();
-            currentDialogueLayout = _parent.dialogueLayouts[currentSpeaker.layoutOrder];
-        }
-
-        currentDialogueLayout.FillLayout(currentSpeaker);
-    }
+    
 
 }

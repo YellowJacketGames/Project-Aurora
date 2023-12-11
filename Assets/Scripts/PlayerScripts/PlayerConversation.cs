@@ -22,9 +22,12 @@ public class PlayerConversation : PlayerComponent
     //This are variables to fix a small bug with the input of both action maps clashing when the dialogue is finished.
     [SerializeField] float storyFinishedTimer = 2f;
     bool storyfinished; //bool to check if the story is done
-
+    bool displayingChoices;
     [Header("Choices Components")]
     [SerializeField] private List<ChoiceClass> dialogueChoices;
+
+    Coroutine displayLine; //Variable to stop the coroutine
+    bool canContinueToNextLine;
     private void Start()
     {
         timer = skipLineTimer;
@@ -33,66 +36,93 @@ public class PlayerConversation : PlayerComponent
     {
         if (currentDialogue.canContinue)
         {
-            _parent.playerUIComponent.ChangeConversationText(currentDialogue.Continue());
-            DisplayChoices();
+            displayLine = StartCoroutine(_parent.playerUIComponent.DisplayLine(currentDialogue.Continue()));
+            //DisplayChoices();
             HandleSpeakers();
         }
     }
-    private void Update()
-    {
-        
-        if(_parent.CurrentPlayerState == PlayerState.Conversation)
-        {
-            if (_parent.playerInputHandlerComponent.GetAcceptInput() && !skipLineCooldown)
-            {
 
+    public void FixedUpdate()
+    {
+        if (_parent.CurrentPlayerState == PlayerState.Conversation)
+        {
+            if (_parent.playerInputHandlerComponent.GetAcceptInput())
+            {
                 if (currentDialogue.canContinue)
                 {
-                    skipLineCooldown = true;
-                    _parent.playerUIComponent.ChangeConversationText(currentDialogue.Continue());
-                    HandleSpeakers();
-                    DisplayChoices();
+                    if (!_parent.playerUIComponent.ReturnTypingStatus())
+                    {
+                        //skipLineCooldown = true;
+                        displayLine = StartCoroutine(_parent.playerUIComponent.DisplayLine(currentDialogue.Continue()));
+                        HandleSpeakers();
+                    }
+                    else
+                    {
+                        if (displayLine != null)
+                        {
+                            StopCoroutine(displayLine);
+                            displayLine = null;
+                        }
+
+                        _parent.dialogueText.text = currentDialogue.currentText;
+                        _parent.playerUIComponent.SetTypingStatus(false);
+                        DisplayChoices();
+                    }
                 }
                 else
                 {
-                    _parent.playerUIComponent.HideConversationBox();
-                    storyfinished = true;
-                    skipLineCooldown = false;
-                }
-            }
+                    if (_parent.playerUIComponent.ReturnTypingStatus())
+                    {
+                        if (displayLine != null)
+                        {
+                            StopCoroutine(displayLine);
+                            displayLine = null;
+                        }
 
-            if (skipLineCooldown) //this is a placeholder solution to make the player not skip the entire dialogue by just pressing a button
-            {
-                timer -= Time.deltaTime;
+                        _parent.dialogueText.text = currentDialogue.currentText;
+                        _parent.playerUIComponent.SetTypingStatus(false);
+                        DisplayChoices();
+                    }
+                    else
+                    {
+                        if(currentDialogue.currentChoices.Count <= 0)
+                        {
+                            _parent.playerUIComponent.HideConversationBox();
+                            storyfinished = true;
+                        }
+                    }
 
-                if(timer <= 0)
-                {
-                    skipLineCooldown = false;
-                    timer = skipLineTimer;
-                }
-            }
-
-            if (storyfinished)
-            {
-                storyFinishedTimer -= Time.deltaTime;
-
-                if(storyFinishedTimer <= 0)
-                {
-                    storyFinishedTimer = 2f;
-                    storyfinished = false;
-                    _parent.ChangeState(PlayerState.Idle);
                 }
             }
         }
 
-        
+        if (storyfinished)
+        {
+            storyFinishedTimer -= Time.deltaTime;
+
+            if (storyFinishedTimer <= 0)
+            {
+                storyFinishedTimer = 2f;
+                storyfinished = false;
+                _parent.ChangeState(PlayerState.Idle);
+            }
+        }
     }
 
+    public void ClearLineCoroutine()
+    {
+        StopCoroutine(displayLine);
+        displayLine = null;
+    }
     public void SetCurrentDialogue(Story dialogue)
     {
         currentDialogue = dialogue;
     }
 
+    public bool ReturnSkipLineStatus()
+    {
+        return skipLineCooldown;
+    }
     #region Choices
     public void DisplayChoices() //Method to display the different choices
     {
@@ -105,7 +135,7 @@ public class PlayerConversation : PlayerComponent
 
                 dialogueChoices[i].SetChoice(currentDialogue.currentChoices[i]);
             }
-
+            displayingChoices = true;
             StartCoroutine(SelectFirstChoice(dialogueChoices[0].ReturnParent()));
         }
     }
@@ -123,11 +153,14 @@ public class PlayerConversation : PlayerComponent
     {
         currentDialogue.ChooseChoiceIndex(index);
 
-        foreach(ChoiceClass c in dialogueChoices)
+        foreach (ChoiceClass c in dialogueChoices)
         {
             c.ReturnParent().SetActive(false);
         }
+
+        displayingChoices = false;
     }
+
 
     #endregion
 

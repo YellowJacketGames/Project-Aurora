@@ -174,12 +174,17 @@ public class PlayerInputHandler : PlayerComponent
 
     public bool GetInteractInput()
     {
-        return interactInput;
+        bool result = interactInput;
+        interactInput = false;
+        return result;
     }
 
     public bool GetAcceptInput()
     {
-        return acceptInput;
+        bool result = acceptInput;
+        acceptInput = false;
+
+        return result;
     }
 
     #endregion
