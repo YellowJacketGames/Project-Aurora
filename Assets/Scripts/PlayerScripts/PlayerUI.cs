@@ -47,7 +47,27 @@ public class PlayerUI : PlayerComponent
                 _parent.interactableText.SetText("Pick up " + element.GetElementName());
                 break;
             case InteractionType.Location:
-                _parent.interactableText.SetText("Go to " + element.GetElementName());
+                DoorElement door = element.GetComponent<DoorElement>();
+
+                if (door != null)
+                {
+                    if (door.GetKeyValue())
+                    {
+                        if (door.CheckIfCanOpen())
+                        {
+                            _parent.interactableText.SetText("Open door");
+                        }
+                        else
+                        {
+                            _parent.interactableText.SetText("Door locked");
+                        }
+                    }
+                    else
+                    {
+                        _parent.interactableText.SetText("Go to " + element.GetElementName());
+                    }
+                }
+
                 break;
             case InteractionType.Conversation:
                 _parent.interactableText.SetText("Talk to " + element.GetElementName());

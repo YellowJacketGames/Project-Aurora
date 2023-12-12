@@ -12,26 +12,14 @@ public class PlayerConversation : PlayerComponent
     [Header("Dialogue Components")]
     private Story currentDialogue;
 
-
-    //This variables are a placeholder measure to stop the input from skipping all dialogue as soon as they press it
-    //I will try to fix it later on
-    bool skipLineCooldown;
-    [SerializeField] float skipLineTimer;
-    float timer;
-
     //This are variables to fix a small bug with the input of both action maps clashing when the dialogue is finished.
     [SerializeField] float storyFinishedTimer = 2f;
     bool storyfinished; //bool to check if the story is done
-    bool displayingChoices;
     [Header("Choices Components")]
     [SerializeField] private List<ChoiceClass> dialogueChoices;
 
     Coroutine displayLine; //Variable to stop the coroutine
-    bool canContinueToNextLine;
-    private void Start()
-    {
-        timer = skipLineTimer;
-    }
+
     public void BeginStory()
     {
         if (currentDialogue.canContinue)
@@ -156,7 +144,7 @@ public class PlayerConversation : PlayerComponent
 
                 dialogueChoices[i].SetChoice(currentDialogue.currentChoices[i]);
             }
-            displayingChoices = true;
+
             StartCoroutine(SelectFirstChoice(dialogueChoices[0].ReturnParent()));
         }
     }
@@ -178,8 +166,6 @@ public class PlayerConversation : PlayerComponent
         {
             c.ReturnParent().SetActive(false);
         }
-
-        displayingChoices = false;
     }
 
 

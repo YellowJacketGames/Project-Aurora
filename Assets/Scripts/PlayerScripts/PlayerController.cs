@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public PlayerUI playerUIComponent;
     [HideInInspector] public PlayerInteract playerInteractComponent;
     [HideInInspector] public PlayerConversation playerConversationComponent;
+    [HideInInspector] public PlayerInventory playerInventoryComponent;
 
     //PlayerComponents
     [Header("Player Components")]
@@ -310,6 +311,16 @@ public class PlayerController : MonoBehaviour
             //Warning so that we know what the issue is in the console
             Debug.LogWarning("Player Conversation component is missing in the player object");
         }
+
+        if (TryGetComponent<PlayerInventory>(out PlayerInventory inventory))
+        {
+            playerInventoryComponent = inventory;
+        }
+        else
+        {
+            //Warning so that we know what the issue is in the console
+            Debug.LogWarning("Player Inventory component is missing in the player object");
+        }
         #endregion
 
 
@@ -327,8 +338,8 @@ public class PlayerController : MonoBehaviour
         _enterConversation.AddListener(GameManager.instance.currentCameraManager.ChangeToDialogueCamera);
         _exitConversation.AddListener(GameManager.instance.currentCameraManager.ChangeToLevelCamera);
         #endregion 
-        //We will set the beginning state to idle, since the player isn't moving when the game begins.
-        ChangeState(PlayerState.Idle);
+
+        ChangeState(PlayerState.Transition);
     }
 
 

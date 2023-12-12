@@ -34,5 +34,6 @@ public class GameManager : MonoBehaviour
     public CameraManager currentCameraManager;
     public PlayerController currentController;
     public TagManager speakerManager; //This is a placeholder, it should be another scriptable object with a list of all the speakers in game so that it doesn't depend on references.
+    public TransitionManager currentTransitionManager;
 
 }
