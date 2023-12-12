@@ -19,31 +19,14 @@ public class DoorElement : InteractableElement
 
         if (!needKey) //If we don't need a key, we just go to the location
         {
-            //When interacted, we want to set a transition before moving to the new location
-            inTransition = true;
-            GameManager.instance.currentTransitionManager.SetFadeIn();
-
-            //We deactivate the interaction check since we want to interact with this door again
-            hasBeenInteracted = false;
+            OpenDoor();
         }
         else
         {
             if (CheckIfCanOpen())
             {
-                //Since we have the key, we can open the door
-                needKey = false;
-
-                //We use the item and remove it from the inventory
-                GameManager.instance.currentController.playerInventoryComponent.UseItem(keyNeeded);
-
-                //Play unlocking sound
-
-                //When interacted, we want to set a transition before moving to the new location
-                inTransition = true;
-                GameManager.instance.currentTransitionManager.SetFadeIn();
-
-                //We deactivate the interaction check since we want to interact with this door again
-                hasBeenInteracted = false;
+                UnlockDoor();
+                OpenDoor();
             }
 
             else
@@ -56,6 +39,29 @@ public class DoorElement : InteractableElement
         
     }
 
+    public void OpenDoor()
+    {
+        //When interacted, we want to set a transition before moving to the new location
+        inTransition = true;
+        GameManager.instance.currentTransitionManager.SetFadeIn();
+
+        //We deactivate the interaction check since we want to interact with this door again
+        hasBeenInteracted = false;
+
+        //Play the sound of the door opening
+        AudioManager.instance.Play("DoorOpen");
+    }
+
+    public void UnlockDoor()
+    {
+        //Since we have the key, we can open the door
+        needKey = false;
+
+        //We use the item and remove it from the inventory
+        GameManager.instance.currentController.playerInventoryComponent.UseItem(keyNeeded);
+
+        //Play unlocking sound
+    }
     private void Update()
     {
         if (!GameManager.instance.currentTransitionManager.ReturnTransitionStatus() && inTransition) //If the transition is done, we move the player and then set the transition
