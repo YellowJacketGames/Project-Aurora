@@ -139,6 +139,8 @@ public class PlayerMovement : PlayerComponent
 
     private void Update()
     {
+        if (GameManager.instance.GetCurrentGameState() == GameStates.Pause)
+            return;
         //Handling different movement state changes
         HandleMovementStates();
 

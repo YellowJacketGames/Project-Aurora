@@ -323,6 +323,45 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerOptions"",
+            ""id"": ""1a85bf81-4218-41d2-8850-4419091d372c"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6d4809e-b18e-403b-a99a-ce617ead0728"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""33b76733-b7fe-448c-a014-b8c422ccfba9"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d90bbda-290d-4932-99c4-5d4e52618718"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -337,6 +376,9 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         // PlayerUI
         m_PlayerUI = asset.FindActionMap("PlayerUI", throwIfNotFound: true);
         m_PlayerUI_Accept = m_PlayerUI.FindAction("Accept", throwIfNotFound: true);
+        // PlayerOptions
+        m_PlayerOptions = asset.FindActionMap("PlayerOptions", throwIfNotFound: true);
+        m_PlayerOptions_Pause = m_PlayerOptions.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -518,6 +560,52 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         }
     }
     public PlayerUIActions @PlayerUI => new PlayerUIActions(this);
+
+    // PlayerOptions
+    private readonly InputActionMap m_PlayerOptions;
+    private List<IPlayerOptionsActions> m_PlayerOptionsActionsCallbackInterfaces = new List<IPlayerOptionsActions>();
+    private readonly InputAction m_PlayerOptions_Pause;
+    public struct PlayerOptionsActions
+    {
+        private @PlayerInputAsset m_Wrapper;
+        public PlayerOptionsActions(@PlayerInputAsset wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_PlayerOptions_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerOptions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerOptionsActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerOptionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerOptionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerOptionsActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(IPlayerOptionsActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(IPlayerOptionsActions instance)
+        {
+            if (m_Wrapper.m_PlayerOptionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerOptionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerOptionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerOptionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerOptionsActions @PlayerOptions => new PlayerOptionsActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -529,5 +617,9 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
     public interface IPlayerUIActions
     {
         void OnAccept(InputAction.CallbackContext context);
+    }
+    public interface IPlayerOptionsActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }
