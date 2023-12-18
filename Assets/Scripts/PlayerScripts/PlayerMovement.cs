@@ -19,7 +19,11 @@ public class PlayerMovement : PlayerComponent
     [Space]
 
     [Header("Jump Values")]
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpForce; //Value of the force that is applied to the player when it jumps
+    [Space]
+    [Header("Ground Check Values")]
+    [SerializeField] private float groundCheckLength;  //Value of the lenght of the raycast that checks if the player is in the ground
+    [SerializeField] private bool isGrounded;
 
     //Bool variable to know if the player should be able to move
     bool shouldMove => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
@@ -32,6 +36,7 @@ public class PlayerMovement : PlayerComponent
     //Bool variable to check if the player should be able to crouch
     bool shouldCrouch => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
         _parent.CurrentPlayerState != PlayerState.Jump && _parent.playerInputHandlerComponent.GetCrouchingInput();
+
     #region PlayerMovementFunctions
 
     public void HandleMovement()    //This method will move the player with different speeds depending on the current state, which will be handled in a different method
@@ -130,7 +135,6 @@ public class PlayerMovement : PlayerComponent
     #endregion
 
 
-
     private void Start()
     {
         //On the start we will set the speed to idle, which means 0
@@ -139,8 +143,12 @@ public class PlayerMovement : PlayerComponent
 
     private void Update()
     {
+
         if (GameManager.instance.GetCurrentGameState() == GameStates.Pause)
             return;
+
+        HandleGroundCheck();
+
         //Handling different movement state changes
         HandleMovementStates();
 
@@ -153,6 +161,16 @@ public class PlayerMovement : PlayerComponent
 
     }
 
+    public void HandleGroundCheck()
+    {
+        isGrounded = Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), new Vector3(transform.position.x, -1*groundCheckLength, transform.position.z));
+        isGrounded = Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), new Vector3(transform.position.x, -1*groundCheckLength, transform.position.z));
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, -1 * groundCheckLength, transform.position.z)); 
+    }
     private void FixedUpdate()
     {
         //If the player is able to meet the requirements to move, he can move.
