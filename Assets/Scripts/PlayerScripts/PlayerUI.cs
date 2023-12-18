@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 
 //This script will handle most of the player HUD and UI
 //Like contexual controls and UI animations
@@ -11,13 +11,14 @@ public class PlayerUI : PlayerComponent
     private Gamepad gamepad; //This variable is used to see if the player is using a gamepad
     private Keyboard keyboard; //This variable is used to see if the player is using a gamepad
 
-    private DialogueLayoutClass currentDialogueLayout = new DialogueLayoutClass(); //Variable to hold the current layout displayed to 
+    private DialogueLayoutClass currentDialogueLayout; //Variable to hold the current layout displayed to 
 
 
     [Header("Dialogue Variables")]
     [SerializeField] private float typingSpeed; //Variable to change the speed of which the text appear in dialogue boxes.
     bool typingLine;
     bool skipValue;
+
     //Region to hold the show context control methods
     #region Context Controls
     private void ShowKeyboardControls() //This methods changes the current display controls to the keyboard
@@ -139,9 +140,16 @@ public class PlayerUI : PlayerComponent
     //Method to set the dialogue layout to the current speaker.
     public void SetDialogueLayout(Speaker currentSpeaker)
     {
-        if (currentDialogueLayout != _parent.dialogueLayouts[currentSpeaker.layoutOrder])
+        if(currentDialogueLayout != null)
         {
-            currentDialogueLayout.DeactivateLayout();
+            if (currentDialogueLayout != _parent.dialogueLayouts[currentSpeaker.layoutOrder])
+            {
+                currentDialogueLayout.DeactivateLayout();
+                currentDialogueLayout = _parent.dialogueLayouts[currentSpeaker.layoutOrder];
+            }
+        }
+        else
+        {
             currentDialogueLayout = _parent.dialogueLayouts[currentSpeaker.layoutOrder];
         }
 

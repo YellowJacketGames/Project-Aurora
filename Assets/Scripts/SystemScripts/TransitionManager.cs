@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ImageEffects;
 
 //This script will handle transitions from level to level and different areas of the game
 public class TransitionManager : MonoBehaviour
@@ -11,9 +12,8 @@ public class TransitionManager : MonoBehaviour
     //Bools to check which function to do
     bool fadeIn;
     bool fadeOut;
-
+    Effects transitionEffects;
     [SerializeField] private Image transitionImage;
-
     [Range(0f, 1f)]
     [SerializeField] float transitionDuration;
 
@@ -27,17 +27,28 @@ public class TransitionManager : MonoBehaviour
 
         //We begin with a fade out transition
         SetFadeOut();
+
+        transitionEffects = new Effects();
     }
     private void Update()
     {
         if (fadeIn) //If faden in has been set, execute the method 
         {
-            FadeIn();
+            if(transitionEffects.FadeIn(transitionImage, transitionDuration))
+            {
+                fadeIn = false; //When the transition is finished, we make sure the transition stops
+            }
         }
 
         if (fadeOut) //If faden out in has been set, execute the method 
         {
-            FadeOut();
+            if (transitionEffects.FadeOut(transitionImage, transitionDuration))
+            {
+                fadeOut = false; //When the transition is finished, we make sure the transition stops
+
+                //Since we're exiting the transition, we also need to change to player state to idle
+                GameManager.instance.currentController.ChangeState(PlayerState.Idle);
+            }
         }
     }
 
@@ -56,51 +67,6 @@ public class TransitionManager : MonoBehaviour
         if(!fadeIn)
         fadeOut = true;
     }
-
-    private void FadeIn() //Method to change the transition image alpha to 1, which means to fade in the image
-    {
-        transitionTime += Time.deltaTime; //We store the time since the transition began
-
-        if (transitionTime <= transitionDuration) //If the transition time is higher than the duration, it means the lerp has ended and the image has faded in
-        {
-            //We lerp the value of the image alpha from 0 to 1
-            transitionImage.color = new Color(transitionImage.color.r, transitionImage.color.g, transitionImage.color.b, Mathf.Lerp(0, 1, transitionTime / transitionDuration)); 
-        }
-        else
-        {
-            transitionImage.color = new Color(transitionImage.color.r, transitionImage.color.g, transitionImage.color.b, 1); //When the lerp is done, we set the value correctly to avoid bugs
-
-            //We reset the check and the time since transition began
-
-            fadeIn = false; 
-            transitionTime = 0;
-        }
-    }
-
-    private void FadeOut() //Method to change the transition image alpha to 0, which means to fade out the image
-    {
-        transitionTime += Time.deltaTime; //We store the time since the transition began
-
-        if (transitionTime <= transitionDuration) //If the transition time is higher than the duration, it means the lerp has ended and the image has faded out
-        {
-            //We lerp the value of the image alpha from 1 to 0
-            transitionImage.color = new Color(transitionImage.color.r, transitionImage.color.g, transitionImage.color.b, Mathf.Lerp(1, 0, transitionTime / transitionDuration));
-        }
-        else
-        {
-            transitionImage.color = new Color(transitionImage.color.r, transitionImage.color.g, transitionImage.color.b, 0); //When the lerp is done, we set the value correctly to avoid bugs
-
-            //We reset the check and the time since transition began
-
-            fadeOut = false;
-            transitionTime = 0;
-
-            //Since we're exiting the transition, we also need to change to player state to idle
-            GameManager.instance.currentController.ChangeState(PlayerState.Idle);
-
-        }
-    }
-
     public bool ReturnTransitionStatus() //This returns true if either transition is playing and false if none are
     {
         if(fadeIn || fadeOut)
