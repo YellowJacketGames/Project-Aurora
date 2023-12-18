@@ -57,6 +57,9 @@ public class PlayerMovement : PlayerComponent
     //Method to handle player Jump
     public void HandleJump()
     {
+        if (_parent.CurrentPlayerState == PlayerState.Idle)
+            ChangeToWalkSpeed();
+
         _parent.playerRigid.AddForce(Vector3.up * jumpForce);
         _parent.ChangeState(PlayerState.Jump);
     }
@@ -111,7 +114,6 @@ public class PlayerMovement : PlayerComponent
         //If the player isn't pressing any direction and isn't jumping, it's state should be idle.
         if(_parent.playerInputHandlerComponent.GetMovementDirection().x == 0)
         {
-
             if (_parent.CurrentPlayerState == PlayerState.Idle)
                 return;
 
