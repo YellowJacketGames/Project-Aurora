@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     [Space]
 
     [Header("Inventory")]
-    public GameObject inventoryParent; //the inventory gameobject that holds the other components
+    public Animator inventoryAnimations; //the inventory gameobject that holds the other components
     public TextMeshProUGUI objectName; //The text component to display the object name
     public Image objectIcon; //The image component to display the object icon
 

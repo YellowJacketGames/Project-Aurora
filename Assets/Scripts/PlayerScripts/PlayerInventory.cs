@@ -27,7 +27,8 @@ public class PlayerInventory : PlayerComponent
         
         currentInventory.Add(newObject); //We add it to the list
 
-        //Missing UI feedback implementation
+
+        _parent.playerUIComponent.ShowObjectObtained(newObject); //UI animation to display the object obtained
     }
 
 
@@ -47,7 +48,10 @@ public class PlayerInventory : PlayerComponent
     {
         //First we check if the object we want to remove is in the player inventory
         if (CheckIfObjectIsInInventory(newObject))
+        {
             keyObjectInventory.Remove(newObject); //We remove the item from the list
+            _parent.playerUIComponent.ShowObjectUsed(newObject); //UI animation to display the object used
+        }
 
         else
             Debug.LogError("The object you tried to use is not in the player inventory");

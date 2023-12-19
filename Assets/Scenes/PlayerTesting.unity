@@ -3211,7 +3211,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791443514}
   m_LocalRotation: {x: 0.040671993, y: -0.7242913, z: 0.042882446, w: 0.68695635}
-  m_LocalPosition: {x: 15.027174, y: 2.3931851, z: 0.32091635}
+  m_LocalPosition: {x: 9.958124, y: 1.7899928, z: 0.05252156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4755,7 +4755,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 10.111862
+  m_CameraDistance: 5
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -4953,9 +4953,9 @@ MonoBehaviour:
   dialogueLayouts:
   - {fileID: 1944255451}
   - {fileID: 106002144}
-  inventoryParent: {fileID: 0}
-  objectName: {fileID: 0}
-  objectIcon: {fileID: 0}
+  inventoryAnimations: {fileID: 1793919739}
+  objectName: {fileID: 823164086}
+  objectIcon: {fileID: 64210915}
   seeStateChange: 0
   seeControls: 1
   currentControl: 0
@@ -5231,6 +5231,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typingSpeed: 0.05
+  inventoryPopUpPosition: 1
+  inventoryPopUpTime: 5
 --- !u!114 &1238627656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5603,7 +5605,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336259075}
   m_LocalRotation: {x: 0.040671993, y: -0.7242913, z: 0.042882446, w: 0.68695635}
-  m_LocalPosition: {x: 6.0606747, y: 0.7211909, z: 0.3208991}
+  m_LocalPosition: {x: 0.99162483, y: 0.1179986, z: 0.052504305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6888,6 +6890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1793919738}
+  - component: {fileID: 1793919739}
   m_Layer: 2
   m_Name: Inventory
   m_TagString: Untagged
@@ -6914,9 +6917,30 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21, y: -68}
+  m_AnchoredPosition: {x: 602, y: -38}
   m_SizeDelta: {x: 411.9937, y: 100}
   m_Pivot: {x: 1, y: 1}
+--- !u!95 &1793919739
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793919737}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3eeb5da538a9f8c448776b8ba2a9aa22, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1833169641
 GameObject:
   m_ObjectHideFlags: 0

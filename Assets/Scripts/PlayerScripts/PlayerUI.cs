@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using DG.Tweening;
 
 //This script will handle most of the player HUD and UI
 //Like contexual controls and UI animations
@@ -18,6 +19,13 @@ public class PlayerUI : PlayerComponent
     [SerializeField] private float typingSpeed; //Variable to change the speed of which the text appear in dialogue boxes.
     bool typingLine;
     bool skipValue;
+
+
+    [Space]
+    [Header("Inventory Variables")]
+    [SerializeField] private float inventoryPopUpPosition;
+    [SerializeField] private float inventoryPopUpTime;
+
 
     //Region to hold the show context control methods UI
     #region Context Controls
@@ -197,17 +205,20 @@ public class PlayerUI : PlayerComponent
 
     #region Inventory
 
-    public void FillObject(ObjectClass newObj)
+    public void ShowObjectObtained(ObjectClass newObj)
     {
         _parent.objectName.text = "You've obtained " + newObj.GetObjectName();
         _parent.objectIcon.sprite = newObj.GetIcon();
-        _parent.gameObject.SetActive(true);
+        _parent.inventoryAnimations.SetTrigger("popUp");
     }
 
-    public void InventoryPopUp()
+    public void ShowObjectUsed(ObjectClass obj)
     {
-
+        _parent.objectName.text = "You've used " + obj.GetObjectName();
+        _parent.objectIcon.sprite = obj.GetIcon();
+        _parent.inventoryAnimations.SetTrigger("popUp");
     }
+
     #endregion
     private void Update()
     {
@@ -226,7 +237,5 @@ public class PlayerUI : PlayerComponent
             }
         }
     }
-
-    
 
 }
