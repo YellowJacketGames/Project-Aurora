@@ -65,4 +65,9 @@ public class BalancingPlatform : MonoBehaviour
             }
         }
     }
+
+    public void ClampRotation()
+    {
+        transform.rotation = Quaternion.Euler(new Vector3(Mathf.Clamp(transform.rotation.x, minRotationValue, maxRotationValue), 0, 0));
+    }
 }

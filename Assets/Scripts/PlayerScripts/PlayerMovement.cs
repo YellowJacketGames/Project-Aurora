@@ -68,8 +68,12 @@ public class PlayerMovement : PlayerComponent
     public void HandleFall()
     {
         //We only check for the Y value because it's the only one whose affected in the jump
-        if (_parent.playerRigid.velocity.y == 0)
+
+        if (isGrounded)
+        {
+            _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x, 0, _parent.playerRigid.velocity.z);
             _parent.ChangeState(PlayerState.Idle);
+        }            
     }
 
     public void HandleUncrouch() //This method handles if the player should be able to uncrouch, for example if he's in a tunnel and can't get up
@@ -149,8 +153,7 @@ public class PlayerMovement : PlayerComponent
         if (GameManager.instance.GetCurrentGameState() == GameStates.Pause)
             return;
 
-        HandleGroundCheck();
-
+        Debug.Log(isGrounded);
         //Handling different movement state changes
         HandleMovementStates();
 
@@ -163,15 +166,14 @@ public class PlayerMovement : PlayerComponent
 
     }
 
-    public void HandleGroundCheck()
+    public void HandleGroundCheck(bool value) //this method will be handled with a different script that checks the collider of the ground check
     {
-        isGrounded = Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), new Vector3(transform.position.x, -1*groundCheckLength, transform.position.z));
-        isGrounded = Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), new Vector3(transform.position.x, -1*groundCheckLength, transform.position.z));
+        isGrounded = value; //It sets the value to the variable depending on whether or not the player is grounded.
     }
 
-    private void OnDrawGizmos()
+    public void ChangePhysicialMaterialFriction(float value) //We will use this method when the player is grounded and airborn to change the friction of the player and prevent it from sliding and sticking to walls
     {
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, -1 * groundCheckLength, transform.position.z)); 
+        _parent.idleCollider.material.dynamicFriction = value; //We're changing a physical material, not a regular material, hence the dynamic friction variable
     }
     private void FixedUpdate()
     {
@@ -212,4 +214,24 @@ public class PlayerMovement : PlayerComponent
         //We check in the update method if the player should be able to uncrouch
         HandleUncrouch();
     }
+
+
+    #region Handle ground check values
+    private void OnTriggerEnter(Collider other)
+    {
+        HandleGroundCheck(true);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        HandleGroundCheck(true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        HandleGroundCheck(false);
+    }
+
+    #endregion
+
 }

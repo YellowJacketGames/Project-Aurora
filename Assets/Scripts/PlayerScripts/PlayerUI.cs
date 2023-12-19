@@ -19,7 +19,7 @@ public class PlayerUI : PlayerComponent
     bool typingLine;
     bool skipValue;
 
-    //Region to hold the show context control methods
+    //Region to hold the show context control methods UI
     #region Context Controls
     private void ShowKeyboardControls() //This methods changes the current display controls to the keyboard
     {
@@ -103,7 +103,7 @@ public class PlayerUI : PlayerComponent
 
     #endregion
 
-    //This region holds all methods related to conversations
+    //This region holds all methods related to conversations UI
     #region Conversations
 
     //Method to activate the conversation box and set the appropiate control layout
@@ -190,8 +190,25 @@ public class PlayerUI : PlayerComponent
     }
     #endregion
 
-    #endregion 
+    #endregion
 
+
+    //This region holds all methods related to inventory UI
+
+    #region Inventory
+
+    public void FillObject(ObjectClass newObj)
+    {
+        _parent.objectName.text = "You've obtained " + newObj.GetObjectName();
+        _parent.objectIcon.sprite = newObj.GetIcon();
+        _parent.gameObject.SetActive(true);
+    }
+
+    public void InventoryPopUp()
+    {
+
+    }
+    #endregion
     private void Update()
     {
         if (_parent.seeControls)

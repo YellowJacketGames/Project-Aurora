@@ -24,7 +24,10 @@ public class PlayerInventory : PlayerComponent
                 return;
         }
 
-        currentInventory.Add(newObject);
+        
+        currentInventory.Add(newObject); //We add it to the list
+
+        //Missing UI feedback implementation
     }
 
 

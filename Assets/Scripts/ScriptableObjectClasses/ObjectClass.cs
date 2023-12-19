@@ -18,7 +18,7 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
     [SerializeField] private ObjectType type;
     [SerializeField] private string objectId;
     [SerializeField] int idIndex = 3;
-
+    [SerializeField] Sprite objectIcon;
     [Space]
     [Header("Typewriter Variables")]
     [SerializeField] private char assignedLetter;
@@ -27,6 +27,18 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
     {
         //Generate the ID whenever the game begins
         GenerateId();
+
+        //We also get the image from resources
+        Sprite s = Resources.Load<Sprite>("Sprites/ObjectIcons/" + objectId);
+
+        if (s != null)
+        {
+            objectIcon = s;
+        }
+        else
+        {
+            Debug.Log("Sprite for " + objectName + " was not found");
+        }
     }
 
 
@@ -48,6 +60,10 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
         return objectId;
     }
 
+    public Sprite GetIcon()
+    {
+        return objectIcon;
+    }
     #endregion
 
 

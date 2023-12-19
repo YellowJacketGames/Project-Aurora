@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.UI;
 
 
 //This script is used as a parent and main communicator between the other player scripts like movement or conversations
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
     //in their scripts.
 
     //Scripts
-    [HideInInspector] public PlayerMovement playerMovementComponent;
+    [HideInInspector] public PlayerMovement playerMovementComponent; 
     [HideInInspector] public PlayerInputHandler playerInputHandlerComponent;
     [HideInInspector] public PlayerAnimations playerAnimationComponent;
     [HideInInspector] public PlayerCollisions playerCollisionsComponent;
@@ -82,13 +83,18 @@ public class PlayerController : MonoBehaviour
     public GameObject controllerInteractPrompt; //Controller button for the interactable prompt
     [Space]
 
-    [Header("Dialogue")]
-    public GameObject dialogueBox;
-    public TextMeshProUGUI dialogueText;
-    public GameObject keyboardContinueButton;
-    public GameObject controllerContinueButton;
-    public DialogueLayoutClass[] dialogueLayouts;
+    [Header("Dialogue")] 
+    public GameObject dialogueBox; //the whole dialogue box gameobject that holds the other components
+    public TextMeshProUGUI dialogueText; //Text component to display the dialogue text
+    public GameObject keyboardContinueButton; //Keyboard continue prompt
+    public GameObject controllerContinueButton; //Controller continue prompt
+    public DialogueLayoutClass[] dialogueLayouts; //A layout array to hold the left and right speakers
     [Space]
+
+    [Header("Inventory")]
+    public GameObject inventoryParent; //the inventory gameobject that holds the other components
+    public TextMeshProUGUI objectName; //The text component to display the object name
+    public Image objectIcon; //The image component to display the object icon
 
     //This is just for testing purposes
     [Header("Testing variables")]
@@ -98,6 +104,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player controls")] //Control enum to check the current controls of the player
     public ControlType currentControl;
+
+    [Header("Player Colliders")]
+    public Collider idleCollider;
 
     //This region stores all events to handle the entrance and exit of the different player states.
 
