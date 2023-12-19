@@ -17,7 +17,8 @@ public class PlayerInputHandler : PlayerComponent
     private bool crouchingInput;  //Button values for running
     private bool jumpingInput;    //Button values for jumping
     private bool interactInput;   //Button values for interacting
-    private bool acceptInput;
+    private bool acceptInput;     //Button values for accepting
+    private bool toggleZoomInput;  //Button values for zooming 
     //Controls to check which type of control the player is using
     private Gamepad gamepad;
     private Keyboard keyboard;
@@ -46,17 +47,27 @@ public class PlayerInputHandler : PlayerComponent
         _playerInput.PlayerMovement.Running.performed += OnRunningPerformed;
         _playerInput.PlayerMovement.Running.canceled += OnRunningCanceled;
 
+        //Crouching
         _playerInput.PlayerMovement.Crouching.performed += OnCrouchingPerformed;
         _playerInput.PlayerMovement.Crouching.canceled += OnCrouchingCanceled;
 
+        //Jumping
         _playerInput.PlayerMovement.Jump.performed += OnJumpingPerformed;
         _playerInput.PlayerMovement.Jump.canceled += OnJumpingCanceled;
 
+        //Interacting
         _playerInput.PlayerMovement.Interact.performed += OnInteractPerformed;
         _playerInput.PlayerMovement.Interact.canceled += OnInteractCanceled;
 
+        //Toggling Zoom
+        _playerInput.PlayerMovement.ToggleCamera.performed += OnTogglePerformed;
+        _playerInput.PlayerMovement.ToggleCamera.performed += OnToggleCanceled;
+
+        //Accepting
         _playerInput.PlayerUI.Accept.performed += OnAcceptPerformed;
         _playerInput.PlayerUI.Accept.canceled += OnAcceptCanceled;
+
+        
 
     }
 
@@ -136,6 +147,16 @@ public class PlayerInputHandler : PlayerComponent
         interactInput = false;
     }
 
+    private void OnTogglePerformed(InputAction.CallbackContext value)
+    {
+        toggleZoomInput = true;
+    }
+
+    private void OnToggleCanceled(InputAction.CallbackContext value)
+    {
+        toggleZoomInput = false;
+    }
+
     private void OnAcceptPerformed(InputAction.CallbackContext value)
     {
         acceptInput = true;
@@ -187,6 +208,12 @@ public class PlayerInputHandler : PlayerComponent
         return result;
     }
 
+    public bool GetToggleZoomInput()
+    {
+        bool result = toggleZoomInput;
+        toggleZoomInput = false;
+        return result;
+    }
     #endregion
 
     private void Update()

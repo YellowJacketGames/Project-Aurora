@@ -71,6 +71,15 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""2bb7d370-b084-440d-ade1-1cc668b52d78"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,28 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e6421a8-e2f4-46d1-b5b4-d49c09dbb35f"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a913a4dc-57b3-434a-8384-63a8b9c8d16e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -373,6 +404,7 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         m_PlayerMovement_Crouching = m_PlayerMovement.FindAction("Crouching", throwIfNotFound: true);
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerMovement_ToggleCamera = m_PlayerMovement.FindAction("ToggleCamera", throwIfNotFound: true);
         // PlayerUI
         m_PlayerUI = asset.FindActionMap("PlayerUI", throwIfNotFound: true);
         m_PlayerUI_Accept = m_PlayerUI.FindAction("Accept", throwIfNotFound: true);
@@ -445,6 +477,7 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_Crouching;
     private readonly InputAction m_PlayerMovement_Jump;
     private readonly InputAction m_PlayerMovement_Interact;
+    private readonly InputAction m_PlayerMovement_ToggleCamera;
     public struct PlayerMovementActions
     {
         private @PlayerInputAsset m_Wrapper;
@@ -454,6 +487,7 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         public InputAction @Crouching => m_Wrapper.m_PlayerMovement_Crouching;
         public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
         public InputAction @Interact => m_Wrapper.m_PlayerMovement_Interact;
+        public InputAction @ToggleCamera => m_Wrapper.m_PlayerMovement_ToggleCamera;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -478,6 +512,9 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @ToggleCamera.started += instance.OnToggleCamera;
+            @ToggleCamera.performed += instance.OnToggleCamera;
+            @ToggleCamera.canceled += instance.OnToggleCamera;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -497,6 +534,9 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @ToggleCamera.started -= instance.OnToggleCamera;
+            @ToggleCamera.performed -= instance.OnToggleCamera;
+            @ToggleCamera.canceled -= instance.OnToggleCamera;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -613,6 +653,7 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         void OnCrouching(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnToggleCamera(InputAction.CallbackContext context);
     }
     public interface IPlayerUIActions
     {

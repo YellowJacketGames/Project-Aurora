@@ -57,6 +57,20 @@ public class PlayerInventory : PlayerComponent
             Debug.LogError("The object you tried to use is not in the player inventory");
     }
 
+    public void UseItem(string objectId) //Same method as the other one but using the object ID
+    {
+        //First we check if the object we want to remove is in the player inventory
+        if (CheckIfObjectIsInInventory(objectId))
+        {
+            ObjectClass oldObj = GetItemFromInventory(objectId); //We get the item through the ID 
+            keyObjectInventory.Remove(oldObj); //We remove the item from the list
+            _parent.playerUIComponent.ShowObjectUsed(oldObj); //UI animation to display the object used
+        }
+
+        else
+            Debug.LogError("The object you tried to use is not in the player inventory");
+    }
+
     public bool CheckIfObjectIsInInventory(ObjectClass newObject)
     {
         foreach (ObjectClass o in keyObjectInventory)
@@ -66,6 +80,28 @@ public class PlayerInventory : PlayerComponent
         }
 
         return false;
+    }
+
+    public bool CheckIfObjectIsInInventory(string newObjectId)
+    {
+        foreach (ObjectClass o in keyObjectInventory)
+        {
+            if (o.CompareId(newObjectId)) //if some object in the inventory is the same, we break the loop
+                return true;
+        }
+
+        return false;
+    }
+
+    public ObjectClass GetItemFromInventory(string objectId) //This method gets and item from the inventory with the item ID
+    {
+        foreach (ObjectClass o in keyObjectInventory)
+        {
+            if (o.CompareId(objectId)) //if some object in the inventory is the same, we break the loop
+                return o;
+        }
+
+        return null;
     }
 }
 

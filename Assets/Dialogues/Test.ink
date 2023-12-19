@@ -2,6 +2,8 @@
 -> main
 
 == main ==
+
+~temp has_obj_LilacFlower_key = true
 #speaker:caja
 ¡Hola! Esto es una prueba de dialogo.
 Prueba a hablar tú, creo que ya deberías poder 
@@ -16,8 +18,12 @@ Dime, ¿cuál de estos dos colores te gusta más?
 * [Lila]
     Creo que el lila me gusta más  #speaker:player
     A mí también me gusta mucho ese color.#speaker:caja
+    Como has elegido la opción que me gusta te voy a dar un objeto
+    Espero que te guste
+    Aquí tienes #give_item:obj_Lilac Flower_key
+    ~has_obj_LilacFlower_key = true
 * [Azul]
-    Creo que el azul me gusta más      #speaker:player
+    Creo que el azul me gusta más #speaker:player
     Meh, podría ser mejor. #speaker:caja
 
 - Bien eso era todo, más adelante vamos a ver si implementamos variables en ink

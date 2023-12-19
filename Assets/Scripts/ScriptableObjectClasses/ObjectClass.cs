@@ -21,7 +21,7 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
     [SerializeField] Sprite objectIcon;
     [Space]
     [Header("Typewriter Variables")]
-    [SerializeField] private char assignedLetter;
+    [SerializeField] private string assignedLetter;
 
     private void OnEnable()
     {
@@ -29,16 +29,8 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
         GenerateId();
 
         //We also get the image from resources
-        Sprite s = Resources.Load<Sprite>("Sprites/ObjectIcons/" + objectId);
+        objectIcon = GetIconFromResources(this);
 
-        if (s != null)
-        {
-            objectIcon = s;
-        }
-        else
-        {
-            Debug.Log("Sprite for " + objectName + " was not found");
-        }
     }
 
 
@@ -86,7 +78,7 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
                 break;
             case ObjectType.TypeWriterObject: //If it's a typewritter item, it will have "type_" plus the assigned letter for the typewriter
                 objectId += "type_";
-                objectId += char.ToUpper(assignedLetter); 
+                objectId += assignedLetter;
                 break;
             default:
                 break;
@@ -102,6 +94,61 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
         else
         {
             return false;
+        }
+    }
+
+    public bool CompareId(string newObjectId) // Compares if the object id required to do something is the same one the player has in their inventory
+    {
+        if (newObjectId == objectId)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    public ObjectClass CreateObject(string newId)
+    {
+        ObjectClass obj = new ObjectClass();
+        string[] chars = newId.Split("_");
+
+        obj.objectId = newId;
+        obj.objectName = chars[1];
+
+        obj.objectIcon = GetIconFromResources(obj);
+
+        switch (chars[2])
+        {
+            case "key":
+                obj.type = ObjectType.KeyObject;
+                break;
+            case "type":
+                obj.type = ObjectType.TypeWriterObject;
+                obj.assignedLetter = chars[3];
+                break;
+            default:
+                break;
+        }
+
+        return obj;
+
+    }
+
+    public Sprite GetIconFromResources(ObjectClass obj)
+    {
+        Sprite s = Resources.Load<Sprite>("Sprites/ObjectIcons/" + obj.objectId);
+
+        if (s != null)
+        {
+            return s;
+        }
+        else
+        {
+            Debug.Log("Sprite for " + objectName + " was not found");
+            return null;
         }
     }
 }
