@@ -61,7 +61,7 @@ public class PlayerInputHandler : PlayerComponent
 
         //Toggling Zoom
         _playerInput.PlayerMovement.ToggleCamera.performed += OnTogglePerformed;
-        _playerInput.PlayerMovement.ToggleCamera.performed += OnToggleCanceled;
+        _playerInput.PlayerMovement.ToggleCamera.canceled += OnToggleCanceled;
 
         //Accepting
         _playerInput.PlayerUI.Accept.performed += OnAcceptPerformed;
@@ -76,20 +76,34 @@ public class PlayerInputHandler : PlayerComponent
         _playerInput.Disable();
 
         //Removing the listeners oon the component disable.
+
+        //Movement
         _playerInput.PlayerMovement.Movement.performed -= OnMovementPerformed;
         _playerInput.PlayerMovement.Movement.canceled -= OnMovementCanceled;
 
+        //Running
         _playerInput.PlayerMovement.Running.performed -= OnRunningPerformed;
         _playerInput.PlayerMovement.Running.canceled -= OnRunningCanceled;
 
+        //Crouching
         _playerInput.PlayerMovement.Crouching.performed -= OnCrouchingPerformed;
         _playerInput.PlayerMovement.Crouching.canceled -= OnCrouchingCanceled;
 
+        //Jumping
         _playerInput.PlayerMovement.Jump.performed -= OnJumpingPerformed;
         _playerInput.PlayerMovement.Jump.canceled -= OnJumpingCanceled;
 
+        //Interacting
         _playerInput.PlayerMovement.Interact.performed -= OnInteractPerformed;
         _playerInput.PlayerMovement.Interact.canceled -= OnInteractCanceled;
+
+        //Toggling Zoom
+        _playerInput.PlayerMovement.ToggleCamera.performed -= OnTogglePerformed;
+        _playerInput.PlayerMovement.ToggleCamera.performed -= OnToggleCanceled;
+
+        //Accepting
+        _playerInput.PlayerUI.Accept.performed -= OnAcceptPerformed;
+        _playerInput.PlayerUI.Accept.canceled -= OnAcceptCanceled;
 
     }
     #endregion
@@ -204,7 +218,6 @@ public class PlayerInputHandler : PlayerComponent
     {
         bool result = acceptInput;
         acceptInput = false;
-
         return result;
     }
 

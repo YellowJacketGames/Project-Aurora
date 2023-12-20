@@ -345,7 +345,9 @@ public class PlayerController : MonoBehaviour
 
         //We add this through code so that we don't have to reference it in the editor every time we enter a new scene
         _enterConversation.AddListener(GameManager.instance.currentCameraManager.ChangeToDialogueCamera);
-        _exitConversation.AddListener(GameManager.instance.currentCameraManager.ChangeToLevelCamera);
+        _exitConversation.AddListener(GameManager.instance.currentCameraManager.SetFollowCameraRight);
+        _enterIdle.AddListener(GameManager.instance.currentCameraManager.StopCameraTimer);
+
         #endregion 
 
         ChangeState(PlayerState.Transition);

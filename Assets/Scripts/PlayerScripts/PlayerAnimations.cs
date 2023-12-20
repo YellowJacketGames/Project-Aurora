@@ -36,13 +36,17 @@ public class PlayerAnimations : PlayerComponent
         {
             case PlayerState.Idle:
                 _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                GameManager.instance.currentCameraManager.SetCameraLeftTimer();
                 break;
             case PlayerState.Walk:
                 _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                GameManager.instance.currentCameraManager.SetCameraLeftTimer();
 
                 break;
             case PlayerState.Crouch:
                 _parent.crouchingModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                GameManager.instance.currentCameraManager.SetCameraLeftTimer();
+
                 break;
             default:
                 break;
@@ -56,12 +60,18 @@ public class PlayerAnimations : PlayerComponent
         {
             case PlayerState.Idle:
                 _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                GameManager.instance.currentCameraManager.SetCameraRightTimer();
+
                 break;
             case PlayerState.Walk:
                 _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                GameManager.instance.currentCameraManager.SetCameraRightTimer();
+
                 break;
             case PlayerState.Crouch:
                 _parent.crouchingModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                GameManager.instance.currentCameraManager.SetCameraRightTimer();
+
                 break;
             default:
                 break;

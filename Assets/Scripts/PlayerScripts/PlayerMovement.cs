@@ -153,7 +153,6 @@ public class PlayerMovement : PlayerComponent
         if (GameManager.instance.GetCurrentGameState() == GameStates.Pause)
             return;
 
-        Debug.Log(isGrounded);
         //Handling different movement state changes
         HandleMovementStates();
 
