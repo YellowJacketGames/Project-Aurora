@@ -22,10 +22,22 @@ public class PlayerConversation : PlayerComponent
 
     public void BeginStory()
     {
+        currentDialogue.BindExternalFunction("CheckIfHasItem", (string itemId) =>
+        {
+            if (_parent.playerInventoryComponent.CheckIfObjectIsInInventory(itemId))
+            {
+                currentDialogue.variablesState["hasItem"] = true;
+            }
+            else
+            {
+                currentDialogue.variablesState["hasItem"] = false;
+            }
+        });
+
         if (currentDialogue.canContinue)
         {
             displayLine = StartCoroutine(_parent.playerUIComponent.DisplayLine(currentDialogue.Continue()));
-            //DisplayChoices();
+            DisplayChoices();
             HandleTags();
         }
     }
@@ -49,6 +61,7 @@ public class PlayerConversation : PlayerComponent
     #region Story 
     public void ContinueStory() //Method to make story continue
     {
+        
         if (currentDialogue.canContinue) // The first condition is if the story can continue to the next line
         {
             if (!_parent.playerUIComponent.ReturnTypingStatus()) //Check to make sure we're not overwriting 
@@ -142,60 +155,12 @@ public class PlayerConversation : PlayerComponent
                 c.ReturnParent().SetActive(false);
             }
 
-            int choiceToCheck;
-            bool choiceChosen;
             for (int i = 0; i < currentDialogue.currentChoices.Count; i++) //Go through every choice avaible and fill out the variables
             {
                 
                 if (dialogueChoices[i] == null)
                     break;
-
-
                 dialogueChoices[i].SetChoice(currentDialogue.currentChoices[i]);
-
-                //Handling if there are tags in the choices
-                if (currentDialogue.currentTags.Count > 0) //If there are any tags in the current choices we check which one is it
-                {
-                    foreach (string tag in currentDialogue.currentTags)
-                    {
-
-                        #region Tag Parsing
-                        string[] splitTag = tag.Split(":");
-
-                        string tagKey = splitTag[0];
-                        string valueKey = splitTag[1];
-
-
-                        #endregion
-
-
-
-                        //Commented for possible future use
-
-                        //switch (tagKey)
-                        //{
-                        //    case "choice":
-                        //        if(int.Parse(valueKey) == i)
-                        //        {
-
-                        //        }
-                        //        break;
-
-                        //    case "check_item": //This is a tag that checks if a player has this item, if it does, it will display this choice
-
-                        //        if (_parent.playerInventoryComponent.CheckIfObjectIsInInventory(valueKey)) //Checks if it has the object set by the ID
-                        //        {
-                        //            dialogueChoices[i].SetChoice(currentDialogue.currentChoices[i]); //If it does, we display the choice
-                        //        }
-                        //        break;
-
-
-                        //    default:
-                        //        Debug.LogWarning("Tag not found use for");
-                        //        break;
-                        //}
-                    }
-                }
             }
 
             StartCoroutine(SelectFirstChoice(dialogueChoices[0].ReturnParent()));
