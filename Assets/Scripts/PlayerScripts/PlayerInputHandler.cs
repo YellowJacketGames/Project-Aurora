@@ -67,7 +67,9 @@ public class PlayerInputHandler : PlayerComponent
         _playerInput.PlayerUI.Accept.performed += OnAcceptPerformed;
         _playerInput.PlayerUI.Accept.canceled += OnAcceptCanceled;
 
-        
+        //Pausing
+        _playerInput.PlayerPause.Pause.performed += OnPausePerformed;
+        _playerInput.PlayerPause.Pause.canceled += OnPauseCanceled;
 
     }
 
@@ -104,6 +106,10 @@ public class PlayerInputHandler : PlayerComponent
         //Accepting
         _playerInput.PlayerUI.Accept.performed -= OnAcceptPerformed;
         _playerInput.PlayerUI.Accept.canceled -= OnAcceptCanceled;
+
+        //Pausing
+        _playerInput.PlayerPause.Pause.performed -= OnPausePerformed;
+        _playerInput.PlayerPause.Pause.canceled -= OnPauseCanceled;
 
     }
     #endregion
@@ -179,6 +185,27 @@ public class PlayerInputHandler : PlayerComponent
     private void OnAcceptCanceled(InputAction.CallbackContext value)
     {
         acceptInput = false;
+    }
+
+
+    private void OnPausePerformed(InputAction.CallbackContext value) //We set this in the event to execute the code without having to require the update method
+    {
+        switch (GameManager.instance.GetCurrentGameState()) //Depending on the current state, it will pause or unpause the game
+        {
+            case GameStates.Gameplay: //If we're currently playing, we pause the game.
+                GameManager.instance.pauseManager.Pause();
+                break;
+            case GameStates.Pause: //If we're already in the pause menu, we unpause it
+                GameManager.instance.pauseManager.UnPause();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnPauseCanceled(InputAction.CallbackContext value)
+    {
+
     }
     #endregion
 

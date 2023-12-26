@@ -6,7 +6,11 @@ VAR hasItem = false
 == main ==
 
 #speaker:caja
-¡Hola! Esto es una prueba de dialogo.
+¡Hola! Quiero comprar un billete #speaker:Federico
+~CheckIfHasItem("obj_Lilac Flower_key")
+
+{hasItem: Cuantos billetes quieres comprar-> END |No tienes dinero, no te puedo dar nada ->END} #speaker:Taquillero
+
 Prueba a hablar tú, creo que ya deberías poder 
 #speaker:player
 Anda ahora puedo hablar yo también.

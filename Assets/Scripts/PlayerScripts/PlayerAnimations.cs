@@ -10,7 +10,6 @@ public class PlayerAnimations : PlayerComponent
     {
         //Set default state
         ChangeModelToIdle();
-
     }
 
     //This is a placeholder method

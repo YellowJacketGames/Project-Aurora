@@ -10,7 +10,7 @@ public class PlayerInteract : PlayerComponent
     private InteractableElement currentElement;
     //bool to check if the player can interact with the other elements
     bool shouldInteract => _parent.CurrentPlayerState != PlayerState.Jump && _parent.CurrentPlayerState != PlayerState.Transition && _parent.CurrentPlayerState != PlayerState.Conversation &&
-        currentElement != null && _parent.playerInputHandlerComponent.GetInteractInput(); 
+        currentElement != null && _parent.playerInputHandlerComponent.GetInteractInput() && GameManager.instance.GetCurrentGameState()!= GameStates.Pause; 
 
     public void GetCurrentElement(InteractableElement newElement)
     {
