@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using UINavigation;
 
 //This script handles dialogue and conversations the player might have at any moment in the level
 //It checks the input of the UI to choose options and to read lines.
@@ -17,6 +18,7 @@ public class PlayerConversation : PlayerComponent
     bool storyfinished; //bool to check if the story is done
     [Header("Choices Components")]
     [SerializeField] private List<ChoiceClass> dialogueChoices;
+    private NavigateOptions choiceNavigation = new NavigateOptions();
 
     Coroutine displayLine; //Variable to stop the coroutine
 
@@ -163,18 +165,9 @@ public class PlayerConversation : PlayerComponent
                 dialogueChoices[i].SetChoice(currentDialogue.currentChoices[i]);
             }
 
-            StartCoroutine(SelectFirstChoice(dialogueChoices[0].ReturnParent()));
+            StartCoroutine(choiceNavigation.SelectFirstOption(dialogueChoices[0].ReturnParent()));
         }
     }
-
-    IEnumerator SelectFirstChoice(GameObject firstChoice) // Coroutine to set the first selectable option
-    {
-        //Event System requires to be cleared first and then assigned in a different frame
-        EventSystem.current.SetSelectedGameObject(null);
-        yield return new WaitForEndOfFrame();
-        EventSystem.current.SetSelectedGameObject(firstChoice);
-    }
-
     
     public void AssignChoices(int index) //Method to execute the coices when it appears
     {

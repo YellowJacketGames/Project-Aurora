@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UINavigation;
 
 
 //Script to handle pausing and unpausing the game.
@@ -11,7 +13,8 @@ public class PauseGame : MonoBehaviour
     [Header("Pause Components")]
     private float originalTimeScale;
     [SerializeField] private GameObject pauseCanvas;
-
+    [SerializeField] private GameObject firstPauseOption;
+    private NavigateOptions pauseNavigation = new NavigateOptions();
     private void Start()
     {
         //Set the game manager variable
@@ -43,14 +46,16 @@ public class PauseGame : MonoBehaviour
     #region Pause and unpause
     public void Pause() //Method to pause the game
     {
-        
+        pauseCanvas.gameObject.SetActive(true); //For now, we will just activate a canvas that gives feedback of the pause menu
+                                                //In the future we will add a proper pause menu with different options
+
+        StartCoroutine(pauseNavigation.SelectFirstOption(firstPauseOption));//We select the first pause option
+
         Time.timeScale = 0; //We set the timescale to 0, this will stop everything in the game
         GameManager.instance.ChangeGameState(GameStates.Pause); //We set the current game state to pause.
 
         GameManager.instance.currentCameraManager.StopCameraTimer(); //We stop the timer so that it doesn't turn the camera on accident while we're paused.
         //Add additional relevant UI methods
-        pauseCanvas.gameObject.SetActive(true); //For now, we will just activate a canvas that gives feedback of the pause menu
-                                                //In the future we will add a proper pause menu with different options
     }
 
     public void UnPause()
@@ -61,6 +66,7 @@ public class PauseGame : MonoBehaviour
         //Add additional relevant UI methods
         pauseCanvas.gameObject.SetActive(false); //When we return to the gameplay, we deactivate the placeholder canvas.
     }
+
 
     #endregion
 
