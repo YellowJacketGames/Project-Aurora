@@ -44,6 +44,8 @@ public class AudioManager : MonoBehaviour
             sound.source.pitch = sound.pitch;
             sound.source.loop = sound.loop;
             sound.source.playOnAwake = sound.playOnAwake;
+
+
             sound.originalVolume = sound.source.volume;
 
 
@@ -60,6 +62,10 @@ public class AudioManager : MonoBehaviour
                 default:
                     break;
             }
+
+            if (sound.playOnAwake) //Since we're spawning this sounds on start, they do not execute the awake method, so we play them anyway.
+                sound.source.Play();
+
         }
     }
 

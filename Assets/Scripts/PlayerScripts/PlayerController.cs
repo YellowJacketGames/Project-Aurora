@@ -332,7 +332,6 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-
     }
 
     private void Start()
@@ -340,6 +339,8 @@ public class PlayerController : MonoBehaviour
         #region Give Game Manager Reference
         GameManager.instance.currentController = this;
         #endregion
+
+        GameManager.instance.currentTransitionManager.SetFadeOut();
 
         #region Alter Events
 

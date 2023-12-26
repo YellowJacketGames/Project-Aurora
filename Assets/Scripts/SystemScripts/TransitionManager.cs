@@ -19,7 +19,7 @@ public class TransitionManager : MonoBehaviour
 
     [SerializeField] float transitionTime = 0;
 
-
+    
     private void Start()
     {
         //Give reference to Game Manager
@@ -47,6 +47,7 @@ public class TransitionManager : MonoBehaviour
                 fadeOut = false; //When the transition is finished, we make sure the transition stops
 
                 //Since we're exiting the transition, we also need to change to player state to idle
+                if(GameManager.instance.currentController != null)
                 GameManager.instance.currentController.ChangeState(PlayerState.Idle);
             }
         }
@@ -56,6 +57,7 @@ public class TransitionManager : MonoBehaviour
 
     public void SetFadeIn() //Set the transition to fade In
     {
+        if(GameManager.instance.currentController != null)
         GameManager.instance.currentController.ChangeState(PlayerState.Transition); //Since we're entering a transition, we set the player state to transition
 
         if (!fadeOut)
