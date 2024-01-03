@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ink.Runtime;
 
 //This script handles the data of each of the objects in game, both the 
 //Key objects for progression and collectables like the typewriter objects
@@ -9,7 +10,7 @@ using UnityEngine;
 //useful on other areas such as saving the game. We have to make sure that the corresponding Image
 //to represent said object also has the same id to get this data in an easier way.
 
-[CreateAssetMenu(fileName = "Object", menuName = "ScriptableObjects/Create New object", order = 1)]
+[CreateAssetMenu(fileName = "Object", menuName = "ScriptableObjects/Create new object", order = 1)]
 
 public class ObjectClass : ScriptableObject //This is a scriptable object to make as many collectable objects as we want
 {
@@ -22,6 +23,7 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
     [Space]
     [Header("Typewriter Variables")]
     [SerializeField] private string assignedLetter;
+    [SerializeField] private TextAsset assignedDialogue;
 
     private void OnEnable()
     {
@@ -55,6 +57,11 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
     public Sprite GetIcon()
     {
         return objectIcon;
+    }
+
+    public TextAsset GetDialogue()
+    {
+        return assignedDialogue;
     }
     #endregion
 

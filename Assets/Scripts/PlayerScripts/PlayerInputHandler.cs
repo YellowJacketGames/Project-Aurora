@@ -71,6 +71,17 @@ public class PlayerInputHandler : PlayerComponent
         _playerInput.PlayerPause.Pause.performed += OnPausePerformed;
         _playerInput.PlayerPause.Pause.canceled += OnPauseCanceled;
 
+        //Diary
+        _playerInput.PlayerOptions.Diary.performed += OnDiaryPerformed;
+        _playerInput.PlayerOptions.Diary.canceled += OnDiaryCanceled;
+
+        //Pass next tab
+        _playerInput.PlayerOptions.NextTab.performed += OnNextTabPerformed;
+        _playerInput.PlayerOptions.NextTab.canceled += OnNextTabCancelled;
+
+        //Return to previous tab
+        _playerInput.PlayerOptions.PreviousTab.performed += OnPreviousTabPerformed;
+        _playerInput.PlayerOptions.PreviousTab.canceled += OnPreviousTabCancelled;
     }
 
     private void OnDisable()
@@ -110,6 +121,18 @@ public class PlayerInputHandler : PlayerComponent
         //Pausing
         _playerInput.PlayerPause.Pause.performed -= OnPausePerformed;
         _playerInput.PlayerPause.Pause.canceled -= OnPauseCanceled;
+
+        //Diary
+        _playerInput.PlayerOptions.Diary.performed -= OnDiaryPerformed;
+        _playerInput.PlayerOptions.Diary.canceled -= OnDiaryCanceled;
+
+        //Pass next tab
+        _playerInput.PlayerOptions.NextTab.performed -= OnNextTabPerformed;
+        _playerInput.PlayerOptions.NextTab.canceled -= OnNextTabCancelled;
+
+        //Return to previous tab
+        _playerInput.PlayerOptions.PreviousTab.performed -= OnPreviousTabPerformed;
+        _playerInput.PlayerOptions.PreviousTab.canceled -= OnPreviousTabCancelled;
 
     }
     #endregion
@@ -187,16 +210,62 @@ public class PlayerInputHandler : PlayerComponent
         acceptInput = false;
     }
 
-
-    private void OnPausePerformed(InputAction.CallbackContext value) //We set this in the event to execute the code without having to require the update method
+    private void OnDiaryPerformed(InputAction.CallbackContext value) //We set this in the event to execute the code without having to require the update method
     {
+        if (GameManager.instance.GetCurrentGameState() == GameStates.Pause)
+            return;
         switch (GameManager.instance.GetCurrentGameState()) //Depending on the current state, it will pause or unpause the game
         {
             case GameStates.Gameplay: //If we're currently playing, we pause the game.
                 GameManager.instance.pauseManager.Pause();
+                GameManager.instance.diaryManager.OpenDiaryTab();
+                
+                break;
+            case GameStates.Diary: //If we're already in the diary menu, we close it
+                GameManager.instance.pauseManager.UnPause();
+                GameManager.instance.diaryManager.CloseDiaryTab();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnDiaryCanceled(InputAction.CallbackContext value)
+    {
+
+    }
+
+    private void OnNextTabPerformed(InputAction.CallbackContext value)
+    {
+        GameManager.instance.diaryManager.OpenNextTab();
+    }
+
+    private void OnNextTabCancelled(InputAction.CallbackContext value)
+    {
+
+    }
+    private void OnPreviousTabPerformed(InputAction.CallbackContext value)
+    {
+        GameManager.instance.diaryManager.OpenNextTab();
+
+    }
+    private void OnPreviousTabCancelled(InputAction.CallbackContext value)
+    {
+
+    }
+    private void OnPausePerformed(InputAction.CallbackContext value) //We set this in the event to execute the code without having to require the update method
+    {
+        if (GameManager.instance.GetCurrentGameState() == GameStates.Diary)
+            return;
+        switch (GameManager.instance.GetCurrentGameState()) //Depending on the current state, it will pause or unpause the game
+        {
+            case GameStates.Gameplay: //If we're currently playing, we pause the game.
+                GameManager.instance.pauseManager.Pause();
+                GameManager.instance.pauseManager.OpenPauseTab();
                 break;
             case GameStates.Pause: //If we're already in the pause menu, we unpause it
                 GameManager.instance.pauseManager.UnPause();
+                GameManager.instance.pauseManager.ClosePauseTab();
                 break;
             default:
                 break;

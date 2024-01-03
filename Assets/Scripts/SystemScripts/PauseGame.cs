@@ -12,9 +12,9 @@ public class PauseGame : MonoBehaviour
 {
     [Header("Pause Components")]
     private float originalTimeScale;
-    [SerializeField] private GameObject pauseCanvas;
     [SerializeField] private GameObject firstPauseOption;
     private NavigateOptions pauseNavigation = new NavigateOptions();
+    [SerializeField] private NavigateTab pauseTab = new NavigateTab();
     private void Start()
     {
         //Set the game manager variable
@@ -36,7 +36,7 @@ public class PauseGame : MonoBehaviour
     public void InitialSettings() //This is a method for the initial settings of the pause manager
     {
         SaveOriginalTimeScale(); //We save the original time scale to use later.
-        pauseCanvas.gameObject.SetActive(false); //We deactivate the canvas since the game will begin in the gameplay state.
+        pauseTab.CloseAllTabs(); //We deactivate the canvas since the game will begin in the gameplay state.
     }
 
     #endregion
@@ -46,10 +46,7 @@ public class PauseGame : MonoBehaviour
     #region Pause and unpause
     public void Pause() //Method to pause the game
     {
-        pauseCanvas.gameObject.SetActive(true); //For now, we will just activate a canvas that gives feedback of the pause menu
-                                                //In the future we will add a proper pause menu with different options
-
-        StartCoroutine(pauseNavigation.SelectFirstOption(firstPauseOption));//We select the first pause option
+        
 
         Time.timeScale = 0; //We set the timescale to 0, this will stop everything in the game
         GameManager.instance.ChangeGameState(GameStates.Pause); //We set the current game state to pause.
@@ -58,13 +55,23 @@ public class PauseGame : MonoBehaviour
         //Add additional relevant UI methods
     }
 
+    public void OpenPauseTab()
+    {
+        pauseTab.OpenInitialTab(); //For now, we will just activate a canvas that gives feedback of the pause menu
+                                   //In the future we will add a proper pause menu with different options
+
+        StartCoroutine(pauseNavigation.SelectFirstOption(firstPauseOption));//We select the first pause option
+    }
+
+    public void ClosePauseTab()
+    {
+        //Add additional relevant UI methods
+        pauseTab.CloseAllTabs();  //When we return to the gameplay, we deactivate the placeholder canvas.
+    }
     public void UnPause()
     {
         Time.timeScale = originalTimeScale; //We set the timescale to it's original value, this will resume everything in the game
         GameManager.instance.ChangeGameState(GameStates.Gameplay); //We set the game state back to gameplay.
-
-        //Add additional relevant UI methods
-        pauseCanvas.gameObject.SetActive(false); //When we return to the gameplay, we deactivate the placeholder canvas.
     }
 
 

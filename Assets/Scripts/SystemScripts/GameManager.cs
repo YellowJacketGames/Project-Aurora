@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public TagManager speakerManager; //This is a placeholder, it should be another scriptable object with a list of all the speakers in game so that it doesn't depend on references.
     public TransitionManager currentTransitionManager;
     public PauseGame pauseManager;
+    public DiaryManager diaryManager;
 
 
     private GameStates currentGameState;
@@ -49,6 +50,19 @@ public class GameManager : MonoBehaviour
     public void ChangeGameState(GameStates newState)
     {
         currentGameState = newState;
+    }
+
+
+    public bool CanPlay()
+    {
+        if(GetCurrentGameState() == GameStates.Gameplay)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

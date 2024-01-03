@@ -27,15 +27,16 @@ public class PlayerMovement : PlayerComponent
 
     //Bool variable to know if the player should be able to move
     bool shouldMove => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
-        _parent.playerInputHandlerComponent.GetMovementDirection().x != 0;
+        _parent.playerInputHandlerComponent.GetMovementDirection().x != 0 && GameManager.instance.CanPlay();
 
     //Bool variable to know if the player should be able to jump.
     bool shouldJump => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
-        _parent.CurrentPlayerState != PlayerState.Jump && _parent.CurrentPlayerState != PlayerState.Crouch && _parent.playerInputHandlerComponent.GetJumpingInput();
+        _parent.CurrentPlayerState != PlayerState.Jump && _parent.CurrentPlayerState != PlayerState.Crouch && _parent.playerInputHandlerComponent.GetJumpingInput()
+        && GameManager.instance.CanPlay();
 
     //Bool variable to check if the player should be able to crouch
     bool shouldCrouch => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
-        _parent.CurrentPlayerState != PlayerState.Jump && _parent.playerInputHandlerComponent.GetCrouchingInput();
+        _parent.CurrentPlayerState != PlayerState.Jump && _parent.playerInputHandlerComponent.GetCrouchingInput() && GameManager.instance.CanPlay();
 
     #region PlayerMovementFunctions
 
@@ -150,7 +151,7 @@ public class PlayerMovement : PlayerComponent
     private void Update()
     {
 
-        if (GameManager.instance.GetCurrentGameState() == GameStates.Pause)
+        if (!GameManager.instance.CanPlay())
             return;
 
         //Handling different movement state changes

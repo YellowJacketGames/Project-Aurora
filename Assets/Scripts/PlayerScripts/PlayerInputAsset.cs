@@ -367,6 +367,33 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Diary"",
+                    ""type"": ""Button"",
+                    ""id"": ""0753b6e9-f4e5-4227-aab0-6193eb9c2718"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextTab"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc5432f3-e69d-4c7c-9bbb-edc94ec575ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviousTab"",
+                    ""type"": ""Button"",
+                    ""id"": ""f00edf30-474f-4420-aed7-cdd7a8279afb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -389,6 +416,72 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc1637c7-7eb1-4b2a-a971-f6458096fd7c"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Diary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53a7e87d-e0e6-4644-9f9b-99cce0fd6c2e"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Diary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa1ab451-d391-43bf-83f9-9b9f26341a71"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8529f9c-1412-4ac3-9a5a-4ccd64aa6efc"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c728e3ed-42fe-462d-88e2-942d49c4c81c"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d70c23fa-3664-4bbc-bd79-4eaff36a7df6"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousTab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -423,7 +516,7 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5c932d65-8bd2-4882-ae9a-000c37ed205d"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -450,6 +543,9 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         // PlayerOptions
         m_PlayerOptions = asset.FindActionMap("PlayerOptions", throwIfNotFound: true);
         m_PlayerOptions_Pause = m_PlayerOptions.FindAction("Pause", throwIfNotFound: true);
+        m_PlayerOptions_Diary = m_PlayerOptions.FindAction("Diary", throwIfNotFound: true);
+        m_PlayerOptions_NextTab = m_PlayerOptions.FindAction("NextTab", throwIfNotFound: true);
+        m_PlayerOptions_PreviousTab = m_PlayerOptions.FindAction("PreviousTab", throwIfNotFound: true);
         // PlayerPause
         m_PlayerPause = asset.FindActionMap("PlayerPause", throwIfNotFound: true);
         m_PlayerPause_Pause = m_PlayerPause.FindAction("Pause", throwIfNotFound: true);
@@ -647,11 +743,17 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerOptions;
     private List<IPlayerOptionsActions> m_PlayerOptionsActionsCallbackInterfaces = new List<IPlayerOptionsActions>();
     private readonly InputAction m_PlayerOptions_Pause;
+    private readonly InputAction m_PlayerOptions_Diary;
+    private readonly InputAction m_PlayerOptions_NextTab;
+    private readonly InputAction m_PlayerOptions_PreviousTab;
     public struct PlayerOptionsActions
     {
         private @PlayerInputAsset m_Wrapper;
         public PlayerOptionsActions(@PlayerInputAsset wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pause => m_Wrapper.m_PlayerOptions_Pause;
+        public InputAction @Diary => m_Wrapper.m_PlayerOptions_Diary;
+        public InputAction @NextTab => m_Wrapper.m_PlayerOptions_NextTab;
+        public InputAction @PreviousTab => m_Wrapper.m_PlayerOptions_PreviousTab;
         public InputActionMap Get() { return m_Wrapper.m_PlayerOptions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -664,6 +766,15 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Diary.started += instance.OnDiary;
+            @Diary.performed += instance.OnDiary;
+            @Diary.canceled += instance.OnDiary;
+            @NextTab.started += instance.OnNextTab;
+            @NextTab.performed += instance.OnNextTab;
+            @NextTab.canceled += instance.OnNextTab;
+            @PreviousTab.started += instance.OnPreviousTab;
+            @PreviousTab.performed += instance.OnPreviousTab;
+            @PreviousTab.canceled += instance.OnPreviousTab;
         }
 
         private void UnregisterCallbacks(IPlayerOptionsActions instance)
@@ -671,6 +782,15 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Diary.started -= instance.OnDiary;
+            @Diary.performed -= instance.OnDiary;
+            @Diary.canceled -= instance.OnDiary;
+            @NextTab.started -= instance.OnNextTab;
+            @NextTab.performed -= instance.OnNextTab;
+            @NextTab.canceled -= instance.OnNextTab;
+            @PreviousTab.started -= instance.OnPreviousTab;
+            @PreviousTab.performed -= instance.OnPreviousTab;
+            @PreviousTab.canceled -= instance.OnPreviousTab;
         }
 
         public void RemoveCallbacks(IPlayerOptionsActions instance)
@@ -750,6 +870,9 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
     public interface IPlayerOptionsActions
     {
         void OnPause(InputAction.CallbackContext context);
+        void OnDiary(InputAction.CallbackContext context);
+        void OnNextTab(InputAction.CallbackContext context);
+        void OnPreviousTab(InputAction.CallbackContext context);
     }
     public interface IPlayerPauseActions
     {

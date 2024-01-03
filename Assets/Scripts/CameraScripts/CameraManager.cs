@@ -52,6 +52,9 @@ public class CameraManager : MonoBehaviour
 
     bool right;
     bool left;
+
+    bool shouldToggle => GameManager.instance.currentController.CurrentPlayerState != PlayerState.Conversation && GameManager.instance.currentController.CurrentPlayerState != PlayerState.Transition
+        && GameManager.instance.CanPlay();
     private void Start()
     {
         #region Give Game Manager Reference
@@ -83,7 +86,7 @@ public class CameraManager : MonoBehaviour
             #region Zoom in and out
 
             //if the player isn't in both states that set a different camera, we can perform the toggle.
-            if (GameManager.instance.currentController.CurrentPlayerState != PlayerState.Conversation && GameManager.instance.currentController.CurrentPlayerState != PlayerState.Transition)
+            if (shouldToggle)
             {
                 //if the player does the toggle input
                 if (GameManager.instance.currentController.playerInputHandlerComponent.GetToggleZoomInput())

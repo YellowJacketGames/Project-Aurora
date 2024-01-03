@@ -34,6 +34,7 @@ public class PlayerConversation : PlayerComponent
             {
                 currentDialogue.variablesState["hasItem"] = false;
             }
+
         });
 
         if (currentDialogue.canContinue)
@@ -63,7 +64,6 @@ public class PlayerConversation : PlayerComponent
     #region Story 
     public void ContinueStory() //Method to make story continue
     {
-        
         if (currentDialogue.canContinue) // The first condition is if the story can continue to the next line
         {
             if (!_parent.playerUIComponent.ReturnTypingStatus()) //Check to make sure we're not overwriting 
