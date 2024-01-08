@@ -14,12 +14,24 @@ public class Quest : ScriptableObject
     [Header("Quest variables")]
     [Space]
     [SerializeField] private string questName; //This will be displayed in the diary.
-    [SerializeField] private string questObjective; //This will be displayed in the player's hud, it's what the player needs to do to complete the quest.
-    [Space]
-    [TextArea(15,20)] [SerializeField] private string questDescription; //This will be displayed in the diary when the quest is selected to explain the player the context of the quest.
+    [SerializeField] private QuestObjective[] questObjectives;
+
+    private int currentObjectiveIndex = 0; //index to check which is the current active objective
 
     private bool isQuestCompleted; //Bool to check if the quest has been completed.
 
+    private void OnEnable()
+    {
+        currentObjectiveIndex = 0; //We reset the current objective of the quest
+        isQuestCompleted = false; //We reset the complete check
+
+        for (int i = 0; i < questObjectives.Length; i++) //We reset the objective completion, this is just a placeholder solution that will be later be addressed with a save system.
+        {
+            questObjectives[i].ResetObjective();
+        }
+    }
+
+    #region Quest Completion
     public bool IsQuestCompleted() //Method to see if the quest has been completed.
     { 
         return isQuestCompleted;
@@ -30,6 +42,24 @@ public class Quest : ScriptableObject
         isQuestCompleted = true;
     }
 
+    //This method updates the objective index, if there are no more objectives in the quests,
+    //it completes the quest and returns true, if not, it updates the quest index and returns false.
+    public bool GoToNextObjective() 
+    {
+        if (currentObjectiveIndex + 1 >= questObjectives.Length) //We check if the index is higher than the objectives count. 
+        {
+            CompleteQuest(); //We complete the quest.
+            return true; //We return true.
+        }
+        else
+        {
+            currentObjectiveIndex++; //We increase the objective index.
+            return false; //We return false.
+        }
+    }
+
+    #endregion
+
     #region Get quest variables
 
     public string GetQuestName()
@@ -37,14 +67,19 @@ public class Quest : ScriptableObject
         return questName;
     }
     
-    public string GetQuestObjective()
+    public QuestObjective GetQuestObjective()
     {
-        return questObjective;
+        return questObjectives[currentObjectiveIndex];
     }
 
-    public string GetQuestDescription()
+    public int GetCurrentObjectivesIndex()
     {
-        return questDescription;
+        return currentObjectiveIndex;
+    }
+
+    public QuestObjective[] GetObjectives()
+    {
+        return questObjectives;
     }
     #endregion
 }

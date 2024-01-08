@@ -24,6 +24,8 @@ public class PlayerConversation : PlayerComponent
 
     public void BeginStory()
     {
+        #region Set external functions
+
         currentDialogue.BindExternalFunction("CheckIfHasItem", (string itemId) =>
         {
             if (_parent.playerInventoryComponent.CheckIfObjectIsInInventory(itemId))
@@ -37,10 +39,17 @@ public class PlayerConversation : PlayerComponent
 
         });
 
+        currentDialogue.BindExternalFunction("GoToNextObjective", (string none) =>
+        {
+            GameManager.instance.questManager.UpdateObjective();
+        });
+
+        #endregion 
+
         if (currentDialogue.canContinue)
         {
             displayLine = StartCoroutine(_parent.playerUIComponent.DisplayLine(currentDialogue.Continue()));
-            DisplayChoices();
+            //DisplayChoices();
             HandleTags();
         }
     }

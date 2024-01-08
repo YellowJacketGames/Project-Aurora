@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public TransitionManager currentTransitionManager;
     public PauseGame pauseManager;
     public DiaryManager diaryManager;
+    public QuestManager questManager;
 
 
     private GameStates currentGameState;

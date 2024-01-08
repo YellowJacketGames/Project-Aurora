@@ -222,8 +222,8 @@ public class PlayerInputHandler : PlayerComponent
                 
                 break;
             case GameStates.Diary: //If we're already in the diary menu, we close it
-                GameManager.instance.pauseManager.UnPause();
                 GameManager.instance.diaryManager.CloseDiaryTab();
+                GameManager.instance.pauseManager.UnPause();
                 break;
             default:
                 break;
