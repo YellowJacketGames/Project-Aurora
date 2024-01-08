@@ -1,4 +1,5 @@
 EXTERNAL GoToNextObjective(string none)
+EXTERNAL CallEvent(int eventIndex)
 
 //NIVEL 2: PUERTO
 -> 2puerto
@@ -84,11 +85,11 @@ La realidad ha matado a Federico y el teatro le devolverá la vida. #speaker:Fed
 Aquí no encontrarás vinos de Jerez ni coñac, Federico. #speaker:Fernando
 Nueva York lleva 3 años con la Ley Seca y beber cada vez es más difícil.
 
-* [(Mmm... No es el alcohol lo que me importa)] #speaker:Federico #thought 
+* [(Mmm... No es el alcohol lo que me importa)] #speaker:Federico
 (Al Federico ebrio y desinhibido es al que echo de menos). #speaker:Federico #thought
 Encontraremos la forma de llenar nuestro vaso, ¿no? 
 ->2avance4
-* [(¿Y me dice esto ahora?)] #speaker:Federico #thought 
+* [(¿Y me dice esto ahora?)] #speaker:Federico
 No me imagino a Colón atravesando el Océano para beber agua...  #thought
 Don Fernando, acaba usted de quitarme dos años de vida. 
 ->2avance4
@@ -114,11 +115,11 @@ No vine hasta aquí para ver a los de siempre.
  Por ahora, lo mejor será que vayas a la Residencia de Estudiantes y te des una buena ducha. 
  Al final de la calle, encontrarás la estación del tranvía. Coge la línea 3 y baja en la última parada. ¡No tiene pérdida! 
  Ah, se me olvidaba... Debes comprar un billete para el tranvía. ¡Será sencillo para un hombre como tú! 
- 
  ~GoToNextObjective("None")
- 
-  Te veo esta noche en el Small Paradise. 
-  ¡Salud y República, Federico! 
+Te veo esta noche en el Small Paradise. 
+¡Salud y República, Federico! 
+~CallEvent(0)
+
  //Fernando de los Ríos se va. 
 
  Vamos allá, Federico. ¿No querías nuevas aventuras? Pues aquí tienes un nuevo continente por descubrir... #speaker:Federico

@@ -20,8 +20,13 @@ public class PlayerConversation : PlayerComponent
     [SerializeField] private List<ChoiceClass> dialogueChoices;
     private NavigateOptions choiceNavigation = new NavigateOptions();
 
-    Coroutine displayLine; //Variable to stop the coroutine
+    private Coroutine displayLine; //Variable to stop the coroutine
+    public bool canContinue;
 
+    private void Start()
+    {
+        canContinue = true;
+    }
     public void BeginStory()
     {
         #region Set external functions
@@ -44,6 +49,16 @@ public class PlayerConversation : PlayerComponent
             GameManager.instance.questManager.UpdateObjective();
         });
 
+        currentDialogue.BindExternalFunction("CallEvent", (int eventIndex) =>
+        {
+            GameManager.instance.currentLevelManager.TriggerEvent(eventIndex);
+        });
+
+        currentDialogue.BindExternalFunction("StopTyping", (string none) =>
+        {
+            canContinue = false;
+        });
+
         #endregion 
 
         if (currentDialogue.canContinue)
@@ -55,17 +70,23 @@ public class PlayerConversation : PlayerComponent
     }
 
     public void FixedUpdate()
-    {
+    {       
         if (_parent.CurrentPlayerState == PlayerState.Conversation) //We only execute this if we're in the conversation state
         {
-            if (_parent.playerInputHandlerComponent.GetAcceptInput()) //If we input the continue button, it will continue the story
+            if (!GameManager.instance.currentLevelManager.IsCurrentEventRunning())
             {
-                ContinueStory();
-            }
+                if (_parent.playerInputHandlerComponent.GetAcceptInput()) //If we input the continue button, it will continue the story
+                {
+                    if (canContinue)
+                    {
+                        ContinueStory();
+                    }
+                }
 
-            if (storyfinished) //if the story is done, we clean it up
-            {
-                FinishStory();
+                if (storyfinished) //if the story is done, we clean it up
+                {
+                    FinishStory();
+                }
             }
         }
     }
@@ -85,22 +106,7 @@ public class PlayerConversation : PlayerComponent
             }
             else
             {
-                //If we want to continue the story but the text is appearing currently we skip over to the next line
-
-                if (displayLine != null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
-                {
-                    StopCoroutine(displayLine);
-                    displayLine = null;
-                }
-
-                //We reset the dialogue to the current text
-                _parent.dialogueText.text = currentDialogue.currentText;
-
-                //Since we're no longer typing, we stop the bool in the player UI
-                _parent.playerUIComponent.SetTypingStatus(false);
-
-                //If there are any choices avaible, we display them
-                DisplayChoices();
+                SkipLine();
             }
         }
         else
@@ -137,6 +143,25 @@ public class PlayerConversation : PlayerComponent
         }
     }
     
+    public void SkipLine()
+    {
+        //If we want to continue the story but the text is appearing currently we skip over to the next line
+
+        if (displayLine != null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
+        {
+            StopCoroutine(displayLine);
+            displayLine = null;
+        }
+
+        //We reset the dialogue to the current text
+        _parent.dialogueText.text = currentDialogue.currentText;
+
+        //Since we're no longer typing, we stop the bool in the player UI
+        _parent.playerUIComponent.SetTypingStatus(false);
+
+        //If there are any choices avaible, we display them
+        DisplayChoices();
+    }
     public void FinishStory() //This method is only performed when there is no more dialogue in the current story
     {
         //We set a timer so that the accept and jump input don't overlap
