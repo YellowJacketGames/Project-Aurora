@@ -6,75 +6,24 @@ using UnityEngine;
 //This script takes care of handling the character animator to change into the different animations.
 public class PlayerAnimations : PlayerComponent
 {
-    private void Start()
-    {
-        //Set default state
-        ChangeModelToIdle();
-    }
 
-    //This is a placeholder method
-    //It activates the idle model and deactivates the crouching one
-    public void ChangeModelToIdle()
-    {
-        _parent.idleModel.gameObject.SetActive(true);
-        _parent.crouchingModel.gameObject.SetActive(false);
-    }
+    [Header("Animation Components")]
+    [SerializeField] private Animator playerAnimations; //Component to store player animations
 
-    //This is a placeholder method
-    //It activates the crouching one and deactivates the jumping one
-    public void ChangeModelToCrouching()
-    {
-        _parent.crouchingModel.gameObject.SetActive(true);
-        _parent.idleModel.gameObject.SetActive(false);
-    }
+    #region Model Rotation
 
     public void ChangeModelToTheLeft() //This is a placeholder method before we get a proper character model
     {
         //We check in which state is the player so that he looks in the correct direction
-        switch (_parent.CurrentPlayerState)
-        {
-            case PlayerState.Idle:
-                _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
-                GameManager.instance.currentCameraManager.SetCameraLeftTimer();
-                break;
-            case PlayerState.Walk:
-                _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
-                GameManager.instance.currentCameraManager.SetCameraLeftTimer();
-
-                break;
-            case PlayerState.Crouch:
-                _parent.crouchingModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
-                GameManager.instance.currentCameraManager.SetCameraLeftTimer();
-
-                break;
-            default:
-                break;
-        }
+        _parent.characterModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        GameManager.instance.currentCameraManager.SetCameraLeftTimer();
     }
 
     public void ChangeModelToTheRight() //This is a placeholder method before we get a proper character model
     {
         //We check in which state is the player so that he looks in the correct direction
-        switch (_parent.CurrentPlayerState)
-        {
-            case PlayerState.Idle:
-                _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                GameManager.instance.currentCameraManager.SetCameraRightTimer();
-
-                break;
-            case PlayerState.Walk:
-                _parent.idleModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                GameManager.instance.currentCameraManager.SetCameraRightTimer();
-
-                break;
-            case PlayerState.Crouch:
-                _parent.crouchingModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                GameManager.instance.currentCameraManager.SetCameraRightTimer();
-
-                break;
-            default:
-                break;
-        }
+        _parent.characterModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        GameManager.instance.currentCameraManager.SetCameraLeftTimer();
     }
 
     public void HandleModelDirection(float value)
@@ -88,4 +37,24 @@ public class PlayerAnimations : PlayerComponent
             ChangeModelToTheRight();
         }
     }
+
+    #endregion
+
+    #region Player Animations
+    public void AnimationCrouch(bool value)
+    {
+        playerAnimations.SetBool("Crouch", value);
+    }
+
+    public void AnimationMovement(float speed)
+    {
+        playerAnimations.SetFloat("CharacterSpeed", speed);
+    }
+    
+    public void AnimationJump(bool value)
+    {
+        playerAnimations.SetBool("Jump", value);
+    }
+
+    #endregion
 }

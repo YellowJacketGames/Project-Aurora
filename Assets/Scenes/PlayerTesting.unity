@@ -286,18 +286,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77225934}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &113578464 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4523727614833714633, guid: 4f8398a2871c9914d947cb70f29669a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 4523727614720668713}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 664a7cafd49ec584488e67700d740748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &220734629
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,8 +744,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791443514}
-  m_LocalRotation: {x: 0.100010805, y: -0.42046008, z: 0.046693128, w: 0.90057254}
-  m_LocalPosition: {x: 7.4796987, y: 2.1939914, z: -24.264223}
+  m_LocalRotation: {x: -0.0099043455, y: 0.9531567, z: -0.0313968, w: -0.30068013}
+  m_LocalPosition: {x: 15.4, y: 1.77, z: 3.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1979,6 +1967,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3394038318164130879, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316946, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
       propertyPath: m_Name
@@ -1993,7 +1986,7 @@ PrefabInstance:
         type: 3}
       propertyPath: currentCameraManager
       value: 
-      objectReference: {fileID: 113578464}
+      objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316956, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
       propertyPath: m_RootOrder

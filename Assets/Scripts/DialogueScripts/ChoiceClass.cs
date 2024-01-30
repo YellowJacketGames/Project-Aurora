@@ -22,7 +22,20 @@ public class ChoiceClass
         choiceText.SetText(assignedChoice.text);
         choiceParent.SetActive(true);
     }
+    
+    public void AssignListeners()
+    {
 
+    }
+    public void EnableGlow()
+    {
+        choiceText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_GlowPower, 0.6f);
+    }
+
+    public void DisableGlow()
+    {
+        choiceText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_GlowPower, 0f);
+    }
     public GameObject ReturnParent()
     {
         return choiceParent;

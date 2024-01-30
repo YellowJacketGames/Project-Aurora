@@ -40,12 +40,30 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Music
-    clip: {fileID: 8300000, guid: f2c93e9275770524398061c604e2c0f3, type: 3}
+  - name: PortMusic
+    clip: {fileID: 8300000, guid: 902ab71bedf3ea64e9c32840af01b4ca, type: 3}
     soundType: 1
     loop: 1
     playOnAwake: 1
     originalVolume: 1
     volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Walk
+    clip: {fileID: 8300000, guid: 8574388b09db547409a9e4de11c62a81, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+  - name: Crouch
+    clip: {fileID: 8300000, guid: bb1a95018cedc3c49afa46d406ac0cbf, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
     pitch: 1
     source: {fileID: 0}

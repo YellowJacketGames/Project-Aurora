@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Components")]
     //This is just placeholder to check the crouch
     [Header("Models")]
-    public GameObject idleModel;
+    public GameObject characterModel;
     public GameObject crouchingModel;
     //We will use a rigid component so that the jump physics are a bit more realistic and collisions are easier to handle.
     [HideInInspector] public Rigidbody playerRigid;
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
     public ControlType currentControl;
 
     [Header("Player Colliders")]
-    public Collider idleCollider;
+    public Collider characterCollider;
 
     //This region stores all events to handle the entrance and exit of the different player states.
 

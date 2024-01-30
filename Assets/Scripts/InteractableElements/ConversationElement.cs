@@ -8,12 +8,31 @@ public class ConversationElement : InteractableElement
 
     [Header("Conversation")]
     [SerializeField] TextAsset elementDialogue;
+    [SerializeField] Speaker conversationSpeaker;
     public override void OnInteract()
     {
         //if we forgot to add the dialogue asset to the element, it should warn us and not execute the code
         if (elementDialogue != null)
         {
             Story dialogue = new Story(elementDialogue.text);
+            
+            if(conversationSpeaker != null)
+            {
+                GameManager.instance.currentController.playerConversationComponent.SetNewSpeaker(conversationSpeaker);
+
+                switch (GameManager.instance.currentController.playerConversationComponent.GetPlayerSpeaker().currentDirection)
+                {
+                    case InteractDirection.Left:
+                        conversationSpeaker.currentDirection = InteractDirection.Right;
+                        break;
+                    case InteractDirection.Right:
+                        conversationSpeaker.currentDirection = InteractDirection.Left;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(dialogue);
             GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
 

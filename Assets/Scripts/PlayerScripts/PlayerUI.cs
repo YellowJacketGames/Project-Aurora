@@ -12,9 +12,10 @@ public class PlayerUI : PlayerComponent
     private Gamepad gamepad; //This variable is used to see if the player is using a gamepad
     private Keyboard keyboard; //This variable is used to see if the player is using a gamepad
 
-    private DialogueLayoutClass currentDialogueLayout; //Variable to hold the current layout displayed to 
+    [SerializeField] private DialogueLayoutClass rightLayout;
+    [SerializeField] private DialogueLayoutClass leftLayout;
 
-
+    private DialogueLayoutClass currentLayout;
     [Header("Dialogue Variables")]
     [SerializeField] private float typingSpeed; //Variable to change the speed of which the text appear in dialogue boxes.
     bool typingLine;
@@ -148,20 +149,37 @@ public class PlayerUI : PlayerComponent
     //Method to set the dialogue layout to the current speaker.
     public void SetDialogueLayout(Speaker currentSpeaker)
     {
-        if(currentDialogueLayout != null)
+        switch (currentSpeaker.currentDirection)
         {
-            if (currentDialogueLayout != _parent.dialogueLayouts[currentSpeaker.layoutOrder])
-            {
-                currentDialogueLayout.DeactivateLayout();
-                currentDialogueLayout = _parent.dialogueLayouts[currentSpeaker.layoutOrder];
-            }
-        }
-        else
-        {
-            currentDialogueLayout = _parent.dialogueLayouts[currentSpeaker.layoutOrder];
-        }
+            case InteractDirection.Left:
+                if (currentLayout == leftLayout)
+                    return;
+                
+                if(currentLayout != null)
+                {
+                    currentLayout.DeactivateLayout();
+                }
 
-        currentDialogueLayout.FillLayout(currentSpeaker);
+                leftLayout.FillLayout(currentSpeaker);
+                currentLayout = leftLayout;
+                break;
+            case InteractDirection.Right:
+                if (currentLayout == rightLayout)
+                    return;
+
+                if (currentLayout != null)
+                {
+                    currentLayout.DeactivateLayout();
+                }
+
+                rightLayout.FillLayout(currentSpeaker);
+
+                currentLayout = rightLayout;
+                break;
+            default:
+                break;
+        }
+        
     }
 
 

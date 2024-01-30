@@ -46,6 +46,13 @@ public class QuestManager : MonoBehaviour
         SetCurrentQuest(); //We set the new variables
     }
 
+    public bool HasQuest(int questIndex)
+    {
+        bool value = currentQuest.GetCurrentObjectivesIndex() == questIndex;
+        return value;
+    }
+
+
     #endregion
 }
 

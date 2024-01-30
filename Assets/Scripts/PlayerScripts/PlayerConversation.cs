@@ -23,6 +23,12 @@ public class PlayerConversation : PlayerComponent
     private Coroutine displayLine; //Variable to stop the coroutine
     public bool canContinue;
 
+    [Space]
+    [Header("Speaker Variables")]
+    [SerializeField] private Speaker playerSpeaker;
+    private Speaker newSpeaker;
+
+
     private void Start()
     {
         canContinue = true;
@@ -40,6 +46,19 @@ public class PlayerConversation : PlayerComponent
             else
             {
                 currentDialogue.variablesState["hasItem"] = false;
+            }
+
+        });
+
+        currentDialogue.BindExternalFunction("CheckIfHasQuest", (int questIndex) =>
+        {
+            if (GameManager.instance.questManager.HasQuest(questIndex))
+            {
+                currentDialogue.variablesState["hasQuest"] = true;
+            }
+            else
+            {
+                currentDialogue.variablesState["hasQuest"] = false;
             }
 
         });
@@ -73,24 +92,30 @@ public class PlayerConversation : PlayerComponent
     {       
         if (_parent.CurrentPlayerState == PlayerState.Conversation) //We only execute this if we're in the conversation state
         {
-            if (!GameManager.instance.currentLevelManager.IsCurrentEventRunning())
+            if (_parent.playerInputHandlerComponent.GetAcceptInput()) //If we input the continue button, it will continue the story
             {
-                if (_parent.playerInputHandlerComponent.GetAcceptInput()) //If we input the continue button, it will continue the story
+                if (canContinue)
                 {
-                    if (canContinue)
-                    {
-                        ContinueStory();
-                    }
+                    ContinueStory();
                 }
+            }
 
-                if (storyfinished) //if the story is done, we clean it up
-                {
-                    FinishStory();
-                }
+            if (storyfinished) //if the story is done, we clean it up
+            {
+                FinishStory();
             }
         }
     }
 
+    public void SetNewSpeaker(Speaker s)
+    {
+        newSpeaker = s;
+    }
+
+    public Speaker GetPlayerSpeaker()
+    {
+        return playerSpeaker;
+    }
     #region Story 
     public void ContinueStory() //Method to make story continue
     {
@@ -213,6 +238,15 @@ public class PlayerConversation : PlayerComponent
         }
     }
 
+    public void EnableChoiceGlow(int choice)
+    {
+        dialogueChoices[choice].EnableGlow();
+    }
+
+    public void DisableChoiceGlow(int choice)
+    {
+        dialogueChoices[choice].DisableGlow();
+    }
 
     #endregion
 
@@ -229,11 +263,22 @@ public class PlayerConversation : PlayerComponent
                 string tagKey = splitTag[0];
                 string valueKey = splitTag[1];
 
+                int numberValue = System.Convert.ToInt32(valueKey);
+
                 switch (tagKey)
                 {
                     case "speaker":
-                        _parent.playerUIComponent.SetDialogueLayout(GameManager.instance.speakerManager.ReturnSpeaker(valueKey));
-                        Debug.Log("Current Speaker: " + valueKey);
+                        switch (numberValue)
+                        {
+                            case 0:
+                                _parent.playerUIComponent.SetDialogueLayout(playerSpeaker);
+                                break;
+                            case 1:
+                                _parent.playerUIComponent.SetDialogueLayout(newSpeaker);
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case "give_item":
                         ObjectClass obj = new ObjectClass();

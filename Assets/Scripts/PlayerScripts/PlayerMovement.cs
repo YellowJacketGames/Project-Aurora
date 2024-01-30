@@ -52,6 +52,8 @@ public class PlayerMovement : PlayerComponent
         //We then set that value to the velocity of the player gameobject.
         //We have to preserve the y value so that is doesn't mess with the jump, which also alters the y velocity
         _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, movementValue * _currentSpeed);
+
+        
     }
     
 
@@ -128,6 +130,11 @@ public class PlayerMovement : PlayerComponent
                 _parent.ChangeState(PlayerState.Idle);
 
             }
+
+            if(_parent.CurrentPlayerState == PlayerState.Crouch)
+            {
+                _parent.playerAnimationComponent.AnimationMovement(0);
+            }
         }
 
 
@@ -173,7 +180,7 @@ public class PlayerMovement : PlayerComponent
 
     public void ChangePhysicialMaterialFriction(float value) //We will use this method when the player is grounded and airborn to change the friction of the player and prevent it from sliding and sticking to walls
     {
-        _parent.idleCollider.material.dynamicFriction = value; //We're changing a physical material, not a regular material, hence the dynamic friction variable
+        _parent.characterCollider.material.dynamicFriction = value; //We're changing a physical material, not a regular material, hence the dynamic friction variable
     }
     private void FixedUpdate()
     {
@@ -182,6 +189,8 @@ public class PlayerMovement : PlayerComponent
         {
             HandleMovement();
 
+            if (_parent.CurrentPlayerState == PlayerState.Crouch)
+                _parent.playerAnimationComponent.AnimationMovement(crouchSpeed);
             //Handling of the different inputs
 
             //Running

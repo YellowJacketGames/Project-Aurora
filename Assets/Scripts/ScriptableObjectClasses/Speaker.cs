@@ -6,18 +6,13 @@ using UnityEngine;
 public class Speaker : ScriptableObject //This is a scriptable object class to create as many speakers as we want
 {
     [Header("Speaker Variables")]
-    [SerializeField] private string speakerTag; //Variable to hold the speaker tag
-    [SerializeField] public string speakerName; //Variable to hold the speaker tag
+    [SerializeField] public string speakerName; //Variable to hold the speaker name
 
-    [SerializeField] public Sprite speakerPortrait; //Variable to hold the speaker portrait, this should later be replaced by an animation profile
+    [SerializeField] public Sprite speakerPortraitLeft;   //Variable to hold the speaker portrait, this should later be replaced by an animation profile
+    [SerializeField] public Sprite speakerPortraitRight;  //Variable to hold the speaker portrait, this should later be replaced by an animation profile
 
-    [Tooltip("Variable to hold if the layout goes on the right or the left, 0 for left, 1 for right")]
-    [SerializeField] public int layoutOrder; //Variable to hold if the layout goes on the right or the left, 0 for left, 1 for right
+    [SerializeField] public InteractDirection currentDirection; //variable to check the current speaker direction to adjust the proper portrait
 
 
-    public string ReturnTag()
-    {
-        return speakerTag;
-    }
 
 }

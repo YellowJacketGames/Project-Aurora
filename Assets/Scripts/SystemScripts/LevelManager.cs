@@ -35,22 +35,16 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        IsCurrentEventRunning();
-    }
     public bool IsCurrentEventRunning()
     {
         if(currentEvent != null)
         {
             if (currentEvent.IsEventRunning())
             {
-                Debug.Log("Current Event State: true");
                 return true;
             }
             else
             {
-                Debug.Log("Current Event State: " + IsCurrentEventRunning());
                 currentEvent = null;
                 return false;
             }
