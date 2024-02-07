@@ -23,7 +23,7 @@ public class PlayerAnimations : PlayerComponent
     {
         //We check in which state is the player so that he looks in the correct direction
         _parent.characterModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        GameManager.instance.currentCameraManager.SetCameraLeftTimer();
+        GameManager.instance.currentCameraManager.SetCameraRightTimer();
     }
 
     public void HandleModelDirection(float value)

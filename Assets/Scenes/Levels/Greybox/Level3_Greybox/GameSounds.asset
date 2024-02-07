@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8449b276a27a8924eb338f770b6a6a3d, type: 3}
+  m_Name: GameSounds
+  m_EditorClassIdentifier: 
+  soundsInGame:
+  - name: Typewriter
+    clip: {fileID: 8300000, guid: f7e785b4cb05a0e4886df872c4746a22, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 1
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: be730fe8e4517724f88861c6aae11cc9, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 1
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: be730fe8e4517724f88861c6aae11cc9, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 1
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: PortMusic
+    clip: {fileID: 8300000, guid: 902ab71bedf3ea64e9c32840af01b4ca, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 1
+    originalVolume: 1
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Walk
+    clip: {fileID: 8300000, guid: 8574388b09db547409a9e4de11c62a81, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+  - name: Crouch
+    clip: {fileID: 8300000, guid: bb1a95018cedc3c49afa46d406ac0cbf, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}

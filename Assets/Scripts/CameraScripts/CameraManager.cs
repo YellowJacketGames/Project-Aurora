@@ -45,7 +45,7 @@ public class CameraManager : MonoBehaviour
     [Space]
     [Header("Changing Left/Right")]
     [SerializeField] private float changeTimer;
-    private float _changeTimer;
+    [SerializeField] private float _changeTimer;
 
     bool changeToRight;
     bool changeToLeft;

@@ -35,6 +35,27 @@ public class PlayerConversation : PlayerComponent
     }
     public void BeginStory()
     {
+        SetStoryExternalFunctions();
+
+        if (currentDialogue.canContinue)
+        {
+            displayLine = StartCoroutine(_parent.playerUIComponent.DisplayLine(currentDialogue.Continue()));
+            //DisplayChoices();
+            HandleTags();
+        }
+    }
+
+    public void BeginStoryWithoutFunctions()
+    {
+        if (currentDialogue.canContinue)
+        {
+            displayLine = StartCoroutine(_parent.playerUIComponent.DisplayLine(currentDialogue.Continue()));
+            //DisplayChoices();
+            HandleTags();
+        }
+    }
+    public void SetStoryExternalFunctions()
+    {
         #region Set external functions
 
         currentDialogue.BindExternalFunction("CheckIfHasItem", (string itemId) =>
@@ -79,15 +100,7 @@ public class PlayerConversation : PlayerComponent
         });
 
         #endregion 
-
-        if (currentDialogue.canContinue)
-        {
-            displayLine = StartCoroutine(_parent.playerUIComponent.DisplayLine(currentDialogue.Continue()));
-            //DisplayChoices();
-            HandleTags();
-        }
     }
-
     public void FixedUpdate()
     {       
         if (_parent.CurrentPlayerState == PlayerState.Conversation) //We only execute this if we're in the conversation state
@@ -231,7 +244,7 @@ public class PlayerConversation : PlayerComponent
     public void AssignChoices(int index) //Method to execute the coices when it appears
     {
         currentDialogue.ChooseChoiceIndex(index);
-
+        ContinueStory();
         foreach (ChoiceClass c in dialogueChoices)
         {
             c.ReturnParent().SetActive(false);

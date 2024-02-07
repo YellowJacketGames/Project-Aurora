@@ -13,7 +13,6 @@ public class InteractableElement : MonoBehaviour
         if (hasBeenInteracted)
             return;
 
-        hasBeenInteracted = true;
         Debug.Log(elementName + " interacted");
     }
 
