@@ -62,7 +62,7 @@ public class DoorElement : InteractableElement
 
         //Play unlocking sound
     }
-    private void Update()
+    public virtual void Update()
     {
         if (!GameManager.instance.currentTransitionManager.ReturnTransitionStatus() && inTransition) //If the transition is done, we move the player and then set the transition
         {
