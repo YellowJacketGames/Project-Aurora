@@ -23,7 +23,7 @@ public class PlayerInteract : PlayerComponent
         return direction;
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (shouldInteract) //We check every frame if the player can interact
         {

@@ -6,14 +6,12 @@ using UnityEngine;
 public class PlayerCollisions : PlayerComponent
 {
     [Header("Uncrouch Check")]
-    [SerializeField] private float crouchCheckLength;    //This variable will define how long the raycast for the crouching check will be 
-    [SerializeField] private LayerMask crouchingCheckLayer;    //This variable limits the crouching check to this layer only
+    [SerializeField] private float crouchCheckLength;           //This variable will define how long the raycast for the crouching check will be 
+    [SerializeField] private LayerMask crouchingCheckLayer;     //This variable limits the crouching check to this layer only
 
     [Header("Interaction Checks")]
-    [SerializeField] private float interactionRadius;  //This variable indicates how big is the radius for the interaction spehere
     [SerializeField] private LayerMask interactionCheckLayer;    //This variable limits the crouching check to this layer only
-
-
+    [SerializeField] Vector3 interactionSize;                    //This variable indicates how big is the radius for the interaction box
 
     //This region checks movement collision checks
     #region Movement Checks
@@ -30,9 +28,10 @@ public class PlayerCollisions : PlayerComponent
 
     public InteractableElement ReturnClosestInteractableObject() //this method returns the closest interactable objects in range
     {
-        List<Collider> interactable = new List<Collider>(Physics.OverlapSphere(transform.position, interactionRadius, interactionCheckLayer)); //We get the list of all the elements in the sphere
-         
-        if(interactable.Count > 0)
+
+        List<Collider> interactable = new List<Collider>(Physics.OverlapBox(_parent.characterModel.transform.position, interactionSize, Quaternion.identity, interactionCheckLayer)); //We get the list of all the elements in the sphere
+
+        if (interactable.Count > 0)
         {
             if (interactable[0].TryGetComponent<InteractableElement>(out InteractableElement element)) //We see if we can get the Interactable Component Script
             {
@@ -84,4 +83,5 @@ public class PlayerCollisions : PlayerComponent
             _parent.playerUIComponent.HideInteractPrompt();
         }
     }
+
 }

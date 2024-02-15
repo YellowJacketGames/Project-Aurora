@@ -13,6 +13,8 @@ public class TransitionManager : MonoBehaviour
     bool fadeIn;
     bool fadeOut;
     Effects transitionEffects;
+
+    bool completeTransition = true;
     [SerializeField] private Image transitionImage;
     [Range(0f, 1f)]
     [SerializeField] float transitionDuration;
@@ -37,6 +39,12 @@ public class TransitionManager : MonoBehaviour
             if(transitionEffects.FadeIn(transitionImage, transitionDuration))
             {
                 fadeIn = false; //When the transition is finished, we make sure the transition stops
+
+                if (completeTransition)
+                {
+                    completeTransition = false;
+                    Invoke("SetFadeOut", 1f);
+                }
             }
         }
 
@@ -64,6 +72,11 @@ public class TransitionManager : MonoBehaviour
             fadeIn = true;
     }
 
+    public void CompleteTransition()
+    {
+        SetFadeIn();
+        completeTransition = true;
+    }
     public void SetFadeOut() //Set the transition to fade out
     {
         if(!fadeIn)

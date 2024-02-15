@@ -99,8 +99,57 @@ public class PlayerConversation : PlayerComponent
             canContinue = false;
         });
 
-        #endregion 
+        currentDialogue.BindExternalFunction("BeginTransition", (string none) =>
+        {
+            GameManager.instance.currentTransitionManager.CompleteTransition();
+
+        });
+
+        currentDialogue.BindExternalFunction("PlayAudio", (string audioName) =>
+        {
+            AudioManager.instance.Play(audioName);
+        });
+
+        currentDialogue.BindExternalFunction("SetNewSpeaker", (string newSpeaker) =>
+        {
+            Speaker s = Resources.Load("ScriptableObjects/Speakers/" + newSpeaker) as Speaker;
+            
+
+            switch (GameManager.instance.currentController.playerInteractComponent.GetCurrentDirection())
+            {
+                case InteractDirection.Left:
+                    s.currentDirection = InteractDirection.Right;
+                    break;
+                case InteractDirection.Right:
+                    s.currentDirection = InteractDirection.Left;
+                    break;
+                default:
+                    break;
+            }
+            SetNewSpeaker(s);
+        });
+
+        #region Level 3 specific Conversation Methods
+
+        currentDialogue.BindExternalFunction("ResetDoors", (string none) =>
+        {
+            DoorLevelManager specialManager = GameManager.instance.currentLevelManager as DoorLevelManager;
+            specialManager.ResetDoorLevel();
+            
+        });
+
+        currentDialogue.BindExternalFunction("AdvanceDoors", (string none) =>
+        {
+            DoorLevelManager specialManager = GameManager.instance.currentLevelManager as DoorLevelManager;
+            specialManager.ProgressLevel();
+
+        });
+
+        #endregion
+
+        #endregion
     }
+
     public void FixedUpdate()
     {       
         if (_parent.CurrentPlayerState == PlayerState.Conversation) //We only execute this if we're in the conversation state
@@ -129,6 +178,7 @@ public class PlayerConversation : PlayerComponent
     {
         return playerSpeaker;
     }
+
     #region Story 
     public void ContinueStory() //Method to make story continue
     {
