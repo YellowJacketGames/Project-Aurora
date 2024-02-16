@@ -25,6 +25,9 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] private float groundCheckLength;  //Value of the lenght of the raycast that checks if the player is in the ground
     [SerializeField] private bool isGrounded;
 
+    [Header("Rigid Limits")]
+    [SerializeField] private RigidbodyConstraints idleConstraints;
+    [SerializeField] private RigidbodyConstraints movingConstraints;
     //Bool variable to know if the player should be able to move
     bool shouldMove => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
         _parent.playerInputHandlerComponent.GetMovementDirection().x != 0 && GameManager.instance.CanPlay();
@@ -32,7 +35,7 @@ public class PlayerMovement : PlayerComponent
     //Bool variable to know if the player should be able to jump.
     bool shouldJump => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
         _parent.CurrentPlayerState != PlayerState.Jump && _parent.CurrentPlayerState != PlayerState.Crouch && _parent.playerInputHandlerComponent.GetJumpingInput()
-        && GameManager.instance.CanPlay();
+        && GameManager.instance.CanPlay() && isGrounded;
 
     //Bool variable to check if the player should be able to crouch
     bool shouldCrouch => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
@@ -56,7 +59,16 @@ public class PlayerMovement : PlayerComponent
         
     }
     
+    public void FreezePlayer()
+    {
+        _parent.playerRigid.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
 
+    }
+
+    public void UnfreezePlayer()
+    {
+        _parent.playerRigid.constraints = RigidbodyConstraints.FreezeRotation;
+    }
     //Method to handle player Jump
     public void HandleJump()
     {
@@ -228,16 +240,19 @@ public class PlayerMovement : PlayerComponent
     #region Handle ground check values
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Ground"))
         HandleGroundCheck(true);
     }
 
     private void OnTriggerStay(Collider other)
     {
+        if (other.CompareTag("Ground"))
         HandleGroundCheck(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag("Ground"))
         HandleGroundCheck(false);
     }
 
