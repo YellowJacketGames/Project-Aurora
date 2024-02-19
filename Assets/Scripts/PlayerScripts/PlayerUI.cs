@@ -65,7 +65,7 @@ public class PlayerUI : PlayerComponent
                     {
                         if (door.CheckIfCanOpen())
                         {
-                            _parent.interactableText.SetText("Open door");
+                            _parent.interactableText.SetText(element.GetElementName());
                         }
                         else
                         {
@@ -74,7 +74,7 @@ public class PlayerUI : PlayerComponent
                     }
                     else
                     {
-                        _parent.interactableText.SetText("Go to " + element.GetElementName());
+                        _parent.interactableText.SetText(element.GetElementName());
                     }
                 }
 

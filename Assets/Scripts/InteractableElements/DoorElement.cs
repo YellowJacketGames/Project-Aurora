@@ -7,12 +7,14 @@ using UnityEngine;
 public class DoorElement : InteractableElement
 {
     [Header("Door Variables")]
-    [SerializeField] Transform newPosition;
+    [SerializeField] protected Transform newPosition;
+    [SerializeField] private bool returnFromTransition = true;
     [Space]
     [Header("Door Lock Variables")]
     [SerializeField] bool needKey;
     [SerializeField] ObjectClass keyNeeded;
-    bool inTransition;
+
+    protected bool inTransition;
     public override void OnInteract() 
     {
         base.OnInteract();
@@ -39,14 +41,14 @@ public class DoorElement : InteractableElement
         
     }
 
-    public void OpenDoor()
+    public virtual void OpenDoor()
     {
         //When interacted, we want to set a transition before moving to the new location
-        inTransition = true;
         GameManager.instance.currentTransitionManager.SetFadeIn();
 
         //We deactivate the interaction check since we want to interact with this door again
         hasBeenInteracted = false;
+        inTransition = true;
 
         //Play the sound of the door opening
         AudioManager.instance.Play("DoorOpen");
@@ -62,7 +64,7 @@ public class DoorElement : InteractableElement
 
         //Play unlocking sound
     }
-    private void Update()
+    public virtual void Update()
     {
         if (!GameManager.instance.currentTransitionManager.ReturnTransitionStatus() && inTransition) //If the transition is done, we move the player and then set the transition
         {
@@ -70,10 +72,11 @@ public class DoorElement : InteractableElement
             GameManager.instance.currentController.transform.position = newPosition.transform.position;
 
             Invoke("TransitionDelay", 0.2f); //We invoke the transition method with a little delay so that it doesn't play when the player is moving
+
         }
     }
 
-    public void TransitionDelay()
+    public virtual void TransitionDelay()
     {
         GameManager.instance.currentTransitionManager.SetFadeOut();
     }
