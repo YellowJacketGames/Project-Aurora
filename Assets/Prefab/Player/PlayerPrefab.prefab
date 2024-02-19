@@ -1060,7 +1060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4523727613770730701}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.899, z: 0}
+  m_LocalPosition: {x: 0.867, y: 0.937, z: -1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1078,8 +1078,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.46389335, z: 1}
-  m_Center: {x: 0, y: 0.11419707, z: 0}
+  m_Size: {x: 1, y: 0.36615837, z: 1}
+  m_Center: {x: 0, y: -0.048465252, z: 0}
 --- !u!1 &4523727613774980889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   inventoryAnimations: {fileID: 4523727614365531858}
   objectName: {fileID: 4523727615543773343}
   objectIcon: {fileID: 4523727614784779210}
-  seeStateChange: 0
+  seeStateChange: 1
   seeControls: 0
   currentControl: 0
   characterCollider: {fileID: 1558852428}
@@ -1388,6 +1388,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerAnimations, Assembly-CSharp
         m_MethodName: AnimationMovement
         m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4523727613811687784}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: FreezePlayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1584,7 +1596,19 @@ MonoBehaviour:
       m_Calls: []
   _exitIdle:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4523727613811687784}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: UnfreezePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _exitWalk:
     m_PersistentCalls:
       m_Calls: []
@@ -1706,6 +1730,8 @@ MonoBehaviour:
   jumpForce: 250
   groundCheckLength: 0.3
   isGrounded: 0
+  idleConstraints: 0
+  movingConstraints: 0
 --- !u!114 &4523727613811687786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1747,12 +1773,10 @@ MonoBehaviour:
   crouchingCheckLayer:
     serializedVersion: 2
     m_Bits: 0
-  interactionRadius: 1.5
   interactionCheckLayer:
     serializedVersion: 2
     m_Bits: 128
-  interactionYOffset: 1.2
-  interactionXOffset: -0.5
+  interactionSize: {x: 3, y: 0, z: 1}
 --- !u!114 &4523727613811687790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3512,7 +3536,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &4523727614750400711
 MonoBehaviour:
