@@ -339,6 +339,9 @@ public class PlayerConversation : PlayerComponent
                             case 1:
                                 _parent.playerUIComponent.SetDialogueLayout(newSpeaker);
                                 break;
+                            case 2:
+                                _parent.playerUIComponent.DeactivateDialogueLayout();
+                                break;
                             default:
                                 break;
                         }

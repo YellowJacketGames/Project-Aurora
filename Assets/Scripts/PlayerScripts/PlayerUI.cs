@@ -147,6 +147,12 @@ public class PlayerUI : PlayerComponent
     }
 
     //Method to set the dialogue layout to the current speaker.
+
+    public void DeactivateDialogueLayout()
+    {
+        currentLayout.DeactivateLayout();
+        currentLayout = null;
+    }
     public void SetDialogueLayout(Speaker currentSpeaker)
     {
         switch (currentSpeaker.currentDirection)
