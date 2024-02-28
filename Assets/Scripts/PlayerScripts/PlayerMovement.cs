@@ -39,7 +39,7 @@ public class PlayerMovement : PlayerComponent
 
     //Bool variable to check if the player should be able to crouch
     bool shouldCrouch => _parent.CurrentPlayerState != PlayerState.Conversation && _parent.CurrentPlayerState != PlayerState.Transition &&
-        _parent.CurrentPlayerState != PlayerState.Jump && _parent.playerInputHandlerComponent.GetCrouchingInput() && GameManager.instance.CanPlay();
+        _parent.CurrentPlayerState != PlayerState.Jump && _parent.playerInputHandlerComponent.GetCrouchingInput() && GameManager.instance.CanPlay() && _parent.CurrentPlayerState != PlayerState.Crouch;
 
     #region PlayerMovementFunctions
 
@@ -95,8 +95,9 @@ public class PlayerMovement : PlayerComponent
     {
         if(_parent.CurrentPlayerState == PlayerState.Crouch)
         {
-            if (!_parent.playerInputHandlerComponent.GetCrouchingInput() && !_parent.playerCollisionsComponent.CheckCrouching())
+            if (_parent.playerInputHandlerComponent.GetCrouchingInput())
             {
+                //if(!_parent.playerCollisionsComponent.CheckCrouching()) //Stopping this for now since we're not using crouch for any in-level mechanics and it's causing bugs
                 _parent.ChangeState(PlayerState.Idle);
             }
         }
@@ -146,6 +147,7 @@ public class PlayerMovement : PlayerComponent
             if(_parent.CurrentPlayerState == PlayerState.Crouch)
             {
                 _parent.playerAnimationComponent.AnimationMovement(0);
+                ChangeToIdleSpeed();
             }
         }
 
@@ -202,7 +204,10 @@ public class PlayerMovement : PlayerComponent
             HandleMovement();
 
             if (_parent.CurrentPlayerState == PlayerState.Crouch)
+            {
                 _parent.playerAnimationComponent.AnimationMovement(crouchSpeed);
+                ChangeToCrouchSpeed();
+            }
             //Handling of the different inputs
 
             //Running
@@ -225,6 +230,7 @@ public class PlayerMovement : PlayerComponent
             HandleJump();
         }
 
+        HandleUncrouch();
         //We check in the update method if the player should crouch
         if (shouldCrouch)
         {
@@ -233,7 +239,7 @@ public class PlayerMovement : PlayerComponent
 
 
         //We check in the update method if the player should be able to uncrouch
-        HandleUncrouch();
+        
     }
 
 

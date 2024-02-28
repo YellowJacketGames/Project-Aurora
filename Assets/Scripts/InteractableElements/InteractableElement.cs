@@ -10,10 +10,7 @@ public class InteractableElement : MonoBehaviour
     public bool hasBeenInteracted;
     public virtual void OnInteract()
     {
-        if (hasBeenInteracted)
-            return;
 
-        Debug.Log(elementName + " interacted");
     }
 
     #region Return Values

@@ -14,21 +14,24 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioMixerGroup sfxMixer;
     [SerializeField] AudioMixerGroup musicMixer;
-    private Sound[] sounds;
+    [SerializeField] Sound[] sounds;
     [SerializeField] private GameSounds allSounds;
-
 
     private void Awake()
     {
         #region Singleton
         if (instance == null)
+        {
             instance = this;
+        }
         else
+        {
             Destroy(this.gameObject);
+        }
+
         DontDestroyOnLoad(this.gameObject);
         #endregion
 
-        sounds = allSounds.ReturnSoundsInGame();
 
         // Set-up
         foreach (Sound sound in sounds)
@@ -36,6 +39,7 @@ public class AudioManager : MonoBehaviour
             // Create a GameObject with an AudioSource component dor each Sound asset
             GameObject audioSource = new GameObject("Audio source" + sound.name);
             audioSource.transform.SetParent(transform);
+            sound.sourceObject = audioSource;
             sound.source = audioSource.AddComponent<AudioSource>();
             
             // Sound properties
@@ -88,7 +92,30 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound: " + name + " not found");
         }
     }
+    public void PlayLoop(string name)
+    {
+        Sound newSound = Array.Find(sounds, sound => sound.name == name);
 
+        if (newSound != null)
+        {
+            newSound.source.Play();
+        }
+        else
+        {
+            Debug.Log("Sound: " + name + " not found");
+        }
+    }
+    public void PlayLoop(Sound newSound)
+    {
+        if (newSound != null)
+        {
+            newSound.source.Play();
+        }
+        else
+        {
+            Debug.Log("Sound: " + name + " not found");
+        }
+    }
     public void Play(Sound newSound)
     {
         if (newSound != null)
@@ -106,8 +133,8 @@ public class AudioManager : MonoBehaviour
     public void PlayWithRandomPitch(float min, float max, string name)
     {
         Sound newSound = Array.Find(sounds, sound => sound.name == name);
-
         float randomPitch = Random.Range(min, max);
+
         if (newSound != null)
         {
             newSound.source.pitch = randomPitch;
@@ -209,10 +236,19 @@ public class AudioManager : MonoBehaviour
 
     //Fade in method, Progressively increases the volume of the sound, until it stops
 
-    IEnumerator FadeInSound(Sound sound)
+    IEnumerator FadeInSound(Sound sound, bool loop)
     {
+        Debug.Log("FadeIn");
         sound.source.volume = 0;
-        Play(sound.name);
+
+        if (loop)
+        {
+            PlayLoop(sound.name);
+        }
+        else
+        {
+            Play(sound.name);
+        }
 
         while (sound.source.volume <= sound.originalVolume)
         {
@@ -241,13 +277,13 @@ public class AudioManager : MonoBehaviour
 
     //Calls the fade in corroutine
 
-    public void FadeIn(string name)
+    public void FadeIn(string name, bool loop)
     {
         Sound newSound = Array.Find(sounds, sound => sound.name == name);
 
         if (newSound != null)
         {
-            StartCoroutine(FadeInSound(newSound));
+            StartCoroutine(FadeInSound(newSound, loop));
         }
 
         else
@@ -256,5 +292,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    
     #endregion
 }

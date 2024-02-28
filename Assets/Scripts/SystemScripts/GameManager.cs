@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //We will use a static class for the GameManager as it's usually a singleton
 //It will hold static variables that are easily accessable in each scene
@@ -42,7 +43,9 @@ public class GameManager : MonoBehaviour
 
     private GameStates currentGameState;
 
-
+    //Level variables
+    [SerializeField] private string[] levelNames;
+    private int levelIndex = 0;
     public GameStates GetCurrentGameState()
     {
         return currentGameState;
@@ -66,4 +69,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GoToNextLevel()
+    {
+        //End the music
+        if(currentLevelManager != null)
+        currentLevelManager.EndLevelMusic();
+
+        //Set the level index and begin the transition
+        levelIndex++;
+        StartCoroutine(LoadLevel());
+    }
+
+    public void GoToSpecificLevel(int index)
+    {
+        levelIndex = index;
+        StartCoroutine(LoadLevel());
+    }
+    IEnumerator LoadLevel()
+    {
+        AsyncOperation load = new AsyncOperation();
+        load = SceneManager.LoadSceneAsync(levelNames[levelIndex]);
+        load.allowSceneActivation = false;
+
+        while(load.progress < 0.9f)
+        {
+            yield return null;
+        }
+
+        load.allowSceneActivation = true;
+    }
 }

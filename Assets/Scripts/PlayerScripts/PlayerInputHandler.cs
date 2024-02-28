@@ -293,7 +293,9 @@ public class PlayerInputHandler : PlayerComponent
 
     public bool GetCrouchingInput()
     {
-        return crouchingInput;
+        bool value = crouchingInput;
+        crouchingInput = false;
+        return value;
 
     }
 

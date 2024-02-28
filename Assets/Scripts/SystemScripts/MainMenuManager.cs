@@ -79,13 +79,9 @@ public class MainMenuManager : MonoBehaviour
     {
         if (optionsDisabled) //If the options have been disabled, it will not execute any code.
             return;
-
-        _loadingGameTimer = loadingGameTimer; //We set the timer to it's original value
-        loading = true; //We begin the loading timer
-        sceneToLoad = "PlayerTesting"; //We set the next scene to load
         optionsDisabled = true; //We disable the other options
 
-        GameManager.instance.currentTransitionManager.SetFadeIn(); //We set the transition
+        GameManager.instance.currentTransitionManager.NextLevel();
     }
 
     public void OnContinue()

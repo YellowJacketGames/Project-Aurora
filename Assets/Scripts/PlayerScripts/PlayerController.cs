@@ -350,8 +350,6 @@ public class PlayerController : MonoBehaviour
         _enterIdle.AddListener(GameManager.instance.currentCameraManager.StopCameraTimer);
 
         #endregion 
-
-        ChangeState(PlayerState.Transition);
     }
 
 

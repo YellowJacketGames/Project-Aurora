@@ -43,8 +43,10 @@ public class ConversationElement : InteractableElement
             return;
         }
         base.OnInteract();
+    }
 
-        
-
+    public void ChangeDialogue(TextAsset dialogue)
+    {
+        elementDialogue = dialogue;
     }
 }

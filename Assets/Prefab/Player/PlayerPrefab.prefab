@@ -1489,7 +1489,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7898886055968705734}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerSounds, Assembly-CSharp
         m_MethodName: PlayPlayerSound
         m_Mode: 5
@@ -1618,7 +1618,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7898886055968705734}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerSounds, Assembly-CSharp
         m_MethodName: PlayPlayerSound
         m_Mode: 5
@@ -1764,7 +1764,7 @@ MonoBehaviour:
   interactionCheckLayer:
     serializedVersion: 2
     m_Bits: 128
-  interactionSize: {x: 3, y: 0, z: 1}
+  interactionSize: {x: 4, y: 0, z: 1}
 --- !u!114 &4523727613811687790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14712,18 +14712,6 @@ CapsuleCollider:
   m_Direction: 1
   m_Center: {x: -0.000805974, y: 1.2805537, z: 0.0022888184}
 --- !u!114 &1558852430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149593517856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c399b86824961ba46ba26432a65d348a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7898886055968705734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

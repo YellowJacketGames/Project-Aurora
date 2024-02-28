@@ -24,12 +24,25 @@ public class DoorLevelManager : LevelManager
     [SerializeField] public Transform initialPosition;
     private int doorIndex;
 
+    [Header("Initial Dialogue")]
+    [SerializeField] private TextAsset initialDialogue;
+    
+
+    private void Start()
+    {
+        LoadIntroDialogue();
+        //Invoke("LoadIntroDialogue", 2f);
+    }
+
+    public void LoadIntroDialogue()
+    {
+        GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(new Story(initialDialogue.text));
+        GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
+    }
     public void FadeInMusicLayer(int layer)
     {
         StartCoroutine(FadeInMusic(layeredSong[layer]));
     }
-
-
     IEnumerator FadeInMusic (AudioSource source)
     {
         float time = 0;

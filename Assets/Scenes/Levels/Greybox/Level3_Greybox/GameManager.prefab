@@ -2869,7 +2869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3394038318164130872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3151,6 +3151,9 @@ MonoBehaviour:
   diaryManager: {fileID: 1287305516}
   questManager: {fileID: 0}
   currentLevelManager: {fileID: 0}
+  levelNames:
+  - LevelX_VisualNovel
+  - Level2_Enviroment
 --- !u!114 &3394038318219316957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3166,6 +3169,10 @@ MonoBehaviour:
   gameSpeakers:
   - {fileID: 11400000, guid: 20fdeeb9096d0494eb91852116df347a, type: 2}
   - {fileID: 11400000, guid: 60d2954f2e2cd4e44baacc95c85a3337, type: 2}
+  - {fileID: 11400000, guid: 5d3d303a0bfe3cc40aaf13150f9f88b5, type: 2}
+  - {fileID: 11400000, guid: 26676b84809ae37419b0d7136d6a5ef9, type: 2}
+  - {fileID: 11400000, guid: 730586f6a5d200b4180628d5cde85a30, type: 2}
+  - {fileID: 11400000, guid: 0633a02e5506f524fa0699c7d0acac12, type: 2}
 --- !u!114 &3394038318219316958
 MonoBehaviour:
   m_ObjectHideFlags: 0

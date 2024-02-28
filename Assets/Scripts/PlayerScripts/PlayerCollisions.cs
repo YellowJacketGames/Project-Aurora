@@ -35,19 +35,19 @@ public class PlayerCollisions : PlayerComponent
         {
             if (interactable[0].TryGetComponent<InteractableElement>(out InteractableElement element)) //We see if we can get the Interactable Component Script
             {
-                _parent.playerInteractComponent.GetCurrentElement(element);
+                _parent.playerInteractComponent.SetCurrentElement(element);
                 return element;
             }
             else
             {
                 Debug.LogWarning("The element: " + interactable[0].name + " does not possess a interactable element component");
-                _parent.playerInteractComponent.GetCurrentElement(null);
+                _parent.playerInteractComponent.SetCurrentElement(null);
 
                 return null;
             }
         }
 
-        _parent.playerInteractComponent.GetCurrentElement(null);
+        _parent.playerInteractComponent.SetCurrentElement(null);
         return null;
         
     }
@@ -61,16 +61,7 @@ public class PlayerCollisions : PlayerComponent
         {
             if (ReturnClosestInteractableObject() != null) //If there is an interactable element nearby, give the player the option to interact with it
             {
-                if (!ReturnClosestInteractableObject().hasBeenInteracted)
-                {
-                    //Show UI prompt
-                    
-                    _parent.playerUIComponent.ShowInteractPrompt(ReturnClosestInteractableObject());
-                }
-                else
-                {
-                    _parent.playerUIComponent.HideInteractPrompt();
-                }
+                _parent.playerUIComponent.ShowInteractPrompt(ReturnClosestInteractableObject());
             }
             else
             {

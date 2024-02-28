@@ -14,7 +14,8 @@ public class TransitionManager : MonoBehaviour
     bool fadeOut;
     Effects transitionEffects;
 
-    bool completeTransition = true;
+    bool completeTransition = false;
+    bool nextLevel = false;
     [SerializeField] private Image transitionImage;
     [Range(0f, 1f)]
     [SerializeField] float transitionDuration;
@@ -45,6 +46,12 @@ public class TransitionManager : MonoBehaviour
                     completeTransition = false;
                     Invoke("SetFadeOut", 1f);
                 }
+
+                if (nextLevel)
+                {
+                    nextLevel = false;
+                    GameManager.instance.GoToNextLevel();
+                }
             }
         }
 
@@ -55,7 +62,7 @@ public class TransitionManager : MonoBehaviour
                 fadeOut = false; //When the transition is finished, we make sure the transition stops
 
                 //Since we're exiting the transition, we also need to change to player state to idle
-                if(GameManager.instance.currentController != null)
+                if(GameManager.instance.currentController != null && GameManager.instance.currentController.CurrentPlayerState == PlayerState.Transition)
                 GameManager.instance.currentController.ChangeState(PlayerState.Idle);
             }
         }
@@ -76,6 +83,12 @@ public class TransitionManager : MonoBehaviour
     {
         SetFadeIn();
         completeTransition = true;
+    }
+
+    public void NextLevel()
+    {
+        SetFadeIn();
+        nextLevel = true;
     }
     public void SetFadeOut() //Set the transition to fade out
     {

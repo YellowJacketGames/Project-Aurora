@@ -112,7 +112,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3510882061241301196}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.966499, y: 1.2819942, z: 18.000017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelCameraRight: {fileID: 5600935507729669974}
   levelCameraLeft: {fileID: 5600935507233712634}
-  dialogueCamera: {fileID: 3510882061797009210}
-  zoomInValue: 10
+  dialogueCamera: {fileID: 8614290907722262320}
+  zoomInValue: 6
   zoomOutValue: 15
   zoomTime: 0
   zoomDuration: 3
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 6.168675
+  m_CameraDistance: 6
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 6.168675
+  m_CameraDistance: 6
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -654,7 +654,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8487076037307110011}
   m_LocalRotation: {x: 0.09074173, y: -0.7134405, z: 0.08541196, w: 0.68954587}
-  m_LocalPosition: {x: -4.376499, y: 1.5180057, z: -18.760017}
+  m_LocalPosition: {x: -4.376499, y: 1.5180057, z: -20.010017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

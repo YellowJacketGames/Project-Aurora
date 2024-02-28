@@ -19,9 +19,10 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     originalVolume: 1
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
+    sourceObject: {fileID: 0}
   - name: DoorOpen
     clip: {fileID: 8300000, guid: be730fe8e4517724f88861c6aae11cc9, type: 3}
     soundType: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+    sourceObject: {fileID: 0}
   - name: DoorOpen
     clip: {fileID: 8300000, guid: be730fe8e4517724f88861c6aae11cc9, type: 3}
     soundType: 0
@@ -40,6 +42,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+    sourceObject: {fileID: 0}
   - name: PortMusic
     clip: {fileID: 8300000, guid: 902ab71bedf3ea64e9c32840af01b4ca, type: 3}
     soundType: 1
@@ -49,6 +52,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+    sourceObject: {fileID: 0}
   - name: Walk
     clip: {fileID: 8300000, guid: 8574388b09db547409a9e4de11c62a81, type: 3}
     soundType: 0
@@ -58,6 +62,7 @@ MonoBehaviour:
     volume: 0.7
     pitch: 1
     source: {fileID: 0}
+    sourceObject: {fileID: 0}
   - name: Crouch
     clip: {fileID: 8300000, guid: bb1a95018cedc3c49afa46d406ac0cbf, type: 3}
     soundType: 0
@@ -67,6 +72,7 @@ MonoBehaviour:
     volume: 0.7
     pitch: 1
     source: {fileID: 0}
+    sourceObject: {fileID: 0}
   - name: PoliceSiren
     clip: {fileID: 8300000, guid: 26c99ab5004077140a09160ce45c06cf, type: 3}
     soundType: 0
@@ -76,3 +82,4 @@ MonoBehaviour:
     volume: 0.7
     pitch: 1
     source: {fileID: 0}
+    sourceObject: {fileID: 0}

@@ -8,13 +8,23 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private LevelEvent[] levelEvents; //All the events of the current event
     private LevelEvent currentEvent; //variable to check the current event is running;
+    [SerializeField] string levelMusic;
     private void Start()
     {
         //Set GameManager reference
         GameManager.instance.currentLevelManager = this;
 
+        SetLevelMusic();
     }
 
+    public virtual void SetLevelMusic()
+    {
+        AudioManager.instance.FadeIn(levelMusic, true);
+    }
+    public virtual void EndLevelMusic()
+    {
+        AudioManager.instance.FadeOut(levelMusic);
+    }
     public void TriggerEvent(int eventToTrigger) //Method to trigger an specific event
     {
         if(levelEvents.Length <= 0) //If there are no events stored in the list, we don't execute the method.

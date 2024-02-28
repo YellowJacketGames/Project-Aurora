@@ -7,17 +7,21 @@ using UnityEngine;
 public class PlayerInteract : PlayerComponent
 {
     [Header("Interact Variables")]
-    private InteractableElement currentElement;
+    [SerializeField]private InteractableElement currentElement;
     //bool to check if the player can interact with the other elements
     bool shouldInteract => _parent.CurrentPlayerState != PlayerState.Jump && _parent.CurrentPlayerState != PlayerState.Transition && _parent.CurrentPlayerState != PlayerState.Conversation &&
         currentElement != null && _parent.playerInputHandlerComponent.GetInteractInput() && GameManager.instance.CanPlay();
 
     private InteractDirection direction;
-    public void GetCurrentElement(InteractableElement newElement)
+    public void SetCurrentElement(InteractableElement newElement)
     {
         currentElement = newElement;
     }
 
+    public InteractableElement GetCurrentElement()
+    {
+        return currentElement;
+    }
     public InteractDirection GetCurrentDirection()
     {
         return direction;
@@ -27,22 +31,19 @@ public class PlayerInteract : PlayerComponent
     {
         if (shouldInteract) //We check every frame if the player can interact
         {
-            if(!currentElement.hasBeenInteracted)
+            //Get direction
+            if (transform.position.z < currentElement.gameObject.transform.position.z)
             {
-                //Get direction
-                if(transform.position.z < currentElement.gameObject.transform.position.z)
-                {
-                    direction = InteractDirection.Right;
-                }
-                else
-                {
-                    direction = InteractDirection.Left;
-                }
-
-                _parent.playerConversationComponent.GetPlayerSpeaker().currentDirection = direction;
-                currentElement.OnInteract();
-                _parent.playerUIComponent.HideInteractPrompt();
+                direction = InteractDirection.Right;
             }
+            else
+            {
+                direction = InteractDirection.Left;
+            }
+
+            _parent.playerConversationComponent.GetPlayerSpeaker().currentDirection = direction;
+            currentElement.OnInteract();
+            _parent.playerUIComponent.HideInteractPrompt();
         }
     }
 }

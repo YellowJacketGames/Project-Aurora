@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerInventory : PlayerComponent
 {
     //This two list hold the obtainable objects in the player inventory
-    private List<ObjectClass> keyObjectInventory = new List<ObjectClass>();
+    [SerializeField] private List<ObjectClass> keyObjectInventory = new List<ObjectClass>();
     private List<ObjectClass> typewriterObjectInventory = new List<ObjectClass>();
 
 

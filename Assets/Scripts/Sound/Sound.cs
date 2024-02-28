@@ -18,6 +18,7 @@ public class Sound //Sound class for audio manager.
     [Range(0f, 2f)] public float pitch = 1f;
 
     [HideInInspector] public AudioSource source;
+    [HideInInspector] public GameObject sourceObject;
 }
 
 public enum SoundType //Enum to handle different audio mixers.

@@ -200,7 +200,7 @@ public class PlayerUI : PlayerComponent
         foreach(char letter in line.ToCharArray())
         {
             _parent.dialogueText.text += letter;
-            AudioManager.instance.PlayWithRandomPitch(0.8f, 1.3f, "Typewriter");
+            AudioManager.instance.PlayWithRandomPitch(0.5f, 1.5f, "Typewriter");
             yield return new WaitForSeconds(typingSpeed);
         }
 

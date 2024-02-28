@@ -99,6 +99,12 @@ public class PlayerConversation : PlayerComponent
             canContinue = false;
         });
 
+
+        currentDialogue.BindExternalFunction("NextLevel", (string none) =>
+        {
+            GameManager.instance.currentTransitionManager.NextLevel();
+        });
+
         currentDialogue.BindExternalFunction("BeginTransition", (string none) =>
         {
             GameManager.instance.currentTransitionManager.CompleteTransition();
@@ -127,6 +133,23 @@ public class PlayerConversation : PlayerComponent
                     break;
             }
             SetNewSpeaker(s);
+        });
+
+        currentDialogue.BindExternalFunction("ChangeDialogue", (string dialogueFilePath) =>
+        {
+            ConversationElement e = _parent.playerInteractComponent.GetCurrentElement() as ConversationElement;
+            e.ChangeDialogue(Resources.Load(dialogueFilePath) as TextAsset);
+        });
+
+        currentDialogue.BindExternalFunction("HasInteractedCheck", (string none) =>
+        {
+            _parent.playerInteractComponent.GetCurrentElement().hasBeenInteracted = true;
+        });
+
+        currentDialogue.BindExternalFunction("CheckIfHasInteracted", (string none) =>
+        {
+            currentDialogue.variablesState["hasInteracted"] = _parent.playerInteractComponent.GetCurrentElement().hasBeenInteracted;
+
         });
 
         #region Level 3 specific Conversation Methods
