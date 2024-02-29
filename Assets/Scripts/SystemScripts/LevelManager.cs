@@ -9,11 +9,16 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private LevelEvent[] levelEvents; //All the events of the current event
     private LevelEvent currentEvent; //variable to check the current event is running;
     [SerializeField] string levelMusic;
+    public Quest levelQuest;
+
+    private void Awake()
+    {
+        GameManager.instance.currentLevelManager = this;
+       
+    }
     private void Start()
     {
         //Set GameManager reference
-        GameManager.instance.currentLevelManager = this;
-
         SetLevelMusic();
     }
 

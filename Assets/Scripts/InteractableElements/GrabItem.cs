@@ -7,6 +7,15 @@ public class GrabItem : InteractableElement
 {
     [Header("Item Variables")]
     [SerializeField] private ObjectClass assignedObject;
+
+    private void Start()
+    {
+        if(assignedObject.GetObjectType() == ObjectType.TypeWriterObject)
+        {
+            Animator anim = GetComponent<Animator>();
+            anim.SetFloat("keyIndex", assignedObject.assignedLetterIndex);
+        }
+    }
     public override void OnInteract()
     {
         base.OnInteract();

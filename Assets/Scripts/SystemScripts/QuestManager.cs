@@ -15,10 +15,14 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI questObjective;
 
 
+    private void Awake()
+    {
+        GameManager.instance.questManager = this;
+
+    }
     private void Start() //On start, we want to set the main objective for the quest
     {
         //Game Manager reference
-        GameManager.instance.questManager = this;
         SetCurrentQuest();
     }
 
@@ -34,6 +38,9 @@ public class QuestManager : MonoBehaviour
     #region Quest methods
     public void SetCurrentQuest() //Method to set the new current quest
     {
+        //Set the quest
+        currentQuest = GameManager.instance.currentLevelManager.levelQuest;
+
         //UI implementation
         questName.text = currentQuest.GetQuestName();
         questObjective.text = currentQuest.GetQuestObjective().GetObjective();

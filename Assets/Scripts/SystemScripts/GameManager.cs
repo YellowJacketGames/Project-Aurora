@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
-
     public void GoToNextLevel()
     {
         //End the music

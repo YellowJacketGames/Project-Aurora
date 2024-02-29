@@ -12,6 +12,7 @@ public class PlayerInventory : PlayerComponent
     private List<ObjectClass> typewriterObjectInventory = new List<ObjectClass>();
 
 
+
     //This region holds every method to add items to the inventory
     #region Add to Inventory
     private void AddObjectToInventory(ObjectClass newObject, List<ObjectClass> currentInventory)  //This is a generic method so that we don't write the same code twice, it is used in the later methods

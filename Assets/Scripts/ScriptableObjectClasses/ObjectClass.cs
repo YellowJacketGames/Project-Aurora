@@ -23,6 +23,7 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
     [Space]
     [Header("Typewriter Variables")]
     [SerializeField] private string assignedLetter;
+    [SerializeField][Range(0, 24)] public int assignedLetterIndex;
     [SerializeField] private TextAsset assignedDialogue;
 
     private void OnEnable()
