@@ -13388,25 +13388,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 132660089, guid: 034d0bd9c86dafb409a3ec3696514d49, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 4181efbc1686e42469831af5c2205376,
-        type: 2}
-    - target: {fileID: 132660089, guid: 034d0bd9c86dafb409a3ec3696514d49, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -7450805091948061560, guid: 4181efbc1686e42469831af5c2205376,
-        type: 2}
-    - target: {fileID: 132660089, guid: 034d0bd9c86dafb409a3ec3696514d49, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318164130879, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316946, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
       propertyPath: m_Name
@@ -13472,35 +13453,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316957, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: gameSpeakers.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316957, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: gameSpeakers.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5d3d303a0bfe3cc40aaf13150f9f88b5,
-        type: 2}
-    - target: {fileID: 3394038318219316957, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: gameSpeakers.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 25cac3121dc4d4d449db048eb0e746cd,
-        type: 2}
-    - target: {fileID: 3394038318219316957, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: gameSpeakers.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 730586f6a5d200b4180628d5cde85a30,
-        type: 2}
-    - target: {fileID: 3394038318219316957, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: gameSpeakers.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0633a02e5506f524fa0699c7d0acac12,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034d0bd9c86dafb409a3ec3696514d49, type: 3}
 --- !u!1001 &381972243
@@ -63639,7 +63591,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 0f8b6a534074fae48839d6d188b40ef4, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 9977201cf4761ef46b34ab3d197332d1, type: 2}
 --- !u!4 &1981848106
 Transform:
   m_ObjectHideFlags: 0
