@@ -2,19 +2,19 @@
 //INTERACCIÓN CON VENDEDOR_PERIODICOS
 EXTERNAL CheckIfHasItem(string itemName)
 EXTERNAL CheckIfHasQuest(int questIndex)
+EXTERNAL GoToNextObjective(string none)
 VAR hasQuest = false
 
-~CheckIfHasQuest(4)
+~CheckIfHasQuest(2)
 {hasQuest:
     ->2DialogoHenry
-    
   - else:
     ->2DialogoHenryNoPeriodico
 }
 
 
 ===2DialogoHenryNoPeriodico===
-¡Extra! ¡Extra! #speaker:1
+¡Extra! ¡Extra! #speaker:1 
 La situación de la Bolsa comienza a complicarse.
 ¡Hola! #speaker:0
 ¡Extra! ¡Extra! #speaker:1
@@ -135,7 +135,7 @@ Pero acabo de llegar a Nueva York y no tengo monedas...
 
 
 ===2DialogoHenryAvance9===
-Espero que los poetas cumplan su palabra... #give_Item:obj_Periodico_key #speaker:1
+Espero que los poetas cumplan su palabra... #give_item:obj_Periodico_key #speaker:1
 ¡Voz que despierta a Nueva York de su mañana fría, #speaker:0
 si volvemos a vernos, darás a mi oído gozo y alegría!
 Adiós, poeta perdido. #speaker:1
@@ -196,8 +196,7 @@ Ayúdame y serás recordado para siempre.
 ->2DialogoHenryAvance1013
 
 ===2DialogoHenryAvance1013===
-
-Espero que los poetas cumplan su palabra... #give_Item:obj_Periodico_key #speaker:1
+Espero que los poetas cumplan su palabra... #give_item:obj_Periodico_key #speaker:1
 ¡Voz que despierta a Nueva York de su mañana fría, #speaker:0
 si volvemos a vernos, darás a mi oído gozo y alegría!
 Adiós, poeta perdido. #speaker:1
@@ -205,6 +204,8 @@ Adiós, poeta perdido. #speaker:1
 El Edificio Chrysler será el edificio más alto del mundo.
 ¡Extra, extra!
 Mmm... Nueva York, ¡qué me deparará esta ciudad! #speaker:0
+Debería ir a darle el periódico a Betty 
+~GoToNextObjective("none")
 ->END
 
 

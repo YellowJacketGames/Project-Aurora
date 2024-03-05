@@ -29,6 +29,7 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(mainMenuNavigation.SelectFirstOption(firstOption));
+        GameManager.instance.currentTransitionManager.SetFadeOut();
     }
 
     private void Update()
@@ -108,7 +109,7 @@ public class MainMenuManager : MonoBehaviour
             return;
         exiting = true;
         optionsDisabled = true;
-        GameManager.instance.currentTransitionManager.SetFadeIn();
+        GameManager.instance.currentTransitionManager.QuitGame();
     }
 
     #endregion

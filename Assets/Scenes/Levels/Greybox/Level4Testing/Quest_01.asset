@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddb946c889bc8148a162e896ddb9f88, type: 3}
+  m_Name: Quest_01
+  m_EditorClassIdentifier: 
+  questName: La llegada a Nueva York
+  questObjectives:
+  - objective: Habla con Fernando
+    description: Ahora que has llegado a Nueva York, habla con Fernando para ver
+      que quiere hacer.
+  - objective: Vete a la residencia
+    description: Encuentra la forma de llegar a la residencia de estudiantes para
+      encontrarte con Fernando.
+  - objective: "Consigue un peri\xF3dico"
+    description: "Obt\xE9n un peri\xF3dico para que Betty te de las monedas."
+  - objective: "Dale el peri\xF3dico a Betty."
+    description: "Ve a darle a Betty el peri\xF3dico que te hab\xEDa pedido"
+  - objective: Compra un billete
+    description: "Obt\xE9n un billete para ir a la residencia de estudiantes."
+  - objective: Coge el tren
+    description: Coge el tren para llegar a la residencia de estudiantes

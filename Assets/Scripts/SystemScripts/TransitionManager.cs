@@ -16,6 +16,8 @@ public class TransitionManager : MonoBehaviour
 
     bool completeTransition = false;
     bool nextLevel = false;
+    bool quitGame = false;
+    bool mainMenu = false;
     [SerializeField] private Image transitionImage;
     [Range(0f, 1f)]
     [SerializeField] float transitionDuration;
@@ -30,7 +32,6 @@ public class TransitionManager : MonoBehaviour
 
         //We begin with a fade out transition
         SetFadeOut();
-
         transitionEffects = new Effects();
     }
     private void Update()
@@ -51,6 +52,18 @@ public class TransitionManager : MonoBehaviour
                 {
                     nextLevel = false;
                     GameManager.instance.GoToNextLevel();
+                }
+
+                if (quitGame)
+                {
+                    quitGame = false;
+                    GameManager.instance.QuitGame();
+                }
+
+                if (mainMenu)
+                {
+                    mainMenu = false;
+                    GameManager.instance.GoToMainMenu();
                 }
             }
         }
@@ -85,10 +98,21 @@ public class TransitionManager : MonoBehaviour
         completeTransition = true;
     }
 
+    public void GoToMainMenu()
+    {
+        SetFadeIn();
+        mainMenu = true;
+    }
     public void NextLevel()
     {
         SetFadeIn();
         nextLevel = true;
+    }
+
+    public void QuitGame()
+    {
+        SetFadeIn();
+        quitGame = true;
     }
     public void SetFadeOut() //Set the transition to fade out
     {

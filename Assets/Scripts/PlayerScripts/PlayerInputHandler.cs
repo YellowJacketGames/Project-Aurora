@@ -265,7 +265,6 @@ public class PlayerInputHandler : PlayerComponent
                 break;
             case GameStates.Pause: //If we're already in the pause menu, we unpause it
                 GameManager.instance.pauseManager.UnPause();
-                GameManager.instance.pauseManager.ClosePauseTab();
                 break;
             default:
                 break;

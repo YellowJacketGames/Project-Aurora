@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerInventory : PlayerComponent
 {
     //This two list hold the obtainable objects in the player inventory
-    [SerializeField] private List<ObjectClass> keyObjectInventory = new List<ObjectClass>();
+    [SerializeField]private List<ObjectClass> keyObjectInventory = new List<ObjectClass>();
     private List<ObjectClass> typewriterObjectInventory = new List<ObjectClass>();
 
 
@@ -27,8 +27,6 @@ public class PlayerInventory : PlayerComponent
 
         
         currentInventory.Add(newObject); //We add it to the list
-
-
         _parent.playerUIComponent.ShowObjectObtained(newObject); //UI animation to display the object obtained
     }
 
@@ -103,6 +101,11 @@ public class PlayerInventory : PlayerComponent
         }
 
         return null;
+    }
+
+    public int GetTypewriterCount()
+    {
+        return typewriterObjectInventory.Count;
     }
 }
 

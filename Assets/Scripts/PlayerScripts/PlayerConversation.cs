@@ -179,7 +179,7 @@ public class PlayerConversation : PlayerComponent
         {
             if (_parent.playerInputHandlerComponent.GetAcceptInput()) //If we input the continue button, it will continue the story
             {
-                if (canContinue)
+                if (canContinue || currentDialogue.canContinue)
                 {
                     ContinueStory();
                 }
@@ -349,26 +349,30 @@ public class PlayerConversation : PlayerComponent
                 string tagKey = splitTag[0];
                 string valueKey = splitTag[1];
 
-                int numberValue = System.Convert.ToInt32(valueKey);
-
                 switch (tagKey)
                 {
                     case "speaker":
-                        switch (numberValue)
-                        {
-                            case 0:
-                                _parent.playerUIComponent.SetDialogueLayout(playerSpeaker);
-                                break;
-                            case 1:
-                                _parent.playerUIComponent.SetDialogueLayout(newSpeaker);
-                                break;
-                            case 2:
-                                _parent.playerUIComponent.DeactivateDialogueLayout();
-                                break;
-                            default:
-                                break;
-                        }
+                            int numberValue = System.Convert.ToInt32(valueKey);
+
+                            switch (numberValue)
+                            {
+                                case 0:
+                                    _parent.playerUIComponent.SetDialogueLayout(playerSpeaker);
+                                    break;
+
+                                case 1:
+                                    _parent.playerUIComponent.SetDialogueLayout(newSpeaker);
+                                    break;
+
+                                case 2:
+                                    _parent.playerUIComponent.DeactivateDialogueLayout();
+                                    break;
+
+                                default:
+                                    break;
+                            }
                         break;
+
                     case "give_item":
                         ObjectClass obj = new ObjectClass();
                         obj = obj.CreateObject(valueKey);

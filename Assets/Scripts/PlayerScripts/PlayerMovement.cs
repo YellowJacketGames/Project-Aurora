@@ -152,7 +152,7 @@ public class PlayerMovement : PlayerComponent
         }
 
 
-        if(_parent.CurrentPlayerState == PlayerState.Jump)
+        if(_parent.CurrentPlayerState == PlayerState.Jump || !isGrounded)
         {
             HandleFall();
         }
@@ -182,7 +182,7 @@ public class PlayerMovement : PlayerComponent
         //We also handle the movement directions here
         //if the player is moving, we set the direction that the player is moving
         //This will be later replaced with animations
-        if(_parent.playerInputHandlerComponent.GetMovementDirection().x != 0)
+        if(_parent.playerInputHandlerComponent.GetMovementDirection().x != 0 && _parent.CurrentPlayerState != PlayerState.Transition && _parent.CurrentPlayerState != PlayerState.Conversation)
         _parent.playerAnimationComponent.HandleModelDirection(_parent.playerInputHandlerComponent.GetMovementDirection().x);
 
     }

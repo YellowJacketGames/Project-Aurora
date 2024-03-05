@@ -39,6 +39,7 @@ public class QuestManager : MonoBehaviour
     public void SetCurrentQuest() //Method to set the new current quest
     {
         //Set the quest
+        if(GameManager.instance.currentLevelManager != null)
         currentQuest = GameManager.instance.currentLevelManager.levelQuest;
 
         //UI implementation

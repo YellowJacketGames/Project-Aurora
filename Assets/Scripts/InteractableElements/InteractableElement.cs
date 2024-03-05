@@ -8,6 +8,7 @@ public class InteractableElement : MonoBehaviour
     [SerializeField] protected string elementName;
     [SerializeField] protected InteractionType elementType;
     public bool hasBeenInteracted;
+    public bool ignoreInteraction = false;
     public virtual void OnInteract()
     {
 

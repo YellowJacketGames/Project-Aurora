@@ -61,6 +61,7 @@ public class PlayerCollisions : PlayerComponent
         {
             if (ReturnClosestInteractableObject() != null) //If there is an interactable element nearby, give the player the option to interact with it
             {
+                if(!ReturnClosestInteractableObject().ignoreInteraction)
                 _parent.playerUIComponent.ShowInteractPrompt(ReturnClosestInteractableObject());
             }
             else

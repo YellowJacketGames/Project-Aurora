@@ -7,7 +7,8 @@ EXTERNAL CallEvent(int eventIndex)
 === 2puerto ===
 //Federico y Fernando de los Ríos salen del barco.
 //En la entrada del puerto, se paran a hablar.
-Federico, amigo, ¡bienvenido al centro del Universo! ¡Bienvenido a Nueva York! #speaker:1
+#speaker:1
+Federico, amigo, ¡bienvenido al centro del Universo! ¡Bienvenido a Nueva York! 
 
 + ¿Esto es Nueva York? ¡Huele a caimán y a tabaco! #speaker:0
     No me gusta lo que veo. 
@@ -17,8 +18,8 @@ Federico, amigo, ¡bienvenido al centro del Universo! ¡Bienvenido a Nueva York!
     ->2NYbien
 
 === 2NYmal ===
- ¡Ja! ¡Todavía estás a tiempo de coger el barco de vuelta! #speaker:0
- * No me lo diga dos veces, don Fernando... #speaker:1
+ ¡Ja! ¡Todavía estás a tiempo de coger el barco de vuelta! #speaker:1
+ * No me lo diga dos veces, don Fernando... #speaker:0
  Si esto es Nueva York, bien se parece a la ciudad que aparece en mis pesadillas... #speaker:0 
  -> 2NYmal2
  * Tengo un mal pálpito... #speaker:0

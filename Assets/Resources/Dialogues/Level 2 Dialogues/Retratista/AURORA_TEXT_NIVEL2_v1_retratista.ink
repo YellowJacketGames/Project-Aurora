@@ -36,7 +36,7 @@ No pinto lo que veo. Pinto lo que se verá. #speaker:1
 ->2Retratista04
 
 ===2Retratista04===
-Un esclavo de mi mente. Soy un maldito. Veo lo que la gente será. Dibujo cómo serán las personas el día de su muerte. Mire este cuadro, ¿qué ve? #give_Item:obj_Retrato_key #speaker:1
+Un esclavo de mi mente. Soy un maldito. Veo lo que la gente será. Dibujo cómo serán las personas el día de su muerte. Mire este cuadro, ¿qué ve? #give_item:obj_Retrato_key #speaker:1
 Pero... ¡por los cipreses del Albaicín! ¡Si es Maruja! ¡Maruja Mallo! #speaker:0
 No es Maruja; será Maruja. #speaker:1
 *¡Pero qué arrugada está! #speaker:0
@@ -68,7 +68,7 @@ Si reúnes los diez retratos de tus amigos, prometo revelarte tu verdad antes de
 
 ===2Retratista06===
 Guarda hasta entonces ese fragmento del mañana en el museo de la escarcha, extraño amigo. #speaker:0
-
+~ChangeDialogue("Dialogues/Level 2 Dialogues/Retratista/AURORA_TEXT_NIVEL2_v1_retratistaFinal.ink")
  ->END
  
 

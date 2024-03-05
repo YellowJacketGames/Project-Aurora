@@ -3,6 +3,7 @@
 
 EXTERNAL CheckIfHasItem(string item)
 EXTERNAL CallEvent(int eventIndex)
+EXTERNAL GoToNextObjective(string none)
 VAR hasItem = false
 
 
@@ -28,20 +29,20 @@ Entonces no tienes que tomar esa línea...#speaker:1
 ¿A dónde quieres ir? #speaker:1
 A la Residencia de Estudiantes.#speaker:0
 La línea 3 te llevará directamente allí. #speaker:1
-Son diez centavos. 
-~CheckIfHasItem("obj_Monedas_key")
+Un billete cuesta un dolar. 
+~CheckIfHasItem("obj_Dolar_key")
 {hasItem:
-    Aquí tienes. #speaker:0 #take_Item:obj_Monedas_key
-    Aquí tienes tu ticket. #speaker:1 #give_Item:obj_Ticket_key
+    Aquí tienes. #speaker:0 #take_item:obj_Dolar_key
+    Aquí tienes tu ticket. #speaker:1 #give_item:obj_Ticket_key
     Tu tranvía está a punto de salir. 
     Corre o lo perderás. ¡Y no pasa otro hasta dentro de una hora!
     ~CallEvent(1)
+    ~GoToNextObjective("none")
     -> END 
   - else:
     No tengo dinero...#speaker:0 
     -> 2TaquilleroSinDinero
 }
-
 
 ===2TaquilleroSinDinero=== 
 ¿Cómo que no tienes dinero? #speaker:1

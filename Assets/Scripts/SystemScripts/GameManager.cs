@@ -79,6 +79,16 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadLevel());
     }
 
+    public void GoToMainMenu()
+    {
+        //End the music
+        if (currentLevelManager != null)
+            currentLevelManager.EndLevelMusic();
+
+        //Set the level index and begin the transition
+        levelIndex = 0;
+        StartCoroutine(LoadLevel("MainMenu"));
+    }
     public void GoToSpecificLevel(int index)
     {
         levelIndex = index;
@@ -96,5 +106,22 @@ public class GameManager : MonoBehaviour
         }
 
         load.allowSceneActivation = true;
+    }
+    IEnumerator LoadLevel(string name)
+    {
+        AsyncOperation load = new AsyncOperation();
+        load = SceneManager.LoadSceneAsync(name);
+        load.allowSceneActivation = false;
+
+        while (load.progress < 0.9f)
+        {
+            yield return null;
+        }
+
+        load.allowSceneActivation = true;
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

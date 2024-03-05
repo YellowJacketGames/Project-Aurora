@@ -31,9 +31,6 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
         //Generate the ID whenever the game begins
         GenerateId();
 
-        //We also get the image from resources
-        objectIcon = GetIconFromResources(this);
-
     }
 
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4554478314687421557}
   - component: {fileID: 4554478314687421546}
   - component: {fileID: 9048713839332815932}
+  - component: {fileID: 5262991804870738429}
   m_Layer: 0
   m_Name: TypewriterObject
   m_TagString: Untagged
@@ -121,4 +122,19 @@ MonoBehaviour:
   elementName: 
   elementType: 0
   hasBeenInteracted: 0
+  ignoreInteraction: 0
   assignedObject: {fileID: 11400000, guid: 7eec138554343cd4e98dee44f76ea7db, type: 2}
+  useCollision: 0
+--- !u!65 &5262991804870738429
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554478314687421547}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.445285, y: 15.504964, z: 2.2811868}
+  m_Center: {x: 0, y: 0, z: 0.82689905}

@@ -86,7 +86,7 @@ Le propongo un trato: ¿qué le parece lo siguiente? Usted me consigue un perió
 
 ===2DialogoBettyAvance6===
 Bueno...ehm...si es el periódico de hoy..., no tendría problema. #speaker:1
-Consígame el periódico y le daré las monedas que necesita.
+Consígame el periódico y le daré el dinero que necesita.
 ~GoToNextObjective("none")
 ->2DialogoBettyAvance7
 
@@ -137,8 +137,9 @@ Federico, mi nombre es Federico.
 ===2DialogoBettyPeriodicoOk
 Aquí tiene su periódico. #take_item:obj_Periodico_key #speaker:0
 ¡Oh! ¡Mil gracias! Al menos, hoy, Mr. Hackworth no me gritará. #speaker:1
-Tome, aquí tiene las monedas que le prometí. #give_Item:obj_Monedas_key
+Tome, aquí tiene el dinero que le prometí. #give_Item:obj_Dolar_key
 *Muchas gracias! ¡Me voy corriendo! #speaker:0
+~GoToNextObjective("none")
 ->END
 *¿Ha dicho dicho Mr. Hackworth? #speaker:0
 ->2DialogoBettyPeriodico4
@@ -169,8 +170,9 @@ No entiendo a los hispanos cuando hablan de esa forma... Será mejor que me vaya
 ¡Por favor! Dígame dónde puedo encontrarlo.#speaker:0
 En Central Bank, en la oficina de Beverly Bogarty & Co. #speaker:1
 Tome, si viene a verlo, entregue esta tarjeta de visita en la entrada del banco. 
-#give_Item:obj_Tarjeta_key
-¡Gracias, Mr. Federico! 
+#give_item:obj_Tarjeta_key
+¡Gracias, Mr. Federico!
+~GoToNextObjective("none")
 ~ChangeDialogue("Dialogues/Level 2 Dialogues/Betty/AURORA_TEXT_NIVEL2_BettyFinal_v1")
 ->END
 

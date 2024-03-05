@@ -54,7 +54,7 @@ public class PlayerUI : PlayerComponent
         switch (element.GetElementType()) //We check which type of element is the current one to put the correct text
         {
             case InteractionType.PickUp:
-                _parent.interactableText.SetText("Pick up " + element.GetElementName());
+                _parent.interactableText.SetText("Coge el " + element.GetElementName());
                 break;
             case InteractionType.Location:
                 DoorElement door = element.GetComponent<DoorElement>();
@@ -69,7 +69,7 @@ public class PlayerUI : PlayerComponent
                         }
                         else
                         {
-                            _parent.interactableText.SetText("Door locked");
+                            _parent.interactableText.SetText("Puerta cerrada");
                         }
                     }
                     else
@@ -80,7 +80,10 @@ public class PlayerUI : PlayerComponent
 
                 break;
             case InteractionType.Conversation:
-                _parent.interactableText.SetText("Talk to " + element.GetElementName());
+                _parent.interactableText.SetText("Hablar con " + element.GetElementName());
+                break;
+            case InteractionType.LevelTrigger:
+                _parent.interactableText.SetText(element.GetElementName());
                 break;
             default:
                 break;
@@ -158,8 +161,6 @@ public class PlayerUI : PlayerComponent
         switch (currentSpeaker.currentDirection)
         {
             case InteractDirection.Left:
-                if (currentLayout == leftLayout)
-                    return;
                 
                 if(currentLayout != null)
                 {
@@ -170,8 +171,6 @@ public class PlayerUI : PlayerComponent
                 currentLayout = leftLayout;
                 break;
             case InteractDirection.Right:
-                if (currentLayout == rightLayout)
-                    return;
 
                 if (currentLayout != null)
                 {
@@ -231,14 +230,23 @@ public class PlayerUI : PlayerComponent
 
     public void ShowObjectObtained(ObjectClass newObj)
     {
-        _parent.objectName.text = "You've obtained " + newObj.GetObjectName();
+        if(newObj.GetObjectType() == ObjectType.TypeWriterObject)
+        {
+            _parent.objectName.text = "x "+_parent.playerInventoryComponent.GetTypewriterCount().ToString();
+            _parent.inventoryAnimations.SetTrigger("popUp2");
+        }
+        else
+        {
+            _parent.objectName.text = "Has conseguido "+newObj.GetObjectName();
+            _parent.inventoryAnimations.SetTrigger("popUp");
+        }
         _parent.objectIcon.sprite = newObj.GetIcon();
-        _parent.inventoryAnimations.SetTrigger("popUp");
+        
     }
 
     public void ShowObjectUsed(ObjectClass obj)
     {
-        _parent.objectName.text = "You've used " + obj.GetObjectName();
+        _parent.objectName.text = "Has usado " + obj.GetObjectName();
         _parent.objectIcon.sprite = obj.GetIcon();
         _parent.inventoryAnimations.SetTrigger("popUp");
     }

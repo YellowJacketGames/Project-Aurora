@@ -19,7 +19,6 @@ public class PauseGame : MonoBehaviour
     {
         //Set the game manager variable
         GameManager.instance.pauseManager = this;
-
         InitialSettings();
     }
 
@@ -72,6 +71,7 @@ public class PauseGame : MonoBehaviour
     {
         Time.timeScale = originalTimeScale; //We set the timescale to it's original value, this will resume everything in the game
         GameManager.instance.ChangeGameState(GameStates.Gameplay); //We set the game state back to gameplay.
+        ClosePauseTab();
     }
 
 
