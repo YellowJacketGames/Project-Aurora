@@ -65,4 +65,9 @@ public class DoorElementLevel3 : DoorElement
     {
         base.TransitionDelay();
     }
+
+    public void ChangeDialogue(TextAsset dialogue)
+    {
+        wrongDoorConversation = dialogue;
+    }
 }

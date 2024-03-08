@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     #region Singleton
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -25,8 +25,6 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-
-
     }
 
     #endregion
@@ -40,8 +38,10 @@ public class GameManager : MonoBehaviour
     public DiaryManager diaryManager;
     public QuestManager questManager;
     public LevelManager currentLevelManager;
-
     private GameStates currentGameState;
+
+    //Player Inventory save
+    [SerializeField]  private List<ObjectClass> typewriterInventoryStatic = new List<ObjectClass>();
 
     //Level variables
     [SerializeField] private string[] levelNames;
@@ -94,9 +94,15 @@ public class GameManager : MonoBehaviour
         levelIndex = index;
         StartCoroutine(LoadLevel());
     }
+    public void ResetLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name));
+    }
+
     IEnumerator LoadLevel()
     {
         AsyncOperation load = new AsyncOperation();
+        
         load = SceneManager.LoadSceneAsync(levelNames[levelIndex]);
         load.allowSceneActivation = false;
 
@@ -123,5 +129,20 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void AddTyperwriterKey(ObjectClass o)
+    {
+        typewriterInventoryStatic.Add(o);
+    }
+
+    public int GetTypewriterCount()
+    {
+        return typewriterInventoryStatic.Count;
+    }
+
+    public bool CheckIfAlreadyHasTypewriter(ObjectClass o)
+    {
+        return typewriterInventoryStatic.Contains(o);
     }
 }

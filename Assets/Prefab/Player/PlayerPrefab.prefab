@@ -1124,7 +1124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4523727613770730701}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.867, y: 0.899, z: -1.75}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1414,6 +1414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2850f5e013e3444a846eae4331de50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPlayerState: 0
   playerMovementComponent: {fileID: 0}
   playerInputHandlerComponent: {fileID: 0}
   playerAnimationComponent: {fileID: 0}
@@ -1655,6 +1656,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4523727613811687784}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: FreezePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _enterTransition:
     m_PersistentCalls:
       m_Calls: []
@@ -1883,7 +1896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438470226a62a9b40b2cd957394fb019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storyFinishedTimer: 0.1
+  storyFinishedTimer: 1
   dialogueChoices:
   - choiceText: {fileID: 20295007779638970}
     choiceParent: {fileID: 716399438241112769}
@@ -1920,7 +1933,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 114
   m_CollisionDetection: 0
 --- !u!114 &4523727613811687776
 MonoBehaviour:
@@ -6048,17 +6061,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e2126034789f87a4db1c5f0760e21b44,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.86
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2126034789f87a4db1c5f0760e21b44,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.844
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2126034789f87a4db1c5f0760e21b44,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.6296
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2126034789f87a4db1c5f0760e21b44,
         type: 3}

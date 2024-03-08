@@ -12,10 +12,14 @@ public class GrabItem : InteractableElement
 
     private void Start()
     {
+        
         if(assignedObject.GetObjectType() == ObjectType.TypeWriterObject)
         {
             //Implement if player already has this key
-
+            if (GameManager.instance.CheckIfAlreadyHasTypewriter(assignedObject))
+            {
+                Destroy(gameObject);
+            }
             //We set the typewriter animations
             Animator anim = GetComponent<Animator>();
             anim.SetFloat("keyIndex", assignedObject.assignedLetterIndex);

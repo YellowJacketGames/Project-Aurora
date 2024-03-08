@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     //Property of the different player states
     //It executes a public event on state change
-
+    public PlayerState checkPlayerState;
     private PlayerState _currentPlayerState;
     public PlayerState CurrentPlayerState
     {
@@ -352,5 +352,8 @@ public class PlayerController : MonoBehaviour
         #endregion 
     }
 
-
+    private void Update()
+    {
+        checkPlayerState = CurrentPlayerState;
+    }
 }

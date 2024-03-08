@@ -17,8 +17,8 @@ public class QuestManager : MonoBehaviour
 
     private void Awake()
     {
+        if(GameManager.instance.questManager==null)
         GameManager.instance.questManager = this;
-
     }
     private void Start() //On start, we want to set the main objective for the quest
     {
@@ -40,11 +40,16 @@ public class QuestManager : MonoBehaviour
     {
         //Set the quest
         if(GameManager.instance.currentLevelManager != null)
-        currentQuest = GameManager.instance.currentLevelManager.levelQuest;
+        {
+            currentQuest = GameManager.instance.currentLevelManager.levelQuest;
+        }
 
         //UI implementation
-        questName.text = currentQuest.GetQuestName();
-        questObjective.text = currentQuest.GetQuestObjective().GetObjective();
+        if (currentQuest != null)
+        {
+            questName.text = currentQuest.GetQuestName();
+            questObjective.text = currentQuest.GetQuestObjective().GetObjective();
+        }
     }
 
     public void UpdateObjective() //Method to update the quest when the player completes an objective 
@@ -52,6 +57,14 @@ public class QuestManager : MonoBehaviour
         currentQuest.GetQuestObjective().CompleteObjective(); //We set the objective to complete.
         currentQuest.GoToNextObjective(); //We update the objective index
         SetCurrentQuest(); //We set the new variables
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            UpdateObjective();
+        }
     }
 
     public bool HasQuest(int questIndex)

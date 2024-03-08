@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d18cf47c4d9c6f43bb46a0b0bfa4d98, type: 3}
   m_Name: Retratista
   m_EditorClassIdentifier: 
-  speakerTag: retratista
   speakerName: Retratista
-  speakerPortrait: {fileID: 0}
-  layoutOrder: 0
+  speakerPortraitLeft: {fileID: 21300000, guid: bbd09c50bf32d20438a1671d18600330,
+    type: 3}
+  speakerPortraitRight: {fileID: 21300000, guid: b7bd691b9e34fea44b363eca74a3eea3,
+    type: 3}
+  currentDirection: 0

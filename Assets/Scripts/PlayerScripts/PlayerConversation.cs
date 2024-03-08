@@ -14,7 +14,8 @@ public class PlayerConversation : PlayerComponent
     private Story currentDialogue;
 
     //This are variables to fix a small bug with the input of both action maps clashing when the dialogue is finished.
-    [SerializeField] float storyFinishedTimer = 2f;
+    [SerializeField] float storyFinishedTimer = 0.5f;
+    float _storyFinishedTimer;
     bool storyfinished; //bool to check if the story is done
     [Header("Choices Components")]
     [SerializeField] private List<ChoiceClass> dialogueChoices;
@@ -32,6 +33,7 @@ public class PlayerConversation : PlayerComponent
     private void Start()
     {
         canContinue = true;
+        _storyFinishedTimer = storyFinishedTimer;
     }
     public void BeginStory()
     {
@@ -105,6 +107,10 @@ public class PlayerConversation : PlayerComponent
             GameManager.instance.currentTransitionManager.NextLevel();
         });
 
+        currentDialogue.BindExternalFunction("GoToMainMenu", (string none) =>
+        {
+            GameManager.instance.currentTransitionManager.GoToMainMenu();
+        });
         currentDialogue.BindExternalFunction("BeginTransition", (string none) =>
         {
             GameManager.instance.currentTransitionManager.CompleteTransition();
@@ -138,6 +144,12 @@ public class PlayerConversation : PlayerComponent
         currentDialogue.BindExternalFunction("ChangeDialogue", (string dialogueFilePath) =>
         {
             ConversationElement e = _parent.playerInteractComponent.GetCurrentElement() as ConversationElement;
+            e.ChangeDialogue(Resources.Load(dialogueFilePath) as TextAsset);
+        });
+
+        currentDialogue.BindExternalFunction("ChangeDoorDialogue", (string dialogueFilePath) =>
+        {
+            DoorElementLevel3 e = _parent.playerInteractComponent.GetCurrentElement() as DoorElementLevel3;
             e.ChangeDialogue(Resources.Load(dialogueFilePath) as TextAsset);
         });
 
@@ -276,11 +288,11 @@ public class PlayerConversation : PlayerComponent
     public void FinishStory() //This method is only performed when there is no more dialogue in the current story
     {
         //We set a timer so that the accept and jump input don't overlap
-        storyFinishedTimer -= Time.deltaTime;
+        _storyFinishedTimer -= Time.deltaTime;
 
-        if (storyFinishedTimer <= 0) //When it's done, we reset the timer and set the new state
+        if (_storyFinishedTimer <= 0) //When it's done, we reset the timer and set the new state
         {
-            storyFinishedTimer = 2f;
+            _storyFinishedTimer = storyFinishedTimer;
             storyfinished = false;
             _parent.ChangeState(PlayerState.Idle);
         }

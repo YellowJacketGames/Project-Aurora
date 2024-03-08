@@ -17,4 +17,4 @@ Ehm… imaginará qué es lo que quiero… #speaker:0
 ¿Un par de zapatos? #speaker:1
 No necesito zapatos para andar. Ya mi corazón tendría la forma de un zapato si cada aldea tuviera una sirena.#speaker:0
 ¿Ha dicho usted “sirena”? ¡Policía! #speaker:1
-->END
+->DoorFunctions

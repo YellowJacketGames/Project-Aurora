@@ -61,13 +61,13 @@ public class PlayerMovement : PlayerComponent
     
     public void FreezePlayer()
     {
-        _parent.playerRigid.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        _parent.playerRigid.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX;
 
     }
 
     public void UnfreezePlayer()
     {
-        _parent.playerRigid.constraints = RigidbodyConstraints.FreezeRotation;
+        _parent.playerRigid.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX;
     }
     //Method to handle player Jump
     public void HandleJump()

@@ -13,7 +13,7 @@ public class DeactivateObjectsEvent : LevelEvent
 
         foreach (GameObject o in objectsToDeactivate)
         {
-            o.SetActive(false);
+            o.transform.position = new Vector3(1000, 1000, 1000);
         }
     }
 
