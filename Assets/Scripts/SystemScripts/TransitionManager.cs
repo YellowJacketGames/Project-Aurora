@@ -18,6 +18,7 @@ public class TransitionManager : MonoBehaviour
     bool nextLevel = false;
     bool quitGame = false;
     bool mainMenu = false;
+    bool resetLevel = false;
     [SerializeField] private Image transitionImage;
     [Range(0f, 1f)]
     [SerializeField] float transitionDuration;
@@ -65,6 +66,13 @@ public class TransitionManager : MonoBehaviour
                     mainMenu = false;
                     GameManager.instance.GoToMainMenu();
                 }
+
+                if (resetLevel)
+                {
+                    resetLevel = false;
+                    GameManager.instance.ResetLevel();
+
+                }
             }
         }
 
@@ -108,7 +116,11 @@ public class TransitionManager : MonoBehaviour
         SetFadeIn();
         nextLevel = true;
     }
-
+    public void ResetLevel()
+    {
+        SetFadeIn();
+        resetLevel = true;
+    }
     public void QuitGame()
     {
         SetFadeIn();

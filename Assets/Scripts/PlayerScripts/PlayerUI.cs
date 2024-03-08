@@ -232,7 +232,7 @@ public class PlayerUI : PlayerComponent
     {
         if(newObj.GetObjectType() == ObjectType.TypeWriterObject)
         {
-            _parent.objectName.text = "x "+_parent.playerInventoryComponent.GetTypewriterCount().ToString();
+            _parent.objectName.text = "x " + GameManager.instance.GetTypewriterCount().ToString();
             _parent.inventoryAnimations.SetTrigger("popUp2");
         }
         else

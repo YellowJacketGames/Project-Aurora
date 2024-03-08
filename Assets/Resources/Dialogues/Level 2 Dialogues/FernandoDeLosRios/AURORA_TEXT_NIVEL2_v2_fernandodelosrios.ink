@@ -1,8 +1,9 @@
+-> 2puerto
 EXTERNAL GoToNextObjective(string none)
 EXTERNAL CallEvent(int eventIndex)
 
 //NIVEL 2: PUERTO
--> 2puerto
+
 
 === 2puerto ===
 //Federico y Fernando de los Ríos salen del barco.
@@ -121,7 +122,6 @@ Te veo esta noche en el Small Paradise.
 ¡Salud y República, Federico! 
 ~CallEvent(0)
  //Fernando de los Ríos se va. 
-
  Vamos allá, Federico. ¿No querías nuevas aventuras? Pues aquí tienes un nuevo continente por descubrir... #speaker:0
  ->END
  

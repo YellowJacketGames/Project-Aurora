@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerInventory : PlayerComponent
 {
     //This two list hold the obtainable objects in the player inventory
-    [SerializeField]private List<ObjectClass> keyObjectInventory = new List<ObjectClass>();
+    [SerializeField] private List<ObjectClass> keyObjectInventory = new List<ObjectClass>();
     private List<ObjectClass> typewriterObjectInventory = new List<ObjectClass>();
 
 
@@ -19,13 +19,13 @@ public class PlayerInventory : PlayerComponent
     {
         //First we check if the player already has this object in his inventory
 
-        foreach(ObjectClass o in currentInventory)
+        foreach (ObjectClass o in currentInventory)
         {
             if (o.CompareId(newObject)) //if some object in the inventory is the same, it doesn't store it and ends the method
                 return;
         }
 
-        
+
         currentInventory.Add(newObject); //We add it to the list
         _parent.playerUIComponent.ShowObjectObtained(newObject); //UI animation to display the object obtained
     }
@@ -38,7 +38,10 @@ public class PlayerInventory : PlayerComponent
 
     public void AddObjectToTypewriterInventory(ObjectClass newObject)
     {
+        GameManager.instance.AddTyperwriterKey(newObject);
+
         AddObjectToInventory(newObject, typewriterObjectInventory);
+        
     }
 
     #endregion
@@ -107,6 +110,13 @@ public class PlayerInventory : PlayerComponent
     {
         return typewriterObjectInventory.Count;
     }
+
+
+    public List<ObjectClass> GetTypewriterInventory()
+    {
+        return typewriterObjectInventory;
+    }
+
 }
 
 

@@ -24,7 +24,6 @@ VAR hasInteracted = false
         }
 }
 
-
 ===DialogoBetty===
 ¡Hola! #speaker:0
 Hi, darling!  #speaker:1
@@ -81,13 +80,12 @@ Caballero, intente ser más educado en Nueva York o tendrá problemas... #speake
 
 ===2DialogoBettyAvance403===
 Le propongo un trato: ¿qué le parece lo siguiente? Usted me consigue un periódico y yo le daré esas monedas que necesita para el tranvía. #speaker:1
-~GoToNextObjective("none")
 ->2DialogoBettyAvance6
 
 ===2DialogoBettyAvance6===
 Bueno...ehm...si es el periódico de hoy..., no tendría problema. #speaker:1
 Consígame el periódico y le daré el dinero que necesita.
-~GoToNextObjective("none")
+
 ->2DialogoBettyAvance7
 
 ===2DialogoBettyAvance7===
@@ -95,6 +93,7 @@ Cuente con ello, señorita. #speaker:0
 Por favor, llámeme Betty, señor hispano. #speaker:1
 Federico, mi nombre es Federico. #speaker:0
 ¡¡¡El periódico!!! #speaker:1 
+~GoToNextObjective("none")
 ->END
 
 
@@ -103,6 +102,7 @@ Federico, mi nombre es Federico. #speaker:0
 ->2DialogoBettyPeriodico
 
 ===2DialogoBettyPeriodico
+#speaker:0
 *¡Buenos días de nuevo, Miss Betty! #speaker:0
 ->2DialogoBettyPeriodico1
 *Tome su maldito periódico. #speaker:0
@@ -110,7 +110,7 @@ Federico, mi nombre es Federico. #speaker:0
 
 ===2DialogoBettyPeriodico2
 Ahora deme mi maldito dinero... #speaker:0  #take_item:obj_Periodico_key
-Aquí tiene sus malditas monedas. #speaker:1  
+Aquí tiene sus malditas monedas. #speaker:1  #give_item:obj_Dolar_key
 ¡Vaya con el diablo! #speaker:0
 No va conmigo quien con usted queda. #speaker:1 
 ~GoToNextObjective("none")
@@ -125,7 +125,7 @@ Federico, mi nombre es Federico.
 ¿Ha conseguido mi periódico? 
 *¡Por supuesto! #speaker:0
 ->2DialogoBettyPeriodicoOk
-*[(Voy a tomarle el pelo...)] #speaker:0
+*Voy a tomarle el pelo... #speaker:0
 ¿Qué periódico? ¡Ah! ¡El periódico! ¡Ya sabía que algo se me olvidaba!
 ->2DialogoBettyPeriodico3
 
@@ -137,7 +137,7 @@ Federico, mi nombre es Federico.
 ===2DialogoBettyPeriodicoOk
 Aquí tiene su periódico. #take_item:obj_Periodico_key #speaker:0
 ¡Oh! ¡Mil gracias! Al menos, hoy, Mr. Hackworth no me gritará. #speaker:1
-Tome, aquí tiene el dinero que le prometí. #give_Item:obj_Dolar_key
+Tome, aquí tiene el dinero que le prometí. #give_item:obj_Dolar_key
 *Muchas gracias! ¡Me voy corriendo! #speaker:0
 ~GoToNextObjective("none")
 ->END
@@ -172,8 +172,9 @@ En Central Bank, en la oficina de Beverly Bogarty & Co. #speaker:1
 Tome, si viene a verlo, entregue esta tarjeta de visita en la entrada del banco. 
 #give_item:obj_Tarjeta_key
 ¡Gracias, Mr. Federico!
-~GoToNextObjective("none")
+
 ~ChangeDialogue("Dialogues/Level 2 Dialogues/Betty/AURORA_TEXT_NIVEL2_BettyFinal_v1")
+~GoToNextObjective("none")
 ->END
 
 

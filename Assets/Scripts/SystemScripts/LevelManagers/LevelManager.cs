@@ -11,6 +11,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] string levelMusic;
     public Quest levelQuest;
 
+
+    bool playtest;
+    bool playtestingMoveScene;
     private void Awake()
     {
         GameManager.instance.currentLevelManager = this;
@@ -20,6 +23,8 @@ public class LevelManager : MonoBehaviour
     {
         //Set GameManager reference
         SetLevelMusic();
+        GameManager.instance.questManager.SetCurrentQuest();
+        playtestingMoveScene = false;
     }
 
     public virtual void SetLevelMusic()
@@ -50,6 +55,17 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (!playtestingMoveScene)
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                GameManager.instance.currentTransitionManager.NextLevel();
+                playtestingMoveScene = true;
+            }
+        }
+    }
     public bool IsCurrentEventRunning()
     {
         if(currentEvent != null)
