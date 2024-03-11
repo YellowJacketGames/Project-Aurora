@@ -151,6 +151,16 @@ PrefabInstance:
       propertyPath: currentCameraManager
       value: 
       objectReference: {fileID: 1065083655}
+    - target: {fileID: 3394038318219316947, guid: e4a9b4317ba4b524285ab41e3fef1f64,
+        type: 3}
+      propertyPath: levelNames.Array.data[0]
+      value: LevelX_VisualNovel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: e4a9b4317ba4b524285ab41e3fef1f64,
+        type: 3}
+      propertyPath: levelNames.Array.data[1]
+      value: Level2
+      objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316956, guid: e4a9b4317ba4b524285ab41e3fef1f64,
         type: 3}
       propertyPath: m_RootOrder
@@ -531,6 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelEvents: []
   levelMusic: Music_Level1
+  levelQuest: {fileID: 0}
 --- !u!4 &1017574333
 Transform:
   m_ObjectHideFlags: 0

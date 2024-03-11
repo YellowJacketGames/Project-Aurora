@@ -278,6 +278,7 @@ public class PlayerConversation : PlayerComponent
 
         //We reset the dialogue to the current text
         _parent.dialogueText.text = currentDialogue.currentText;
+        _parent.dialogueText.maxVisibleCharacters = currentDialogue.currentText.ToCharArray().Length;
 
         //Since we're no longer typing, we stop the bool in the player UI
         _parent.playerUIComponent.SetTypingStatus(false);

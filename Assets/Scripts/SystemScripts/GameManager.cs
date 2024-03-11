@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
         //Set the level index and begin the transition
         levelIndex++;
-        StartCoroutine(LoadLevel());
+        StartCoroutine(LoadLevel("LoadingScreen"));
     }
 
     public void GoToMainMenu()
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
         //Set the level index and begin the transition
         levelIndex = 0;
-        StartCoroutine(LoadLevel("MainMenu"));
+        StartCoroutine(LoadLevel("LoadingScreen"));
     }
     public void GoToSpecificLevel(int index)
     {
@@ -145,4 +145,10 @@ public class GameManager : MonoBehaviour
     {
         return typewriterInventoryStatic.Contains(o);
     }
+
+    public string GetCurrentLevelName()
+    {
+        return levelNames[levelIndex];
+    }
+
 }

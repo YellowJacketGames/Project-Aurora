@@ -21,8 +21,7 @@ public class QuestManager : MonoBehaviour
         GameManager.instance.questManager = this;
     }
     private void Start() //On start, we want to set the main objective for the quest
-    {
-        //Game Manager reference
+    { 
         SetCurrentQuest();
     }
 

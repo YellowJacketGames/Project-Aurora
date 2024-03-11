@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     {
         //Set GameManager reference
         SetLevelMusic();
+        GameManager.instance.questManager.gameObject.SetActive(true);
         GameManager.instance.questManager.SetCurrentQuest();
         playtestingMoveScene = false;
     }

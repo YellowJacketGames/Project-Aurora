@@ -72,8 +72,10 @@ public class PlayerMovement : PlayerComponent
     //Method to handle player Jump
     public void HandleJump()
     {
-        if (_parent.CurrentPlayerState == PlayerState.Idle)
-            ChangeToWalkSpeed();
+        //if (_parent.CurrentPlayerState == PlayerState.Idle)
+        //{
+        //    ChangeToWalkSpeed();
+        //}
 
         _parent.playerRigid.AddForce(Vector3.up * jumpForce);
         _parent.ChangeState(PlayerState.Jump);
@@ -87,7 +89,20 @@ public class PlayerMovement : PlayerComponent
         if (isGrounded)
         {
             _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x, 0, _parent.playerRigid.velocity.z);
-            _parent.ChangeState(PlayerState.Idle);
+
+            if(_parent.playerInputHandlerComponent.GetMovementDirection().x == 0)
+            {
+                _parent.ChangeState(PlayerState.Idle);
+            }
+            else if (_currentSpeed == walkSpeed)
+            {
+                _parent.ChangeState(PlayerState.Walk);
+            }
+            else if(_currentSpeed == runSpeed)
+            {
+                _parent.ChangeState(PlayerState.Run);
+            }
+            
         }            
     }
 
@@ -166,7 +181,6 @@ public class PlayerMovement : PlayerComponent
     private void Start()
     {
         //On the start we will set the speed to idle, which means 0
-        ChangeToIdleSpeed();
     }
 
     private void Update()
@@ -183,7 +197,11 @@ public class PlayerMovement : PlayerComponent
         //if the player is moving, we set the direction that the player is moving
         //This will be later replaced with animations
         if(_parent.playerInputHandlerComponent.GetMovementDirection().x != 0 && _parent.CurrentPlayerState != PlayerState.Transition && _parent.CurrentPlayerState != PlayerState.Conversation)
-        _parent.playerAnimationComponent.HandleModelDirection(_parent.playerInputHandlerComponent.GetMovementDirection().x);
+        {
+            _parent.playerAnimationComponent.HandleModelDirection(_parent.playerInputHandlerComponent.GetMovementDirection().x);
+        }
+
+        
 
     }
 
@@ -227,18 +245,17 @@ public class PlayerMovement : PlayerComponent
         //We check in the update method if the player should jump
         if (shouldJump)
         {
+            Debug.Log("Jump speed before running: " + _currentSpeed);
             HandleJump();
         }
 
         HandleUncrouch();
+
         //We check in the update method if the player should crouch
         if (shouldCrouch)
         {
             _parent.ChangeState(PlayerState.Crouch);
         }
-
-
-        //We check in the update method if the player should be able to uncrouch
         
     }
 
