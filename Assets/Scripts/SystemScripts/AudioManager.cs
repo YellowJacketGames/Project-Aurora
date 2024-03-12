@@ -17,6 +17,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] sounds;
     [SerializeField] private GameSounds allSounds;
 
+
+    [Header("Filters")]
+    [SerializeField] AudioLowPassFilter filter;
     private void Awake()
     {
         #region Singleton
@@ -130,6 +133,23 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region PlayWithRandomPitch
+
+    public void PlayWithRandomPitch(string name)
+    {
+        Sound newSound = Array.Find(sounds, sound => sound.name == name);
+        float randomPitch = Random.Range(0.8f, 1.5f);
+
+        if (newSound != null)
+        {
+            newSound.source.pitch = randomPitch;
+            Play(newSound);
+            ResetSound(newSound);
+        }
+        else
+        {
+            Debug.Log("Sound: " + name + " not found");
+        }
+    }
     public void PlayWithRandomPitch(float min, float max, string name)
     {
         Sound newSound = Array.Find(sounds, sound => sound.name == name);
@@ -294,4 +314,15 @@ public class AudioManager : MonoBehaviour
 
     
     #endregion
+
+
+    public void ActivateFilter()
+    {
+        filter.enabled = true;
+    }
+
+    public void DeactivateFilter()
+    {
+        filter.enabled = false;
+    }
 }

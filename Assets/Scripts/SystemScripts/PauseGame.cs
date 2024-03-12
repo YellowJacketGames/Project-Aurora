@@ -51,6 +51,8 @@ public class PauseGame : MonoBehaviour
         GameManager.instance.ChangeGameState(GameStates.Pause); //We set the current game state to pause.
 
         GameManager.instance.currentCameraManager.StopCameraTimer(); //We stop the timer so that it doesn't turn the camera on accident while we're paused.
+
+        AudioManager.instance.ActivateFilter();
         //Add additional relevant UI methods
     }
 
@@ -69,6 +71,7 @@ public class PauseGame : MonoBehaviour
     }
     public void UnPause()
     {
+        AudioManager.instance.DeactivateFilter();
         Time.timeScale = originalTimeScale; //We set the timescale to it's original value, this will resume everything in the game
         GameManager.instance.ChangeGameState(GameStates.Gameplay); //We set the game state back to gameplay.
         ClosePauseTab();

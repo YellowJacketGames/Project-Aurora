@@ -23,6 +23,12 @@ public class LevelManager : MonoBehaviour
     {
         //Set GameManager reference
         SetLevelMusic();
+
+        //Deactivate audio listener
+        if (Camera.main.GetComponent<AudioListener>() != null)
+        {
+            Destroy(Camera.main.GetComponent<AudioListener>());
+        }
         GameManager.instance.questManager.gameObject.SetActive(true);
         GameManager.instance.questManager.SetCurrentQuest();
         playtestingMoveScene = false;
