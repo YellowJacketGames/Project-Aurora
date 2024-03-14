@@ -7,8 +7,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : PlayerComponent
 {
+    [Header("Control Schemes")]
+    [SerializeField] InputControlScheme keyboardScheme;
     //The input class for the player actions
     private PlayerInputAsset _playerInput = null;
+    [SerializeField] PlayerInput test;
 
     //Stick and movement value for the player movement and UI traversal.
     private Vector2 movementInput;
@@ -37,6 +40,8 @@ public class PlayerInputHandler : PlayerComponent
         
         _playerInput.Enable();
 
+        
+        Debug.Log(_playerInput.controlSchemes[0].name);
         //Adding listeners to the events when the input action is performed.
 
         //Movement
@@ -142,6 +147,7 @@ public class PlayerInputHandler : PlayerComponent
     #region InputEvents
     private void OnMovementPerformed(InputAction.CallbackContext value)
     {
+        
         movementInput = value.ReadValue<Vector2>();
 
         //We normalize the vector so that it always gives a flat number.
@@ -328,16 +334,17 @@ public class PlayerInputHandler : PlayerComponent
 
     private void Update()
     {
+        Debug.Log(test.currentControlScheme);
         gamepad = Gamepad.current;
         keyboard = Keyboard.current;
 
-        if (gamepad != null)
+        if (test.currentControlScheme == "Controller")
         {
             _parent.currentControl = ControlType.Gamepad;
             return;
         }
 
-        if (keyboard != null)
+        if (test.currentControlScheme == "Keyboard")
         {
             _parent.currentControl = ControlType.Keyboard;
             return;
