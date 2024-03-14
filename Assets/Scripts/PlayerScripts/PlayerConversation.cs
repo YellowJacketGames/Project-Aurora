@@ -104,6 +104,7 @@ public class PlayerConversation : PlayerComponent
 
         currentDialogue.BindExternalFunction("NextLevel", (string none) =>
         {
+            GameManager.instance.currentLevelManager.SetNextLevel();
             GameManager.instance.currentTransitionManager.NextLevel();
         });
 
@@ -229,6 +230,7 @@ public class PlayerConversation : PlayerComponent
             }
             else
             {
+                Debug.Log("Line skipped");
                 SkipLine();
             }
         }
@@ -245,13 +247,7 @@ public class PlayerConversation : PlayerComponent
                 }
 
                 //We reset the dialogue to the current text
-                _parent.dialogueText.text = currentDialogue.currentText;
-
-                //Since we're no longer typing, we stop the bool in the player UI
-                _parent.playerUIComponent.SetTypingStatus(false);
-
-                //If there are any choices avaible, we display them
-                DisplayChoices();
+                SkipLine();
             }
             else
             {
@@ -269,7 +265,6 @@ public class PlayerConversation : PlayerComponent
     public void SkipLine()
     {
         //If we want to continue the story but the text is appearing currently we skip over to the next line
-
         if (displayLine != null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
         {
             StopCoroutine(displayLine);

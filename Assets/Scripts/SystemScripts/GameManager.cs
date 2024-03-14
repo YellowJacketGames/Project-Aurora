@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     //Level variables
     [SerializeField] private string[] levelNames;
+    private string levelToLoad;
     private int levelIndex = 0;
     public GameStates GetCurrentGameState()
     {
@@ -56,7 +57,10 @@ public class GameManager : MonoBehaviour
         currentGameState = newState;
     }
 
-
+    public void SetLevelToLoad(string newLevel)
+    {
+        levelToLoad = newLevel;
+    }
     public bool CanPlay()
     {
         if(GetCurrentGameState() == GameStates.Gameplay)
@@ -70,9 +74,13 @@ public class GameManager : MonoBehaviour
     }
     public void GoToNextLevel()
     {
-        //End the music
+        Debug.Log("Loading Next Level");
+        //Level settings after ending a level
         if(currentLevelManager != null)
-        currentLevelManager.EndLevelMusic();
+        {
+            currentLevelManager.EndLevelMusic();
+            currentLevelManager.SetNextLevel();
+        }
 
         //Set the level index and begin the transition
         levelIndex++;
@@ -85,13 +93,13 @@ public class GameManager : MonoBehaviour
         if (currentLevelManager != null)
             currentLevelManager.EndLevelMusic();
 
+        SetLevelToLoad("MainMenu");
         //Set the level index and begin the transition
         levelIndex = 0;
         StartCoroutine(LoadLevel("LoadingScreen"));
     }
-    public void GoToSpecificLevel(int index)
+    public void GoToSpecificLevel()
     {
-        levelIndex = index;
         StartCoroutine(LoadLevel());
     }
     public void ResetLevel()
@@ -103,15 +111,19 @@ public class GameManager : MonoBehaviour
     {
         AsyncOperation load = new AsyncOperation();
         
-        load = SceneManager.LoadSceneAsync(levelNames[levelIndex]);
+        load = SceneManager.LoadSceneAsync(levelToLoad);
         load.allowSceneActivation = false;
 
-        while(load.progress < 0.9f)
+        while (!load.isDone)
         {
+            if (load.progress >= 0.9f)
+            {
+
+                load.allowSceneActivation = true;
+            }
+            Debug.Log("Loading");
             yield return null;
         }
-
-        load.allowSceneActivation = true;
     }
     IEnumerator LoadLevel(string name)
     {
@@ -148,7 +160,7 @@ public class GameManager : MonoBehaviour
 
     public string GetCurrentLevelName()
     {
-        return levelNames[levelIndex];
+        return levelToLoad;
     }
 
 }

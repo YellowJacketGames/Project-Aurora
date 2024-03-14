@@ -135,6 +135,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3394038318164130879, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316946, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
       propertyPath: m_Name
@@ -143,12 +148,12 @@ PrefabInstance:
     - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
       propertyPath: levelNames.Array.data[0]
-      value: Level3_Greybox
+      value: Level1_VisualNovel
       objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
       propertyPath: levelNames.Array.data[1]
-      value: Level1_VisualNovel
+      value: Level3_Greybox
       objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316956, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
@@ -513,7 +518,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1968270295}
   - component: {fileID: 1968270294}
-  - component: {fileID: 1968270293}
   - component: {fileID: 1968270296}
   m_Layer: 0
   m_Name: Main Camera
@@ -522,14 +526,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1968270293
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968270292}
-  m_Enabled: 1
 --- !u!20 &1968270294
 Camera:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
 
     bool playtest;
     bool playtestingMoveScene;
+
+    [SerializeField] string nextLevel;
     private void Awake()
     {
         GameManager.instance.currentLevelManager = this;
@@ -34,6 +36,10 @@ public class LevelManager : MonoBehaviour
         playtestingMoveScene = false;
     }
 
+    public void SetNextLevel()
+    {
+        GameManager.instance.SetLevelToLoad(nextLevel);
+    }
     public virtual void SetLevelMusic()
     {
         AudioManager.instance.FadeIn(levelMusic, true);

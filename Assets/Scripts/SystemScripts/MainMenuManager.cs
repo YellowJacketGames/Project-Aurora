@@ -82,7 +82,7 @@ public class MainMenuManager : MonoBehaviour
             return;
         optionsDisabled = true; //We disable the other options
 
-        GameManager.instance.currentTransitionManager.NextLevel();
+        GameManager.instance.currentTransitionManager.SpecificLevel("Cutscene");
     }
 
     public void OnContinue()

@@ -1487,6 +1487,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3394038318164130879, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316946, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
       propertyPath: m_Name
@@ -1496,6 +1501,66 @@ PrefabInstance:
         type: 3}
       propertyPath: questManager
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[0]
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[1]
+      value: Cutscene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[2]
+      value: Level1_VisualNovel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[3]
+      value: Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[4]
+      value: Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[5]
+      value: Level5_VisualNovel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[6]
+      value: Level6_VisualNovel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[7]
+      value: Level7_VisualNovel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[8]
+      value: Level8_VisualNovel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[9]
+      value: Level9_VisualNovel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
+      propertyPath: levelNames.Array.data[10]
+      value: Level10_VisualNovel
       objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316956, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
@@ -1570,72 +1635,3 @@ MonoBehaviour:
   currentQuest: {fileID: 0}
   questName: {fileID: 2043994617}
   questObjective: {fileID: 273866250}
---- !u!1001 &2119221431
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2602461586223124976, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.34197998
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.4620428
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -21.94982
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 634531fe9dd38da4794e3e6b7f6c9b9c, type: 3}

@@ -13,6 +13,7 @@ public class CinematicManager : MonoBehaviour
     public bool skip;
     void Start()
     {
+        GameManager.instance.currentTransitionManager.SetFadeOut();
         videoLength = (float)player.clip.length;
     }
 
@@ -23,6 +24,7 @@ public class CinematicManager : MonoBehaviour
 
         if (videoLength <= Time.deltaTime || skip)
         {
+            GameManager.instance.SetLevelToLoad("Level1_VisualNovel");
             GameManager.instance.currentTransitionManager.NextLevel();
             player.Stop();
         }

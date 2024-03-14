@@ -55,14 +55,17 @@ public class CameraManager : MonoBehaviour
 
     bool shouldToggle => GameManager.instance.currentController.CurrentPlayerState != PlayerState.Conversation && GameManager.instance.currentController.CurrentPlayerState != PlayerState.Transition
         && GameManager.instance.CanPlay();
-    private void Start()
+
+    private void Awake()
     {
         #region Give Game Manager Reference
 
         GameManager.instance.currentCameraManager = this;
 
         #endregion
-
+    }
+    private void Start()
+    {
         //We set the first camera state to player follow so that it sets the camera to follow the player
         currentCameraState = CameraStates.PlayerFollow;
 

@@ -334,7 +334,6 @@ public class PlayerInputHandler : PlayerComponent
 
     private void Update()
     {
-        Debug.Log(test.currentControlScheme);
         gamepad = Gamepad.current;
         keyboard = Keyboard.current;
 

@@ -532,6 +532,7 @@ MonoBehaviour:
   levelEvents: []
   levelMusic: Music_Level1
   levelQuest: {fileID: 0}
+  nextLevel: Level7_VisualNovel
 --- !u!4 &1017574333
 Transform:
   m_ObjectHideFlags: 0
@@ -955,6 +956,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4523727613811687786, guid: 4f8398a2871c9914d947cb70f29669a6,
+        type: 3}
+      propertyPath: test
+      value: 
+      objectReference: {fileID: 1587987834}
     - target: {fileID: 4523727613811687787, guid: 4f8398a2871c9914d947cb70f29669a6,
         type: 3}
       propertyPath: _exitCrouch.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -972,6 +978,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f8398a2871c9914d947cb70f29669a6, type: 3}
+--- !u!114 &1587987834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4523727613811687776, guid: 4f8398a2871c9914d947cb70f29669a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1587987833}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1590167775
 GameObject:
   m_ObjectHideFlags: 0
