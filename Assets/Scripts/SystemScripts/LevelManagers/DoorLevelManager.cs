@@ -26,12 +26,10 @@ public class DoorLevelManager : LevelManager
 
     [Header("Initial Dialogue")]
     [SerializeField] private TextAsset initialDialogue;
-    
 
     private void Start()
     {
         LoadIntroDialogue();
-        //Invoke("LoadIntroDialogue", 2f);
     }
 
     public void LoadIntroDialogue()

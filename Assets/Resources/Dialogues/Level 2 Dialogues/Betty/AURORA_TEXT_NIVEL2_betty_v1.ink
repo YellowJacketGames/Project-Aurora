@@ -47,8 +47,8 @@ De la mismísima Hispania, ¡sí! #speaker:0
 
 ===2DialogoBettyAvance3===
 Nueva York, ¡Babilonia del siglo XX! #speaker:0
-Ehh...sí... #speaker:1
-Perdóneme, pero estoy muy ocupada. No sé qué ocurre, pero vengo desde Wall Street buscando un periódico de hoy y no consigo encontrar uno.
+Perdóneme, pero estoy muy ocupada. #speaker:1
+Vengo desde Wall Street buscando un periódico de hoy y no consigo encontrar uno.
 *Todos tenemos un mal día hoy, ¿no? #speaker:0
 ->2DialogoBettyAvance4
 *¿Un periódico? Debería ser algo sencillo, ¿no? #speaker:0
@@ -60,8 +60,7 @@ Necesito comprar un billete para el tranvía y...
 Lo siento, pero tengo lo justo para comprar el periódico. #speaker:1
 *¡Esto es un atraco! Dame ese dinero. #speaker:0
 ->2DialogoBettyAvance402
-*¿Y si le consigo el periódico que necesita? #speaker:0
-¿Me darías las monedas? 
+*¿Si le consigo el periódico que necesita me daría el dinero? #speaker:0
 ->2DialogoBettyAvance6
 
 ===2DialogoBettyAvance5===
@@ -71,7 +70,7 @@ Lo siento, pero tengo lo justo para comprar el periódico. #speaker:1
 
 ===2DialogoBettyAvance402===
 Pero, ¿qué estás diciendo? #speaker:1
-Acabo de llegar a Nueva York, ¡necesito esas malditas monedas! #speaker:0
+Acabo de llegar a Nueva York, ¡necesito el maldito dinero! #speaker:0
 Caballero, intente ser más educado en Nueva York o tendrá problemas... #speaker:1
 *Disculpe, llevo dos semanas sin dormir bien... #speaker:0
 ->2DialogoBettyAvance403
@@ -110,7 +109,7 @@ Federico, mi nombre es Federico. #speaker:0
 
 ===2DialogoBettyPeriodico2
 Ahora deme mi maldito dinero... #speaker:0  #take_item:obj_Periodico_key
-Aquí tiene sus malditas monedas. #speaker:1  #give_item:obj_Dolar_key
+Aquí tiene sus malditos dólares. #speaker:1  #give_item:obj_Dolar_key
 ¡Vaya con el diablo! #speaker:0
 No va conmigo quien con usted queda. #speaker:1 
 ~GoToNextObjective("none")
@@ -125,8 +124,7 @@ Federico, mi nombre es Federico.
 ¿Ha conseguido mi periódico? 
 *¡Por supuesto! #speaker:0
 ->2DialogoBettyPeriodicoOk
-*Voy a tomarle el pelo... #speaker:0
-¿Qué periódico? ¡Ah! ¡El periódico! ¡Ya sabía que algo se me olvidaba!
+*¿Qué periódico? ¡Ah! ¡El periódico! ¡Ya sabía que algo se me olvidaba! #speaker:0
 ->2DialogoBettyPeriodico3
 
 ===2DialogoBettyPeriodico3===

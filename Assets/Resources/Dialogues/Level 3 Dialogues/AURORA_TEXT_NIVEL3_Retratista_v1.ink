@@ -26,7 +26,7 @@ Tome, seguro que lo reconoce.#give_item:obj_Retrato_key
 ¡Que me aspen! Si es Dalí.#speaker:0
 ¡Parece todo un marqués!
 Gala será su única compañía#speaker:1 
-y galante pintor será marqués.
+y el galante pintor será marqués.
 Loco incomprendido en el mundo,
 luz del alba en Cadaqués. 
 ¿Me dirás ya cuál es mi destino?#speaker:0 

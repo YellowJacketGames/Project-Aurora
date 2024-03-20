@@ -8,10 +8,8 @@ EXTERNAL ChangeDialogue(string dialoguePath)
 ¡Buenos días, señor! #speaker:0
 Buenos días, caballero. #speaker:1
 *No lo puedo creer...¡un artista! #speaker:0
-El primero que conozco en la Gran Ciudad.
 ->2Retratista02
-*¿Me puede dar unas monedas? #speaker:0
-Tengo que coger el tranvía y...
+*¿Me puede dar unas monedas? Necesito coger el tranvía y... #speaker:0
 ->2Retratista02
 
 ===2Retratista02===
@@ -22,8 +20,7 @@ El tiempo no es el tiempo. #speaker:1
 El tiempo es una brisa que viene dormida por las ramas. 
 *Creo que eso lo he escrito yo... #speaker:0
 ->2Retratista03
-*Coincido con usted. 
-No ha podido describirlo mejor. #speaker:0
+*Coincido con usted. No ha podido describirlo mejor. #speaker:0
 ->2Retratista03
 
 ===2Retratista03===

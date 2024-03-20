@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &557299581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 304, y: -48.7909}
+  m_AnchoredPosition: {x: 304, y: -72.39442}
   m_SizeDelta: {x: 1000.963, y: 34.4181}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &557299584
@@ -287,8 +287,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -347,7 +347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7885700072177427919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 304.00006, y: 16.6035}
+  m_AnchoredPosition: {x: 304.00006, y: -25}
   m_SizeDelta: {x: 1001, y: 34.4181}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8633972803265502228
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xBFHa conseguido mi peri\xF3dico? "
+  m_text: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 644a1b2fce9365847bb57a5927153b0a, type: 2}
   m_sharedMaterial: {fileID: -7450805091948061560, guid: 644a1b2fce9365847bb57a5927153b0a,
@@ -616,8 +616,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -844,8 +844,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 6.7901, y: 44.678}
-  m_SizeDelta: {x: 1081.6926, y: 307.54}
+  m_AnchoredPosition: {x: 6.7901, y: 40.678}
+  m_SizeDelta: {x: 1081.6926, y: 301.95}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4523727613672105016
 CanvasRenderer:
@@ -875,7 +875,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xBFHa conseguido mi peri\xF3dico? "
+  m_text: "Pero, sobretodo, siento que esta noche ha dado a luz un poema: \u201CCiudad
+    sin sue\xF1o\u201D."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4181efbc1686e42469831af5c2205376, type: 2}
   m_sharedMaterial: {fileID: -7450805091948061560, guid: 4181efbc1686e42469831af5c2205376,
@@ -903,8 +904,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -939,7 +940,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 155.3888, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1821,6 +1822,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9793f3f8b38718e43b39fee8e72c0675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyboardScheme:
+    m_Name: 
+    m_BindingGroup: 
+    m_DeviceRequirements: []
+  test: {fileID: 4523727613811687776}
 --- !u!114 &4523727613811687788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1896,7 +1902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438470226a62a9b40b2cd957394fb019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storyFinishedTimer: 1
+  storyFinishedTimer: 0.3
   dialogueChoices:
   - choiceText: {fileID: 20295007779638970}
     choiceParent: {fileID: 716399438241112769}
@@ -3206,7 +3212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.7901, y: 226}
+  m_AnchoredPosition: {x: 6.7901, y: 69}
   m_SizeDelta: {x: 1111.6, y: 51.8735}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4523727614618830624
@@ -4494,7 +4500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4523727615125016667
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4514,7 +4520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -319.83, y: -62}
+  m_AnchoredPosition: {x: -319.83, y: -66}
   m_SizeDelta: {x: 264.5444, y: 153.6227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4523727615204741327
@@ -5741,7 +5747,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1227.2306, y: 469.19995}
+  m_SizeDelta: {x: 1226.7999, y: 306.10095}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7125021707697387446
 CanvasRenderer:
@@ -5771,7 +5777,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f77aaca8613fd134692a2c63987fe1cd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7de5237eb9e5a1941874da9861474d8c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
