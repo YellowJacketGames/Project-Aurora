@@ -325,6 +325,10 @@ public class PlayerConversation : PlayerComponent
     public void AssignChoices(int index) //Method to execute the coices when it appears
     {
         currentDialogue.ChooseChoiceIndex(index);
+
+        //We use continue without the method so that it skips the response of the choice
+        currentDialogue.Continue();
+
         ContinueStory();
         foreach (ChoiceClass c in dialogueChoices)
         {
