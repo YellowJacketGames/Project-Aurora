@@ -219,6 +219,16 @@ public class CameraManager : MonoBehaviour
         levelCameraLeft.Follow = GameManager.instance.currentController.transform;
         levelCameraRight.Follow = GameManager.instance.currentController.transform;
     }
+
+    public void SetToLookAt()
+    {
+        currentCamera.LookAt = GameManager.instance.currentController.transform;
+    }
+
+    public void ResetLookAt()
+    {
+        currentCamera.LookAt = null;
+    }
     //This region holds all the methods related to camera timers
     #region Camera Timers
     public void SetCameraRightTimer() //We set the camera timer to the right.

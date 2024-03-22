@@ -99,4 +99,12 @@ public class LevelManager : MonoBehaviour
             return false;
         }
     }
+
+    public LevelEvent GetEvent(int index)
+    {
+        if (levelEvents[index] != null)
+            return levelEvents[index];
+        else
+            return null;
+    }
 }

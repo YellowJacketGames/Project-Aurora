@@ -178,11 +178,6 @@ public class PlayerMovement : PlayerComponent
     #endregion
 
 
-    private void Start()
-    {
-        //On the start we will set the speed to idle, which means 0
-    }
-
     private void Update()
     {
 
