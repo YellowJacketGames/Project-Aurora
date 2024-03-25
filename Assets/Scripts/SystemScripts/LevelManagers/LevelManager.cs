@@ -1,6 +1,7 @@
 using System.Collections; 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 //This manager stores all the different events in each level.
 //It also executes the events through the trigger event method.
@@ -16,6 +17,7 @@ public class LevelManager : MonoBehaviour
     bool playtestingMoveScene;
 
     [SerializeField] string nextLevel;
+    public VideoClip nextLevelClip;
     private void Awake()
     {
         GameManager.instance.currentLevelManager = this;

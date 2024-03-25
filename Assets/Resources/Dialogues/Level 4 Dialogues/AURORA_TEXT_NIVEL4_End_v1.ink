@@ -1,6 +1,6 @@
-
+->4Harlem
 EXTERNAL SetNewSpeaker(string speakerName)
-
+EXTERNAL NextLevel(string none)
 ===4Harlem===
 ~SetNewSpeaker("ReyDeHarlem")
 ¡Negros! ¡Negros! ¡Es la hora de los negros!#speaker:1
@@ -82,5 +82,6 @@ Harlem es la voz de los oprimidos.
 Harlem será la voz de Federico. 
 Qué extraña conversación... No entendí nada, pero ahora siento que la ciudad me habla.#speaker:0 
 Ahora siento que he aprendido el idioma de esta ciudad. 
-Pero, sobre todo, siento que esta noche ha dado a luz un poema: “Ciudad sin sueño”. 
+Pero, sobre todo, siento que esta noche ha dado a luz un poema: “Ciudad sin sueño”.
+~NextLevel("none")
  ->END

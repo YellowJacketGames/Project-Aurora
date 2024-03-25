@@ -44,6 +44,7 @@ public class BuildingRooftopsEvent : LevelEvent
         GameManager.instance.currentController.transform.parent = null;
         GameManager.instance.currentController.playerRigid.isKinematic = false;
         GameManager.instance.currentCameraManager.ResetLookAt();
-
     }
+
+    
 }

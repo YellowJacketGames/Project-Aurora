@@ -1,7 +1,12 @@
 ->NIVEL4_INTRO
 EXTERNAL SetNewSpeaker(string speakerName)
 EXTERNAL GoToNextObjective(string none)
+EXTERNAL BeginRace(string none)
 
+
+===TestFunctions===
+~BeginRace("none")
+->END
 ===NIVEL4_INTRO===
 ~SetNewSpeaker("Fernando")
 ¡Federico! Menos mal que has conseguido subir hasta la azotea.#speaker:1
@@ -14,10 +19,9 @@ EXTERNAL GoToNextObjective(string none)
 
 ===NIVEL4_01===
 ¡No grites, Federico!#speaker:1 
-Federico: 
 *El grito deja en el viento una sombra de ciprés.#speaker:0 
 ->NIVEL4_02
-No grito. Todo se ha roto en el mundo; solo queda silencio.#speaker:0 
+*No grito. Todo se ha roto en el mundo; solo queda silencio.#speaker:0 
 ->NIVEL4_02
 
 ===NIVEL4_02===
@@ -25,8 +29,7 @@ Parece que la noche te ha alegrado, Federico…#speaker:1
 Mi corazón está vacío. No soy un poeta alegre.#speaker:0 
 Soy un poeta perdido en Nueva York. 
 No hay tiempo para lamentos. La policía va a subir de un momento a otro.#speaker:1 
-No deben encontrarte aquí.
-~GoToNextObjective("none")
+No deben encontrarte aquí. 
 *¿Huir? ¿Por qué? ¡No hice nada!#speaker:0
 ->NIVEL4_03
 *¿Por las azoteas? ¡Tengo vértigo!#speaker:0 
@@ -46,4 +49,4 @@ perros que no lo conocen.
 Y un olor de vino y ámbar
 viene de los corredores. 
 Vamos, Federico, no es momento de recitar. ¡Corre!
-->END
+->TestFunctions

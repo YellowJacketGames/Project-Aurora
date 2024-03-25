@@ -1,7 +1,10 @@
-
+->NIVEL4_07
 EXTERNAL SetNewSpeaker(string speakerName)
+EXTERNAL FinishRace(string none)
+
 ===NIVEL4_07===
 ~SetNewSpeaker("ReyDeHarlem")
+~FinishRace("none")
 ¡No tengas miedo a cruzar los puentes!#speaker:1 
 ¿Cómo dice? ¡No le oigo!#speaker:0
 Si me oyes, pero no me quieres oír.#speaker:1  

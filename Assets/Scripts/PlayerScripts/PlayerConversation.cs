@@ -17,6 +17,8 @@ public class PlayerConversation : PlayerComponent
     [SerializeField] float storyFinishedTimer = 0.5f;
     float _storyFinishedTimer;
     bool storyfinished; //bool to check if the story is done
+    string nextLine;
+    
     [Header("Choices Components")]
     [SerializeField] private List<ChoiceClass> dialogueChoices;
     private NavigateOptions choiceNavigation = new NavigateOptions();
@@ -189,6 +191,23 @@ public class PlayerConversation : PlayerComponent
 
         #endregion
 
+        #region Level 4 specific Conversation Methods
+
+        currentDialogue.BindExternalFunction("BeginRace", (string none) =>
+        {
+            RooftopLevelManager specialManager = GameManager.instance.currentLevelManager as RooftopLevelManager;
+            specialManager.SetUpRace();
+
+        });
+
+        currentDialogue.BindExternalFunction("FinishRace", (string none) =>
+        {
+            RooftopLevelManager specialManager = GameManager.instance.currentLevelManager as RooftopLevelManager;
+            specialManager.FinishRace();
+
+        });
+        #endregion
+
         #endregion
     }
 
@@ -233,6 +252,11 @@ public class PlayerConversation : PlayerComponent
 
                 //We check which speaker is actually talking to set the portraits
                 HandleTags();
+
+                if (currentDialogue.currentText.Equals("") && !currentDialogue.canContinue)
+                {
+                    ContinueStory();
+                }
             }
             else
             {
@@ -293,6 +317,7 @@ public class PlayerConversation : PlayerComponent
     {
         //We set a timer so that the accept and jump input don't overlap
         _storyFinishedTimer -= Time.deltaTime;
+        _parent.dialogueBox.gameObject.SetActive(false);
 
         if (_storyFinishedTimer <= 0) //When it's done, we reset the timer and set the new state
         {

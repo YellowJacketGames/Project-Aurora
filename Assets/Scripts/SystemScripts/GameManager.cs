@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 //We will use a static class for the GameManager as it's usually a singleton
 //It will hold static variables that are easily accessable in each scene
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string[] levelNames;
     private string levelToLoad;
     private int levelIndex = 0;
+
+    [SerializeField] VideoClip loadingScreenClip;
     public GameStates GetCurrentGameState()
     {
         return currentGameState;
@@ -79,6 +82,7 @@ public class GameManager : MonoBehaviour
         if(currentLevelManager != null)
         {
             currentLevelManager.EndLevelMusic();
+            SetLoadingScreenClip(currentLevelManager.nextLevelClip);
             currentLevelManager.SetNextLevel();
         }
 
@@ -161,6 +165,17 @@ public class GameManager : MonoBehaviour
     public string GetCurrentLevelName()
     {
         return levelToLoad;
+    }
+    
+    public VideoClip GetLoadingScreenClip()
+    {
+        return loadingScreenClip;
+    }
+
+    public void SetLoadingScreenClip(VideoClip clip)
+    {
+        if(clip!=null)
+        loadingScreenClip = clip;
     }
 
 }

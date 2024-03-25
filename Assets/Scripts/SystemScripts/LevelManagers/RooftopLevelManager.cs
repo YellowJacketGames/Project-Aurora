@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Ink.Runtime;
 
 public class RooftopLevelManager : LevelManager
 {
@@ -11,15 +12,18 @@ public class RooftopLevelManager : LevelManager
     [Header("Timer")]    
     [Tooltip("The list goes from fastest to slowest")][SerializeField] private float[] rankedTimes;
     [SerializeField] private TextMeshProUGUI[] rankedTimesComponents;
+    [SerializeField] GameObject[] typeWriterObjects;
 
     [SerializeField] private TextMeshProUGUI timeText;
 
     bool raceActive;
     private float currentTime;
+
+    [SerializeField] TextAsset initialDialogue;
     void Start()
     {
-        BeginRace();
-        SetBestTimes();
+        GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(new Story(initialDialogue.text));
+        GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
     }
 
     // Update is called once per frame
@@ -35,8 +39,14 @@ public class RooftopLevelManager : LevelManager
             FinishRace();
     }
 
+    public void SetUpRace()
+    {
+        BeginRace();
+        SetBestTimes();
+    }
     public void BeginRace()
     {
+        timeText.gameObject.SetActive(true);
         raceActive = true;
         currentTime = 0;
     }
@@ -65,11 +75,18 @@ public class RooftopLevelManager : LevelManager
         {
             if(currentTime <= rankedTimes[i])
             {
-                rankedTimesComponents[i].color = Color.red;
-                //Give number of keys
+                for (int e = typeWriterObjects.Length-1; e <= i; e--)
+                {
+                    typeWriterObjects[e].SetActive(true);
+                }
 
                 break;
             }
         }
+    }
+
+    public void SpawnTypeWriters()
+    {
+
     }
 }

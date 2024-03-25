@@ -13,6 +13,12 @@ public class LoadingScreenManager : MonoBehaviour
     private void Start()
     {
         GameManager.instance.currentTransitionManager.SetFadeOut();
+        
+        if(GameManager.instance.GetLoadingScreenClip() != null)
+        {
+
+        }
+        player.clip = GameManager.instance.GetLoadingScreenClip();
         Invoke("ActivateTimer", 1f);
     }
     
