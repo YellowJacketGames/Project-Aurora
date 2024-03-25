@@ -67,7 +67,7 @@ No sé si sabré escribir este nuevo mundo que he abierto dentro de mí.#speaker
 Agonía, sueño, fermento y sueño. Este es el mundo, amigo. #speaker:1 
 Tengo miedo. El mundo no está preparado para que yo pueda hablar sobre el amor que me palpita en la frente.#speaker:0
 Por eso el mundo te necesita, Federico.#speaker:1  
-Mañana los amores serán rocas y el Tiempo una brisa dormida por las mas.
+Mañana los amores serán rocas y el Tiempo una brisa dormida por las ramas.
 No me gusta lo que siento dentro de mí. Yo levanto mi voz contra los enemigos del sueño, contra lo que el cielo dice que es infierno.#speaker:0
 ¿Qué tiene de malo un niño que escribe nombre de niña en la almohada?#speaker:1 
 Nada. Bandera de libertad podría ser su almohada si quisiera…#speaker:0

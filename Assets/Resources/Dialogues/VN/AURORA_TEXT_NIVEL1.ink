@@ -103,7 +103,7 @@ Toma, aquí tienes tu pasaporte, sellado por el capitán. Así no tendrás ning�
 ¡Federico! Ya estamos llegando a Nueva York. Recuerda: encuentra las teclas de tu máquina de escribir y explora cada rincón de la ciudad de Nueva York. Toma, aquí tienes un mapa, para que no te pierdas.#speaker:1
 Ahí podrás ver todos los rincones que te quedan por descubrir en la ciudad. ¡Vamos, Federico! Recoge tus cosas. ¡Te veo en el puerto!
 Ya las oigo. Es su voz.#speaker:0
-Adiós, campanas de la catedral. Ya me llaman. Son las sirenas. Son las sirenas de Nueva York. Este joven navegante, perdido en el Océano de sus pensamientos, se entrega en cuerpo y alma a la gran ciudad. 
+Adiós, campanas de la catedral. Ya me llaman. Son las sirenas. Son las sirenas de la ciudad. Comienzo este viaje sin saber quién soy. ¿Qué me deparará el destino en Nueva York?  
 ¡Allá voy, Nueva York! 
 ~NextLevel("none")
 ->END

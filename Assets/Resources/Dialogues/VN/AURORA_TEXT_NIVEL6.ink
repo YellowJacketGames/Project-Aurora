@@ -116,7 +116,7 @@ Mis gitanos, Nella. Por eso te entiendo tan bien. Por eso me siento hermano de l
 No te perdono que aún no hayas visitado nuestro barrio. Harlem es el ombligo del Nuevo Mundo.#speaker:1
 Debo ir, pero me da miedo cruzar los puentes.#speaker:0
 ¿Cruzar los puentes?#speaker:1
-Nada más llegar a Nueva York conocí al Rey de Harlem…#speaker:0
+Eso me dijo el Rey de Harlem en un tejado…#speaker:0
 ¿Conociste al Rey de Harlem? ¡Pensaba que era un mito!#speaker:1
 *Es una pregunta en forma de respuesta.#speaker:0 
 ->NIVEL_6_13

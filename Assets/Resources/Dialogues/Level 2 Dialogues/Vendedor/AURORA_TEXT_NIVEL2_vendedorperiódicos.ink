@@ -48,8 +48,7 @@ El Edificio Chrysler será el edificio más alto del mundo.
 Todo preparado para el combate entre Schmeling y Pauline de esta noche.
 Perdona, joven... #speaker:0
 ¿Un periódico, sir? #speaker:1
-*[(¡Dios! ¡Qué hermosos son estos americanos...!)] #speaker:0  //Thought
-Pero, chico, ¿qué ángel llevas oculto en la mejilla?
+*Pero, chico, ¿qué ángel llevas oculto en la mejilla? #speaker:0
 ->2DialogoHenryAvance0 
 *Eh, sí. Dame un ejemplar de hoy, por favor. 
 ->2DialogoHenryAvance1
@@ -76,7 +75,7 @@ Tranquilo, joven, no hagas caso a este poeta perdido. #speaker:0
 ¡Extra! ¡Extra! ¡Un poeta anda perdido en Nueva York!
 Debe saber que en Nueva York no hay sitio para la poesía. 
 
-*Pero, ¿en qué momento hemos comenzado esta apasionada lucha de versos? #speaker:0
+*¿En qué momento hemos comenzado esta apasionada lucha de versos? #speaker:0
 ->2DialogoHenryAvance3
 *Amigo, no nos perdamos entre palabras... #speaker:0
 ->2DialogoHenryAvance3
@@ -167,14 +166,13 @@ No hay trato, sir. Entiéndame: póngase en mis zapatos... #speaker:1
 *¿Zapato? ¡De acuerdo! Mi corazón tendría la forma de un zapato... #speaker:0
 ->2DialogoHenryAvance1010
 *¿Zapato? Mmm... ¿Quién te compra zapatera el paño de tus vestidos...? #speaker:0
-
 ->2DialogoHenryAvance1011
 
 
 ===2DialogoHenryAvance1010===
-...si cada aldea tuviera una sirena.
+...si cada aldea tuviera una sirena. #speaker:0
 ¿Y para qué quiere una aldea tener una sirena? #speaker:1
-*¿Acaso no eres tú sirena que atrae a los viandantes para vender tus periódicos? #speaker:0
+*¿No eres tú sirena que atrae a los viandantes con tus periódicos? #speaker:0
 ->2DialogoHenryAvance1012
 *¿Para que los hombres no se pierdan camino a casa? #speaker:0
 ->2DialogoHenryAvance1012
@@ -189,10 +187,8 @@ Una mujer prodigiosa, de la que tendré el gusto de hablarte...si me das ese per
 Mmm... está a punto de convencerme... #speaker:1
 Pero nada es gratis en Nueva York, amigo.
 *Prometo devolverte esa moneda cuando volvamos a vernos. #speaker:0
-Porque nos veremos, te lo aseguro. 
 ->2DialogoHenryAvance1013
 *Enrique, dame esa moneda y haré que seas eterno. #speaker:0
-Ayúdame y serás recordado para siempre.
 ->2DialogoHenryAvance1013
 
 ===2DialogoHenryAvance1013===
@@ -204,7 +200,7 @@ Adiós, poeta perdido. #speaker:1
 El Edificio Chrysler será el edificio más alto del mundo.
 ¡Extra, extra!
 Mmm... Nueva York, ¡qué me deparará esta ciudad! #speaker:0
-Debería ir a darle el periódico a Betty 
+Debería ir a darle el periódico a Betty. 
 ~GoToNextObjective("none")
 ->END
 
