@@ -47,6 +47,5 @@ Un billete cuesta un dolar.
 ===2TaquilleroSinDinero=== 
 ¿Cómo que no tienes dinero? #speaker:1
 ¿Por qué me molestas entonces?
-¡Estoy harto de estos hispanos...! 
-¡Fuera! 
+¡Estoy harto de estos hispanos...! ¡Fuera! 
 -> END 

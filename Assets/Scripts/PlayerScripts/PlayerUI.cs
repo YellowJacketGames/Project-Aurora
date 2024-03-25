@@ -194,12 +194,13 @@ public class PlayerUI : PlayerComponent
         typingLine = true; //Setting the typing status to true
         _parent.dialogueText.text = line; //First we empty the component for the next line
         _parent.dialogueText.maxVisibleCharacters = 0;
+        AudioManager.instance.PlayWithRandomPitch(0.5f, 1.5f, "Typewriter");
         //We then through every character in our line in a loop
 
         foreach (char letter in line.ToCharArray())
         {
             _parent.dialogueText.maxVisibleCharacters++;
-            AudioManager.instance.PlayWithRandomPitch(0.5f, 1.5f, "Typewriter");
+            
             yield return new WaitForSeconds(typingSpeed);
         }
 
@@ -207,6 +208,8 @@ public class PlayerUI : PlayerComponent
         _parent.playerConversationComponent.DisplayChoices();
 
         //Setting the typing status to false
+        AudioManager.instance.Stop("Typewriter");
+
         typingLine = false;
     }
 

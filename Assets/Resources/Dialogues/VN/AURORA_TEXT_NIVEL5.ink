@@ -228,14 +228,11 @@ cantando, volando en su pureza.
 No es el infierno; es la calle. 
 ¿Quiere decir usted que esto es el infierno?#speaker:1
 Quiero decir que denuncio la conjura de estas oficinas#speaker:0
-que no radian las agonías,
-que borran los programas de la selva. 
+que no radian las agonías, que borran los programas de la selva. 
 Señor, usted no sabe lo que es Nueva York.#speaker:1 
 Si usted muriera, sería un animal muerto más. Nada más.
 Todos los días se matan en Nueva York
-Cuatro millones de patos,
-cinco millones de cerdos 
-y dos millones de gallos
+Cuatro millones de patos, cinco millones de cerdos y dos millones de gallos
 que dejan los cielos hechos añicos. 
 ¿Quiere un consejo? 
 *No quiero nada de este templo de níquel y papel mojado.#speaker:0

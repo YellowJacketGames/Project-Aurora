@@ -12,19 +12,15 @@ EXTERNAL CallEvent(int eventIndex)
 Federico, amigo, ¡bienvenido al centro del Universo! ¡Bienvenido a Nueva York! 
 
 + ¿Esto es Nueva York? ¡Huele a caimán y a tabaco! #speaker:0
-    No me gusta lo que veo. 
     ->2NYmal
-+ ¡No me lo puedo creer! Si pensé que esto era América entera... #speaker:0
-    Ya me enamoré de la ciudad. 
++ Si pensé que era América entera... Ya me enamoré de la ciudad #speaker:0
     ->2NYbien
 
 === 2NYmal ===
  ¡Ja! ¡Todavía estás a tiempo de coger el barco de vuelta! #speaker:1
- * No me lo diga dos veces, don Fernando... #speaker:0
- Si esto es Nueva York, bien se parece a la ciudad que aparece en mis pesadillas... #speaker:0 
+ * Bien se parece a la ciudad que aparece en mis pesadillas... #speaker:0 
  -> 2NYmal2
- * Tengo un mal pálpito... #speaker:0
- Siento nauseas, don Fernando. 
+ * Me da miedo; tengo un mal pálpito... #speaker:0
  ->2NYmal2
  
  ===2NYmal2===
@@ -36,10 +32,8 @@ Federico, amigo, ¡bienvenido al centro del Universo! ¡Bienvenido a Nueva York!
 
 ===2NYbien===
 ¡Amor a primera vista, Federico! #speaker:1
-
 ¡Si toda Granada cabe en una de estas calles! #speaker:0
 ¡Oh, sirenas de Manhattan, hacia vosotras voy! 
-
 No son sirenas, es la voz de tu nueva vida. ¿Qué día es hoy? #speaker:1
  * El día más feliz de mi vida. #speaker:0
  ->2avance2
@@ -50,11 +44,9 @@ No son sirenas, es la voz de tu nueva vida. ¿Qué día es hoy? #speaker:1
 ===2avance2===
 Pues deberías marcar este día en tu diario como el día de tu nuevo nacimiento. Tu nueva vida acaba de comenzar. #speaker:1
 
- * Lléveme a bautizarme entonces, don Fernando. #speaker:0
- No quiero tener una segunda vida en pecado. 
+ * Bautíceme, que no quiero tener una segunda vida en pecado. #speaker:0
  ->2avance3
-* Si con mi vida anterior a mí me bastaba. #speaker:0
-No sé por qué se empeña en cambiar a Federico si Federico es lo único que tengo. 
+* ¿Un nuevo Federico? ¡Bastante tengo con no entender a mi otro yo! #speaker:0
 ->2avance3
 
 ===2avance3===
@@ -64,36 +56,26 @@ Vamos allá entonces, don Fernando. Lléveme lejos del mar, que quiero quitarme 
 
 ¿Por dónde quieres comenzar? #speaker:1
 
-* ¡Lléveme al teatro! #speaker:0
-Sé que allí me sentiré como en casa. 
+* ¡Lléveme al teatro! Sé que allí me sentiré como en casa. #speaker:0
 ->2iralteatro
-* ¡Lléveme a tomar una copa! #speaker:0
-Muero por probar los licores del Nuevo Mundo. 
+* ¡Lléveme a beber! Muero por probar los licores del Nuevo Mundo. #speaker:0
 ->2iralbar
 
 ===2iralteatro
-Has venido al sitio indicado entonces. ¡Nueva York es la capital de la escena!  ¡Te encantará conocer a los actores y actrices del momento! #speaker:1 
+Has venido al sitio indicado. ¡Nueva York es la capital de la escena!  ¡Te encantará conocer a los actores y actrices del momento! #speaker:1 
 
-* [(Mmm... Si supiera que el teatro no me interesa...)] #speaker:0 //Thought
-(No quiero actores, sino hombres que lloren de verdad y rían de verdad). #speaker:0 //Thought
-¡Oh, sí! ¡Lléveme a un teatro, que me muero! #speaker:0
+* No quiero actores, sino hombres que lloren y rían de verdad. #speaker:0 
 ->2avance4
-* [(Mmm... Solo en un teatro yo volveré a ser yo...)] #speaker:0 //Thought
-La realidad ha matado a Federico y el teatro le devolverá la vida. #speaker:0 //thought
-¡Oh, sí! Lléveme a un teatro, que me muero! #speaker:0
+* Solo en el teatro volveré a ser yo... ¡Lléveme a un escenario! #speaker:0
 ->2avance4
 
 ===2iralbar===
 Aquí no encontrarás vinos de Jerez ni coñac, Federico. #speaker:1
 Nueva York lleva 3 años con la Ley Seca y beber cada vez es más difícil.
 
-* [(Mmm... No es el alcohol lo que me importa)] #speaker:0
-(Al Federico ebrio y desinhibido es al que echo de menos). #speaker:0 //thought
-Encontraremos la forma de llenar nuestro vaso, ¿no? 
+* Encontraremos la forma de llenar nuestro vaso, ¿no?  #speaker:0
 ->2avance4
-* [(¿Y me dice esto ahora?)] #speaker:0
-No me imagino a Colón atravesando el Océano para beber agua...  //thought
-Don Fernando, acaba usted de quitarme dos años de vida. 
+* Don Fernando, acaba usted de quitarme dos años de vida. #speaker:0
 ->2avance4
 
 
@@ -104,11 +86,9 @@ Don Fernando, acaba usted de quitarme dos años de vida.
  
  ¡Pues claro! ¡Y tu amigo Maroto! Y andan preparándote una fiesta sorpresa de bienvenida. #speaker:1
 
-* ¡No! ¡Quiero perderme y conocer nuevos rostros! #speaker:0
-No vine hasta aquí para ver a los de siempre. 
+* No; no vine hasta aquí para ver a los de siempre. #speaker:0
 ->2avance5
-* ¡Sí! ¡Muero por ver caras amigas! #speaker:0
-¡Qué ansia de fraternidad! 
+* ¡Sí! ¡Muero por ver caras amigas! ¡Qué ansia de fraternidad! #speaker:0
 ->2avance5
  
  

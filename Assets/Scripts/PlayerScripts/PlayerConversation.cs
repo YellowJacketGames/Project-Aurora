@@ -156,12 +156,18 @@ public class PlayerConversation : PlayerComponent
 
         currentDialogue.BindExternalFunction("HasInteractedCheck", (string none) =>
         {
-            _parent.playerInteractComponent.GetCurrentElement().hasBeenInteracted = true;
+            if(_parent.playerInteractComponent.GetCurrentElement() != null)
+            {
+                _parent.playerInteractComponent.GetCurrentElement().hasBeenInteracted = true;
+            }
         });
 
         currentDialogue.BindExternalFunction("CheckIfHasInteracted", (string none) =>
         {
-            currentDialogue.variablesState["hasInteracted"] = _parent.playerInteractComponent.GetCurrentElement().hasBeenInteracted;
+            if (_parent.playerInteractComponent.GetCurrentElement() != null)
+            {
+                currentDialogue.variablesState["hasInteracted"] = _parent.playerInteractComponent.GetCurrentElement().hasBeenInteracted;
+            }
 
         });
 
@@ -264,6 +270,8 @@ public class PlayerConversation : PlayerComponent
     
     public void SkipLine()
     {
+        AudioManager.instance.Stop("Typewriter");
+
         //If we want to continue the story but the text is appearing currently we skip over to the next line
         if (displayLine != null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
         {
