@@ -222,11 +222,11 @@ public class PlayerConversation : PlayerComponent
                     ContinueStory();
                 }
             }
+        }
 
-            if (storyfinished) //if the story is done, we clean it up
-            {
-                FinishStory();
-            }
+        if (storyfinished) //if the story is done, we clean it up
+        {
+            FinishStory();
         }
     }
 
@@ -322,6 +322,8 @@ public class PlayerConversation : PlayerComponent
         if (_storyFinishedTimer <= 0) //When it's done, we reset the timer and set the new state
         {
             _storyFinishedTimer = storyFinishedTimer;
+            Debug.Log("Story Finished");
+            Debug.Log("Timer: "+_storyFinishedTimer);
             storyfinished = false;
             _parent.ChangeState(PlayerState.Idle);
         }
