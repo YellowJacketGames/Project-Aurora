@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     private int levelIndex = 0;
 
     [SerializeField] VideoClip loadingScreenClip;
+    [SerializeField] VideoClip basicLoadingScreenClip;
     public GameStates GetCurrentGameState()
     {
         return currentGameState;
@@ -78,8 +79,10 @@ public class GameManager : MonoBehaviour
     public void GoToNextLevel()
     {
         Debug.Log("Loading Next Level");
+        questManager.DeactivateQuestUI();
+
         //Level settings after ending a level
-        if(currentLevelManager != null)
+        if (currentLevelManager != null)
         {
             currentLevelManager.EndLevelMusic();
             SetLoadingScreenClip(currentLevelManager.nextLevelClip);
@@ -94,6 +97,9 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         //End the music
+        questManager.DeactivateQuestUI();
+
+        SetLoadingScreenClip(basicLoadingScreenClip);
         if (currentLevelManager != null)
             currentLevelManager.EndLevelMusic();
 

@@ -11,7 +11,7 @@ EXTERNAL PlayAudio(string audioName)
 ===PUERTA_LIBRO===
 ¡Hola! ¿Es aquí la fiesta clandestina? #speaker:0
 No, aquí no es. Cuidado, joven, si la policía te pilla… ¡Auch! ¡Policía!#speaker:1
--> END
-
 ->DoorFunctions
+
+
 

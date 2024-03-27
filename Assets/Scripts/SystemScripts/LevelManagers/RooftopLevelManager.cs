@@ -20,12 +20,19 @@ public class RooftopLevelManager : LevelManager
     private float currentTime;
 
     [SerializeField] TextAsset initialDialogue;
-    void Start()
+
+    public override void Start()
+    {
+        base.Start();
+
+        Invoke("BeginConversation", 0.3f);
+    }
+
+    public void BeginConversation()
     {
         GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(new Story(initialDialogue.text));
         GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
     }
-
     // Update is called once per frame
     void Update()
     {

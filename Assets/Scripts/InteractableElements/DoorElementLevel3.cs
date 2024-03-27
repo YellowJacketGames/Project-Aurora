@@ -14,15 +14,6 @@ public class DoorElementLevel3 : DoorElement
         owner = GameManager.instance.currentLevelManager as DoorLevelManager;
     }
 
-    // Update is called once per frame
-    public override void Update()
-    {
-        if (!GameManager.instance.currentTransitionManager.ReturnTransitionStatus() && inTransition) //If the transition is done, we move the player and then set the transition
-        {
-            inTransition = false;
-        }
-    }
-
     public void SetShadowDirection()
     {
         InteractDirection dir = GameManager.instance.currentController.playerInteractComponent.GetCurrentDirection();

@@ -2427,7 +2427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6755541905117232508
 Transform:
   m_ObjectHideFlags: 0
@@ -3533,7 +3533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3394038318164130872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3633,7 +3633,7 @@ GameObject:
   - component: {fileID: 3394038318219316958}
   - component: {fileID: 3394038318219316959}
   - component: {fileID: 1287305516}
-  - component: {fileID: 1287305517}
+  - component: {fileID: 2079459932}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3679,20 +3679,25 @@ MonoBehaviour:
   currentTransitionManager: {fileID: 3394038318219316958}
   pauseManager: {fileID: 3394038318219316959}
   diaryManager: {fileID: 1287305516}
-  questManager: {fileID: 1287305517}
+  questManager: {fileID: 2079459932}
   currentLevelManager: {fileID: 0}
   typewriterInventoryStatic: []
   levelNames:
-  - 
+  - MainMenu
+  - Cutscene
   - Level1_VisualNovel
   - Level2
   - Level3
+  - Level4
   - Level5_VisualNovel
   - Level6_VisualNovel
   - Level7_VisualNovel
   - Level8_VisualNovel
   - Level9_VisualNovel
   - Level10_VisualNovel
+  loadingScreenClip: {fileID: 0}
+  basicLoadingScreenClip: {fileID: 32900000, guid: e0ace3f70483b76498b194a09572fd8f,
+    type: 3}
 --- !u!114 &3394038318219316957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3768,7 +3773,7 @@ MonoBehaviour:
   questDescription: {fileID: 465500450}
   activeObjectiveColor: {r: 1, g: 1, b: 1, a: 1}
   completedObjectiveColor: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
---- !u!114 &1287305517
+--- !u!114 &2079459932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3780,7 +3785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f145c0386fbb384eb9b29e1e47f4eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuest: {fileID: 11400000, guid: fca323487e85c4a4a9a59dcd8e70f653, type: 2}
+  currentQuest: {fileID: 0}
+  questParent: {fileID: 2041252164799419145}
   questName: {fileID: 132660089}
   questObjective: {fileID: 398723335}
 --- !u!1 &3394038318372987383
@@ -6856,6 +6862,76 @@ PrefabInstance:
       propertyPath: filter
       value: 
       objectReference: {fileID: 1866122580}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2180efbe806e78a499f0bf1fe903cd8c, type: 3}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6eaf0bef8e0df8a41ad425066fffb3f3, type: 3}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[10].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[10].name
+      value: Music_Level4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[11].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 634e11c929b53074993eac1b61888f9e, type: 3}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[11].name
+      value: Click
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[12].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b9bb976ab947f74db36bbd79a77ba7f, type: 3}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[12].name
+      value: Select
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[12].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[12].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[9].soundType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[10].soundType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
+        type: 3}
+      propertyPath: sounds.Array.data[12].originalVolume
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634531fe9dd38da4794e3e6b7f6c9b9c, type: 3}
 --- !u!1 &2602461586388310522 stripped

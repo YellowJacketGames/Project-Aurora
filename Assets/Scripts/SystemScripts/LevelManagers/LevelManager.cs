@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.currentLevelManager = this;
        
     }
-    private void Start()
+    public virtual void Start()
     {
         //Set GameManager reference
         SetLevelMusic();

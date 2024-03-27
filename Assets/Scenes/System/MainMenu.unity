@@ -453,18 +453,6 @@ MonoBehaviour:
   optionsButton: {fileID: 1223755697}
   collectablesButton: {fileID: 1300234091}
   exitButton: {fileID: 852200474}
---- !u!114 &273866250 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 398723335, guid: 034d0bd9c86dafb409a3ec3696514d49,
-    type: 3}
-  m_PrefabInstance: {fileID: 2079459924}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &320752305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,12 +1166,6 @@ MonoBehaviour:
   onHover: {fileID: 21300000, guid: b9b039a0fb3c69b428b9ecdd9f117002, type: 3}
   onClick: {fileID: 21300000, guid: 5cf314575eb28c040a74e9749b2f73d1, type: 3}
   onExit: {fileID: 21300000, guid: 291c6c1a5ba9d394ab0c5f70cb7ef9f5, type: 3}
---- !u!1 &1535905732 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3394038318219316946, guid: 034d0bd9c86dafb409a3ec3696514d49,
-    type: 3}
-  m_PrefabInstance: {fileID: 2079459924}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1550339803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,18 +1357,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!114 &2043994617 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 132660089, guid: 034d0bd9c86dafb409a3ec3696514d49,
-    type: 3}
-  m_PrefabInstance: {fileID: 2079459924}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2067576295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,89 +1448,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1287305517, guid: 034d0bd9c86dafb409a3ec3696514d49, type: 3}
-      propertyPath: currentQuest
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2041252164799419145, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318164130879, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316946, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: questManager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[0]
-      value: MainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[1]
-      value: Cutscene
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[2]
-      value: Level1_VisualNovel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[3]
-      value: Level2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[4]
-      value: Level3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[5]
-      value: Level5_VisualNovel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[6]
-      value: Level6_VisualNovel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[7]
-      value: Level7_VisualNovel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[8]
-      value: Level8_VisualNovel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[9]
-      value: Level9_VisualNovel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
-        type: 3}
-      propertyPath: levelNames.Array.data[10]
-      value: Level10_VisualNovel
       objectReference: {fileID: 0}
     - target: {fileID: 3394038318219316956, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
@@ -1617,21 +1508,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1287305517, guid: 034d0bd9c86dafb409a3ec3696514d49, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034d0bd9c86dafb409a3ec3696514d49, type: 3}
---- !u!114 &2079459932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535905732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f145c0386fbb384eb9b29e1e47f4eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentQuest: {fileID: 0}
-  questName: {fileID: 2043994617}
-  questObjective: {fileID: 273866250}

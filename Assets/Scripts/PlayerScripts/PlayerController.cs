@@ -332,10 +332,6 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-    }
-
-    private void Start()
-    {
         #region Give Game Manager Reference
         GameManager.instance.currentController = this;
         #endregion
@@ -350,6 +346,11 @@ public class PlayerController : MonoBehaviour
         _enterIdle.AddListener(GameManager.instance.currentCameraManager.StopCameraTimer);
 
         #endregion 
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void Update()

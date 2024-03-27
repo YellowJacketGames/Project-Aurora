@@ -11,6 +11,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private Quest currentQuest; //Current quest that will be displayed in the UI when the 
 
     [Header("Quest UI")]
+    [SerializeField] private GameObject questParent;
     [SerializeField] private TextMeshProUGUI questName;
     [SerializeField] private TextMeshProUGUI questObjective;
 
@@ -38,32 +39,36 @@ public class QuestManager : MonoBehaviour
     public void SetCurrentQuest() //Method to set the new current quest
     {
         //Set the quest
+
         if(GameManager.instance.currentLevelManager != null)
         {
             currentQuest = GameManager.instance.currentLevelManager.levelQuest;
+
         }
 
         //UI implementation
         if (currentQuest != null)
         {
+            ActivateQuestUI();
             questName.text = currentQuest.GetQuestName();
             questObjective.text = currentQuest.GetQuestObjective().GetObjective();
         }
     }
 
+    public void ActivateQuestUI()
+    {
+        questParent.SetActive(true);
+    }
+
+    public void DeactivateQuestUI()
+    {
+        questParent.SetActive(false);
+    }
     public void UpdateObjective() //Method to update the quest when the player completes an objective 
     {
         currentQuest.GetQuestObjective().CompleteObjective(); //We set the objective to complete.
         currentQuest.GoToNextObjective(); //We update the objective index
         SetCurrentQuest(); //We set the new variables
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            UpdateObjective();
-        }
     }
 
     public bool HasQuest(int questIndex)

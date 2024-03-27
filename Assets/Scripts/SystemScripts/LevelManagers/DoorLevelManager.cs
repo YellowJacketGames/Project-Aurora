@@ -27,9 +27,10 @@ public class DoorLevelManager : LevelManager
     [Header("Initial Dialogue")]
     [SerializeField] private TextAsset initialDialogue;
 
-    private void Start()
+    public override void Start()
     {
-        LoadIntroDialogue();
+        base.Start();
+        //LoadIntroDialogue();
     }
 
     public void LoadIntroDialogue()
