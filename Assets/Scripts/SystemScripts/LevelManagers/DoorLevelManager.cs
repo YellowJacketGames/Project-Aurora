@@ -30,7 +30,7 @@ public class DoorLevelManager : LevelManager
     public override void Start()
     {
         base.Start();
-        //LoadIntroDialogue();
+        LoadIntroDialogue();
     }
 
     public void LoadIntroDialogue()
