@@ -409,6 +409,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc00000000014557485439024898811, type: 3}
+--- !u!1 &74452592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74452594}
+  - component: {fileID: 74452593}
+  m_Layer: 0
+  m_Name: Event3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &74452593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74452592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4524d8f781d70e4b9eef71dc0c2edba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToDeactivate:
+  - {fileID: 2103604511}
+  disappearTime: 1
+--- !u!4 &74452594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74452592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1017574333}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &75048989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30050,6 +30097,7 @@ MonoBehaviour:
   levelEvents:
   - {fileID: 2094168434}
   - {fileID: 98329589}
+  - {fileID: 74452593}
   levelMusic: Music_Level2
   levelQuest: {fileID: 11400000, guid: fca323487e85c4a4a9a59dcd8e70f653, type: 2}
   nextLevel: Level3
@@ -30068,6 +30116,7 @@ Transform:
   m_Children:
   - {fileID: 2094168435}
   - {fileID: 98329590}
+  - {fileID: 74452594}
   m_Father: {fileID: 0}
   m_RootOrder: 198
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59053,7 +59102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToDeactivate:
-  - {fileID: 2103604511}
   - {fileID: 1835127052}
   disappearTime: 1
 --- !u!4 &2094168435

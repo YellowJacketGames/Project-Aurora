@@ -158,6 +158,10 @@ public class GameManager : MonoBehaviour
         typewriterInventoryStatic.Add(o);
     }
 
+    public void ClearTypewriterInventory()
+    {
+        typewriterInventoryStatic.Clear();
+    }
     public int GetTypewriterCount()
     {
         return typewriterInventoryStatic.Count;

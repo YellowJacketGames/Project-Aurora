@@ -82,6 +82,7 @@ public class MainMenuManager : MonoBehaviour
             return;
         optionsDisabled = true; //We disable the other options
 
+        GameManager.instance.ClearTypewriterInventory();
         GameManager.instance.currentTransitionManager.SpecificLevel("Cutscene");
     }
 

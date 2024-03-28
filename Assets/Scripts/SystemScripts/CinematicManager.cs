@@ -20,6 +20,10 @@ public class CinematicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            skip = true;
+        }
         videoLength -= Time.deltaTime;
 
         if (videoLength <= Time.deltaTime || skip)
