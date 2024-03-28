@@ -263,14 +263,33 @@ public class PlayerUI : PlayerComponent
             {
                 case ControlType.Gamepad:
                     ShowGamepadControls();
+                    _parent.controllerContinueButton.SetActive(true);
+                    _parent.keyboardContinueButton.SetActive(false);
                     break;
                 case ControlType.Keyboard:
                     ShowKeyboardControls();
+                    _parent.controllerContinueButton.SetActive(false);
+                    _parent.keyboardContinueButton.SetActive(true);
                     break;
                 default:
                     break;
             }
         }
+
+        switch (_parent.currentControl)
+        {
+            case ControlType.Gamepad:
+                _parent.controllerContinueButton.SetActive(true);
+                _parent.keyboardContinueButton.SetActive(false);
+                break;
+            case ControlType.Keyboard:
+                _parent.controllerContinueButton.SetActive(false);
+                _parent.keyboardContinueButton.SetActive(true);
+                break;
+            default:
+                break;
+        }
+
     }
 
 }

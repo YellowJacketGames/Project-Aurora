@@ -334,9 +334,7 @@ public class PlayerInputHandler : PlayerComponent
 
     private void Update()
     {
-        gamepad = Gamepad.current;
-        keyboard = Keyboard.current;
-
+        Debug.Log(test.currentControlScheme);
         if (test.currentControlScheme == "Controller")
         {
             _parent.currentControl = ControlType.Gamepad;
