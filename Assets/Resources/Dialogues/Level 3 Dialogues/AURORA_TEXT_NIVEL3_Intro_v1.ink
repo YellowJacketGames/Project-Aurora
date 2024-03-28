@@ -1,6 +1,6 @@
 ->INTRO
 EXTERNAL SetNewSpeaker(string speakerName)
-
+EXTERNAL CallEvent(int eventIndex)
 ===INTRO===
 ~SetNewSpeaker("Fernando")
 Federico, ¡pareces otro! ¡Qué bien que hayas conseguido llegar a tu nueva Residencia! ¿Has podido dormir?#speaker:1
@@ -36,4 +36,5 @@ Todo es posible en Nueva York, Federico. Vamos, busca la fiesta clandestina dond
 Una noche inolvidable te espera, Federico. 
 No puedo creer que Henry se acuerde de mí… ¡Y que vaya a esta fiesta! Vamos, Federico, céntrate. ¿Cómo saber cuál es la puerta correcta?#speaker:0
 Solo es una puerta. Solo tienes que llamar.
+~CallEvent(1)
 ->END

@@ -2,7 +2,7 @@
 EXTERNAL SetNewSpeaker(string speakerName)
 EXTERNAL GoToNextObjective(string none)
 EXTERNAL BeginRace(string none)
-
+EXTERNAL CallEvent(int eventIndex)
 
 ===TestFunctions===
 ~BeginRace("none")
@@ -38,6 +38,7 @@ No deben encontrarte aquí.
 ===NIVEL4_03===
 ¡Están subiendo, Federico!#speaker:1 
 Date prisa. Intenta llegar al final antes de que te detenga la policía. 
+~CallEvent(1)
 ->NIVEL4_04
 
 ===NIVEL4_04===
