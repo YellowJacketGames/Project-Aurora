@@ -36,6 +36,15 @@ public class RooftopLevelManager : LevelManager
     // Update is called once per frame
     void Update()
     {
+        if (!playtestingMoveScene)
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                GameManager.instance.currentTransitionManager.NextLevel();
+                playtestingMoveScene = true;
+            }
+        }
+
         if (raceActive)
         {
             currentTime += Time.deltaTime;

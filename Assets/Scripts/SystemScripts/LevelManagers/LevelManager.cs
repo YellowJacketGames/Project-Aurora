@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
 
 
     bool playtest;
-    bool playtestingMoveScene;
+    protected bool playtestingMoveScene;
 
     [SerializeField] string nextLevel;
     public VideoClip nextLevelClip;

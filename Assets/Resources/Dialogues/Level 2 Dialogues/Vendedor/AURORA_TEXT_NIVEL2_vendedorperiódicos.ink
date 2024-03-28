@@ -142,6 +142,8 @@ Adiós, poeta perdido. #speaker:1
 El Edificio Chrysler será el edificio más alto del mundo.
 ¡Extra, extra!
 Mmm... Nueva York, ¡qué me deparará esta ciudad! #speaker:0
+Debería ir a darle el periódico a Betty. 
+~GoToNextObjective("none")
 ->END
 
 
