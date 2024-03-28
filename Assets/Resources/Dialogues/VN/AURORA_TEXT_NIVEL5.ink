@@ -120,7 +120,7 @@ De acuerdo. Pues espere un segundo y le atiende ahora mi compañera.#speaker:1
 
 ===NIVEL_5_2_01===
 ¿Compañera? Pero si quiero hablar con Colin… #speaker:0
-~SetNewSpeaker("Matty")
+~SetNewSpeaker("Maddy")
 Buenos días. ¿Qué desea?#speaker:1
 *Mi dinero. ¡Quiero mi dinero!#speaker:0 
 ->NIVEL_5_2_02
@@ -131,7 +131,7 @@ Buenos días. ¿Qué desea?#speaker:1
 Claro, lo entiendo.#speaker:1
 ¿Ha rellenado el formulario? 
 Sí, acabo de rellenarlo con usted, hace un momento.#speaker:0
-No, lo rellenó con mi compañera Patty. Yo soy la señorita Matty, y estaré encantada de ayudarle.#speaker:1 
+No, lo rellenó con mi compañera Patty. Yo soy la señorita Maddy, y estaré encantada de ayudarle.#speaker:1 
 ¿Ha rellenado el formulario entonces? 
 Sí, con su compañera, entonces.#speaker:0
 No, con mi compañera rellenó el formulario para hablar conmigo.#speaker:1 
