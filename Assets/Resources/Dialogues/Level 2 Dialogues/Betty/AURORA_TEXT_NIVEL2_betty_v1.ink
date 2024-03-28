@@ -3,6 +3,7 @@
 //INTERACCIÓN CON BETTY
 
 EXTERNAL CheckIfHasItem(string itemName)
+EXTERNAL CallEvent(int eventIndex)
 EXTERNAL GoToNextObjective(string none)
 EXTERNAL ChangeDialogue(string dialoguePath)
 EXTERNAL CheckIfHasInteracted(string none)
@@ -25,6 +26,7 @@ VAR hasInteracted = false
 }
 
 ===DialogoBetty===
+~CallEvent(2)
 ¡Hola! #speaker:0
 Hi, darling!  #speaker:1
 	*	Hello, señorita! #speaker:0
