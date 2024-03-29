@@ -436,6 +436,12 @@ PrefabInstance:
       propertyPath: useCollision
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 98d283c3fb0d28d4396b6c41ac764202,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!1 &7544123
@@ -6034,6 +6040,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 7ec4b32f9fc5c224392ecb95c0aa169d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!1 &409529196 stripped
@@ -7783,6 +7795,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: eebf437eab8713c41b1da2785892f40c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!1 &611208973 stripped
@@ -19956,7 +19974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584689963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.34, y: 22.236, z: 14.313}
+  m_LocalPosition: {x: 1.34, y: 22.236, z: 14.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19974,7 +19992,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.3093905, y: 0.95308876, z: 1}
+  m_Size: {x: 5.3093905, y: 0.95308876, z: 0.51}
   m_Center: {x: 2.1546953, y: -0.02345562, z: 0}
 --- !u!1 &1590167775
 GameObject:
@@ -25920,6 +25938,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 457600142fb6ce84e99f87a497b4d721,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!1001 &1981297954
@@ -27302,7 +27326,7 @@ GameObject:
   - component: {fileID: 2088350667}
   m_Layer: 0
   m_Name: CollisionEdge
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27583,7 +27607,7 @@ GameObject:
   - component: {fileID: 2102904560}
   m_Layer: 0
   m_Name: CollisionEdge (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

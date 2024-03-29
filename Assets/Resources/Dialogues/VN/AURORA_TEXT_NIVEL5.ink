@@ -259,7 +259,7 @@ Me ofrezco a gritar en el valle donde el Hudson se emborracha con aceite.
 Es lo único que nos importa, señor. Que se rinda. #speaker:1
 Que deje de ser usted para ser Nueva York. 
 ¿Entonces?#speaker:0
-Entonces cumple con los requisitos para recibir su dinero. #speaker:0
+Entonces cumple con los requisitos para recibir su dinero. #speaker:1
 Es lo que quería escuchar. Enhorabuena, señor. Recibirá su dinero. 
 Espero que disfrute de su estancia en Nueva York. 
 ~NextLevel("none")

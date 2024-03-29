@@ -10,7 +10,7 @@ EXTERNAL NextLevel(string none)
 ->END
 
 ===PUERTA===
-~SetNewSpeaker("Henry")
+~SetNewSpeaker("Henry2")
 ¡Hola! ¿Es aquí la fiesta clandestina?#speaker:0
 ¡Federico! ¡Has conseguido llegar!#speaker:1
 Pero, Henry, ¿qué haces aquí?#speaker:0
