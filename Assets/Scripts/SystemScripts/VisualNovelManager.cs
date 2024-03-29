@@ -18,6 +18,7 @@ public class VisualNovelManager : MonoBehaviour
         if(visualNovelStory != null)
         {
             Story newStory = new Story(visualNovelStory.text);
+            GameManager.instance.currentController.playerConversationComponent.GetPlayerSpeaker().currentDirection = InteractDirection.Right;
             GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(newStory);
             GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
         }
