@@ -1,20 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableElement : MonoBehaviour
 {
-    [Header("Interactable Variables")]
-    [SerializeField] protected string elementName;
+    [Header("Interactable Variables")] [SerializeField]
+    protected string elementName;
+
     [SerializeField] protected InteractionType elementType;
+    [SerializeField] protected InteractablePopup popup;
     public bool hasBeenInteracted;
     public bool ignoreInteraction = false;
+    public bool ignorePopup;
+
+    private void Awake()
+    {
+        popup = GetComponentInChildren<InteractablePopup>();
+    }
+
     public virtual void OnInteract()
     {
-
     }
 
     #region Return Values
+
     public string GetElementName()
     {
         return elementName;
@@ -25,6 +35,17 @@ public class InteractableElement : MonoBehaviour
         return elementType;
     }
 
-    #endregion
+    public void ShowInteractPrompt()
+    {
+        if (ignorePopup) return;
+        popup.Show();
+    }
 
+    public void HideInteractPrompt()
+    {
+        if (ignorePopup) return;
+        popup.Hide();
+    }
+
+    #endregion
 }

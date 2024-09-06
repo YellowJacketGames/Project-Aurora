@@ -12,7 +12,7 @@ public class GrabItem : InteractableElement
 
     private void Start()
     {
-        
+        ignorePopup = true;
         if(assignedObject.GetObjectType() == ObjectType.TypeWriterObject)
         {
             //Implement if player already has this key

@@ -10,7 +10,7 @@ public class DeactivateObjectsEvent : LevelEvent
     public override void OnEvent()
     {
         base.OnEvent();
-
+        if( objectsToDeactivate == null )return;
         foreach (GameObject o in objectsToDeactivate)
         {
             o.transform.position = new Vector3(1000, 1000, 1000);

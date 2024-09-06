@@ -121,6 +121,7 @@ public class PlayerUI : PlayerComponent
     //Method to activate the conversation box and set the appropiate control layout
     public void ShowConversationBox()
     {
+        Debug.Log("TRIGGERED CONVERSATIONBOX SHOW");
         _parent.dialogueBox.SetActive(true);
 
         switch (_parent.currentControl)

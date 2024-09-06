@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerComponent : MonoBehaviour
 {
     protected PlayerController _parent;
+
     public virtual void Awake()
     {
         //We use try get component so that if the component is missing it doesn't crash the game.
@@ -18,8 +19,11 @@ public class PlayerComponent : MonoBehaviour
 
         else
         {
-            //Warning for knowing what the issue is in the console.
-            Debug.LogWarning("Player Controller component is missing in the gameobject");
+            if (transform.parent.TryGetComponent<PlayerController>(out PlayerController pp))
+                _parent = pp;
+            else
+                //Warning for knowing what the issue is in the console.
+                Debug.LogWarning("Player Controller component is missing in the gameobject");
         }
     }
 }

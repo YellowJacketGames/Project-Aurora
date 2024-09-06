@@ -13,6 +13,8 @@ public class PlayerInputHandler : PlayerComponent
     private PlayerInputAsset _playerInput = null;
     [SerializeField] PlayerInput test;
 
+    public PlayerInputAsset PlayerInput => _playerInput;
+    
     //Stick and movement value for the player movement and UI traversal.
     private Vector2 movementInput;
 
@@ -288,7 +290,20 @@ public class PlayerInputHandler : PlayerComponent
     //Returning the value of the moving Vector, we will only be using the x values for now.
     public Vector2 GetMovementDirection()
     {
-        return movementInput;
+        // return movementInput;
+        return GetMovementDirectionClamped();
+    }    
+    public Vector2 GetMovementDirectionClamped()
+    {
+        float newX,newY;
+        if (movementInput.x > 0) newX = 1; 
+        else if (movementInput.x < 0) newX = -1; 
+        else newX = 0; 
+        if (movementInput.y > 0) newY = 1; 
+        else if (movementInput.y < 0) newY = -1; 
+        else newY = 0; 
+
+        return new Vector2(newX,newY);
     }
 
     public bool GetRunningInput()

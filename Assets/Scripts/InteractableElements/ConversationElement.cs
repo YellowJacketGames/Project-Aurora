@@ -9,6 +9,8 @@ public class ConversationElement : InteractableElement
     [Header("Conversation")]
     [SerializeField] TextAsset elementDialogue;
     [SerializeField] Speaker conversationSpeaker;
+    
+    [ContextMenu("On Interact")]
     public override void OnInteract()
     {
         //if we forgot to add the dialogue asset to the element, it should warn us and not execute the code

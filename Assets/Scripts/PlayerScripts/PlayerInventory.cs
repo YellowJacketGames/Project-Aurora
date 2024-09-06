@@ -33,7 +33,7 @@ public class PlayerInventory : PlayerComponent
 
     public void AddObjectToKeyInventory(ObjectClass newObject)
     {
-        AddObjectToInventory(newObject, keyObjectInventory);
+        AddObjectToInventory(newObject, keyObjectInventory); //TODO: This is not persistent between levels, as the player is instantiated with the level.
     }
 
     public void AddObjectToTypewriterInventory(ObjectClass newObject)

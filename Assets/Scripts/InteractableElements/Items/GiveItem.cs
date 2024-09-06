@@ -6,7 +6,10 @@ using UnityEngine;
 public class GiveItem : InteractableElement
 {
     [SerializeField] private ObjectClass itemToGive;
-
+    private void Start()
+    {
+        ignorePopup = true;
+    }
 
     public override void OnInteract()
     {

@@ -1127,7 +1127,7 @@ namespace Ink.Runtime
 
         public Runtime.Object PopEvaluationStack()
         {
-            var obj = evaluationStack [evaluationStack.Count - 1];
+             var obj = evaluationStack [evaluationStack.Count - 1];
             evaluationStack.RemoveAt (evaluationStack.Count - 1);
             return obj;
         }

@@ -14,6 +14,8 @@ public class ChoiceClass
     [SerializeField] private GameObject choiceParent;    //Variable to hold the parent of the choice button
     [SerializeField] private Button choiceButton;    //Variable to hold the parent of the choice button
 
+    private Color32 hoverColor = new Color32(255, 255, 0, 255);
+    private Color32 defaultColor = new Color32(255, 255, 225, 255);
     private Choice assignedChoice = new Choice();
 
     public void SetChoice(Choice newChoice) //Method to assign the current choice to the component and fill it's variables, and also activate the parent object
@@ -29,13 +31,16 @@ public class ChoiceClass
     }
     public void EnableGlow()
     {
-        choiceText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_GlowPower, 0.6f);
+        // choiceText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_GlowPower, 0.6f);
+        choiceText.color = hoverColor;
     }
 
     public void DisableGlow()
     {
-        choiceText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_GlowPower, 0f);
+        // choiceText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_GlowPower, 0f);
+        choiceText.color = defaultColor;
     }
+    
     public GameObject ReturnParent()
     {
         return choiceParent;

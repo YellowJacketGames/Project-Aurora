@@ -141,6 +141,7 @@ public class PlayerController : MonoBehaviour
     //This method takes a switch statement with a PlayerState variable to know which state to exit from and call the correponding event.
     public void ExitStates(PlayerState _currentState)
     {
+        // return;
         switch (_currentState)
         {
             case PlayerState.Idle:
@@ -179,7 +180,9 @@ public class PlayerController : MonoBehaviour
     //This method takes a switch statement with a PlayerState variable to know which state to enter and call the correponding event.
 
     public void EnterStates(PlayerState _currentState)
-    {
+    {        
+        // return;
+
         switch (_currentState)
         {
             case PlayerState.Idle:
@@ -338,7 +341,7 @@ public class PlayerController : MonoBehaviour
 
         GameManager.instance.currentTransitionManager.SetFadeOut();
 
-        #region Alter Events
+        #region Alter Events //TODO: esto genera memory leaks, cambiar a onenable para addlistener y ondisable para removelistener 
 
         //We add this through code so that we don't have to reference it in the editor every time we enter a new scene
         _enterConversation.AddListener(GameManager.instance.currentCameraManager.SetDialogueCamera);
@@ -357,4 +360,5 @@ public class PlayerController : MonoBehaviour
     {
         checkPlayerState = CurrentPlayerState;
     }
-}
+
+   }
