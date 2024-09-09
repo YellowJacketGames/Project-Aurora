@@ -17,6 +17,9 @@ public class InteractableElement : MonoBehaviour
     private void Awake()
     {
         popup = GetComponentInChildren<InteractablePopup>();
+        if (!popup) return;
+        popup.SetElementType(elementType);
+        popup.SetElementName(elementName);
     }
 
     public virtual void OnInteract()
