@@ -30,7 +30,7 @@ public class DoorElementLevel3 : DoorElement
                 break;
         }
     }
-
+    [ContextMenu("OpenDoor")]
     public override void OpenDoor()
     {
         if (owner.CheckIfCorrectDoor(this))

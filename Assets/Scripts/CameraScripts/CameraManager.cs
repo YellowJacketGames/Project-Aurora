@@ -197,6 +197,7 @@ public class CameraManager : MonoBehaviour
 
     #region Camera Methods
 
+    public CinemachineVirtualCamera GetLeftCamera() => levelCameraLeft;
     public void GetFollowCamerasTransposers() //This method gets the camera framing transposers to change the camera distance for the zooms.
     {
         transposerLeft = levelCameraLeft.GetCinemachineComponent<CinemachineFramingTransposer>();

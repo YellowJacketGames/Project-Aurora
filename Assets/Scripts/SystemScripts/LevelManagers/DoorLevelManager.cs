@@ -27,11 +27,26 @@ public class DoorLevelManager : LevelManager
     [Header("Initial Dialogue")]
     [SerializeField] private TextAsset initialDialogue;
 
+    [SerializeField] private Transform camFirstPhasePos;
+    [SerializeField] private Transform camSecondPhasePos;
+
     public override void Start()
     {
         base.Start();
         LoadIntroDialogue();
     }
+
+    public void MoveCameraToSecondPhase()
+    {
+        Debug.Log("Moving Camera To Second Phase");
+        GameManager.instance.currentCameraManager.GetLeftCamera().transform.position = camSecondPhasePos.position;
+    }
+    private void MoveCameraToFirstPhase()
+    {
+        Debug.Log("Moving Camera To First Phase");
+        GameManager.instance.currentCameraManager.GetLeftCamera().transform.position = camFirstPhasePos.position;
+    }
+
 
     public void LoadIntroDialogue()
     {
@@ -122,6 +137,7 @@ public class DoorLevelManager : LevelManager
         }
 
         Invoke("ResetPlayer", 1f);
+        MoveCameraToFirstPhase();
     }
 
     public void ResetPlayer()

@@ -2,10 +2,11 @@
 
 EXTERNAL AdvanceDoors(string none)
 EXTERNAL BeginTransition(string none)
-
+EXTERNAL DoorMoveCameraToSecondPhase(string none)
 ==DoorFunctions==
 ~BeginTransition("none")
 ~AdvanceDoors("none")
+~DoorMoveCameraToSecondPhase("none")
 ->END
 
 ===PUERTA===

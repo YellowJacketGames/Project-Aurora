@@ -41,13 +41,15 @@ public class InteractableElement : MonoBehaviour
     public void ShowInteractPrompt()
     {
         if (ignorePopup) return;
-        popup.Show();
+        if (popup)
+            popup.Show();
     }
 
     public void HideInteractPrompt()
     {
         if (ignorePopup) return;
-        popup.Hide();
+        if (popup)
+            popup.Hide();
     }
 
     #endregion

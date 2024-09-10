@@ -155,6 +155,12 @@ public class PlayerConversation : PlayerComponent
             DoorElementLevel3 e = _parent.playerInteractComponent.GetCurrentElement() as DoorElementLevel3;
             e.ChangeDialogue(Resources.Load(dialogueFilePath) as TextAsset);
         });
+        currentDialogue.BindExternalFunction("DoorMoveCameraToSecondPhase", (string none) =>
+        {
+            DoorLevelManager specialManager = GameManager.instance.currentLevelManager as DoorLevelManager;   
+            specialManager.MoveCameraToSecondPhase();
+            
+        });
 
         currentDialogue.BindExternalFunction("HasInteractedCheck", (string none) =>
         {
