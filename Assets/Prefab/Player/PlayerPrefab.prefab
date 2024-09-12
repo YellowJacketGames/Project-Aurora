@@ -1802,14 +1802,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentSpeed: 0
+  movementType: 0
+  horizontalAndVerticalMovement: 0
   walkSpeed: 12
   runSpeed: 16
   crouchSpeed: 10
   jumpForce: 250
-  groundCheckLength: 0.3
   isGrounded: 0
+  isJumping: 0
+  isCrouched: 0
+  isColliding: 0
+  triggerCollisionsL: 0
+  triggerCollisionsR: 0
   idleConstraints: 0
   movingConstraints: 0
+  JumpTimeout: 0.5
+  FallTimeout: 0.15
 --- !u!114 &4523727613811687786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,6 +1848,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimations: {fileID: 5866666021475332064}
+  lerpInTurns: 0
+  rotationSpeed: 2
 --- !u!114 &4523727613811687791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1852,14 +1862,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca73dd2ea063f843b6116491262ced1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crouchCheckLength: 2
-  crouchingCheckLayer:
-    serializedVersion: 2
-    m_Bits: 0
   interactionCheckLayer:
     serializedVersion: 2
     m_Bits: 128
-  interactionSize: {x: 5, y: 1, z: 1}
 --- !u!114 &4523727613811687790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1890,6 +1895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentElement: {fileID: 0}
+  CanInteract: 1
 --- !u!114 &4523727613811687779
 MonoBehaviour:
   m_ObjectHideFlags: 0

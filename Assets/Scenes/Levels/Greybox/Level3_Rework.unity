@@ -11957,7 +11957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420592968}
   m_LocalRotation: {x: 0.12542146, y: -0.6958947, z: 0.12542148, w: 0.6958947}
-  m_LocalPosition: {x: 2.8043337, y: 4.5081763, z: -2.6900005}
+  m_LocalPosition: {x: 2.8043334, y: 3.7081766, z: -2.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39273,10 +39273,6 @@ PrefabInstance:
       value: DoorCamera
       objectReference: {fileID: 0}
     - target: {fileID: 1029309664, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029309664, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
       propertyPath: m_Priority
       value: 0
       objectReference: {fileID: 0}
@@ -39359,7 +39355,7 @@ PrefabInstance:
     - target: {fileID: 1607135820, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 329599350}
+      objectReference: {fileID: 2016378496}
     - target: {fileID: 1607135820, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
       propertyPath: m_Priority
       value: 0
@@ -49585,7 +49581,7 @@ MonoBehaviour:
   m_Priority: 2
   m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 2016378496}
   m_Lens:
     FieldOfView: 55.38
     OrthographicSize: 5
@@ -49612,7 +49608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755063098}
   m_LocalRotation: {x: 0.12542146, y: -0.6958947, z: 0.12542148, w: 0.6958947}
-  m_LocalPosition: {x: -6.1621656, y: 3.226182, z: -20.690018}
+  m_LocalPosition: {x: -6.1621656, y: 2.4261823, z: -20.690018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56676,6 +56672,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc00000000015291854428581621954, type: 3}
+--- !u!4 &2016378496 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4846810525926298272, guid: 00e805e2881d00846ab161b3cb765b68,
+    type: 3}
+  m_PrefabInstance: {fileID: 1870279179}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2017527250
 PrefabInstance:
   m_ObjectHideFlags: 0
