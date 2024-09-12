@@ -14,9 +14,15 @@ public class PlayerInteract : PlayerComponent
     bool shouldInteract => _parent.CurrentPlayerState != PlayerState.Jump &&
                            _parent.CurrentPlayerState != PlayerState.Transition && 
                            _parent.CurrentPlayerState != PlayerState.Conversation &&
-                           currentElement != null && GameManager.instance.CanPlay();
+                           currentElement != null && CanInteract && GameManager.instance.CanPlay();
 
+    public bool CanInteract = true;
     private InteractDirection direction;
+    public override void Awake()
+    {
+        base.Awake(); CanInteract = true;
+    }
+
     public void SetCurrentElement(InteractableElement newElement)
     {
         currentElement = newElement;

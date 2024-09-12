@@ -34,7 +34,7 @@ public class PlayerCollisions : PlayerComponent
     private void OnTriggerEnter(Collider other)
     {
         if (_parent.CurrentPlayerState == PlayerState.Jump || _parent.CurrentPlayerState == PlayerState.Transition ||
-            _parent.CurrentPlayerState == PlayerState.Conversation) return;
+            _parent.CurrentPlayerState == PlayerState.Conversation || !_parent.playerInteractComponent.CanInteract) return;
         if (!other.TryGetComponent<InteractableElement>(out InteractableElement element)) return;
         _parent.playerInteractComponent.SetCurrentElement(element);
         if (!element.ignoreInteraction)
@@ -45,7 +45,7 @@ public class PlayerCollisions : PlayerComponent
     private void OnTriggerStay(Collider other)
     {
         if (_parent.CurrentPlayerState == PlayerState.Jump || _parent.CurrentPlayerState == PlayerState.Transition ||
-            _parent.CurrentPlayerState == PlayerState.Conversation) return;
+            _parent.CurrentPlayerState == PlayerState.Conversation|| !_parent.playerInteractComponent.CanInteract) return;
         if (!other.TryGetComponent<InteractableElement>(out InteractableElement element)) return;
         _parent.playerInteractComponent.SetCurrentElement(element);
         if (!element.ignoreInteraction)
