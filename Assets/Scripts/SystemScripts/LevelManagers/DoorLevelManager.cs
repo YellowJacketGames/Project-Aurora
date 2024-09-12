@@ -136,13 +136,16 @@ public class DoorLevelManager : LevelManager
             StartCoroutine(FadeOutMusic(layeredSong[i]));
         }
 
+        GameManager.instance.currentController.playerInteractComponent.CanInteract = false; 
         Invoke("ResetPlayer", 1f);
         MoveCameraToFirstPhase();
+        //
     }
 
     public void ResetPlayer()
     {
         GameManager.instance.currentController.transform.position = initialPosition.position;
+        GameManager.instance.currentController.playerInteractComponent.CanInteract = true; 
 
     }
 }
