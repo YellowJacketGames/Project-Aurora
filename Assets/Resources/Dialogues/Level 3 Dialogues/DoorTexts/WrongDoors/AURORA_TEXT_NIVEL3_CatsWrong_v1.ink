@@ -12,8 +12,9 @@ EXTERNAL PlayAudio(string audioName)
 
 
 ===NIVEL_3_CATS_WRONG===
-Hola, ¿es aquí el evento?#speaker:0
-¡Como no se refiera a adoptar mininos no, no es aquí! #speaker:1
-Lo lamento, me habré confundido.#speaker:0
-¡Y tanto que sí, Policía!#speaker:1
+Aquí encontrará a los compañeros más silenciosos y misteriosos. ¿Le interesa adoptar un gato? #speaker:1
+Los gatos caminan entre sombras, pero no busco compañía. Estoy tras algo más esquivo... #speaker:0
+Los gatos son maestros del sigilo, pero lo que busca parece distinto. #speaker:1
+Busco una fiesta oculta, donde las noches se deslicen con suavidad, como el andar de un felino. #speaker:0
+Aquí no tenemos fiestas, solo gatos que no hablan de secretos. ¡Policía! #speaker:1
 ->DoorFunctions

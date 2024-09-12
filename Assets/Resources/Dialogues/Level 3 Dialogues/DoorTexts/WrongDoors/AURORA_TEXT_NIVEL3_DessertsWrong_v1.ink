@@ -13,6 +13,6 @@ EXTERNAL PlayAudio(string audioName)
 ===PUERTA_PASTELERIA===
 ¡Hola! ¿La entrada a la fiesta clandestina?#speaker:0
 Esto es un negocio honrado de pasteles.#speaker:1
-En ese caso, me gustaría un torta.#speaker:0
+En ese caso, me gustaría un torta por favor.#speaker:0
 ¿Una torta dice? Ahora mismo se la dan. ¡Policía!#speaker:1
 ->DoorFunctions
