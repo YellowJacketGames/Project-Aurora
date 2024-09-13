@@ -6866,6 +6866,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1030972473, guid: abc00000000014557485439024898811, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4981946
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030972473, guid: abc00000000014557485439024898811, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030972473, guid: abc00000000014557485439024898811, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030972473, guid: abc00000000014557485439024898811, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.9781
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc00000000014557485439024898811, type: 3}
 --- !u!4 &205278563 stripped
@@ -53435,6 +53451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846810525926298270, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4846810525926298272, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}

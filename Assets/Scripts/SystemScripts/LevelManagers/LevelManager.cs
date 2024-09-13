@@ -41,6 +41,7 @@ public class LevelManager : MonoBehaviour
     public void SetNextLevel()
     {
         GameManager.instance.SetLevelToLoad(nextLevel);
+        GameManager.instance.IncrementProgression();
     }
     public virtual void SetLevelMusic()
     {

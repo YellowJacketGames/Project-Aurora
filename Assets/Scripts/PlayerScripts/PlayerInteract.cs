@@ -17,7 +17,7 @@ public class PlayerInteract : PlayerComponent
                            currentElement != null && CanInteract && GameManager.instance.CanPlay();
 
     public bool CanInteract = true;
-    private InteractDirection direction;
+    [SerializeField] private InteractDirection direction;
     public override void Awake()
     {
         base.Awake(); CanInteract = true;

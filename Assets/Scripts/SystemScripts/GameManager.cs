@@ -45,12 +45,33 @@ public class GameManager : MonoBehaviour
     [SerializeField]  private List<ObjectClass> typewriterInventoryStatic = new List<ObjectClass>();
 
     //Level variables
+    [SerializeField] private bool shouldSave;
     [SerializeField] private string[] levelNames;
+    [SerializeField] private SavingData data;
     private string levelToLoad;
     private int levelIndex = 0;
 
     [SerializeField] VideoClip loadingScreenClip;
     [SerializeField] VideoClip basicLoadingScreenClip;
+    
+    
+    
+
+
+
+
+    private void Start()
+    {
+        if(!shouldSave) return;
+        if (SavingManager.HasDataSaved())
+            data = SavingManager.Load<SavingData>();
+        else
+            SavingManager.SaveNew(new SavingData());
+    }
+    
+    
+    
+    
     public GameStates GetCurrentGameState()
     {
         return currentGameState;
@@ -185,7 +206,15 @@ public class GameManager : MonoBehaviour
     public void SetLoadingScreenClip(VideoClip clip)
     {
         if(clip!=null)
-        loadingScreenClip = clip;
+            loadingScreenClip = clip;
+    }
+
+
+    public void IncrementProgression()
+    {
+        if(!shouldSave) return;
+        data.IncrementProgression();
+        SavingManager.SaveNew(data);
     }
 
 }
