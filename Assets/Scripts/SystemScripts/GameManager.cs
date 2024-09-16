@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.Video;
 
 //We will use a static class for the GameManager as it's usually a singleton
@@ -59,7 +60,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] VideoClip loadingScreenClip;
     [SerializeField] VideoClip basicLoadingScreenClip;
-
 
     private void Start()
     {
@@ -185,24 +185,30 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void AddTyperwriterKey(ObjectClass o)
+    public void AddTyperwriterKey(ObjectClass o) //TODO: delete
     {
         typewriterInventoryStatic.Add(o);
     }
 
-    public void ClearTypewriterInventory()
+    public void ClearTypewriterInventory() //TODO: delete
     {
         typewriterInventoryStatic.Clear();
     }
 
     public int GetTypewriterCount()
     {
-        return typewriterInventoryStatic.Count;
+        return Data.typewritesIds.Count;
     }
+
+    // public int GetTypewriterCount() //TODO: delete and do new one based on new saved data
+    // {
+    //     return typewriterInventoryStatic.Count;
+    // }
 
     public bool CheckIfAlreadyHasTypewriter(ObjectClass o)
     {
-        return typewriterInventoryStatic.Contains(o);
+        return Data.HasTypewrite(o.GetId());
+        return typewriterInventoryStatic.Contains(o); //TODO: delete
     }
 
     public string GetCurrentLevelName()
@@ -228,8 +234,8 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("LOADING NEXT LEVEL");
         data.IncrementProgression();
         print("data.progressionIndex  -> " + data.progressionIndex);
-        SavingManager.SaveNew(data);
     }
+
 
     public void ResetData()
     {
