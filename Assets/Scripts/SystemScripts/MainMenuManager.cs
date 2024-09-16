@@ -8,19 +8,20 @@ using UnityEngine.SceneManagement;
 //Script to handle the main menu options and functions
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("Main Menu Components")]
-    [SerializeField] private GameObject firstOption;//The first option to select when the main menu is selected
-    private NavigateOptions mainMenuNavigation = new NavigateOptions();//Navigation component 
-    [SerializeField] private float loadingGameTimer;//Time to let the transition play before loading the scene
-    private float _loadingGameTimer;//Variable that functions as the actual timer
-    bool loading;//Check for the loading 
-    bool exiting; //Check for the exiting
-    bool optionsDisabled;//Check to not allow buttons to be pressed 
-    [SerializeField] private string sceneToLoad;//Variable to store the name of the scene we want to load
+    [Header("Main Menu Components")] [SerializeField]
+    private GameObject firstOption; //The first option to select when the main menu is selected
 
-    [Space]
-    [Header("Button Components")]
-    [SerializeField] private Button newGameButton;
+    private NavigateOptions mainMenuNavigation = new NavigateOptions(); //Navigation component 
+    [SerializeField] private float loadingGameTimer; //Time to let the transition play before loading the scene
+    private float _loadingGameTimer; //Variable that functions as the actual timer
+    bool loading; //Check for the loading 
+    bool exiting; //Check for the exiting
+    bool optionsDisabled; //Check to not allow buttons to be pressed 
+    [SerializeField] private string sceneToLoad; //Variable to store the name of the scene we want to load
+
+    [Space] [Header("Button Components")] [SerializeField]
+    private Button newGameButton;
+
     [SerializeField] private Button continueButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button collectablesButton;
@@ -34,18 +35,18 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (loading) 
+        if (loading)
         {
             _loadingGameTimer -= Time.deltaTime;
 
-            if(_loadingGameTimer <= 0)
+            if (_loadingGameTimer <= 0)
             {
                 _loadingGameTimer = loadingGameTimer;
                 SceneManager.LoadScene(sceneToLoad);
             }
         }
 
-        if(exiting)
+        if (exiting)
         {
             _loadingGameTimer -= Time.deltaTime;
 
@@ -76,6 +77,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     #region Button Methods
+
     public void OnNewGame() //Method to execute when the New Game button is pressed 
     {
         if (optionsDisabled) //If the options have been disabled, it will not execute any code.
@@ -90,6 +92,13 @@ public class MainMenuManager : MonoBehaviour
     {
         if (optionsDisabled) //If the options have been disabled, it will not execute any code.
             return;
+        if (GameManager.instance.Data.HasSavedData())
+        {
+            var index = GameManager.instance.Data.progressionIndex;
+            optionsDisabled = true;
+            GameManager.instance.SetLevelToLoad(GameManager.instance.LevelNames[index]);
+            GameManager.instance.currentTransitionManager.NextLevel();
+        }
     }
 
     public void OnOption()

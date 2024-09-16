@@ -1,8 +1,7 @@
 ﻿[System.Serializable]
 public class SavingData
 {
-    private int progressionIndex;
-    private string timePlayed;
+    public int progressionIndex;
 
     // private string[] keysIds;
     // private string[] framesIds;
@@ -15,17 +14,15 @@ public class SavingData
         ResetData();
     }
 
-    public SavingData(int progressionIndex, string timePlayed)
+    public SavingData(int progressionIndex)
     {
         this.progressionIndex = progressionIndex;
-        this.timePlayed = timePlayed;
     }
     
-    public bool HasSavedData() => (timePlayed != "00:00:00" || progressionIndex != 0);
+    public bool HasSavedData() => ( progressionIndex != 1 && progressionIndex != 0);
     private void ResetData()
     {
-        progressionIndex = 0; 
-        timePlayed = "00:00:00";
+        progressionIndex = 1; 
     }
 
     public void IncrementProgression()

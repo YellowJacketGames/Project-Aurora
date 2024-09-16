@@ -47,7 +47,9 @@ public class GameManager : MonoBehaviour
     //Level variables
     [SerializeField] private bool shouldSave;
     [SerializeField] private string[] levelNames;
+    public string[] LevelNames => levelNames;
     [SerializeField] private SavingData data;
+    public SavingData Data => data;
     private string levelToLoad;
     private int levelIndex = 0;
 
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        shouldSave = true;
         if(!shouldSave) return;
         if (SavingManager.HasDataSaved())
             data = SavingManager.Load<SavingData>();
@@ -213,7 +216,9 @@ public class GameManager : MonoBehaviour
     public void IncrementProgression()
     {
         if(!shouldSave) return;
+        Debug.LogWarning("LOADING NEXT LEVEL");
         data.IncrementProgression();
+        print("data.progressionIndex  -> " + data.progressionIndex);
         SavingManager.SaveNew(data);
     }
 
