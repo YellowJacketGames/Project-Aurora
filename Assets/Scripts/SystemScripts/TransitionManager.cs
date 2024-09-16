@@ -26,7 +26,7 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] float transitionDuration;
 
     [SerializeField] float transitionTime = 0;
-
+    [SerializeField] private bool shouldTriggerLoadingClip; 
     
     private void Start()
     {
@@ -54,7 +54,8 @@ public class TransitionManager : MonoBehaviour
                 if (nextLevel)
                 {
                     nextLevel = false;
-                    GameManager.instance.GoToNextLevel();
+                    GameManager.instance.GoToNextLevel(shouldTriggerLoadingClip);
+                    shouldTriggerLoadingClip = false;
                 }
 
                 if (quitGame)
@@ -108,6 +109,7 @@ public class TransitionManager : MonoBehaviour
             fadeIn = true;
     }
 
+    public void SetLoadingClip() => shouldTriggerLoadingClip = true;
     public void CompleteTransition()
     {
         SetFadeIn();

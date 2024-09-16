@@ -19,10 +19,10 @@ public class SavingData
         this.progressionIndex = progressionIndex;
     }
     
-    public bool HasSavedData() => ( progressionIndex != 1 && progressionIndex != 0);
+    public bool HasSavedData() => ( progressionIndex != 0);
     private void ResetData()
     {
-        progressionIndex = 1; 
+        progressionIndex = 0; 
     }
 
     public void IncrementProgression()

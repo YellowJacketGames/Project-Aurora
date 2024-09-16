@@ -80,23 +80,25 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnNewGame() //Method to execute when the New Game button is pressed 
     {
-        if (optionsDisabled) //If the options have been disabled, it will not execute any code.
-            return;
-        optionsDisabled = true; //We disable the other options
+        // if (optionsDisabled) //If the options have been disabled, it will not execute any code.
+        //     return;
+        // optionsDisabled = true; //We disable the other options
 
         GameManager.instance.ClearTypewriterInventory();
+        GameManager.instance.ResetData();
         GameManager.instance.currentTransitionManager.SpecificLevel("Cutscene");
     }
 
     public void OnContinue()
     {
-        if (optionsDisabled) //If the options have been disabled, it will not execute any code.
-            return;
+        // if (optionsDisabled) //If the options have been disabled, it will not execute any code.
+        //     return;
         if (GameManager.instance.Data.HasSavedData())
         {
             var index = GameManager.instance.Data.progressionIndex;
-            optionsDisabled = true;
+            // optionsDisabled = true;
             GameManager.instance.SetLevelToLoad(GameManager.instance.LevelNames[index]);
+            GameManager.instance.currentTransitionManager.SetLoadingClip();
             GameManager.instance.currentTransitionManager.NextLevel();
         }
     }

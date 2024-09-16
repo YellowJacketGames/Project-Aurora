@@ -41,7 +41,6 @@ public class LevelManager : MonoBehaviour
     public void SetNextLevel()
     {
         GameManager.instance.SetLevelToLoad(nextLevel);
-        GameManager.instance.IncrementProgression();
     }
     public virtual void SetLevelMusic()
     {
@@ -77,6 +76,7 @@ public class LevelManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
+                GameManager.instance.currentTransitionManager.SetLoadingClip();
                 GameManager.instance.currentTransitionManager.NextLevel();
                 playtestingMoveScene = true;
             }
