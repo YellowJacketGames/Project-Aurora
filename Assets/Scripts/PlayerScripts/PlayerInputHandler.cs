@@ -349,7 +349,7 @@ public class PlayerInputHandler : PlayerComponent
 
     private void Update()
     {
-        Debug.Log(test.currentControlScheme);
+        // Debug.Log(test.currentControlScheme);
         if (test.currentControlScheme == "Controller")
         {
             _parent.currentControl = ControlType.Gamepad;

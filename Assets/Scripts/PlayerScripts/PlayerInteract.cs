@@ -54,9 +54,10 @@ public class PlayerInteract : PlayerComponent
         return direction;
     }
 
-    private void Interact()
+    public void Interact()
     {
-        direction = transform.position.z < currentElement.gameObject.transform.position.z ? InteractDirection.Right : InteractDirection.Left;
+        // direction = transform.position.z < currentElement.gameObject.transform.position.z ? InteractDirection.Right : InteractDirection.Left;
+        direction = InteractDirection.Right;
         _parent.playerConversationComponent.GetPlayerSpeaker().currentDirection = direction;
         currentElement.OnInteract();
         currentElement.HideInteractPrompt();
