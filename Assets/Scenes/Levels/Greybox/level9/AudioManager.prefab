@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2602461586223124976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2602461586223124982}
+  - component: {fileID: 2602461586223124983}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2602461586223124982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602461586223124976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.34197998, y: 0.4620428, z: -21.94982}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2602461586223124983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602461586223124976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81de54fb1c2e8e498933a9a05bf5dc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxMixer: {fileID: 24300002, guid: 0cf15b86b6834444f9415759fa5ba671, type: 2}
+  musicMixer: {fileID: 24300002, guid: c8ea09f53faf0a64093fb2e835016b0d, type: 2}
+  sounds:
+  - name: Typewriter
+    clip: {fileID: 8300000, guid: feadac7677beb1b449664bd95169b327, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.5
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: 0e43a8a5cd40a1f47b9775980907ad11, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 1
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: 0e43a8a5cd40a1f47b9775980907ad11, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 1
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: PortMusic
+    clip: {fileID: 8300000, guid: 5fa3636d9f1b4df46bb5b654856fddff, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 0
+    originalVolume: 1
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Walk
+    clip: {fileID: 8300000, guid: 8574388b09db547409a9e4de11c62a81, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Crouch
+    clip: {fileID: 8300000, guid: bb1a95018cedc3c49afa46d406ac0cbf, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: PoliceSiren
+    clip: {fileID: 8300000, guid: 19f8340e9e4ee95488e02c56886da754, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Music_Level1
+    clip: {fileID: 8300000, guid: 9eb895fab37bb5249bb34c9e14a0d516, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Music_Level2
+    clip: {fileID: 8300000, guid: 5fa3636d9f1b4df46bb5b654856fddff, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Music_Level3
+    clip: {fileID: 8300000, guid: 5fa3636d9f1b4df46bb5b654856fddff, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: 52f0120c3b4047d4ba17e68a2347e4e4, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Select
+    clip: {fileID: 8300000, guid: 5674871562d2a5344be66d893506ae97, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  allSounds: {fileID: 11400000, guid: e275a1c9ad6a58d41ad309d3e10a5c94, type: 2}
+  filter: {fileID: 0}

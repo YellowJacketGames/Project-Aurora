@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Unity.Mathematics;
 
 //This script will handle the camera methods as well as hold references
 //To all the cinemachina camera reference in the current scene for
@@ -356,4 +357,17 @@ public class CameraManager : MonoBehaviour
     #endregion
 
     #endregion
+
+
+    [ContextMenu("RotateTest")]
+    public void RotateTest()
+    {
+        Debug.Log(Vector3.Distance(levelCameraRight.transform.position, GameManager.instance.currentController.transform.position));
+        Quaternion rot = Quaternion.Euler(0,-90,0);
+        levelCameraRight.transform.parent.transform.rotation = rot * levelCameraRight.transform.rotation; 
+        // levelCameraLeft.transform.rotation = rot * levelCameraLeft.transform.rotation; 
+        // dialogueCamera.transform.rotation = rot * dialogueCamera.transform.rotation; 
+    }
+    
+    
 }
