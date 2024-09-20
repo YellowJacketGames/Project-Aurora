@@ -13,6 +13,7 @@ public class EndLevelElement : InteractableElement
     public override void OnInteract()
     {
         base.OnInteract();
+        GameManager.instance.currentTransitionManager.SetLoadingClip();
         GameManager.instance.currentTransitionManager.NextLevel();
     }
 }

@@ -65,7 +65,7 @@ Si reúnes los diez retratos de tus amigos, prometo revelarte tu verdad antes de
 
 ===2Retratista06===
 Guarda hasta entonces ese fragmento del mañana en el museo de la escarcha, extraño amigo. #speaker:0
-~ChangeDialogue("Dialogues/Level 2 Dialogues/Retratista/AURORA_TEXT_NIVEL2_v1_retratistaFinal.ink")
+~ChangeDialogue("Dialogues/Level 2 Dialogues/Retratista/AURORA_TEXT_NIVEL2_v1_retratistaFinal.json")
  ->END
  
 

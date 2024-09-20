@@ -8,7 +8,7 @@ public class PlaceholderLevelTransition : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.GoToNextLevel();
+            GameManager.instance.GoToNextLevel(false);
         }
      
     }

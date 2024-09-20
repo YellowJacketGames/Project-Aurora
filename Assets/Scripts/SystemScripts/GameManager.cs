@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.Video;
 
 //We will use a static class for the GameManager as it's usually a singleton
@@ -13,7 +14,9 @@ public class GameManager : MonoBehaviour
 
 
     //This is the code necessary to create a singleton
+
     #region Singleton
+
     private void Awake()
     {
         if (instance == null)
@@ -30,10 +33,12 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    [Header("GameManager Components")]
-    public CameraManager currentCameraManager;
+    [Header("GameManager Components")] public CameraManager currentCameraManager;
     public PlayerController currentController;
-    public TagManager speakerManager; //This is a placeholder, it should be another scriptable object with a list of all the speakers in game so that it doesn't depend on references.
+
+    public TagManager
+        speakerManager; //This is a placeholder, it should be another scriptable object with a list of all the speakers in game so that it doesn't depend on references.
+
     public TransitionManager currentTransitionManager;
     public PauseGame pauseManager;
     public DiaryManager diaryManager;
@@ -42,15 +47,31 @@ public class GameManager : MonoBehaviour
     private GameStates currentGameState;
 
     //Player Inventory save
-    [SerializeField]  private List<ObjectClass> typewriterInventoryStatic = new List<ObjectClass>();
+    [SerializeField] private List<ObjectClass> typewriterInventoryStatic = new List<ObjectClass>();
 
     //Level variables
+    [SerializeField] private bool shouldSave;
     [SerializeField] private string[] levelNames;
+    public string[] LevelNames => levelNames;
+    [SerializeField] private SavingData data;
+    public SavingData Data => data;
     private string levelToLoad;
     private int levelIndex = 0;
 
     [SerializeField] VideoClip loadingScreenClip;
     [SerializeField] VideoClip basicLoadingScreenClip;
+
+    private void Start()
+    {
+        shouldSave = true;
+        if (!shouldSave) return;
+        if (SavingManager.HasDataSaved())
+            data = SavingManager.Load<SavingData>();
+        else
+            SavingManager.SaveNew(new SavingData());
+    }
+
+
     public GameStates GetCurrentGameState()
     {
         return currentGameState;
@@ -65,9 +86,10 @@ public class GameManager : MonoBehaviour
     {
         levelToLoad = newLevel;
     }
+
     public bool CanPlay()
     {
-        if(GetCurrentGameState() == GameStates.Gameplay)
+        if (GetCurrentGameState() == GameStates.Gameplay)
         {
             return true;
         }
@@ -76,7 +98,8 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
-    public void GoToNextLevel()
+
+    public void GoToNextLevel(bool triggerTransition)
     {
         Debug.Log("Loading Next Level");
         questManager.DeactivateQuestUI();
@@ -87,6 +110,11 @@ public class GameManager : MonoBehaviour
             currentLevelManager.EndLevelMusic();
             SetLoadingScreenClip(currentLevelManager.nextLevelClip);
             currentLevelManager.SetNextLevel();
+        }
+        else
+        {
+            if (triggerTransition)
+                SetLoadingScreenClip(basicLoadingScreenClip);
         }
 
         //Set the level index and begin the transition
@@ -108,10 +136,12 @@ public class GameManager : MonoBehaviour
         levelIndex = 0;
         StartCoroutine(LoadLevel("LoadingScreen"));
     }
+
     public void GoToSpecificLevel()
     {
         StartCoroutine(LoadLevel());
     }
+
     public void ResetLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name));
@@ -120,7 +150,7 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadLevel()
     {
         AsyncOperation load = new AsyncOperation();
-        
+
         load = SceneManager.LoadSceneAsync(levelToLoad);
         load.allowSceneActivation = false;
 
@@ -128,13 +158,14 @@ public class GameManager : MonoBehaviour
         {
             if (load.progress >= 0.9f)
             {
-
                 load.allowSceneActivation = true;
             }
+
             Debug.Log("Loading");
             yield return null;
         }
     }
+
     IEnumerator LoadLevel(string name)
     {
         AsyncOperation load = new AsyncOperation();
@@ -148,35 +179,43 @@ public class GameManager : MonoBehaviour
 
         load.allowSceneActivation = true;
     }
+
     public void QuitGame()
     {
         Application.Quit();
     }
 
-    public void AddTyperwriterKey(ObjectClass o)
+    public void AddTyperwriterKey(ObjectClass o) //TODO: delete
     {
         typewriterInventoryStatic.Add(o);
     }
 
-    public void ClearTypewriterInventory()
+    public void ClearTypewriterInventory() //TODO: delete
     {
         typewriterInventoryStatic.Clear();
     }
+
     public int GetTypewriterCount()
     {
-        return typewriterInventoryStatic.Count;
+        return Data.typewritesIds.Count;
     }
+
+    // public int GetTypewriterCount() //TODO: delete and do new one based on new saved data
+    // {
+    //     return typewriterInventoryStatic.Count;
+    // }
 
     public bool CheckIfAlreadyHasTypewriter(ObjectClass o)
     {
-        return typewriterInventoryStatic.Contains(o);
+        return Data.HasTypewrite(o.GetId());
+        return typewriterInventoryStatic.Contains(o); //TODO: delete
     }
 
     public string GetCurrentLevelName()
     {
         return levelToLoad;
     }
-    
+
     public VideoClip GetLoadingScreenClip()
     {
         return loadingScreenClip;
@@ -184,8 +223,23 @@ public class GameManager : MonoBehaviour
 
     public void SetLoadingScreenClip(VideoClip clip)
     {
-        if(clip!=null)
-        loadingScreenClip = clip;
+        if (clip != null)
+            loadingScreenClip = clip;
     }
 
+
+    public void IncrementProgression()
+    {
+        if (!shouldSave) return;
+        Debug.LogWarning("LOADING NEXT LEVEL");
+        data.IncrementProgression();
+        print("data.progressionIndex  -> " + data.progressionIndex);
+    }
+
+
+    public void ResetData()
+    {
+        data = new SavingData();
+        SavingManager.SaveNew(data);
+    }
 }

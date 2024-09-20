@@ -429,13 +429,19 @@ public class PlayerConversation : PlayerComponent
                     case "give_item":
                         ObjectClass obj = new ObjectClass();
                         obj = obj.CreateObject(valueKey);
+                        if(GameManager.instance.Data.HasObject(valueKey)) return;
                         _parent.playerInventoryComponent.AddObjectToKeyInventory(obj);
+                        GameManager.instance.Data.AddObject(valueKey);
                         break;
                     case "take_item":
                         if (_parent.playerInventoryComponent.CheckIfObjectIsInInventory(valueKey))
                         {
                             _parent.playerInventoryComponent.UseItem(valueKey);
                         }
+
+                        if(!GameManager.instance.Data.HasObject(valueKey)) return;
+                            GameManager.instance.Data.RemoveObject(valueKey);
+
                         break;
                     default:
                         Debug.LogWarning("Tag not found use for");

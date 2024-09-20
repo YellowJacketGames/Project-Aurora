@@ -18,10 +18,12 @@ public class GiveItem : InteractableElement
         switch (itemToGive.GetObjectType())
         {
             case ObjectType.KeyObject:
+                GameManager.instance.Data.AddObject(itemToGive.GetId());
                 GameManager.instance.currentController.playerInventoryComponent.AddObjectToKeyInventory(itemToGive);
 
                 break;
             case ObjectType.TypeWriterObject:
+                GameManager.instance.Data.AddTypewrite(itemToGive.GetId());
                 GameManager.instance.currentController.playerInventoryComponent.AddObjectToTypewriterInventory(itemToGive);
                 break;
             default:

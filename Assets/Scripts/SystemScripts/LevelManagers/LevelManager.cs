@@ -76,6 +76,7 @@ public class LevelManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
+                GameManager.instance.currentTransitionManager.SetLoadingClip();
                 GameManager.instance.currentTransitionManager.NextLevel();
                 playtestingMoveScene = true;
             }

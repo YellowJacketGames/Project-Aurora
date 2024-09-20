@@ -36,6 +36,7 @@ public class GrabItem : InteractableElement
         {
             case ObjectType.KeyObject:
                 //When interacted, we add the object to the player inventory
+                GameManager.instance.Data.AddObject(assignedObject.GetId());
                 GameManager.instance.currentController.playerInventoryComponent.AddObjectToKeyInventory(assignedObject);
 
                 //For now, we will just destroy the object when the player picks it up
@@ -44,6 +45,7 @@ public class GrabItem : InteractableElement
             case ObjectType.TypeWriterObject:
                 //This is a collectable, so it will trigger a conversation as well
                 //When interacted, we add the object to the player inventory
+                GameManager.instance.Data.AddTypewrite(assignedObject.GetId());
                 GameManager.instance.currentController.playerInventoryComponent.AddObjectToTypewriterInventory(assignedObject);
 
                 //We set the current conversation and we set it
@@ -72,7 +74,7 @@ public class GrabItem : InteractableElement
         {
             //When interacted, we add the object to the player inventory
             GameManager.instance.currentController.playerInventoryComponent.AddObjectToTypewriterInventory(assignedObject);
-
+            GameManager.instance.Data.AddTypewrite(assignedObject.GetId());
             //For now, we will just destroy the object when the player picks it up
             Destroy(this.gameObject);
         }

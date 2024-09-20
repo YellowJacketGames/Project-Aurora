@@ -50,6 +50,10 @@ public class DoorLevelManager : LevelManager
 
     public void LoadIntroDialogue()
     {
+        // Speaker federico = Resources.Load("ScriptableObjects/Speakers/" + "Federico") as Speaker;
+        // federico.currentDirection = InteractDirection.Right;        
+        // Speaker fernando = Resources.Load("ScriptableObjects/Speakers/" + "Fernando") as Speaker;
+        // fernando.currentDirection = InteractDirection.Left;
         GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(new Story(initialDialogue.text));
         GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
     }
@@ -114,6 +118,8 @@ public class DoorLevelManager : LevelManager
     public void AdvancePlayerPosition()
     {
         GameManager.instance.currentController.transform.position = orderedPositions[doorIndex].position;
+        StartCoroutine(EnableInteraction(true, 2f));
+
     }
 
     public void AdvanceDoorIndex()
@@ -122,7 +128,8 @@ public class DoorLevelManager : LevelManager
     }
 
     public void ProgressLevel()
-    {
+    { 
+        StartCoroutine(EnableInteraction(false, 0f));
         AdvanceMusic();
         Invoke("AdvancePlayerPosition", 1f);
         Invoke("AdvanceDoorIndex", 1.5f);
@@ -136,16 +143,21 @@ public class DoorLevelManager : LevelManager
             StartCoroutine(FadeOutMusic(layeredSong[i]));
         }
 
-        GameManager.instance.currentController.playerInteractComponent.CanInteract = false; 
+        StartCoroutine(EnableInteraction(false, 0));
         Invoke("ResetPlayer", 1f);
         MoveCameraToFirstPhase();
-        //
+    }
+
+    private  IEnumerator EnableInteraction(bool enable, float time)
+    {
+        yield return new WaitForSeconds(time);
+        GameManager.instance.currentController.playerInteractComponent.CanInteract = enable;
+        yield return null;
     }
 
     public void ResetPlayer()
     {
         GameManager.instance.currentController.transform.position = initialPosition.position;
-        GameManager.instance.currentController.playerInteractComponent.CanInteract = true; 
-
+        StartCoroutine(EnableInteraction(true, 2f));
     }
 }
