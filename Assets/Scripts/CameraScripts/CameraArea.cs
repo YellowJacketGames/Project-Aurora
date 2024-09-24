@@ -12,14 +12,14 @@ public class CameraArea : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera areaCamera;
 
     bool inArea;
-    public void ChangeToArea()
+    protected virtual  void ChangeToArea()
     {
         GameManager.instance.currentCameraManager.ChangeToCameraArea();
         areaCamera.Priority = 1;
         inArea = true;
     }
 
-    public void ExitArea()
+    protected virtual void ExitArea()
     {
         areaCamera.Priority = 0;
         GameManager.instance.currentCameraManager.ReturnFromCameraArea();
@@ -46,7 +46,6 @@ public class CameraArea : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Exited");
             ExitArea();
         }
     }

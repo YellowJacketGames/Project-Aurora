@@ -5745,8 +5745,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420592968}
-  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: -8.1035, y: 10.691994, z: 18.150017}
+  m_LocalRotation: {x: 0, y: -0.57685274, z: 0, w: 0.8168482}
+  m_LocalPosition: {x: 6.6327376, y: 2.44, z: -34.543312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21053,11 +21053,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1607135819, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.416316
+      value: -2.6469522
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607135819, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1580058
       objectReference: {fileID: 0}
     - target: {fileID: 1607135819, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.727072
+      value: -47.68708
       objectReference: {fileID: 0}
     - target: {fileID: 1607135819, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21094,6 +21098,21 @@ PrefabInstance:
     - target: {fileID: 1607135820, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
       propertyPath: m_Lens.m_SensorSize.y
       value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008234485018328195, guid: ef4edc4c34e234a45bc851d774640f0d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.961976
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008234485018328195, guid: ef4edc4c34e234a45bc851d774640f0d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.625509
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008234485018328195, guid: ef4edc4c34e234a45bc851d774640f0d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -45.03589
       objectReference: {fileID: 0}
     - target: {fileID: 9008234485018328204, guid: ef4edc4c34e234a45bc851d774640f0d,
         type: 3}
@@ -29166,7 +29185,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 1
+  m_Priority: 0
   m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -29179,7 +29198,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 36, y: 24}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -29903,6 +29922,67 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1983660852}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1986234610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1986234613}
+  - component: {fileID: 1986234612}
+  - component: {fileID: 1986234614}
+  m_Layer: 0
+  m_Name: CameraTransitionTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1986234612
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986234610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 22, y: 3, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1986234613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986234610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.25, y: 1.75, z: 28.61}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1986234614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986234610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504616e6123e4cb0a2d0338f0d095419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaCamera: {fileID: 1917789555}
+  newMovementType: 1
+  newMovementDirection: 0
 --- !u!1001 &1988137803
 PrefabInstance:
   m_ObjectHideFlags: 0

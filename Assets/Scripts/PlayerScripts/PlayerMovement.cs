@@ -232,15 +232,19 @@ public class PlayerMovement : PlayerComponent
         }
     }
 
-    public void RotateMovementAxis(float angles)
+    public void ChangeMovementDirection(MovementType type, MovementDirection direction)
     {
+        movementType = type;
+        movementDirection = direction;
     }
+
+    public (MovementType type, MovementDirection direction) GetMovementDirection() =>  (movementType, movementDirection);
+    
 
     #region Stuff
 
     public void FreezePlayer()
     {
-        return;
         switch (movementType)
         {
             case MovementType.Horizontal:
@@ -253,17 +257,12 @@ public class PlayerMovement : PlayerComponent
                                                   RigidbodyConstraints.FreezeRotation |
                                                   RigidbodyConstraints.FreezePositionX;
                 break;
-            // case MovementType.HorizontalAndVertical:
-            //     _parent.playerRigid.constraints = RigidbodyConstraints.FreezePositionX |
-            //                                       RigidbodyConstraints.FreezeRotation |
-            //                                       RigidbodyConstraints.FreezePositionZ;
-            //     break;
+   
         }
     }
 
     public void UnfreezePlayer()
     {
-        return;
         switch (movementType)
         {
             case MovementType.Horizontal:
@@ -274,9 +273,7 @@ public class PlayerMovement : PlayerComponent
                 _parent.playerRigid.constraints =
                     RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
                 break;
-            // case MovementType.HorizontalAndVertical:
-            //     _parent.playerRigid.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
-            //     break;
+           
         }
     }
 
