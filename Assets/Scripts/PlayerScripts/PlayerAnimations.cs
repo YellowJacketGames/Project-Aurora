@@ -72,15 +72,24 @@ public class PlayerAnimations : PlayerComponent
         GameManager.instance.currentCameraManager.SetCameraRightTimer();
     }
 
-    public void HandleModelDirection(float value, PlayerMovement.MovementType movementType)
+    public void HandleModelDirection(float value, PlayerMovement.MovementType movementType, PlayerMovement.MovementDirection movementDirection)
     {
         switch (movementType)
         {
             case PlayerMovement.MovementType.Horizontal:
-                if (value < 0)
-                    ChangeModelToTheLeft();
-                else
-                    ChangeModelToTheRight();
+                switch (movementDirection)
+                {
+                    case PlayerMovement.MovementDirection.Default:
+                    case PlayerMovement.MovementDirection.Rot1:
+                    case PlayerMovement.MovementDirection.Rot2:
+                        if (value < 0) ChangeModelToTheLeft(); else ChangeModelToTheRight();
+                        break;
+                    case PlayerMovement.MovementDirection.Rot3:
+                    case PlayerMovement.MovementDirection.Rot4:
+                        if (value < 0) ChangeModelToTheFront(); else ChangeModelToTheBack();
+                        break;
+                    
+                }
                 break;
             case PlayerMovement.MovementType.Vertical:
                 if (value < 0)

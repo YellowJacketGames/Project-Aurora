@@ -130,6 +130,10 @@ public class PlayerMovement : PlayerComponent
                         _parent.playerRigid.velocity = new Vector3(-_currentSpeed * targetSpeed,
                             _parent.playerRigid.velocity.y, 0);
                         break;
+                    case MovementDirection.Rot4:
+                        _parent.playerRigid.velocity = new Vector3(_currentSpeed * targetSpeed,
+                            _parent.playerRigid.velocity.y, 0);
+                        break;
                 }
 
                 break;
@@ -141,18 +145,6 @@ public class PlayerMovement : PlayerComponent
                     new Vector3(_currentSpeed * targetSpeed, _parent.playerRigid.velocity.y, 0);
 
                 break;
-            // case MovementType.HorizontalAndVertical:
-            //     inputMagnitude = _parent.playerInputHandlerComponent.GetMovementDirection().magnitude;
-            //     var inputMagnitudeX = _parent.playerInputHandlerComponent.GetMovementDirection().x;
-            //     var inputMagnitudeY = -_parent.playerInputHandlerComponent.GetMovementDirection().y;
-            //     if (_parent.playerInputHandlerComponent.GetMovementDirection().x == 0 &&
-            //         -_parent.playerInputHandlerComponent.GetMovementDirection().y == 0) targetSpeed = 0.0f;
-            //     _currentSpeed = inputMagnitude * targetSpeed * Time.deltaTime;
-            //     var currentSpeedX = inputMagnitudeX * targetSpeed * Time.deltaTime;
-            //     var currentSpeedY = inputMagnitudeY * targetSpeed * Time.deltaTime;
-            //     _parent.playerRigid.velocity = new Vector3(currentSpeedY * targetSpeed, _parent.playerRigid.velocity.y,
-            //         currentSpeedX * targetSpeed);
-            //     break;
         }
 
         animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * _speedChangeRate);
@@ -244,7 +236,7 @@ public class PlayerMovement : PlayerComponent
     #region Stuff
 
     public void FreezePlayer()
-    {
+    {return;
         switch (movementType)
         {
             case MovementType.Horizontal:
@@ -262,7 +254,7 @@ public class PlayerMovement : PlayerComponent
     }
 
     public void UnfreezePlayer()
-    {
+    {return;
         switch (movementType)
         {
             case MovementType.Horizontal:
@@ -287,18 +279,18 @@ public class PlayerMovement : PlayerComponent
         switch (movementType)
         {
             case MovementType.Horizontal:
-
+            
                 moveDir = _parent.playerInputHandlerComponent.GetMovementDirection().x;
 
                 if (moveDir != 0 && _parent.CurrentPlayerState != PlayerState.Transition &&
                     _parent.CurrentPlayerState != PlayerState.Conversation)
-                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType);
+                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection);
                 break;
             case MovementType.Vertical:
                 moveDir = -_parent.playerInputHandlerComponent.GetMovementDirection().y;
                 if (moveDir != 0 && _parent.CurrentPlayerState != PlayerState.Transition &&
                     _parent.CurrentPlayerState != PlayerState.Conversation)
-                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType);
+                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection);
                 break;
             // case MovementType.HorizontalAndVertical:
             //     float moveDirX = 0, moveDirY = 0;
@@ -350,5 +342,6 @@ public class PlayerMovement : PlayerComponent
         Rot1, //90 degrees
         Rot2, //180 degrees
         Rot3, //270 degrees
+        Rot4, //-270 degrees
     }
 }

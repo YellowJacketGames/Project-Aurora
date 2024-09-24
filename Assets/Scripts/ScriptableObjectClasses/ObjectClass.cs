@@ -142,7 +142,7 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
 
     }
 
-    public Sprite GetIconFromResources(ObjectClass obj)
+    public Sprite GetIconFromResources(ObjectClass obj) //In Resources folder
     {
         Sprite s = Resources.Load<Sprite>("Sprites/ObjectIcons/" + obj.objectId);
 
