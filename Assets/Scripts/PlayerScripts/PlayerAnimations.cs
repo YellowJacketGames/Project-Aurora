@@ -80,11 +80,17 @@ public class PlayerAnimations : PlayerComponent
                 switch (movementDirection)
                 {
                     case PlayerMovement.MovementDirection.Default:
+                        if (value < 0) ChangeModelToTheLeft(); else ChangeModelToTheRight();
+                        break;
                     case PlayerMovement.MovementDirection.Rot1:
+                        if (value < 0) ChangeModelToTheRight(); else ChangeModelToTheLeft();
+                        break;
                     case PlayerMovement.MovementDirection.Rot2:
                         if (value < 0) ChangeModelToTheLeft(); else ChangeModelToTheRight();
                         break;
                     case PlayerMovement.MovementDirection.Rot3:
+                        if (value < 0) ChangeModelToTheBack(); else ChangeModelToTheFront();           
+                        break;
                     case PlayerMovement.MovementDirection.Rot4:
                         if (value < 0) ChangeModelToTheFront(); else ChangeModelToTheBack();
                         break;

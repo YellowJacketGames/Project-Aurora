@@ -38,6 +38,16 @@ public class CameraArea : MonoBehaviour
         }
 
     }
+    private void OnTriggerStay(Collider other)
+    {
+      
+
+        if (other.CompareTag("Player"))
+        {
+            ChangeToArea();
+        }
+
+    }
 
     private void OnTriggerExit(Collider other)
     {

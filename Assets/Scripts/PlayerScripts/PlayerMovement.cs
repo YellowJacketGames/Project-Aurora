@@ -119,10 +119,10 @@ public class PlayerMovement : PlayerComponent
                             _currentSpeed * targetSpeed);
                         break;
                     case MovementDirection.Rot1:
-                        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
+                        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,-
                             _currentSpeed * targetSpeed);
                         break;
-                    case MovementDirection.Rot2:
+                    case MovementDirection.Rot2: //  this one not used for now i guess
                         _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
                             _currentSpeed * targetSpeed);
                         break;
