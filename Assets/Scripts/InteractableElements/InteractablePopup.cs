@@ -6,22 +6,25 @@ public class InteractablePopup : MonoBehaviour
 {
     [SerializeField] private TMP_Text textDisplayed;
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject nameGroup; 
-    
+    [SerializeField] private GameObject nameGroup;
+    private GameObject iconGroup;
+
     private string name;
     private InteractionType type;
+
 
     private void Awake()
     {
         textDisplayed = GetComponentInChildren<TMP_Text>();
         animator = GetComponent<Animator>();
-        nameGroup = transform.GetChild(1).gameObject;
+        nameGroup = transform.parent.GetChild(1).gameObject;
+        iconGroup = gameObject;
     }
 
     private void Start()
     {
         DisableGo();
-        if(!type.Equals(InteractionType.Conversation)) nameGroup.SetActive(false);
+        if (!type.Equals(InteractionType.Conversation)) nameGroup.SetActive(false);
         nameGroup.GetComponentInChildren<TMP_Text>().text = name;
     }
 
@@ -37,8 +40,9 @@ public class InteractablePopup : MonoBehaviour
 
     public void DisableGo()
     {
-        gameObject.SetActive(false);
+       gameObject.SetActive(false);
     }
+
 
     public void SetElementName(string name) => this.name = name;
 

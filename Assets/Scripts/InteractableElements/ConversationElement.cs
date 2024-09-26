@@ -5,11 +5,11 @@ using Ink.Runtime;
 
 public class ConversationElement : InteractableElement
 {
+    [Header("Conversation")] [SerializeField]
+    TextAsset elementDialogue;
 
-    [Header("Conversation")]
-    [SerializeField] TextAsset elementDialogue;
     [SerializeField] Speaker conversationSpeaker;
-    
+
     [ContextMenu("On Interact")]
     public override void OnInteract()
     {
@@ -17,12 +17,13 @@ public class ConversationElement : InteractableElement
         if (elementDialogue != null)
         {
             Story dialogue = new Story(elementDialogue.text);
-            
-            if(conversationSpeaker != null)
+
+            if (conversationSpeaker != null)
             {
                 GameManager.instance.currentController.playerConversationComponent.SetNewSpeaker(conversationSpeaker);
 
-                switch (GameManager.instance.currentController.playerConversationComponent.GetPlayerSpeaker().currentDirection)
+                switch (GameManager.instance.currentController.playerConversationComponent.GetPlayerSpeaker()
+                            .currentDirection)
                 {
                     case InteractDirection.Left:
                         conversationSpeaker.currentDirection = InteractDirection.Right;
@@ -37,18 +38,24 @@ public class ConversationElement : InteractableElement
 
             GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(dialogue);
             GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
-
         }
         else
         {
-            Debug.LogWarning("The element " + elementName + " is a dialogue element and does not possess a ink story file");
+            Debug.LogWarning("The element " + elementName +
+                             " is a dialogue element and does not possess a ink story file");
             return;
         }
+
         base.OnInteract();
     }
 
     public void ChangeDialogue(TextAsset dialogue)
     {
         elementDialogue = dialogue;
+    }
+
+    public override bool HasDialogue()
+    {
+        return elementDialogue != null;
     }
 }

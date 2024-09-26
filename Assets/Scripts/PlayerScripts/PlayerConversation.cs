@@ -64,14 +64,19 @@ public class PlayerConversation : PlayerComponent
 
         currentDialogue.BindExternalFunction("CheckIfHasItem", (string itemId) =>
         {
-            if (_parent.playerInventoryComponent.CheckIfObjectIsInInventory(itemId))
-            {
+            if(GameManager.instance.Data.HasObject(itemId))
                 currentDialogue.variablesState["hasItem"] = true;
-            }
             else
-            {
                 currentDialogue.variablesState["hasItem"] = false;
-            }
+                
+            // if (_parent.playerInventoryComponent.CheckIfObjectIsInInventory(itemId))
+            // {
+            //     currentDialogue.variablesState["hasItem"] = true;
+            // }
+            // else
+            // {
+            //     currentDialogue.variablesState["hasItem"] = false;
+            // }
 
         });
 
@@ -130,17 +135,19 @@ public class PlayerConversation : PlayerComponent
             Speaker s = Resources.Load("ScriptableObjects/Speakers/" + newSpeaker) as Speaker;
             
 
-            switch (GameManager.instance.currentController.playerInteractComponent.GetCurrentDirection())
-            {
-                case InteractDirection.Left:
-                    s.currentDirection = InteractDirection.Right;
-                    break;
-                case InteractDirection.Right:
-                    s.currentDirection = InteractDirection.Left;
-                    break;
-                default:
-                    break;
-            }
+            // switch (GameManager.instance.currentController.playerInteractComponent.GetCurrentDirection())
+            // {
+            //     case InteractDirection.Left:
+            //         s.currentDirection = InteractDirection.Right;
+            //         break;
+            //     case InteractDirection.Right:
+            //         s.currentDirection = InteractDirection.Left;
+            //         break;
+            //     default:
+            //         break;
+            // }
+            s.currentDirection = InteractDirection.Left;
+
             SetNewSpeaker(s);
         });
 

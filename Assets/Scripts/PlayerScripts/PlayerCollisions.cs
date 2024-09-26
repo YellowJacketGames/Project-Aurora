@@ -30,23 +30,35 @@ public class PlayerCollisions : PlayerComponent
 
     #region Interaction Checks
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (_parent.CurrentPlayerState == PlayerState.Jump || _parent.CurrentPlayerState == PlayerState.Transition ||
-            _parent.CurrentPlayerState == PlayerState.Conversation || !_parent.playerInteractComponent.CanInteract) return;
+            _parent.CurrentPlayerState == PlayerState.Conversation ||
+            !_parent.playerInteractComponent.CanInteract) return;
         if (!other.TryGetComponent<InteractableElement>(out InteractableElement element)) return;
+        if (!other.GetComponent<InteractableElement>().HasDialogue()) return;
         _parent.playerInteractComponent.SetCurrentElement(element);
-        if (!element.ignoreInteraction)
-            element.ShowInteractPrompt();
+
+        if (element.GetElementType() == InteractionType.LevelTrigger)
+        {
+            if (!element.ignoreInteraction)
+            {
+                _parent.playerInteractComponent.Interact();
+                return;
+            }
+        }
+
+        element.ShowInteractPrompt();
         // _parent.playerUIComponent.ShowInteractPrompt(element);  -- antiguo, abre en el HUD
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (_parent.CurrentPlayerState == PlayerState.Jump || _parent.CurrentPlayerState == PlayerState.Transition ||
-            _parent.CurrentPlayerState == PlayerState.Conversation|| !_parent.playerInteractComponent.CanInteract) return;
+            _parent.CurrentPlayerState == PlayerState.Conversation ||
+            !_parent.playerInteractComponent.CanInteract) return;
         if (!other.TryGetComponent<InteractableElement>(out InteractableElement element)) return;
+        // if(!other.GetComponent<InteractableElement>().HasDialogue()) return;
         _parent.playerInteractComponent.SetCurrentElement(element);
         if (!element.ignoreInteraction)
             element.ShowInteractPrompt();
@@ -55,6 +67,7 @@ public class PlayerCollisions : PlayerComponent
     private void OnTriggerExit(Collider other)
     {
         if (!other.TryGetComponent<InteractableElement>(out InteractableElement element)) return;
+        if (!other.GetComponent<InteractableElement>().HasDialogue()) return;
         element.HideInteractPrompt();
         // _parent.playerUIComponent.HideInteractPrompt();  -- antiguo, cierra en el HUD
         _parent.playerInteractComponent.SetCurrentElement(null);

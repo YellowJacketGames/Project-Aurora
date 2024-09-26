@@ -44,7 +44,10 @@ public class InteractableElement : MonoBehaviour
         if (popup)
             popup.Show();
     }
-
+    public virtual bool HasDialogue()
+    {
+        return !ignoreInteraction;
+    }
     public void HideInteractPrompt()
     {
         if (ignorePopup) return;
