@@ -16,9 +16,15 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] private float runSpeed;
     [SerializeField] private float crouchSpeed;
     [Space] [SerializeField] private float jumpForce;
-
-    [Space] [Header("Checks")] [SerializeField]
-    private bool isGrounded;
+    [Space(10)]
+    [Header("Movement Limits")] 
+    [SerializeField] private bool disableA;
+    [SerializeField] private bool disableD;
+    [SerializeField] private bool disableW;
+    [SerializeField] private bool disableS;
+   
+    [Space] [Header("Checks")] 
+    [SerializeField] private bool isGrounded;
 
     [SerializeField] private bool isJumping;
     [SerializeField] private bool isCrouched;
@@ -110,6 +116,7 @@ public class PlayerMovement : PlayerComponent
         {
             case MovementType.Horizontal:
                 inputMagnitude = _parent.playerInputHandlerComponent.GetMovementDirection().x;
+                inputMagnitude = ManageDisables(inputMagnitude, true);
                 if (inputMagnitude == 0) targetSpeed = 0.0f;
                 _currentSpeed = inputMagnitude * targetSpeed * Time.deltaTime;
                 switch (movementDirection)
@@ -139,6 +146,7 @@ public class PlayerMovement : PlayerComponent
                 break;
             case MovementType.Vertical:
                 inputMagnitude = -_parent.playerInputHandlerComponent.GetMovementDirection().y;
+                inputMagnitude = ManageDisables(inputMagnitude, false);
                 if (inputMagnitude == 0) targetSpeed = 0.0f;
                 _currentSpeed = inputMagnitude * targetSpeed * Time.deltaTime;
                 _parent.playerRigid.velocity =
@@ -153,6 +161,31 @@ public class PlayerMovement : PlayerComponent
 
         _parent.playerAnimationComponent.SetCharacterSpeed(animationBlend);
         _parent.playerAnimationComponent.SetInputSpeed(inputMagnitude);
+    }
+
+    private float ManageDisables(float inputMagnitude, bool axisX)
+    {
+        if (axisX)
+        {
+            if (disableA)
+                if (inputMagnitude < 0)
+                    return 0;
+            if (!disableD) return inputMagnitude;
+            if (inputMagnitude > 0)
+                return 0;
+
+        }
+        else
+        {
+            if (disableW)
+                if (inputMagnitude < 0)
+                    return 0;
+            if (!disableS) return inputMagnitude;
+            if (inputMagnitude > 0)
+                return 0;
+        }
+
+        return inputMagnitude;
     }
 
     private void HandleStates()
