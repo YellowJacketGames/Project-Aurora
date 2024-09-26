@@ -21,6 +21,7 @@ public class CameraArea : MonoBehaviour
 
     protected virtual void ExitArea()
     {
+        Debug.LogError("Area exited");
         areaCamera.Priority = 0;
         GameManager.instance.currentCameraManager.ReturnFromCameraArea();
         inArea = false;
@@ -31,16 +32,6 @@ public class CameraArea : MonoBehaviour
     {
         if (inArea)
             return;
-
-        if (other.CompareTag("Player"))
-        {
-            ChangeToArea();
-        }
-
-    }
-    private void OnTriggerStay(Collider other)
-    {
-      
 
         if (other.CompareTag("Player"))
         {

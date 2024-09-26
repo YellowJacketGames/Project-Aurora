@@ -1034,6 +1034,11 @@ PrefabInstance:
       objectReference: {fileID: 1720123605}
     - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
+      propertyPath: currentLevelManager
+      value: 
+      objectReference: {fileID: 1017574332}
+    - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
+        type: 3}
       propertyPath: currentCameraManager
       value: 
       objectReference: {fileID: 9008234484153572587}
@@ -3213,7 +3218,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13687,7 +13692,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14144,7 +14149,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

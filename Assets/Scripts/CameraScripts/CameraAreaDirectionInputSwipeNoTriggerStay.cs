@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
-public class CameraAreaDirectionInputSwipe : CameraArea
+public class CameraAreaDirectionInputSwipeNoTriggerStay : CameraArea
 {
     [SerializeField] private PlayerMovement.MovementType newMovementType;
     [SerializeField] private PlayerMovement.MovementDirection newMovementDirection;
@@ -26,13 +26,5 @@ public class CameraAreaDirectionInputSwipe : CameraArea
 
     }
     
-    private void OnTriggerStay(Collider other)
-    {
-        
-        if (other.CompareTag("Player"))
-        {
-            base.ChangeToArea();
-        }
-
-    }
+  
 } 
