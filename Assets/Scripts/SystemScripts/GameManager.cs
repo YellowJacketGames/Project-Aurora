@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public DiaryManager diaryManager;
     public QuestManager questManager;
     public LevelManager currentLevelManager;
+    public LevelObjectPoolingManager currentLevelObjectPoolingManager;
     private GameStates currentGameState;
 
     //Player Inventory save
