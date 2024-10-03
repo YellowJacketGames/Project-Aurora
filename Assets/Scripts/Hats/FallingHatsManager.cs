@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,10 +5,12 @@ public class FallingHatsManager : MonoBehaviour
 {
     [SerializeField] private FallingHat.Axis axis;
     [SerializeField] private GameObject hatPrefab;
+    [SerializeField] private int initialPoolSize = 35; 
     [SerializeField] private float spawnSpeed = 1f;
     private float _spawnTime = 3f;
     private float _elapsedTime;
     private float _deviationMagnitude = 8.0f;
+    
 
     private LevelObjectPoolingManager pooling;
 
@@ -19,7 +19,7 @@ public class FallingHatsManager : MonoBehaviour
     {
         UpdatePosition();
         pooling = GameManager.instance.currentLevelObjectPoolingManager;
-        Pool pool = new Pool("Hats", hatPrefab, 50);
+        Pool pool = new Pool("Hats", hatPrefab, initialPoolSize);
         pooling.CreateNewPool(pool);
         pooling.FallingHatsManagerRef = this;
     }
