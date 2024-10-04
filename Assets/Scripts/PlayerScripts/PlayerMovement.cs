@@ -16,15 +16,16 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] private float runSpeed;
     [SerializeField] private float crouchSpeed;
     [Space] [SerializeField] private float jumpForce;
-    [Space(10)]
-    [Header("Movement Limits")] 
-    [SerializeField] private bool disableA;
+
+    [Space(10)] [Header("Movement Limits")] [SerializeField]
+    private bool disableA;
+
     [SerializeField] private bool disableD;
     [SerializeField] private bool disableW;
     [SerializeField] private bool disableS;
-   
-    [Space] [Header("Checks")] 
-    [SerializeField] private bool isGrounded;
+
+    [Space] [Header("Checks")] [SerializeField]
+    private bool isGrounded;
 
     [SerializeField] private bool isJumping;
     [SerializeField] private bool isCrouched;
@@ -126,7 +127,7 @@ public class PlayerMovement : PlayerComponent
                             _currentSpeed * targetSpeed);
                         break;
                     case MovementDirection.Rot1:
-                        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,-
+                        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, -
                             _currentSpeed * targetSpeed);
                         break;
                     case MovementDirection.Rot2: //  this one not used for now i guess
@@ -173,7 +174,6 @@ public class PlayerMovement : PlayerComponent
             if (!disableD) return inputMagnitude;
             if (inputMagnitude > 0)
                 return 0;
-
         }
         else
         {
@@ -261,15 +261,32 @@ public class PlayerMovement : PlayerComponent
     {
         movementType = type;
         movementDirection = direction;
+
+        if (!GameManager.instance.currentLevelObjectPoolingManager) return;
+        switch (movementDirection)
+        {
+            case MovementDirection.Rot1:
+            case MovementDirection.Default:
+            case MovementDirection.Rot2:
+                GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef.SetAxis(FallingHat.Axis.Z);
+                break;
+            case MovementDirection.Rot3:
+            case MovementDirection.Rot4:
+                GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef.SetAxis(FallingHat.Axis.X);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
-    public (MovementType type, MovementDirection direction) GetMovementDirection() =>  (movementType, movementDirection);
-    
+    public (MovementType type, MovementDirection direction) GetMovementDirection() => (movementType, movementDirection);
+
 
     #region Stuff
 
     public void FreezePlayer()
-    {return;
+    {
+        return;
         switch (movementType)
         {
             case MovementType.Horizontal:
@@ -282,12 +299,12 @@ public class PlayerMovement : PlayerComponent
                                                   RigidbodyConstraints.FreezeRotation |
                                                   RigidbodyConstraints.FreezePositionX;
                 break;
-   
         }
     }
 
     public void UnfreezePlayer()
-    {return;
+    {
+        return;
         switch (movementType)
         {
             case MovementType.Horizontal:
@@ -298,7 +315,6 @@ public class PlayerMovement : PlayerComponent
                 _parent.playerRigid.constraints =
                     RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
                 break;
-           
         }
     }
 
@@ -312,7 +328,7 @@ public class PlayerMovement : PlayerComponent
         switch (movementType)
         {
             case MovementType.Horizontal:
-            
+
                 moveDir = _parent.playerInputHandlerComponent.GetMovementDirection().x;
 
                 if (moveDir != 0 && _parent.CurrentPlayerState != PlayerState.Transition &&
