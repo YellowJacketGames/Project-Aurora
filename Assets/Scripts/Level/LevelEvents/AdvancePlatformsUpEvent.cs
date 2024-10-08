@@ -16,7 +16,11 @@ public class AdvancePlatformsUpEvent : LevelEvent
     // 3-> triggerelementsFront, related to elements Back. 4-> trigger elementsRight, related to elementsLeft. 
     public override void OnEvent()
     {
-        if(currentReps+1>maxReps) return;
+        if(currentReps+1>maxReps)
+        {
+            GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef.stopHats = true;
+            return;
+        }
         Debug.Log("Triggered");
         // base.OnEvent();
         switch (_index)

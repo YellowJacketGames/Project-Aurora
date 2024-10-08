@@ -54,6 +54,12 @@ public class LevelObjectPoolingManager : MonoBehaviour
     {
         objectToReturn.SetActive(false);
     }
+
+    public Queue<GameObject> GetPool(string tag)
+    {
+        if (!_poolDictionary.ContainsKey(tag)) return null;
+        return _poolDictionary[tag];
+    }
 }    
 
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class IngameTextElement : MonoBehaviour
 {
     [SerializeField] private TMP_Text textReference;
     [SerializeField] private string text;
-    [Range(0, 42)] [SerializeField] private int id;
+    [Range(0, 54)] [SerializeField] private int id;
     [SerializeField] private Vector4 axis = new Vector4(0, 0, 1, 0);
     [SerializeField] private float speed = 2f; //*100
 
@@ -26,10 +27,26 @@ public class IngameTextElement : MonoBehaviour
         Init();
     }
 
+    private void OnEnable()
+    {
+        GameManager.instance.currentController.playerMovementComponent.OnTargetSpeedChanged += HandleSpeedChange;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.instance.currentController.playerMovementComponent.OnTargetSpeedChanged -= HandleSpeedChange;
+    }
+
+    private void HandleSpeedChange(float newSpeed)
+    {
+        speed = newSpeed > 10 ? 2.0f : 0.8f; //running
+    }
+
     private void Init()
     {
         text = ingameTextManager.GetLevelText(id);
         textReference.text = text;
+        mask.padding = axis * amount;
     }
 
     private void OnTriggerEnter(Collider other)

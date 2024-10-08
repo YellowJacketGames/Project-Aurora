@@ -17,9 +17,8 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] private float crouchSpeed;
     [Space] [SerializeField] private float jumpForce;
 
-    [Space(10)] [Header("Movement Limits")] [SerializeField]
-    private bool disableA;
-
+    [Space(10)] [Header("Movement Limits")] 
+    [SerializeField] private bool disableA;
     [SerializeField] private bool disableD;
     [SerializeField] private bool disableW;
     [SerializeField] private bool disableS;
@@ -50,6 +49,20 @@ public class PlayerMovement : PlayerComponent
 
 
     private float targetSpeed = 0f;
+    public event Action<float> OnTargetSpeedChanged;
+    public float TargetSpeed
+    {
+        get { return targetSpeed; }
+        set
+        {
+            if (targetSpeed != value)
+            {
+                targetSpeed = value;
+                OnTargetSpeedChanged?.Invoke(targetSpeed);
+            }
+        }
+    }
+    
     private float inputMagnitude = 0f;
     private float _speedChangeRate = 8.0f; //for the animationBlending
     private float animationBlend;
@@ -108,9 +121,9 @@ public class PlayerMovement : PlayerComponent
         // if (isColliding)
         //     targetSpeed = 0f;
         if (!isCrouched)
-            targetSpeed = _parent.playerInputHandlerComponent.GetRunningInput() ? runSpeed : walkSpeed;
+            TargetSpeed = _parent.playerInputHandlerComponent.GetRunningInput() ? runSpeed : walkSpeed;
         else
-            targetSpeed = crouchSpeed;
+            TargetSpeed = crouchSpeed;
 
 
         switch (movementType)
@@ -267,7 +280,6 @@ public class PlayerMovement : PlayerComponent
         {
             case MovementDirection.Rot1:
             case MovementDirection.Default:
-            case MovementDirection.Rot2:
                 GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef.SetAxis(FallingHat.Axis.Z);
                 break;
             case MovementDirection.Rot3:
@@ -333,13 +345,13 @@ public class PlayerMovement : PlayerComponent
 
                 if (moveDir != 0 && _parent.CurrentPlayerState != PlayerState.Transition &&
                     _parent.CurrentPlayerState != PlayerState.Conversation)
-                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection);
+                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection, disableW, disableS, disableA, disableD);
                 break;
             case MovementType.Vertical:
                 moveDir = -_parent.playerInputHandlerComponent.GetMovementDirection().y;
                 if (moveDir != 0 && _parent.CurrentPlayerState != PlayerState.Transition &&
                     _parent.CurrentPlayerState != PlayerState.Conversation)
-                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection);
+                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection, disableW, disableS, disableA, disableD);
                 break;
             // case MovementType.HorizontalAndVertical:
             //     float moveDirX = 0, moveDirY = 0;
