@@ -22,6 +22,7 @@ public class CameraManager : MonoBehaviour
 
     //Camera for dialogues
     [SerializeField] CinemachineVirtualCamera dialogueCamera;
+    [SerializeField] public List<CinemachineVirtualCamera> otherCameras;
 
     //Variable to store the current camera being used
     private CinemachineVirtualCamera currentCamera;
@@ -316,6 +317,10 @@ public class CameraManager : MonoBehaviour
         levelCameraLeft.Priority = 0;
         levelCameraRight.Priority = 0;
         dialogueCamera.Priority = 0;
+        foreach (var cam in otherCameras)
+        {
+            cam.Priority = 0;
+        }
     }
 
     #endregion

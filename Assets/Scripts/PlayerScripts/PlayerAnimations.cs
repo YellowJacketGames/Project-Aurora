@@ -38,7 +38,7 @@ public class PlayerAnimations : PlayerComponent
 
     private void ChangeModelToTheLeft(bool disabled)
     {
-        if(disabled) return;
+        if (disabled) return;
         if (!lerpInTurns)
             _parent.characterModel.transform.localRotation = Quaternion.Euler(0, 180, 0);
         else
@@ -48,7 +48,7 @@ public class PlayerAnimations : PlayerComponent
 
     private void ChangeModelToTheFront(bool disabled)
     {
-        if(disabled) return;
+        if (disabled) return;
         if (!lerpInTurns)
             _parent.characterModel.transform.localRotation = Quaternion.Euler(0, -90, 0);
         else
@@ -57,8 +57,8 @@ public class PlayerAnimations : PlayerComponent
     }
 
     private void ChangeModelToTheBack(bool disabled)
-    {        
-        if(disabled) return;
+    {
+        if (disabled) return;
         if (!lerpInTurns)
             _parent.characterModel.transform.localRotation = Quaternion.Euler(0, 90, 0);
         else
@@ -68,7 +68,7 @@ public class PlayerAnimations : PlayerComponent
 
     private void ChangeModelToTheRight(bool disabled)
     {
-        if(disabled) return;
+        if (disabled) return;
         if (!lerpInTurns)
             _parent.characterModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
         else
@@ -76,7 +76,15 @@ public class PlayerAnimations : PlayerComponent
         GameManager.instance.currentCameraManager.SetCameraRightTimer();
     }
 
-    public void HandleModelDirection(float value, PlayerMovement.MovementType movementType, PlayerMovement.MovementDirection movementDirection,bool disabledW,bool disabledS, bool disabledA,bool disabledD)
+    public void FlipModelY(bool flipped)
+    {
+        if (flipped) ChangeModelToTheLeft(false);
+        else ChangeModelToTheRight(false);
+    }
+
+    public void HandleModelDirection(float value, PlayerMovement.MovementType movementType,
+        PlayerMovement.MovementDirection movementDirection, bool disabledW, bool disabledS, bool disabledA,
+        bool disabledD)
     {
         switch (movementType)
         {
@@ -84,22 +92,27 @@ public class PlayerAnimations : PlayerComponent
                 switch (movementDirection)
                 {
                     case PlayerMovement.MovementDirection.Default:
-                        if (value < 0) ChangeModelToTheLeft(disabledA); else ChangeModelToTheRight(disabledD);
+                        if (value < 0) ChangeModelToTheLeft(disabledA);
+                        else ChangeModelToTheRight(disabledD);
                         break;
                     case PlayerMovement.MovementDirection.Rot1:
-                        if (value < 0) ChangeModelToTheRight(disabledA); else ChangeModelToTheLeft(disabledD);
+                        if (value < 0) ChangeModelToTheRight(disabledA);
+                        else ChangeModelToTheLeft(disabledD);
                         break;
                     case PlayerMovement.MovementDirection.Rot2:
-                        if (value < 0) ChangeModelToTheLeft(disabledA); else ChangeModelToTheRight(disabledD);
+                        if (value < 0) ChangeModelToTheLeft(disabledA);
+                        else ChangeModelToTheRight(disabledD);
                         break;
                     case PlayerMovement.MovementDirection.Rot3:
-                        if (value < 0) ChangeModelToTheBack(disabledA); else ChangeModelToTheFront(disabledD);           
+                        if (value < 0) ChangeModelToTheBack(disabledA);
+                        else ChangeModelToTheFront(disabledD);
                         break;
                     case PlayerMovement.MovementDirection.Rot4:
-                        if (value < 0) ChangeModelToTheFront(disabledA); else ChangeModelToTheBack(disabledD);
+                        if (value < 0) ChangeModelToTheFront(disabledA);
+                        else ChangeModelToTheBack(disabledD);
                         break;
-                    
                 }
+
                 break;
             case PlayerMovement.MovementType.Vertical:
                 if (value < 0)
