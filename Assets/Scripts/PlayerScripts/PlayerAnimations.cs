@@ -115,10 +115,29 @@ public class PlayerAnimations : PlayerComponent
 
                 break;
             case PlayerMovement.MovementType.Vertical:
-                if (value < 0)
-                    ChangeModelToTheFront(disabledW);
-                else
-                    ChangeModelToTheBack(disabledS);
+                switch (movementDirection)
+                {
+                    case PlayerMovement.MovementDirection.Default:
+                        if (value < 0) ChangeModelToTheFront(disabledA);
+                        else ChangeModelToTheBack(disabledD);
+                        break;
+                    case PlayerMovement.MovementDirection.Rot1:
+                        if (value < 0) ChangeModelToTheBack(disabledA);
+                        else ChangeModelToTheFront(disabledD);
+                        break;
+                    case PlayerMovement.MovementDirection.Rot2:
+                        if (value < 0) ChangeModelToTheBack(disabledA);
+                        else ChangeModelToTheFront(disabledD);
+                        break;
+                    case PlayerMovement.MovementDirection.Rot3:
+                        if (value < 0) ChangeModelToTheLeft(disabledA);
+                        else ChangeModelToTheRight(disabledD);
+                        break;
+                    case PlayerMovement.MovementDirection.Rot4:
+                        if (value < 0) ChangeModelToTheRight(disabledA);
+                        else ChangeModelToTheLeft(disabledD);
+                        break;
+                }
                 break;
         }
     }

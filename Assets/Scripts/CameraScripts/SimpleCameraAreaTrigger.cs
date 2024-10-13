@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
-
 
 public class SimpleCameraAreaTrigger : MonoBehaviour
 {
@@ -10,10 +10,11 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
     [SerializeField] private bool enableBothDir;
     [SerializeField] private bool shouldRestorePreviousMovementType;
     [SerializeField] protected CinemachineVirtualCamera cameraArea;
+    [SerializeField] private FreezePlayerXTime _freezePlayerXTime;
     [SerializeField] private PlayerMovement.MovementType newMovementType;
     [SerializeField] private PlayerMovement.MovementDirection newMovementDirection;
-    private PlayerMovement.MovementType _initialMovementType;
-    private PlayerMovement.MovementDirection _initialMovementDirection;
+    [SerializeField] private PlayerMovement.MovementType restorableType;
+    [SerializeField] private PlayerMovement.MovementDirection restorableDirection;
 
 
     [SerializeField] private List<GameObject> enableOnEnter;
@@ -22,9 +23,13 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
 
     [SerializeField] private List<GameObject> enableOnExit;
     [SerializeField] private List<GameObject> disableOnExit;
+    [SerializeField] private bool freezePlayerOnEnter;
+
 
     private void Awake()
     {
+        _freezePlayerXTime = GetComponentInParent<FreezePlayerXTime>();
+
         if (!GameManager.instance.currentCameraManager) return;
         if (!cameraArea) return;
         if (!GameManager.instance.currentCameraManager.otherCameras.Contains(cameraArea))
@@ -38,6 +43,8 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
             ManageEnterType();
         else
             ManageExitType();
+        if (!freezePlayerOnEnter) return;
+        _freezePlayerXTime.TryFreeze();
     }
 
     private void ManageEnterType()
@@ -66,8 +73,8 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
     {
         GameManager.instance.currentController.playerMovementComponent.horizontalAndVerticalMovement = enableBothDir;
         if (!shouldRestorePreviousMovementType) return;
-        GameManager.instance.currentController.playerMovementComponent.ChangeMovementDirection(_initialMovementType,
-            _initialMovementDirection);
+        GameManager.instance.currentController.playerMovementComponent.ChangeMovementDirection(restorableType,
+            restorableDirection);
     }
 
     private void TrySetNewCamera()
@@ -79,21 +86,18 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
 
     private void ReturnOldCamera()
     {
-        if(!cameraArea)
+        if (!cameraArea)
         {
             cameraArea.Priority = 0;
             GameManager.instance.currentCameraManager.ReturnFromCameraArea();
         }
         else
             TrySetNewCamera();
-        
     }
 
     private void TryUpdatePlayerMovement()
     {
         GameManager.instance.currentController.playerMovementComponent.horizontalAndVerticalMovement = enableBothDir;
-        (_initialMovementType, _initialMovementDirection) =
-            GameManager.instance.currentController.playerMovementComponent.GetMovementDirection();
         GameManager.instance.currentController.playerMovementComponent.ChangeMovementDirection(newMovementType,
             newMovementDirection);
     }

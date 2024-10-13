@@ -55,6 +55,7 @@ public class PlayerMovement : PlayerComponent
     public event Action<float> OnTargetSpeedChanged;
     [SerializeField] public CameraManagerRelativeToMovement relativeToMovementSimpleCamera;
     [SerializeField] private float rotSpeed = 110f;
+
     public float TargetSpeed
     {
         get { return targetSpeed; }
@@ -178,16 +179,16 @@ public class PlayerMovement : PlayerComponent
                             new Vector3(_currentSpeed * targetSpeed, _parent.playerRigid.velocity.y, 0);
                         break;
                     case MovementDirection.Rot1:
-                        _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x,
-                            0, -_currentSpeed * targetSpeed);
+                        _parent.playerRigid.velocity = new Vector3(-_currentSpeed * targetSpeed,
+                            _parent.playerRigid.velocity.y, 0);
                         break;
                     case MovementDirection.Rot2: // Not used for now
                         _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x,
                             0, _currentSpeed * targetSpeed);
                         break;
                     case MovementDirection.Rot3:
-                        _parent.playerRigid.velocity = new Vector3(_currentSpeed * targetSpeed,
-                            0, -_parent.playerRigid.velocity.z);
+                        _parent.playerRigid.velocity = new Vector3(0,
+                            _parent.playerRigid.velocity.y, _currentSpeed * targetSpeed);
                         break;
                     case MovementDirection.Rot4:
                         _parent.playerRigid.velocity = new Vector3(0,
@@ -278,6 +279,22 @@ public class PlayerMovement : PlayerComponent
         }
 
         return inputMagnitude;
+    }
+
+    public void EnableAllInput()
+    {
+        disableA = false;
+        disableD = false;
+        disableW = false;
+        disableS = false;
+    }
+
+    public void DisableAllInput()
+    {
+        disableA = true;
+        disableD = true;
+        disableW = true;
+        disableS = true;
     }
 
     private void HandleStates()
