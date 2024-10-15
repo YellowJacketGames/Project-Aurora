@@ -22,6 +22,7 @@ public class CameraManager : MonoBehaviour
 
     //Camera for dialogues
     [SerializeField] CinemachineVirtualCamera dialogueCamera;
+    CinemachineVirtualCamera _oldDialogueCamera;
     [SerializeField] public List<CinemachineVirtualCamera> otherCameras;
 
     //Variable to store the current camera being used
@@ -310,7 +311,21 @@ public class CameraManager : MonoBehaviour
         dialogueCamera.Priority = 1; //We set the priority to a higher value than the rest.
     }
 
-    
+    public void AssignDialogueCamera(CinemachineVirtualCamera cam)
+    {
+        _oldDialogueCamera = dialogueCamera;
+        dialogueCamera = cam;
+        levelCameraLeft = cam;
+        levelCameraRight = cam;
+        dialogueCamera.Priority = 0;
+    }    public void AssignDialogueCamera(CinemachineVirtualCamera cam, CinemachineVirtualCamera returnCam)
+    {
+        _oldDialogueCamera = dialogueCamera;
+        dialogueCamera = cam;
+        levelCameraLeft = returnCam;
+        levelCameraRight = returnCam;
+        dialogueCamera.Priority = 0;
+    }
 
     public void ResetAllPriorities() //This sets all the priorities to 0.
     {

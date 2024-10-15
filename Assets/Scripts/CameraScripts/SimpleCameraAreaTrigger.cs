@@ -10,6 +10,7 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
     [SerializeField] private bool enableBothDir;
     [SerializeField] private bool shouldRestorePreviousMovementType;
     [SerializeField] protected CinemachineVirtualCamera cameraArea;
+    [SerializeField] protected CinemachineVirtualCamera dialogueCamera;
     [SerializeField] private FreezePlayerXTime _freezePlayerXTime;
     [SerializeField] private PlayerMovement.MovementType newMovementType;
     [SerializeField] private PlayerMovement.MovementDirection newMovementDirection;
@@ -39,6 +40,10 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+        if (dialogueCamera)
+            GameManager.instance.currentCameraManager.AssignDialogueCamera(dialogueCamera, cameraArea);
+        else GameManager.instance.currentCameraManager.AssignDialogueCamera(cameraArea);
+
         if (type.Equals(SimpleCamAreaTType.ENTER))
             ManageEnterType();
         else
