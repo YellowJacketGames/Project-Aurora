@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ImageEffects;
+using UnityEngine.Events;
 
 //This script will handle transitions from level to level and different areas of the game
 public class TransitionManager : MonoBehaviour
@@ -26,8 +27,9 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] float transitionDuration;
 
     [SerializeField] float transitionTime = 0;
-    [SerializeField] private bool shouldTriggerLoadingClip; 
-    
+    [SerializeField] private bool shouldTriggerLoadingClip;
+
+    public UnityEvent onTransitionFinished;
     private void Start()
     {
         //Give reference to Game Manager
@@ -45,6 +47,9 @@ public class TransitionManager : MonoBehaviour
             {
                 fadeIn = false; //When the transition is finished, we make sure the transition stops
 
+                //
+                onTransitionFinished?.Invoke();
+                
                 if (completeTransition)
                 {
                     completeTransition = false;

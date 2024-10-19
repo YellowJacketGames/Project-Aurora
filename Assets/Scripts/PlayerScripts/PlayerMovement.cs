@@ -398,6 +398,7 @@ public class PlayerMovement : PlayerComponent
 
     public void FreezePlayer()
     {
+        _parent.playerRigid.velocity = Vector3.zero;
         return;
         switch (movementType)
         {
