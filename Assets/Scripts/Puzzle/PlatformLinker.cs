@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(BoxCollider))]
 public class PlatformLinker : MonoBehaviour
@@ -9,17 +10,18 @@ public class PlatformLinker : MonoBehaviour
     public int platformId;
     public Transform spawningPosition;
     [SerializeField] private Color gizmosColor;
-    [SerializeField] private BoxCollider _collider;
+    public BoxCollider collider;
     public PlatformLinker platformLinkerTarget;
 
     private float _waitForTriggersTime = 1.0f;
     private float _elapsedTimeWaitForTriggers;
     private PlatformsManager _platformsManager;
     private bool triggersCanDetect = false;
-    private Coroutine _waitCorr; 
+    private Coroutine _waitCorr;
+
     private void Awake()
     {
-        _collider = GetComponent<BoxCollider>();
+        collider = GetComponent<BoxCollider>();
         if (!spawningPosition)
             spawningPosition = transform;
     }
@@ -52,7 +54,7 @@ public class PlatformLinker : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(!triggersCanDetect) return;
+        if (!triggersCanDetect) return;
         if (!other.CompareTag("Player")) return;
         _platformsManager.LoadPlatformWithId(platformLinkerTarget.platformId, platformLinkerTarget);
     }
@@ -67,11 +69,14 @@ public class PlatformLinker : MonoBehaviour
     {
         Gizmos.color = gizmosColor; //Color.green;
 
-        if (_collider != null)
+        if (collider != null)
         {
-            var colliderCenter = _collider.bounds.center;
-            var colliderSize = _collider.size;
+            var colliderCenter = collider.bounds.center;
+            var colliderSize = collider.size;
             Gizmos.DrawWireCube(colliderCenter, colliderSize);
+            if (platformLinkerTarget != null)
+                if (platformLinkerTarget.collider != null)
+                    Gizmos.DrawLine(colliderCenter, platformLinkerTarget.collider.bounds.center);
         }
 
         Gizmos.color = Color.red;
