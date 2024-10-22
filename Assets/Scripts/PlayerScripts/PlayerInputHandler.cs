@@ -345,6 +345,11 @@ public class PlayerInputHandler : PlayerComponent
         toggleZoomInput = false;
         return result;
     }
+    public Vector2 GetRotationInput()
+    {
+        float rotationX = Input.GetKey(KeyCode.A) ? -1 : Input.GetKey(KeyCode.D) ? 1 : 0;
+        return new Vector2(rotationX, 0); // Only X-axis input for rotation
+    }
     #endregion
 
     private void Update()

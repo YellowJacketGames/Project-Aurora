@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2629097669260801225}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -130,11 +130,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: 1
   fallingSpeed: 0.28
-  yDisplacement: 3.96
-  swingAmplitude: 0.05
+  yDisplacement: 6
+  swingAmplitude: 0.035
   swingFrequency: 2
   noiseIntensity: 0.01
   noiseSpeed: 0.21
   tiltAmount: 35
   secondaryTiltAmount: 5
   tiltRandomness: 5
+  finish: 0

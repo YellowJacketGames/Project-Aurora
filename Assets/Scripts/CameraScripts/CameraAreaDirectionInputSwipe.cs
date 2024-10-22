@@ -7,34 +7,43 @@ public class CameraAreaDirectionInputSwipe : CameraArea
     [SerializeField] private PlayerMovement.MovementDirection newMovementDirection;
     [SerializeField] private bool shouldRestorePreviousMovementType;
     private PlayerMovement.MovementType _initialMovementType;
-    private PlayerMovement.MovementDirection  _initialMovementDirection;
+    private PlayerMovement.MovementDirection _initialMovementDirection;
+
+    private void Awake()
+    {
+        if (!GameManager.instance.currentCameraManager) return;
+        if (!areaCamera) return;
+        if (!GameManager.instance.currentCameraManager.otherCameras.Contains(areaCamera))
+            GameManager.instance.currentCameraManager.otherCameras.Add(areaCamera);
+    }
+
     protected override void ChangeToArea()
     {
         base.ChangeToArea(); // camera manager code
-        
+
         //player movement update direction
-       (_initialMovementType, _initialMovementDirection)  = GameManager.instance.currentController.playerMovementComponent.GetMovementDirection();
-        GameManager.instance.currentController.playerMovementComponent.ChangeMovementDirection(newMovementType, newMovementDirection);
+        (_initialMovementType, _initialMovementDirection) =
+            GameManager.instance.currentController.playerMovementComponent.GetMovementDirection();
+        GameManager.instance.currentController.playerMovementComponent.ChangeMovementDirection(newMovementType,
+            newMovementDirection);
     }
 
     protected override void ExitArea()
     {
         // if(GameManager.instance.currentController.playerMovementComponent.IsInCameraAreaSwipe)
         base.ExitArea(); // camera manager code
-        
-        //player movement update direction
-        if(shouldRestorePreviousMovementType)
-        GameManager.instance.currentController.playerMovementComponent.ChangeMovementDirection(_initialMovementType, _initialMovementDirection);
 
+        //player movement update direction
+        if (shouldRestorePreviousMovementType)
+            GameManager.instance.currentController.playerMovementComponent.ChangeMovementDirection(_initialMovementType,
+                _initialMovementDirection);
     }
-    
+
     private void OnTriggerStay(Collider other)
     {
-        
         if (other.CompareTag("Player"))
         {
             base.ChangeToArea();
         }
-
     }
-} 
+}

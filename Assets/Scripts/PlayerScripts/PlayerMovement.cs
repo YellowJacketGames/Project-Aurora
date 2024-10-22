@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class PlayerMovement : PlayerComponent
@@ -11,7 +13,7 @@ public class PlayerMovement : PlayerComponent
 
     [SerializeField] private MovementType movementType;
     [SerializeField] private MovementDirection movementDirection;
-    [SerializeField] private bool horizontalAndVerticalMovement;
+    [SerializeField] public bool horizontalAndVerticalMovement;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float crouchSpeed;
@@ -50,6 +52,23 @@ public class PlayerMovement : PlayerComponent
 
 
     private float targetSpeed = 0f;
+    public event Action<float> OnTargetSpeedChanged;
+    [SerializeField] public CameraManagerRelativeToMovement relativeToMovementSimpleCamera;
+    [SerializeField] private float rotSpeed = 110f;
+
+    public float TargetSpeed
+    {
+        get { return targetSpeed; }
+        set
+        {
+            if (targetSpeed != value)
+            {
+                targetSpeed = value;
+                OnTargetSpeedChanged?.Invoke(targetSpeed);
+            }
+        }
+    }
+
     private float inputMagnitude = 0f;
     private float _speedChangeRate = 8.0f; //for the animationBlending
     private float animationBlend;
@@ -108,13 +127,16 @@ public class PlayerMovement : PlayerComponent
         // if (isColliding)
         //     targetSpeed = 0f;
         if (!isCrouched)
-            targetSpeed = _parent.playerInputHandlerComponent.GetRunningInput() ? runSpeed : walkSpeed;
+            TargetSpeed = _parent.playerInputHandlerComponent.GetRunningInput() ? runSpeed : walkSpeed;
         else
-            targetSpeed = crouchSpeed;
+            TargetSpeed = crouchSpeed;
 
 
         switch (movementType)
         {
+            case MovementType.RelativeToPlayer:
+                HandleRelativeMovement();
+                break;
             case MovementType.Horizontal:
                 inputMagnitude = _parent.playerInputHandlerComponent.GetMovementDirection().x;
                 inputMagnitude = ManageDisables(inputMagnitude, true);
@@ -150,8 +172,29 @@ public class PlayerMovement : PlayerComponent
                 inputMagnitude = ManageDisables(inputMagnitude, false);
                 if (inputMagnitude == 0) targetSpeed = 0.0f;
                 _currentSpeed = inputMagnitude * targetSpeed * Time.deltaTime;
-                _parent.playerRigid.velocity =
-                    new Vector3(_currentSpeed * targetSpeed, _parent.playerRigid.velocity.y, 0);
+                switch (movementDirection)
+                {
+                    case MovementDirection.Default:
+                        _parent.playerRigid.velocity =
+                            new Vector3(_currentSpeed * targetSpeed, _parent.playerRigid.velocity.y, 0);
+                        break;
+                    case MovementDirection.Rot1:
+                        _parent.playerRigid.velocity = new Vector3(-_currentSpeed * targetSpeed,
+                            _parent.playerRigid.velocity.y, 0);
+                        break;
+                    case MovementDirection.Rot2: // Not used for now
+                        _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x,
+                            0, _currentSpeed * targetSpeed);
+                        break;
+                    case MovementDirection.Rot3:
+                        _parent.playerRigid.velocity = new Vector3(0,
+                            _parent.playerRigid.velocity.y, _currentSpeed * targetSpeed);
+                        break;
+                    case MovementDirection.Rot4:
+                        _parent.playerRigid.velocity = new Vector3(0,
+                            _parent.playerRigid.velocity.y, -_currentSpeed * targetSpeed);
+                        break;
+                }
 
                 break;
         }
@@ -163,6 +206,56 @@ public class PlayerMovement : PlayerComponent
         _parent.playerAnimationComponent.SetCharacterSpeed(animationBlend);
         _parent.playerAnimationComponent.SetInputSpeed(inputMagnitude);
     }
+
+    private void HandleRelativeMovement()
+    {
+        // Rotation first: rotate left/right with A/D or arrow keys
+        var rotationInput = _parent.playerInputHandlerComponent.GetRotationInput().x; // Get rotation input
+        if (rotationInput != 0)
+        {
+            transform.Rotate(Vector3.up, rotationInput * rotSpeed * Time.deltaTime);
+        }
+
+        Vector2 movementInput = _parent.playerInputHandlerComponent.GetMovementDirection();
+        _currentSpeed = targetSpeed * Time.deltaTime;
+
+        // Only forward/backward input matters for movement (W/S)
+        var moveDirection = movementInput.y;
+
+        if (relativeToMovementSimpleCamera)
+        {
+            switch (moveDirection)
+            {
+                case < 0:
+                    relativeToMovementSimpleCamera.SetCameraInFront();
+                    break;
+                case > 0:
+                    relativeToMovementSimpleCamera.SetCameraInBack();
+                    break;
+            }
+        }
+
+        if (movementInput.y == 0)
+            TargetSpeed = 0;
+        else if (!isCrouched)
+            TargetSpeed = _parent.playerInputHandlerComponent.GetRunningInput() ? runSpeed : walkSpeed;
+        else
+            TargetSpeed = crouchSpeed;
+
+        // Calculate movement vector in the player's forward direction (using transform.forward)
+        var movement = transform.forward * (moveDirection * _currentSpeed * TargetSpeed);
+
+        // Update the player's rigidbody velocity (movement on X and Z axes only)
+        _parent.playerRigid.velocity = new Vector3(movement.x, _parent.playerRigid.velocity.y, movement.z);
+
+
+        animationBlend = Mathf.Lerp(animationBlend, TargetSpeed, Time.deltaTime * _speedChangeRate);
+        if (animationBlend < 0.1f) animationBlend = 0f;
+
+        _parent.playerAnimationComponent.SetCharacterSpeed(animationBlend);
+        _parent.playerAnimationComponent.SetInputSpeed(moveDirection);
+    }
+
 
     private float ManageDisables(float inputMagnitude, bool axisX)
     {
@@ -186,6 +279,22 @@ public class PlayerMovement : PlayerComponent
         }
 
         return inputMagnitude;
+    }
+
+    public void EnableAllInput()
+    {
+        disableA = false;
+        disableD = false;
+        disableW = false;
+        disableS = false;
+    }
+
+    public void DisableAllInput()
+    {
+        disableA = true;
+        disableD = true;
+        disableW = true;
+        disableS = true;
     }
 
     private void HandleStates()
@@ -267,12 +376,15 @@ public class PlayerMovement : PlayerComponent
         {
             case MovementDirection.Rot1:
             case MovementDirection.Default:
-            case MovementDirection.Rot2:
-                GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef.SetAxis(FallingHat.Axis.Z);
+                if (GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef)
+                    GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef.SetAxis(FallingHat.Axis
+                        .Z);
                 break;
             case MovementDirection.Rot3:
             case MovementDirection.Rot4:
-                GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef.SetAxis(FallingHat.Axis.X);
+                if (GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef)
+                    GameManager.instance.currentLevelObjectPoolingManager.FallingHatsManagerRef.SetAxis(FallingHat.Axis
+                        .X);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -286,6 +398,7 @@ public class PlayerMovement : PlayerComponent
 
     public void FreezePlayer()
     {
+        _parent.playerRigid.velocity = Vector3.zero;
         return;
         switch (movementType)
         {
@@ -327,19 +440,29 @@ public class PlayerMovement : PlayerComponent
         float moveDir = 0;
         switch (movementType)
         {
+            case MovementType.RelativeToPlayer:
+                if (_parent.playerInputHandlerComponent.GetMovementDirection().y < 0)
+                    _parent.playerAnimationComponent.FlipModelY(true);
+                else if (_parent.playerInputHandlerComponent.GetMovementDirection().y > 0)
+                    _parent.playerAnimationComponent.FlipModelY(false);
+
+
+                break;
             case MovementType.Horizontal:
 
                 moveDir = _parent.playerInputHandlerComponent.GetMovementDirection().x;
 
                 if (moveDir != 0 && _parent.CurrentPlayerState != PlayerState.Transition &&
                     _parent.CurrentPlayerState != PlayerState.Conversation)
-                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection);
+                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection,
+                        disableW, disableS, disableA, disableD);
                 break;
             case MovementType.Vertical:
                 moveDir = -_parent.playerInputHandlerComponent.GetMovementDirection().y;
                 if (moveDir != 0 && _parent.CurrentPlayerState != PlayerState.Transition &&
                     _parent.CurrentPlayerState != PlayerState.Conversation)
-                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection);
+                    _parent.playerAnimationComponent.HandleModelDirection(moveDir, movementType, movementDirection,
+                        disableW, disableS, disableA, disableD);
                 break;
             // case MovementType.HorizontalAndVertical:
             //     float moveDirX = 0, moveDirY = 0;
@@ -383,6 +506,7 @@ public class PlayerMovement : PlayerComponent
     {
         Horizontal,
         Vertical,
+        RelativeToPlayer,
     }
 
     public enum MovementDirection
