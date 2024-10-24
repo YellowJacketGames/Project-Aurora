@@ -525,6 +525,129 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PuzzleDoor"",
+            ""id"": ""bf77fa15-7cd0-4979-a66a-d35ed8ad5880"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""5eefbe62-031a-4f55-9cf9-1e7d888db569"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Press"",
+                    ""type"": ""Button"",
+                    ""id"": ""29840752-1d8c-479b-9168-2d4d7286597a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e989694-d62c-4199-b785-323e479592c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""3e3d8373-b5aa-4a4c-a2bb-8690a5e9dc6c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""a7ac6ac7-3a37-4a47-b6ab-73cdbfca9d7b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""914537ad-810f-4720-8b31-54e771d5cb3a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""4760aa65-0955-43cf-bef2-8dd7c851b7aa"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""9beb308a-3f4c-4145-86bb-c1901c3fcc79"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02d7bd0d-74ac-4513-bd42-022aad6a1c17"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9af0d10d-d1ca-43c4-89cd-8d3dda5f2682"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c98ec52d-d7f6-469e-9634-4597872a04ba"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -572,6 +695,11 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         // PlayerPause
         m_PlayerPause = asset.FindActionMap("PlayerPause", throwIfNotFound: true);
         m_PlayerPause_Pause = m_PlayerPause.FindAction("Pause", throwIfNotFound: true);
+        // PuzzleDoor
+        m_PuzzleDoor = asset.FindActionMap("PuzzleDoor", throwIfNotFound: true);
+        m_PuzzleDoor_Move = m_PuzzleDoor.FindAction("Move", throwIfNotFound: true);
+        m_PuzzleDoor_Press = m_PuzzleDoor.FindAction("Press", throwIfNotFound: true);
+        m_PuzzleDoor_Exit = m_PuzzleDoor.FindAction("Exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -877,6 +1005,68 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
         }
     }
     public PlayerPauseActions @PlayerPause => new PlayerPauseActions(this);
+
+    // PuzzleDoor
+    private readonly InputActionMap m_PuzzleDoor;
+    private List<IPuzzleDoorActions> m_PuzzleDoorActionsCallbackInterfaces = new List<IPuzzleDoorActions>();
+    private readonly InputAction m_PuzzleDoor_Move;
+    private readonly InputAction m_PuzzleDoor_Press;
+    private readonly InputAction m_PuzzleDoor_Exit;
+    public struct PuzzleDoorActions
+    {
+        private @PlayerInputAsset m_Wrapper;
+        public PuzzleDoorActions(@PlayerInputAsset wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PuzzleDoor_Move;
+        public InputAction @Press => m_Wrapper.m_PuzzleDoor_Press;
+        public InputAction @Exit => m_Wrapper.m_PuzzleDoor_Exit;
+        public InputActionMap Get() { return m_Wrapper.m_PuzzleDoor; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PuzzleDoorActions set) { return set.Get(); }
+        public void AddCallbacks(IPuzzleDoorActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PuzzleDoorActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PuzzleDoorActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Press.started += instance.OnPress;
+            @Press.performed += instance.OnPress;
+            @Press.canceled += instance.OnPress;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+        }
+
+        private void UnregisterCallbacks(IPuzzleDoorActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Press.started -= instance.OnPress;
+            @Press.performed -= instance.OnPress;
+            @Press.canceled -= instance.OnPress;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+        }
+
+        public void RemoveCallbacks(IPuzzleDoorActions instance)
+        {
+            if (m_Wrapper.m_PuzzleDoorActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPuzzleDoorActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PuzzleDoorActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PuzzleDoorActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PuzzleDoorActions @PuzzleDoor => new PuzzleDoorActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -918,5 +1108,11 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
     public interface IPlayerPauseActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IPuzzleDoorActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnPress(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }

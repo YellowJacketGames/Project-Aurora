@@ -1,4 +1,4 @@
 public enum InteractionType
 {
-    PickUp, Location, Conversation, LevelTrigger
+    PickUp, Location, Conversation, LevelTrigger, Interact
 }

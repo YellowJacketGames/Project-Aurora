@@ -14,7 +14,7 @@ public class InteractableElement : MonoBehaviour
     public bool ignoreInteraction = false;
     public bool ignorePopup;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         popup = GetComponentInChildren<InteractablePopup>();
         if (!popup) return;

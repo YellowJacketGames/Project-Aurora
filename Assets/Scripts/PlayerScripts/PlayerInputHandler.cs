@@ -25,6 +25,12 @@ public class PlayerInputHandler : PlayerComponent
     private bool acceptInput;     //Button values for accepting
     private bool toggleZoomInput;  //Button values for zooming 
     //Controls to check which type of control the player is using
+
+    private Vector2 moveInput;
+    private bool pressInput;
+    private bool exitInput; 
+    
+    
     private Gamepad gamepad;
     private Keyboard keyboard;
     public override void Awake()
@@ -89,6 +95,16 @@ public class PlayerInputHandler : PlayerComponent
         //Return to previous tab
         _playerInput.PlayerOptions.PreviousTab.performed += OnPreviousTabPerformed;
         _playerInput.PlayerOptions.PreviousTab.canceled += OnPreviousTabCancelled;
+
+
+        _playerInput.PuzzleDoor.Move.performed += OnMovePerformed;
+        _playerInput.PuzzleDoor.Move.canceled += OnMoveCanceled;
+        
+        _playerInput.PuzzleDoor.Press.performed += OnPressPerformed;
+        _playerInput.PuzzleDoor.Press.canceled += OnPressCanceled;
+        
+        _playerInput.PuzzleDoor.Exit.performed += OnExitPerformed;
+        _playerInput.PuzzleDoor.Exit.canceled += OnExitCanceled;
     }
 
     private void OnDisable()
@@ -140,6 +156,16 @@ public class PlayerInputHandler : PlayerComponent
         //Return to previous tab
         _playerInput.PlayerOptions.PreviousTab.performed -= OnPreviousTabPerformed;
         _playerInput.PlayerOptions.PreviousTab.canceled -= OnPreviousTabCancelled;
+        
+        
+        _playerInput.PuzzleDoor.Move.performed -= OnMovePerformed;
+        _playerInput.PuzzleDoor.Move.canceled -= OnMoveCanceled;
+        
+        _playerInput.PuzzleDoor.Press.performed -= OnPressPerformed;
+        _playerInput.PuzzleDoor.Press.canceled -= OnPressCanceled;
+        
+        _playerInput.PuzzleDoor.Exit.performed -= OnExitPerformed;
+        _playerInput.PuzzleDoor.Exit.canceled -= OnExitCanceled;
 
     }
     #endregion
@@ -283,6 +309,35 @@ public class PlayerInputHandler : PlayerComponent
     {
 
     }
+
+
+    private void OnMovePerformed(InputAction.CallbackContext value)
+    {
+        moveInput = value.ReadValue<Vector2>();
+        moveInput.Normalize();
+    }
+    private void OnMoveCanceled(InputAction.CallbackContext value)
+    {
+        moveInput = Vector2.zero;
+    }
+    private void OnPressPerformed(InputAction.CallbackContext value)
+    {
+        pressInput = true;
+    }
+    private void OnPressCanceled(InputAction.CallbackContext value)
+    {
+        pressInput = false;
+    }
+
+    private void OnExitPerformed(InputAction.CallbackContext value)
+    {
+        exitInput = true;
+    }
+    private void OnExitCanceled(InputAction.CallbackContext value)
+    {
+        exitInput = false;
+    }
+    
     #endregion
 
 
@@ -372,15 +427,24 @@ public class PlayerInputHandler : PlayerComponent
     public void ChangeToUIControls()
     {
         _playerInput.PlayerMovement.Disable();
+        _playerInput.PuzzleDoor.Disable();
         _playerInput.PlayerUI.Enable();
+        
     }
 
     public void ChangeToLevelControls()
     {
         _playerInput.PlayerMovement.Enable();
+        _playerInput.PuzzleDoor.Disable();
+        _playerInput.PlayerUI.Disable();
+        
+    }
+    public void ChangeToPuzzleDoorControls()
+    {
+        _playerInput.PuzzleDoor.Enable();
+        _playerInput.PlayerMovement.Disable();
         _playerInput.PlayerUI.Disable();
     }
-
 
     #endregion
 }
