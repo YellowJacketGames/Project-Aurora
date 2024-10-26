@@ -18,11 +18,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private GameSounds allSounds;
 
 
-    [Header("Filters")]
-    [SerializeField] AudioLowPassFilter filter;
+    [Header("Filters")] [SerializeField] AudioLowPassFilter filter;
+
     private void Awake()
     {
         #region Singleton
+
         if (instance == null)
         {
             instance = this;
@@ -33,6 +34,7 @@ public class AudioManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
         #endregion
 
 
@@ -44,7 +46,7 @@ public class AudioManager : MonoBehaviour
             audioSource.transform.SetParent(transform);
             sound.sourceObject = audioSource;
             sound.source = audioSource.AddComponent<AudioSource>();
-            
+
             // Sound properties
             sound.source.clip = sound.clip;
             sound.source.volume = sound.volume;
@@ -60,11 +62,11 @@ public class AudioManager : MonoBehaviour
             {
                 case SoundType.SFX:
                     if (sfxMixer != null)
-                    sound.source.outputAudioMixerGroup = sfxMixer;
+                        sound.source.outputAudioMixerGroup = sfxMixer;
                     break;
                 case SoundType.Music:
                     if (musicMixer != null)
-                    sound.source.outputAudioMixerGroup = musicMixer;
+                        sound.source.outputAudioMixerGroup = musicMixer;
                     break;
                 default:
                     break;
@@ -72,21 +74,22 @@ public class AudioManager : MonoBehaviour
 
             if (sound.playOnAwake) //Since we're spawning this sounds on start, they do not execute the awake method, so we play them anyway.
                 sound.source.Play();
-
         }
     }
 
     //This region holds the methods related to playing and stopping sounds
+
     #region Using sounds
 
     // Play method, if the sound isn't found, the console debugs a warning.
 
     #region Play
-    public void Play (string name)
+
+    public void Play(string name)
     {
         Sound newSound = Array.Find(sounds, sound => sound.name == name);
 
-        if(newSound != null)
+        if (newSound != null)
         {
             newSound.source.PlayOneShot(newSound.clip, newSound.volume);
         }
@@ -95,6 +98,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound: " + name + " not found");
         }
     }
+
     public void PlayLoop(string name)
     {
         Sound newSound = Array.Find(sounds, sound => sound.name == name);
@@ -108,6 +112,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound: " + name + " not found");
         }
     }
+
     public void PlayLoop(Sound newSound)
     {
         if (newSound != null)
@@ -119,6 +124,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound: " + name + " not found");
         }
     }
+
     public void Play(Sound newSound)
     {
         if (newSound != null)
@@ -130,6 +136,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound: " + name + " not found");
         }
     }
+
     #endregion
 
     #region PlayWithRandomPitch
@@ -150,6 +157,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound: " + name + " not found");
         }
     }
+
     public void PlayWithRandomPitch(float min, float max, string name)
     {
         Sound newSound = Array.Find(sounds, sound => sound.name == name);
@@ -185,12 +193,13 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region Stop
+
     // Stop method, if the sound isn't found, the console debugs a warning.
     public void Stop(string name)
     {
         Sound newSound = Array.Find(sounds, sound => sound.name == name);
 
-        if(newSound != null)
+        if (newSound != null)
         {
             newSound.source.Stop();
         }
@@ -213,9 +222,11 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound: " + name + " not found");
         }
     }
+
     #endregion
 
     #region ResetSound
+
     // Reset method, resets de volume of input sound, if the sound isn't found, the console debugs a warning
     public void ResetSound(string name)
     {
@@ -231,18 +242,18 @@ public class AudioManager : MonoBehaviour
         newSound.source.pitch = newSound.pitch;
     }
 
-
     #endregion
 
     #endregion
 
     //This region holds the methods related to fading sounds
+
     #region Fade In and Fade Out Sounds
 
     //Fade out method, Progressively lowers the volume of the sound, until it stops
     IEnumerator FadeOutSound(Sound sound)
     {
-        while(sound.source.volume > 0)
+        while (sound.source.volume > 0)
         {
             sound.source.volume -= Time.deltaTime;
             yield return null;
@@ -312,17 +323,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    
     #endregion
 
 
     public void ActivateFilter()
     {
+        if (!filter) return;
         filter.enabled = true;
     }
 
     public void DeactivateFilter()
     {
+        if (!filter) return;
+
         filter.enabled = false;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,36 +8,44 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : PlayerComponent
 {
-    [Header("Control Schemes")]
-    [SerializeField] InputControlScheme keyboardScheme;
-    //The input class for the player actions
-    private PlayerInputAsset _playerInput = null;
-    [SerializeField] PlayerInput test;
+    [Header("Control Schemes")] [SerializeField]
+    InputControlScheme keyboardScheme;
 
+    //The input class for the player actions
+    [SerializeField] private PlayerInputAsset _playerInput = null;
+    [SerializeField] PlayerInput test;
+    [SerializeField] private string currentScheme;
     public PlayerInputAsset PlayerInput => _playerInput;
-    
+
     //Stick and movement value for the player movement and UI traversal.
     private Vector2 movementInput;
 
-    private bool runningInput;    //Button values for running
-    private bool crouchingInput;  //Button values for running
-    private bool jumpingInput;    //Button values for jumping
-    private bool interactInput;   //Button values for interacting
-    private bool acceptInput;     //Button values for accepting
-    private bool toggleZoomInput;  //Button values for zooming 
+    private bool runningInput; //Button values for running
+    private bool crouchingInput; //Button values for running
+    private bool jumpingInput; //Button values for jumping
+    private bool interactInput; //Button values for interacting
+    private bool acceptInput; //Button values for accepting
+    private bool toggleZoomInput; //Button values for zooming 
     //Controls to check which type of control the player is using
 
     private Vector2 moveInput;
     private bool pressInput;
-    private bool exitInput; 
-    
-    
+    private bool exitInput;
+
+
     private Gamepad gamepad;
     private Keyboard keyboard;
+
     public override void Awake()
     {
         base.Awake();
         _playerInput = new PlayerInputAsset();
+        ChangeToLevelControls();
+        currentScheme = _playerInput.ControllerScheme.name;
+    }
+
+    private void Start()
+    {
         ChangeToLevelControls();
     }
 
@@ -45,11 +54,10 @@ public class PlayerInputHandler : PlayerComponent
     //This method handles the adding of listeners and enabling the component when the gameobject is enabled and disabled.
     private void OnEnable()
     {
-        
         _playerInput.Enable();
+        ChangeToLevelControls();
 
-        
-        Debug.Log(_playerInput.controlSchemes[0].name);
+
         //Adding listeners to the events when the input action is performed.
 
         //Movement
@@ -99,10 +107,10 @@ public class PlayerInputHandler : PlayerComponent
 
         _playerInput.PuzzleDoor.Move.performed += OnMovePerformed;
         _playerInput.PuzzleDoor.Move.canceled += OnMoveCanceled;
-        
+
         _playerInput.PuzzleDoor.Press.performed += OnPressPerformed;
         _playerInput.PuzzleDoor.Press.canceled += OnPressCanceled;
-        
+
         _playerInput.PuzzleDoor.Exit.performed += OnExitPerformed;
         _playerInput.PuzzleDoor.Exit.canceled += OnExitCanceled;
     }
@@ -156,31 +164,33 @@ public class PlayerInputHandler : PlayerComponent
         //Return to previous tab
         _playerInput.PlayerOptions.PreviousTab.performed -= OnPreviousTabPerformed;
         _playerInput.PlayerOptions.PreviousTab.canceled -= OnPreviousTabCancelled;
-        
-        
+
+
         _playerInput.PuzzleDoor.Move.performed -= OnMovePerformed;
         _playerInput.PuzzleDoor.Move.canceled -= OnMoveCanceled;
-        
+
         _playerInput.PuzzleDoor.Press.performed -= OnPressPerformed;
         _playerInput.PuzzleDoor.Press.canceled -= OnPressCanceled;
-        
+
         _playerInput.PuzzleDoor.Exit.performed -= OnExitPerformed;
         _playerInput.PuzzleDoor.Exit.canceled -= OnExitCanceled;
-
     }
+
     #endregion
 
 
     //This region holds the different events that store the values of the inputs in variables and are added as listeners to the input actions
+
     #region InputEvents
+
     private void OnMovementPerformed(InputAction.CallbackContext value)
     {
-        
         movementInput = value.ReadValue<Vector2>();
 
         //We normalize the vector so that it always gives a flat number.
         movementInput.Normalize();
     }
+
     private void OnMovementCanceled(InputAction.CallbackContext value)
     {
         movementInput = Vector2.zero;
@@ -190,6 +200,7 @@ public class PlayerInputHandler : PlayerComponent
     {
         runningInput = true;
     }
+
     private void OnRunningCanceled(InputAction.CallbackContext value)
     {
         runningInput = false;
@@ -199,6 +210,7 @@ public class PlayerInputHandler : PlayerComponent
     {
         crouchingInput = true;
     }
+
     private void OnCrouchingCanceled(InputAction.CallbackContext value)
     {
         crouchingInput = false;
@@ -244,16 +256,20 @@ public class PlayerInputHandler : PlayerComponent
         acceptInput = false;
     }
 
-    private void OnDiaryPerformed(InputAction.CallbackContext value) //We set this in the event to execute the code without having to require the update method
+    private void
+        OnDiaryPerformed(
+            InputAction.CallbackContext value) //We set this in the event to execute the code without having to require the update method
     {
         if (GameManager.instance.GetCurrentGameState() == GameStates.Pause)
             return;
-        switch (GameManager.instance.GetCurrentGameState()) //Depending on the current state, it will pause or unpause the game
+        switch
+            (GameManager.instance
+                .GetCurrentGameState()) //Depending on the current state, it will pause or unpause the game
         {
             case GameStates.Gameplay: //If we're currently playing, we pause the game.
                 GameManager.instance.pauseManager.Pause();
                 GameManager.instance.diaryManager.OpenDiaryTab();
-                
+
                 break;
             case GameStates.Diary: //If we're already in the diary menu, we close it
                 GameManager.instance.diaryManager.CloseDiaryTab();
@@ -266,7 +282,6 @@ public class PlayerInputHandler : PlayerComponent
 
     private void OnDiaryCanceled(InputAction.CallbackContext value)
     {
-
     }
 
     private void OnNextTabPerformed(InputAction.CallbackContext value)
@@ -276,22 +291,26 @@ public class PlayerInputHandler : PlayerComponent
 
     private void OnNextTabCancelled(InputAction.CallbackContext value)
     {
-
     }
+
     private void OnPreviousTabPerformed(InputAction.CallbackContext value)
     {
         GameManager.instance.diaryManager.OpenNextTab();
-
     }
+
     private void OnPreviousTabCancelled(InputAction.CallbackContext value)
     {
-
     }
-    private void OnPausePerformed(InputAction.CallbackContext value) //We set this in the event to execute the code without having to require the update method
+
+    private void
+        OnPausePerformed(
+            InputAction.CallbackContext value) //We set this in the event to execute the code without having to require the update method
     {
         if (GameManager.instance.GetCurrentGameState() == GameStates.Diary)
             return;
-        switch (GameManager.instance.GetCurrentGameState()) //Depending on the current state, it will pause or unpause the game
+        switch
+            (GameManager.instance
+                .GetCurrentGameState()) //Depending on the current state, it will pause or unpause the game
         {
             case GameStates.Gameplay: //If we're currently playing, we pause the game.
                 GameManager.instance.pauseManager.Pause();
@@ -307,7 +326,6 @@ public class PlayerInputHandler : PlayerComponent
 
     private void OnPauseCanceled(InputAction.CallbackContext value)
     {
-
     }
 
 
@@ -315,15 +333,28 @@ public class PlayerInputHandler : PlayerComponent
     {
         moveInput = value.ReadValue<Vector2>();
         moveInput.Normalize();
+        if (moveInput.y > 0)
+            EventsManager.OnCodexUp?.Invoke();
+        else if (moveInput.y < 0)
+            EventsManager.OnCodexDown?.Invoke();
+
+        if (moveInput.x > 0)
+            EventsManager.OnCodexRight?.Invoke();
+        else if (moveInput.x < 0)
+            EventsManager.OnCodexLeft?.Invoke();
     }
+
     private void OnMoveCanceled(InputAction.CallbackContext value)
     {
         moveInput = Vector2.zero;
     }
+
     private void OnPressPerformed(InputAction.CallbackContext value)
     {
         pressInput = true;
+        EventsManager.onCodexIn?.Invoke();
     }
+
     private void OnPressCanceled(InputAction.CallbackContext value)
     {
         pressInput = false;
@@ -332,33 +363,37 @@ public class PlayerInputHandler : PlayerComponent
     private void OnExitPerformed(InputAction.CallbackContext value)
     {
         exitInput = true;
+        EventsManager.onCodexOut?.Invoke();
     }
+
     private void OnExitCanceled(InputAction.CallbackContext value)
     {
         exitInput = false;
     }
-    
+
     #endregion
 
 
     #region GetInputValues
+
     //Returning the value of the moving Vector, we will only be using the x values for now.
     public Vector2 GetMovementDirection()
     {
         // return movementInput;
         return GetMovementDirectionClamped();
-    }    
+    }
+
     public Vector2 GetMovementDirectionClamped()
     {
-        float newX,newY;
-        if (movementInput.x > 0) newX = 1; 
-        else if (movementInput.x < 0) newX = -1; 
-        else newX = 0; 
-        if (movementInput.y > 0) newY = 1; 
-        else if (movementInput.y < 0) newY = -1; 
-        else newY = 0; 
+        float newX, newY;
+        if (movementInput.x > 0) newX = 1;
+        else if (movementInput.x < 0) newX = -1;
+        else newX = 0;
+        if (movementInput.y > 0) newY = 1;
+        else if (movementInput.y < 0) newY = -1;
+        else newY = 0;
 
-        return new Vector2(newX,newY);
+        return new Vector2(newX, newY);
     }
 
     public bool GetRunningInput()
@@ -371,13 +406,11 @@ public class PlayerInputHandler : PlayerComponent
         bool value = crouchingInput;
         crouchingInput = false;
         return value;
-
     }
 
     public bool GetJumpingInput()
     {
         return jumpingInput;
-
     }
 
     public bool GetInteractInput()
@@ -400,11 +433,13 @@ public class PlayerInputHandler : PlayerComponent
         toggleZoomInput = false;
         return result;
     }
+
     public Vector2 GetRotationInput()
     {
         float rotationX = Input.GetKey(KeyCode.A) ? -1 : Input.GetKey(KeyCode.D) ? 1 : 0;
         return new Vector2(rotationX, 0); // Only X-axis input for rotation
     }
+
     #endregion
 
     private void Update()
@@ -424,12 +459,13 @@ public class PlayerInputHandler : PlayerComponent
     }
 
     #region Change Action Maps
+
     public void ChangeToUIControls()
     {
         _playerInput.PlayerMovement.Disable();
         _playerInput.PuzzleDoor.Disable();
         _playerInput.PlayerUI.Enable();
-        
+        currentScheme = _playerInput.ControllerScheme.name;
     }
 
     public void ChangeToLevelControls()
@@ -437,13 +473,15 @@ public class PlayerInputHandler : PlayerComponent
         _playerInput.PlayerMovement.Enable();
         _playerInput.PuzzleDoor.Disable();
         _playerInput.PlayerUI.Disable();
-        
+        currentScheme = _playerInput.ControllerScheme.name;
     }
+
     public void ChangeToPuzzleDoorControls()
     {
         _playerInput.PuzzleDoor.Enable();
         _playerInput.PlayerMovement.Disable();
         _playerInput.PlayerUI.Disable();
+        currentScheme = _playerInput.ControllerScheme.name;
     }
 
     #endregion

@@ -639,7 +639,7 @@ public partial class @PlayerInputAsset: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c98ec52d-d7f6-469e-9634-4597872a04ba"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
