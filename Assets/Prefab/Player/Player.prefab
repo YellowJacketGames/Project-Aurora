@@ -5392,10 +5392,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4846810525926298266}
-        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-        m_MethodName: SwitchCurrentActionMap
-        m_Mode: 5
+      - m_Target: {fileID: 4846810525926298269}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ChangeToUIControls
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5485,10 +5485,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4846810525926298266}
-        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-        m_MethodName: SwitchCurrentActionMap
-        m_Mode: 5
+      - m_Target: {fileID: 4846810525926298269}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ChangeToLevelControls
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5514,11 +5514,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentSpeed: 0
   movementType: 0
+  movementDirection: 0
   horizontalAndVerticalMovement: 0
   walkSpeed: 8
   runSpeed: 16
   crouchSpeed: 7
   jumpForce: 50
+  disableA: 0
+  disableD: 0
+  disableW: 0
+  disableS: 0
   isGrounded: 0
   isJumping: 0
   isCrouched: 0
@@ -5529,6 +5534,8 @@ MonoBehaviour:
   movingConstraints: 0
   JumpTimeout: 0.5
   FallTimeout: 0.15
+  relativeToMovementSimpleCamera: {fileID: 0}
+  rotSpeed: 110
 --- !u!114 &4846810525926298269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5548,6 +5555,7 @@ MonoBehaviour:
     - m_ControlPath: 
       m_Flags: 0
   test: {fileID: 4846810525926298266}
+  currentScheme: 
 --- !u!114 &4846810525926298268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5593,6 +5601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentElement: {fileID: 0}
+  CanInteract: 1
+  direction: 0
 --- !u!114 &4846810525926298265
 MonoBehaviour:
   m_ObjectHideFlags: 0
