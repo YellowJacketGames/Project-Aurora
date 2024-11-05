@@ -404,14 +404,15 @@ public class PlayerConversation : PlayerComponent
         {
             foreach (string tag in currentDialogue.currentTags)
             {
+                Debug.Log(tag);
                 string[] splitTag = tag.Split(":");
 
                 string tagKey = splitTag[0];
-                string valueKey = splitTag[1];
 
                 switch (tagKey)
                 {
                     case "speaker":
+                        string valueKey = splitTag[1];
                             int numberValue = System.Convert.ToInt32(valueKey);
 
                             switch (numberValue)
@@ -434,6 +435,7 @@ public class PlayerConversation : PlayerComponent
                         break;
 
                     case "give_item":
+                        valueKey = splitTag[1];
                         ObjectClass obj = new ObjectClass();
                         obj = obj.CreateObject(valueKey);
                         if(GameManager.instance.Data.HasObject(valueKey)) return;
@@ -441,6 +443,7 @@ public class PlayerConversation : PlayerComponent
                         GameManager.instance.Data.AddObject(valueKey);
                         break;
                     case "take_item":
+                        valueKey = splitTag[1];
                         if (_parent.playerInventoryComponent.CheckIfObjectIsInInventory(valueKey))
                         {
                             _parent.playerInventoryComponent.UseItem(valueKey);
@@ -448,9 +451,20 @@ public class PlayerConversation : PlayerComponent
 
                         if(!GameManager.instance.Data.HasObject(valueKey)) return;
                             GameManager.instance.Data.RemoveObject(valueKey);
-
                         break;
+                    
                     default:
+
+                        const string eventPrefix = "invoke_event_";
+                        if (tagKey.StartsWith(eventPrefix))
+                        {
+                            Debug.Log("EVENTOOOO");
+                            string eventName = tagKey.Substring(eventPrefix.Length);
+                            EventsManager.InvokeConversationEvent(eventName);
+                            return;
+                        }
+                        
+                        
                         Debug.LogWarning("Tag not found use for");
                         break;
                 }
