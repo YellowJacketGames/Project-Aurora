@@ -1803,11 +1803,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentSpeed: 0
   movementType: 0
+  movementDirection: 0
   horizontalAndVerticalMovement: 0
   walkSpeed: 12
   runSpeed: 16
   crouchSpeed: 10
   jumpForce: 250
+  disableA: 0
+  disableD: 0
+  disableW: 0
+  disableS: 0
   isGrounded: 0
   isJumping: 0
   isCrouched: 0
@@ -1818,6 +1823,8 @@ MonoBehaviour:
   movingConstraints: 0
   JumpTimeout: 0.5
   FallTimeout: 0.15
+  relativeToMovementSimpleCamera: {fileID: 0}
+  rotSpeed: 110
 --- !u!114 &4523727613811687786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1835,6 +1842,7 @@ MonoBehaviour:
     m_BindingGroup: 
     m_DeviceRequirements: []
   test: {fileID: 4523727613811687776}
+  currentScheme: 
 --- !u!114 &4523727613811687788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1896,6 +1904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentElement: {fileID: 0}
   CanInteract: 1
+  direction: 0
 --- !u!114 &4523727613811687779
 MonoBehaviour:
   m_ObjectHideFlags: 0
