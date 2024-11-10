@@ -32,6 +32,8 @@ public class PlayerInputHandler : PlayerComponent
     private bool pressInput;
     private bool exitInput;
 
+    private bool minigamePressInput;
+    private bool minigameExitInput;
 
     private Gamepad gamepad;
     private Keyboard keyboard;
@@ -113,6 +115,13 @@ public class PlayerInputHandler : PlayerComponent
 
         _playerInput.PuzzleDoor.Exit.performed += OnExitPerformed;
         _playerInput.PuzzleDoor.Exit.canceled += OnExitCanceled;
+
+        _playerInput.Minigames.Press.performed += OnMinigamePressPerformed;
+        _playerInput.Minigames.Press.canceled += OnMinigamePressCanceled;
+
+
+        _playerInput.Minigames.Exit.performed += OnMinigameExitPerformed;
+        _playerInput.Minigames.Exit.canceled += OnMinigameExitCanceled;
     }
 
     private void OnDisable()
@@ -174,6 +183,12 @@ public class PlayerInputHandler : PlayerComponent
 
         _playerInput.PuzzleDoor.Exit.performed -= OnExitPerformed;
         _playerInput.PuzzleDoor.Exit.canceled -= OnExitCanceled;
+
+        _playerInput.Minigames.Press.performed -= OnMinigamePressPerformed;
+        _playerInput.Minigames.Press.canceled -= OnMinigamePressCanceled;
+
+        _playerInput.Minigames.Exit.performed -= OnMinigameExitPerformed;
+        _playerInput.Minigames.Exit.canceled -= OnMinigameExitCanceled;
     }
 
     #endregion
@@ -355,6 +370,28 @@ public class PlayerInputHandler : PlayerComponent
         EventsManager.onCodexIn?.Invoke();
     }
 
+    private void OnMinigamePressPerformed(InputAction.CallbackContext value)
+    {
+        minigamePressInput = true;
+        EventsManager.onMinigamePress?.Invoke();
+    }
+
+    private void OnMinigameExitPerformed(InputAction.CallbackContext value)
+    {
+        minigameExitInput = true;
+        EventsManager.onMinigameExit?.Invoke();
+    }
+
+    private void OnMinigameExitCanceled(InputAction.CallbackContext value)
+    {
+        minigameExitInput = false;
+    }
+
+    private void OnMinigamePressCanceled(InputAction.CallbackContext value)
+    {
+        minigamePressInput = false;
+    }
+
     private void OnPressCanceled(InputAction.CallbackContext value)
     {
         pressInput = false;
@@ -465,6 +502,7 @@ public class PlayerInputHandler : PlayerComponent
         _playerInput.PlayerMovement.Disable();
         _playerInput.PuzzleDoor.Disable();
         _playerInput.PlayerUI.Enable();
+        _playerInput.Minigames.Disable();
         currentScheme = _playerInput.ControllerScheme.name;
     }
 
@@ -473,12 +511,23 @@ public class PlayerInputHandler : PlayerComponent
         _playerInput.PlayerMovement.Enable();
         _playerInput.PuzzleDoor.Disable();
         _playerInput.PlayerUI.Disable();
+        _playerInput.Minigames.Disable();
         currentScheme = _playerInput.ControllerScheme.name;
     }
 
     public void ChangeToPuzzleDoorControls()
     {
         _playerInput.PuzzleDoor.Enable();
+        _playerInput.PlayerMovement.Disable();
+        _playerInput.PlayerUI.Disable();
+        _playerInput.Minigames.Disable();
+        currentScheme = _playerInput.ControllerScheme.name;
+    }
+
+    public void ChangeToMinigamesControls()
+    {
+        _playerInput.Minigames.Enable();
+        _playerInput.PuzzleDoor.Disable();
         _playerInput.PlayerMovement.Disable();
         _playerInput.PlayerUI.Disable();
         currentScheme = _playerInput.ControllerScheme.name;
