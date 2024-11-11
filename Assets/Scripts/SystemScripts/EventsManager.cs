@@ -12,6 +12,7 @@ public static class EventsManager
     public static UnityEvent onCodexIn = new UnityEvent();
     public static UnityEvent onCodexOut = new UnityEvent();
     public static UnityEvent onMinigamePress = new UnityEvent();
+    public static UnityEvent onMinigamePressCanceled = new UnityEvent();
     public static UnityEvent onMinigameExit = new UnityEvent();
     private static Dictionary<string, UnityEvent> conversationEvents = new Dictionary<string, UnityEvent>();
 

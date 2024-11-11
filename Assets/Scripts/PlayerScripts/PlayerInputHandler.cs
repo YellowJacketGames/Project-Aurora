@@ -390,6 +390,7 @@ public class PlayerInputHandler : PlayerComponent
     private void OnMinigamePressCanceled(InputAction.CallbackContext value)
     {
         minigamePressInput = false;
+        EventsManager.onMinigamePressCanceled?.Invoke();
     }
 
     private void OnPressCanceled(InputAction.CallbackContext value)
