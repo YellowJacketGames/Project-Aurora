@@ -25,13 +25,11 @@ public class WaterGun : MonoBehaviour
 
     public void Shoot()
     {
-        //instanciate particle
         waterParticle.Play();
     }
 
     public void StopShoot()
     {
-        //instanciate particle
         waterParticle.Stop();
     }
 }
