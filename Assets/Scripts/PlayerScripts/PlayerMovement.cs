@@ -17,7 +17,6 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float crouchSpeed;
-    [Space] [SerializeField] private float jumpForce;
 
     [Space(10)] [Header("Movement Limits")] [SerializeField]
     private bool disableA;
@@ -25,11 +24,29 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] private bool disableD;
     [SerializeField] private bool disableW;
     [SerializeField] private bool disableS;
+    // [FormerlySerializedAs("playerSlidesOnSlopes")] [SerializeField] private bool playerDontSlideOnSlopes;
 
-    [Space] [Header("Checks")] [SerializeField]
+    [Space] [Header("Ground")] [SerializeField]
     private bool isGrounded;
 
-    [SerializeField] private bool isJumping;
+    [SerializeField] private Transform playerCenter;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float playerHeight = 1.8f;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpCooldown = .4f;
+    [SerializeField] private bool readyToJump = true;
+    [SerializeField] private float movementMultiplier = 1.0f;
+    [SerializeField] private float airMovementMultiplier = 1.2f;
+
+    private float _jumpTimeoutDelta;
+    private float _fallTimeoutDelta;
+
+    public float JumpTimeout = 0.50f; //time required before can jump again
+    public float FallTimeout = 0.15f;
+
+    [Space] [Header("Checks")] [SerializeField]
+    private bool isJumping;
+
     [SerializeField] private bool isCrouched;
     [SerializeField] private bool isColliding;
     [SerializeField] public bool triggerCollisionsL;
@@ -43,12 +60,6 @@ public class PlayerMovement : PlayerComponent
     private RigidbodyConstraints idleConstraints;
 
     [SerializeField] private RigidbodyConstraints movingConstraints;
-
-    private float _jumpTimeoutDelta;
-    private float _fallTimeoutDelta;
-
-    public float JumpTimeout = 0.50f; //time required before can jump again
-    public float FallTimeout = 0.15f;
 
 
     private float targetSpeed = 0f;
@@ -70,7 +81,7 @@ public class PlayerMovement : PlayerComponent
     }
 
     private float inputMagnitude = 0f;
-    private float _speedChangeRate = 8.0f; //for the animationBlending
+    private float _speedChangeRate = 7.0f; //for the animationBlending
     private float animationBlend;
 
     #region Booleans
@@ -88,8 +99,10 @@ public class PlayerMovement : PlayerComponent
 
     private void Update()
     {
+        GroundCheck();
         HandleFlipX();
         HandleStates();
+        HandleJump();
     }
 
     private void FixedUpdate()
@@ -98,7 +111,6 @@ public class PlayerMovement : PlayerComponent
         if (!canMove) return;
         HandleMovementType();
         HandleMovement();
-        HandleJump();
         HandleCrouch();
     }
 
@@ -124,8 +136,6 @@ public class PlayerMovement : PlayerComponent
 
     private void HandleMovement()
     {
-        // if (isColliding)
-        //     targetSpeed = 0f;
         if (!isCrouched)
             TargetSpeed = _parent.playerInputHandlerComponent.GetRunningInput() ? runSpeed : walkSpeed;
         else
@@ -142,29 +152,33 @@ public class PlayerMovement : PlayerComponent
                 inputMagnitude = ManageDisables(inputMagnitude, true);
                 if (inputMagnitude == 0) targetSpeed = 0.0f;
                 _currentSpeed = inputMagnitude * targetSpeed * Time.deltaTime;
-                switch (movementDirection)
-                {
-                    case MovementDirection.Default:
-                        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
-                            _currentSpeed * targetSpeed);
-                        break;
-                    case MovementDirection.Rot1:
-                        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, -
-                            _currentSpeed * targetSpeed);
-                        break;
-                    case MovementDirection.Rot2: //  this one not used for now i guess
-                        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
-                            _currentSpeed * targetSpeed);
-                        break;
-                    case MovementDirection.Rot3:
-                        _parent.playerRigid.velocity = new Vector3(-_currentSpeed * targetSpeed,
-                            _parent.playerRigid.velocity.y, 0);
-                        break;
-                    case MovementDirection.Rot4:
-                        _parent.playerRigid.velocity = new Vector3(_currentSpeed * targetSpeed,
-                            _parent.playerRigid.velocity.y, 0);
-                        break;
-                }
+                if (_currentSpeed != 0)
+                    switch (movementDirection)
+                    {
+                        case MovementDirection.Default:
+                            _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
+                                _currentSpeed * targetSpeed * movementMultiplier);
+                            break;
+                        case MovementDirection.Rot1:
+                            _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, -
+                                _currentSpeed * targetSpeed * movementMultiplier);
+                            break;
+                        case MovementDirection.Rot2: //  this one not used for now i guess
+                            _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
+                                _currentSpeed * targetSpeed * movementMultiplier);
+                            break;
+                        case MovementDirection.Rot3:
+                            _parent.playerRigid.velocity = new Vector3(
+                                -_currentSpeed * targetSpeed * movementMultiplier,
+                                _parent.playerRigid.velocity.y, 0);
+                            break;
+                        case MovementDirection.Rot4:
+                            _parent.playerRigid.velocity = new Vector3(_currentSpeed * targetSpeed * movementMultiplier,
+                                _parent.playerRigid.velocity.y, 0);
+                            break;
+                    }
+
+                // if (playerDontSlideOnSlopes) _parent.playerRigid.isKinematic = targetSpeed == 0.0f;
 
                 break;
             case MovementType.Vertical:
@@ -172,29 +186,34 @@ public class PlayerMovement : PlayerComponent
                 inputMagnitude = ManageDisables(inputMagnitude, false);
                 if (inputMagnitude == 0) targetSpeed = 0.0f;
                 _currentSpeed = inputMagnitude * targetSpeed * Time.deltaTime;
-                switch (movementDirection)
-                {
-                    case MovementDirection.Default:
-                        _parent.playerRigid.velocity =
-                            new Vector3(_currentSpeed * targetSpeed, _parent.playerRigid.velocity.y, 0);
-                        break;
-                    case MovementDirection.Rot1:
-                        _parent.playerRigid.velocity = new Vector3(-_currentSpeed * targetSpeed,
-                            _parent.playerRigid.velocity.y, 0);
-                        break;
-                    case MovementDirection.Rot2: // Not used for now
-                        _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x,
-                            0, _currentSpeed * targetSpeed);
-                        break;
-                    case MovementDirection.Rot3:
-                        _parent.playerRigid.velocity = new Vector3(0,
-                            _parent.playerRigid.velocity.y, _currentSpeed * targetSpeed);
-                        break;
-                    case MovementDirection.Rot4:
-                        _parent.playerRigid.velocity = new Vector3(0,
-                            _parent.playerRigid.velocity.y, -_currentSpeed * targetSpeed);
-                        break;
-                }
+                if (_currentSpeed != 0)
+                    switch (movementDirection)
+                    {
+                        case MovementDirection.Default:
+                            _parent.playerRigid.velocity =
+                                new Vector3(_currentSpeed * targetSpeed * movementMultiplier,
+                                    _parent.playerRigid.velocity.y, 0);
+                            break;
+                        case MovementDirection.Rot1:
+                            _parent.playerRigid.velocity = new Vector3(
+                                -_currentSpeed * targetSpeed * movementMultiplier,
+                                _parent.playerRigid.velocity.y, 0);
+                            break;
+                        case MovementDirection.Rot2: // Not used for now
+                            _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x,
+                                0, _currentSpeed * targetSpeed * movementMultiplier);
+                            break;
+                        case MovementDirection.Rot3:
+                            _parent.playerRigid.velocity = new Vector3(0,
+                                _parent.playerRigid.velocity.y, _currentSpeed * targetSpeed * movementMultiplier);
+                            break;
+                        case MovementDirection.Rot4:
+                            _parent.playerRigid.velocity = new Vector3(0,
+                                _parent.playerRigid.velocity.y, -_currentSpeed * targetSpeed * movementMultiplier);
+                            break;
+                    }
+                // if (playerDontSlideOnSlopes) _parent.playerRigid.isKinematic = targetSpeed == 0.0f;
+
 
                 break;
         }
@@ -337,33 +356,49 @@ public class PlayerMovement : PlayerComponent
         }
     }
 
+    private void ResetJump()
+    {
+        readyToJump = true;
+        movementMultiplier = 1.0f;
+    }
+
     private void HandleJump()
     {
-        if (isGrounded)
-        {
-            isJumping = false;
-            _parent.playerAnimationComponent.SetJump(false);
-            _parent.playerAnimationComponent.SetFreeFall(false);
+        if (!_parent.playerInputHandlerComponent.GetJumpingInput() || !readyToJump || !isGrounded) return;
+        movementMultiplier = airMovementMultiplier;
+        readyToJump = false;
+        var velocity = _parent.playerRigid.velocity;
+        velocity = new Vector3(velocity.x, 0, velocity.y);
+        _parent.playerRigid.velocity = velocity;
+        _parent.playerRigid.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        Invoke(nameof(ResetJump), jumpCooldown);
 
-            if (_parent.playerInputHandlerComponent.GetJumpingInput() && _jumpTimeoutDelta <= 0.0f)
-            {
-                isJumping = true;
-                _parent.playerRigid.AddForce(Vector3.up * jumpForce);
-                //set state maybe
-                _parent.playerAnimationComponent.SetJump(true);
-            }
 
-            if (_jumpTimeoutDelta >= 0.0f)
-                _jumpTimeoutDelta -= Time.deltaTime;
-        }
-        else
-        {
-            _jumpTimeoutDelta = JumpTimeout;
-            if (_fallTimeoutDelta >= 0.0f)
-                _fallTimeoutDelta -= Time.deltaTime;
-            else
-                _parent.playerAnimationComponent.SetFreeFall(true);
-        }
+        // if (isGrounded)
+        // {
+        //     isJumping = false;
+        //     _parent.playerAnimationComponent.SetJump(false);
+        //     _parent.playerAnimationComponent.SetFreeFall(false);
+        //
+        //     if (_parent.playerInputHandlerComponent.GetJumpingInput() && _jumpTimeoutDelta <= 0.0f)
+        //     {
+        //         isJumping = true;
+        //         _parent.playerRigid.AddForce(Vector3.up * jumpForce);
+        //         //set state maybe
+        //         _parent.playerAnimationComponent.SetJump(true);
+        //     }
+        //
+        //     if (_jumpTimeoutDelta >= 0.0f)
+        //         _jumpTimeoutDelta -= Time.deltaTime;
+        // }
+        // else
+        // {
+        //     _jumpTimeoutDelta = JumpTimeout;
+        //     if (_fallTimeoutDelta >= 0.0f)
+        //         _fallTimeoutDelta -= Time.deltaTime;
+        //     else
+        //         _parent.playerAnimationComponent.SetFreeFall(true);
+        // }
     }
 
     public void ChangeMovementDirection(MovementType type, MovementDirection direction)
@@ -398,7 +433,8 @@ public class PlayerMovement : PlayerComponent
 
     public void FreezePlayer()
     {
-        _parent.playerRigid.velocity = Vector3.zero;
+        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, 0);
+
         return;
         switch (movementType)
         {
@@ -479,25 +515,32 @@ public class PlayerMovement : PlayerComponent
 
     #region TRIGGERS
 
+    private void GroundCheck()
+    {
+        isGrounded = Physics.Raycast(playerCenter.position, Vector3.down, playerHeight * .5f + .2f, groundLayer);
+        Debug.DrawRay(playerCenter.position, Vector3.down, Color.green);
+        _parent.playerAnimationComponent.SetGrounded(isGrounded);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Ground")) return;
-        isGrounded = true;
-        _parent.playerAnimationComponent.SetGrounded(isGrounded);
+        // if (!other.CompareTag("Ground")) return;
+        // isGrounded = true;
+        // _parent.playerAnimationComponent.SetGrounded(isGrounded);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("Ground")) return;
-        isGrounded = true;
-        _parent.playerAnimationComponent.SetGrounded(isGrounded);
+        // if (!other.CompareTag("Ground")) return;
+        // isGrounded = true;
+        // _parent.playerAnimationComponent.SetGrounded(isGrounded);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("Ground")) return;
-        isGrounded = false;
-        _parent.playerAnimationComponent.SetGrounded(isGrounded);
+        // if (!other.CompareTag("Ground")) return;
+        // isGrounded = false;
+        // _parent.playerAnimationComponent.SetGrounded(isGrounded);
     }
 
     #endregion

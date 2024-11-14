@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1769007604768318585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1462455406074886799}
+  m_Layer: 2
+  m_Name: CenterTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1462455406074886799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769007604768318585}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4846810525926298272}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4429560512898961726
 GameObject:
   m_ObjectHideFlags: 0
@@ -5339,6 +5370,7 @@ Transform:
   - {fileID: 4846810524457579755}
   - {fileID: 4846810524826788414}
   - {fileID: 7518650447353329252}
+  - {fileID: 1462455406074886799}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5564,15 +5596,26 @@ MonoBehaviour:
   movementType: 0
   movementDirection: 0
   horizontalAndVerticalMovement: 0
-  walkSpeed: 8
+  walkSpeed: 7
   runSpeed: 16
   crouchSpeed: 7
-  jumpForce: 50
   disableA: 0
   disableD: 0
   disableW: 0
   disableS: 0
   isGrounded: 0
+  playerCenter: {fileID: 1462455406074886799}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  playerHeight: 3
+  jumpForce: 7
+  jumpCooldown: 1
+  readyToJump: 1
+  movementMultiplier: 1
+  airMovementMultiplier: 1
+  JumpTimeout: 0.5
+  FallTimeout: 0.15
   isJumping: 0
   isCrouched: 0
   isColliding: 0
@@ -5580,8 +5623,6 @@ MonoBehaviour:
   triggerCollisionsR: 0
   idleConstraints: 0
   movingConstraints: 0
-  JumpTimeout: 0.5
-  FallTimeout: 0.15
   relativeToMovementSimpleCamera: {fileID: 0}
   rotSpeed: 110
 --- !u!114 &4846810525926298269
