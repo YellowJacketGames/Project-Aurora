@@ -38,11 +38,10 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] private float movementMultiplier = 1.0f;
     [SerializeField] private float airMovementMultiplier = 1.2f;
 
-    private float _jumpTimeoutDelta;
     private float _fallTimeoutDelta;
+    public float FallTimeout = 0.5f;
 
     public float JumpTimeout = 0.50f; //time required before can jump again
-    public float FallTimeout = 0.15f;
 
     [Space] [Header("Checks")] [SerializeField]
     private bool isJumping;
@@ -93,22 +92,31 @@ public class PlayerMovement : PlayerComponent
 
     private void Start()
     {
-        _jumpTimeoutDelta = JumpTimeout;
         _fallTimeoutDelta = FallTimeout;
+    }
+
+    private void OnEnable()
+    {
+        // _parent.playerInputHandlerComponent.onJumpPressed.AddListener(HandleJump);
+    }
+
+    private void OnDisable()
+    {
+        // _parent.playerInputHandlerComponent.onJumpPressed.RemoveListener(HandleJump);
     }
 
     private void Update()
     {
-        GroundCheck();
         HandleFlipX();
         HandleStates();
-        HandleJump();
     }
 
     private void FixedUpdate()
     {
         HandleCollisions();
         if (!canMove) return;
+        GroundCheck();
+        HandleJump();
         HandleMovementType();
         HandleMovement();
         HandleCrouch();
@@ -358,13 +366,18 @@ public class PlayerMovement : PlayerComponent
 
     private void ResetJump()
     {
+        Debug.LogWarning("resetjump called");
         readyToJump = true;
         movementMultiplier = 1.0f;
     }
 
-    private void HandleJump()
+    public void StopPlayerForAFrameAnim()
     {
-        if (!_parent.playerInputHandlerComponent.GetJumpingInput() || !readyToJump || !isGrounded) return;
+        _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, 0);
+    }
+    public void JumpPhysicsFromAnim()
+    {
+        Debug.LogWarning("Jumpphysics called");
         movementMultiplier = airMovementMultiplier;
         readyToJump = false;
         var velocity = _parent.playerRigid.velocity;
@@ -372,6 +385,32 @@ public class PlayerMovement : PlayerComponent
         _parent.playerRigid.velocity = velocity;
         _parent.playerRigid.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         Invoke(nameof(ResetJump), jumpCooldown);
+    }
+
+    private void HandleJump()
+    {
+        if (isGrounded)
+        {
+            _parent.playerAnimationComponent.SetJump(false);
+            _parent.playerAnimationComponent.SetFreeFall(false);
+
+            if (_parent.playerInputHandlerComponent.GetJumpingInput() && readyToJump)
+            {
+                _parent.playerAnimationComponent.SetJump(true);
+               
+            }
+        }
+        else
+        {
+            if (_fallTimeoutDelta >= 0.0f)
+            {
+                _fallTimeoutDelta -= Time.deltaTime;
+            }
+            else
+            {
+                _parent.playerAnimationComponent.SetFreeFall(true);
+            }
+        }
 
 
         // if (isGrounded)
@@ -399,6 +438,13 @@ public class PlayerMovement : PlayerComponent
         //     else
         //         _parent.playerAnimationComponent.SetFreeFall(true);
         // }
+    }
+
+    private void GroundCheck()
+    {
+        isGrounded = Physics.Raycast(playerCenter.position, Vector3.down, playerHeight * .5f + .2f, groundLayer);
+        Debug.DrawRay(playerCenter.position, Vector3.down, Color.green);
+        _parent.playerAnimationComponent.SetGrounded(isGrounded);
     }
 
     public void ChangeMovementDirection(MovementType type, MovementDirection direction)
@@ -514,13 +560,6 @@ public class PlayerMovement : PlayerComponent
     #endregion
 
     #region TRIGGERS
-
-    private void GroundCheck()
-    {
-        isGrounded = Physics.Raycast(playerCenter.position, Vector3.down, playerHeight * .5f + .2f, groundLayer);
-        Debug.DrawRay(playerCenter.position, Vector3.down, Color.green);
-        _parent.playerAnimationComponent.SetGrounded(isGrounded);
-    }
 
     private void OnTriggerEnter(Collider other)
     {

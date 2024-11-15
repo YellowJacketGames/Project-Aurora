@@ -190,7 +190,6 @@ public class PlayerAnimations : PlayerComponent
     {
         playerAnimations.SetFloat(_animIDMotionSpeed, inputMagnitude);
     }
-
     public void SetColliding(bool value)
     {
         playerAnimations.SetBool(_animIDColliding, value);

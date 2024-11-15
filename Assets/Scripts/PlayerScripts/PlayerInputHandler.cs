@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 //This script handles input for the different player actions.
@@ -230,10 +231,12 @@ public class PlayerInputHandler : PlayerComponent
     {
         crouchingInput = false;
     }
+    public  UnityEvent onJumpPressed = new UnityEvent();
 
     private void OnJumpingPerformed(InputAction.CallbackContext value)
     {
         jumpingInput = true;
+        onJumpPressed?.Invoke();
     }
 
     private void OnJumpingCanceled(InputAction.CallbackContext value)
