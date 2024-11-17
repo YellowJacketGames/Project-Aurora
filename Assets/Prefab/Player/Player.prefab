@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1462455406074886799}
   m_Layer: 2
   m_Name: CenterTransform
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1016,7 +1016,7 @@ GameObject:
   - component: {fileID: 4846810524457579752}
   m_Layer: 2
   m_Name: CollisionCheckR
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1941,7 +1941,7 @@ GameObject:
   - component: {fileID: 4846810524826788415}
   m_Layer: 2
   m_Name: PlayerInteractor
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2540,7 +2540,7 @@ GameObject:
   - component: {fileID: 4846810524947685655}
   m_Layer: 2
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2624,7 +2624,7 @@ GameObject:
   - component: {fileID: 4846810525018100387}
   m_Layer: 2
   m_Name: PlayerCanvas
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4307,7 +4307,7 @@ GameObject:
   - component: {fileID: 4846810525446446677}
   m_Layer: 2
   m_Name: CollisionCheckL
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5614,8 +5614,8 @@ MonoBehaviour:
   readyToJump: 1
   movementMultiplier: 1
   airMovementMultiplier: 1
-  JumpTimeout: 0.5
   FallTimeout: 0.15
+  JumpTimeout: 0.5
   isJumping: 0
   isCrouched: 0
   isColliding: 0
@@ -5645,6 +5645,9 @@ MonoBehaviour:
       m_Flags: 0
   test: {fileID: 4846810525926298266}
   currentScheme: 
+  onJumpPressed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4846810525926298268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6312,6 +6315,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RIG_LORCA
+      objectReference: {fileID: 0}
+    - target: {fileID: 752398037707808931, guid: 44b84d0be661bd24b901713ee12074fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44b84d0be661bd24b901713ee12074fd, type: 3}

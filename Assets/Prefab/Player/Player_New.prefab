@@ -5567,12 +5567,23 @@ MonoBehaviour:
   walkSpeed: 7
   runSpeed: 16
   crouchSpeed: 7
-  jumpForce: 50
   disableA: 0
   disableD: 0
   disableW: 0
   disableS: 0
   isGrounded: 0
+  playerCenter: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerHeight: 1.8
+  jumpForce: 50
+  jumpCooldown: 0.4
+  readyToJump: 1
+  movementMultiplier: 1
+  airMovementMultiplier: 1.2
+  FallTimeout: 0.15
+  JumpTimeout: 0.5
   isJumping: 0
   isCrouched: 0
   isColliding: 0
@@ -5580,8 +5591,6 @@ MonoBehaviour:
   triggerCollisionsR: 0
   idleConstraints: 0
   movingConstraints: 0
-  JumpTimeout: 0.5
-  FallTimeout: 0.15
   relativeToMovementSimpleCamera: {fileID: 0}
   rotSpeed: 110
 --- !u!114 &4846810525926298269
@@ -5604,6 +5613,9 @@ MonoBehaviour:
       m_Flags: 0
   test: {fileID: 4846810525926298266}
   currentScheme: 
+  onJumpPressed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4846810525926298268
 MonoBehaviour:
   m_ObjectHideFlags: 0
