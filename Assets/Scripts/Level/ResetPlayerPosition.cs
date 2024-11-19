@@ -18,7 +18,9 @@ public class ResetPlayerPosition : MonoBehaviour
 
     public void ChangePlayerPosition()
     {
+        GameManager.instance.currentController.playerRigid.isKinematic = true;
         GameManager.instance.currentController.transform.position = newPosition.position;
         GameManager.instance.currentCameraManager.ReturnReferences();
+        GameManager.instance.currentController.playerRigid.isKinematic = false;
     }
 }
