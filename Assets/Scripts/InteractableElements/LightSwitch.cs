@@ -61,15 +61,27 @@ public class LightSwitch : InteractableElement
     private IEnumerator WaitToShutLights()
     {
         isWaiting = true;
-        if (switchesToCamera)
-            yield return new WaitForSeconds(2f); //that's the ease out setted in cinemachine brain mainCamera
+
 
         foreach (var lightObject in connectedLights)
             lightObject.gameObject.SetActive(true);
+        if (switchesToCamera)
+        {
+            GameManager.instance.currentController.playerMovementComponent.DisableAllInput();
+            yield return new WaitForSeconds(2f); //that's the ease out setted in cinemachine brain mainCamera
+        }
+
         while (elapsedTime <= lightsOffTimeout)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
+        }
+
+        ResetMainCamera();
+        if (switchesToCamera)
+        {
+            yield return new WaitForSeconds(2f); //that's the ease out setted in cinemachine brain mainCamera
+            GameManager.instance.currentController.playerMovementComponent.EnableAllInput();
         }
 
         elapsedTime = 0f;
@@ -77,7 +89,6 @@ public class LightSwitch : InteractableElement
             lightObject.gameObject.SetActive(false);
         isWaiting = false;
         ignorePopup = false;
-        ResetMainCamera();
         yield return null;
     }
 }
