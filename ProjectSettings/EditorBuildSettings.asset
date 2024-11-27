@@ -6,47 +6,77 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/System/MainMenu.unity
-    guid: 2e2d439ec125d5040881a820935fbd56
+    path: Assets/Scenes/Levels/Greybox/MainMenu_Rework.unity
+    guid: 1479301b14d418d4eb8cb815dba0b6ae
   - enabled: 1
     path: Assets/Scenes/System/Cutscene.unity
     guid: 712779f564dfdb2499365895234001f9
   - enabled: 1
-    path: Assets/Scenes/Levels/VisualNovel/Level1_VisualNovel.unity
-    guid: bbd6b258e5ea88647b0da74d8fdb9657
+    path: Assets/Scenes/Levels/Greybox/level0.unity
+    guid: 8834cf2029d119c4b9afe150c48a0647
   - enabled: 1
-    path: Assets/Scenes/Levels/Greybox/Level2.unity
-    guid: 28e1a39275fd0a84f88332326ba1259c
+    path: Assets/Scenes/Levels/Greybox/level1.unity
+    guid: 80e2224a7feca4a458210679eb73f51d
   - enabled: 1
-    path: Assets/Scenes/Levels/Greybox/Level3.unity
-    guid: 9136d700c7a383d4f9cb67c05fc7d8fb
+    path: Assets/Scenes/Levels/Greybox/Level2_ReworkMovement.unity
+    guid: 4541adf1bc5ee3e438cb563004e10fb7
+  - enabled: 1
+    path: Assets/Scenes/Levels/Greybox/Level3_Rework.unity
+    guid: 57d18127f540e784daf6067e70279172
   - enabled: 1
     path: Assets/Scenes/Levels/Greybox/Level4.unity
     guid: 248e9155ffabc0d48819b56dfb46afb2
   - enabled: 1
-    path: Assets/Scenes/Levels/VisualNovel/Level5_VisualNovel.unity
-    guid: 15a4bd394c417124aa9bc04ad0fed832
+    path: Assets/Scenes/Levels/Greybox/level5.unity
+    guid: ee6b3e091194c9e41b5a750cac798ce6
   - enabled: 1
-    path: Assets/Scenes/Levels/VisualNovel/Level6_VisualNovel.unity
-    guid: 40589b8fcd1095348b104f2658a0a31f
+    path: Assets/Scenes/Levels/Greybox/level7.unity
+    guid: 5654f0370d188d44abb7a29b044f499f
   - enabled: 1
-    path: Assets/Scenes/Levels/VisualNovel/Level7_VisualNovel.unity
-    guid: 0f94d4756c375de49bb30ed893e0eada
+    path: Assets/Scenes/Levels/Greybox/level8.unity
+    guid: 438147f0aa8b4d845a1ac18bf9bd5f0b
   - enabled: 1
-    path: Assets/Scenes/Levels/VisualNovel/Level8_VisualNovel.unity
-    guid: d7d5f3dc25433434bb3a47d5f6f29450
-  - enabled: 1
-    path: Assets/Scenes/Levels/VisualNovel/Level9_VisualNovel.unity
-    guid: 8d8e3a93ba367d64091a158a8fbec93a
-  - enabled: 1
-    path: Assets/Scenes/Levels/VisualNovel/Level10_VisualNovel.unity
-    guid: 6c20cc1383eebe448b5439293277ebe2
+    path: Assets/Scenes/Levels/Greybox/level9.unity
+    guid: c9c632f8b859037438bbf41d167fc47e
   - enabled: 1
     path: Assets/Scenes/System/LoadingScreen.unity
     guid: 908d395dac3f7ac46ba8abbf7aac5692
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Scenes/System/MainMenu.unity
+    guid: 2e2d439ec125d5040881a820935fbd56
+  - enabled: 0
+    path: Assets/Scenes/Levels/VisualNovel/Level1_VisualNovel.unity
+    guid: bbd6b258e5ea88647b0da74d8fdb9657
+  - enabled: 0
+    path: Assets/Scenes/Levels/Greybox/Level2.unity
+    guid: 28e1a39275fd0a84f88332326ba1259c
+  - enabled: 0
+    path: Assets/Scenes/Levels/Greybox/Level3.unity
+    guid: 9136d700c7a383d4f9cb67c05fc7d8fb
+  - enabled: 0
+    path: Assets/Scenes/Levels/VisualNovel/Level5_VisualNovel.unity
+    guid: 15a4bd394c417124aa9bc04ad0fed832
+  - enabled: 0
+    path: Assets/Scenes/Levels/VisualNovel/Level6_VisualNovel.unity
+    guid: 40589b8fcd1095348b104f2658a0a31f
+  - enabled: 0
+    path: Assets/Scenes/Levels/VisualNovel/Level7_VisualNovel.unity
+    guid: 0f94d4756c375de49bb30ed893e0eada
+  - enabled: 0
+    path: Assets/Scenes/Levels/VisualNovel/Level8_VisualNovel.unity
+    guid: d7d5f3dc25433434bb3a47d5f6f29450
+  - enabled: 0
+    path: Assets/Scenes/Levels/VisualNovel/Level9_VisualNovel.unity
+    guid: 8d8e3a93ba367d64091a158a8fbec93a
+  - enabled: 0
+    path: Assets/Scenes/Levels/VisualNovel/Level10_VisualNovel.unity
+    guid: 6c20cc1383eebe448b5439293277ebe2
+  - enabled: 0
     path: Assets/Scenes/Placeholder.unity
     guid: e415f3a70e8d35a4a8a521b485c39d80
+  - enabled: 0
+    path: Assets/Scenes/Levels/Greybox/level_Test_Jumps.unity
+    guid: b42dcfd6f2b8ed24ba026d3447b09790
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: adea81aeef045b045a7292ccb4398088,
       type: 2}

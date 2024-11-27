@@ -3681,21 +3681,28 @@ MonoBehaviour:
   diaryManager: {fileID: 1287305516}
   questManager: {fileID: 2079459932}
   currentLevelManager: {fileID: 0}
+  currentLevelObjectPoolingManager: {fileID: 0}
   typewriterInventoryStatic: []
+  shouldSave: 0
   levelNames:
-  - MainMenu
+  - MainMenu_Rework
   - Cutscene
-  - Level1_VisualNovel
-  - Level2
-  - Level3
+  - Level0
+  - Level1
+  - Level2_ReworkMovement
+  - Level3_Rework
   - Level4
-  - Level5_VisualNovel
+  - Level5
   - Level6_VisualNovel
-  - Level7_VisualNovel
-  - Level8_VisualNovel
-  - Level9_VisualNovel
+  - Level7
+  - Level8
+  - Level9
   - Level10_VisualNovel
-  loadingScreenClip: {fileID: 0}
+  data:
+    progressionIndex: 0
+    objectsIds: []
+    typewritesIds: []
+  loadingScreenClip: {fileID: 32900000, guid: e0ace3f70483b76498b194a09572fd8f, type: 3}
   basicLoadingScreenClip: {fileID: 32900000, guid: e0ace3f70483b76498b194a09572fd8f,
     type: 3}
 --- !u!114 &3394038318219316957
@@ -3732,6 +3739,10 @@ MonoBehaviour:
   transitionImage: {fileID: 3394038318068529233}
   transitionDuration: 1
   transitionTime: 0
+  shouldTriggerLoadingClip: 0
+  onTransitionFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3394038318219316959
 MonoBehaviour:
   m_ObjectHideFlags: 0

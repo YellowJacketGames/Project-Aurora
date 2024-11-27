@@ -28,7 +28,7 @@ public class CinematicManager : MonoBehaviour
 
         if (videoLength <= Time.deltaTime || skip)
         {
-            GameManager.instance.SetLevelToLoad("Level1_VisualNovel");
+            GameManager.instance.SetLevelToLoad("Level0");
             GameManager.instance.currentTransitionManager.NextLevel();
             player.Stop();
         }

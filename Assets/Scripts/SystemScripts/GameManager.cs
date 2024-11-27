@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     public string[] LevelNames => levelNames;
     [SerializeField] private SavingData data;
     public SavingData Data => data;
-    private string levelToLoad;
+    [SerializeField]  private string levelToLoad;
     private int levelIndex = 0;
 
     [SerializeField] VideoClip loadingScreenClip;
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         if (currentLevelManager != null)
             currentLevelManager.EndLevelMusic();
 
-        SetLevelToLoad("MainMenu");
+        SetLevelToLoad("MainMenu_Rework");
         //Set the level index and begin the transition
         levelIndex = 0;
         StartCoroutine(LoadLevel("LoadingScreen"));
