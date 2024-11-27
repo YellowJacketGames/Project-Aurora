@@ -29,7 +29,13 @@ public class PlayerMovement : PlayerComponent
     [Space] [Header("Ground")] [SerializeField]
     private bool isGrounded;
 
+    private CapsuleCollider playerCollider; 
+    
     [SerializeField] private Transform playerCenter;
+    [SerializeField] private Transform playerLeft;
+    [SerializeField] private Transform playerRight;
+    [SerializeField] private Transform playerLeft1;
+    [SerializeField] private Transform playerRight1;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float playerHeight = 1.8f;
     [SerializeField] private float jumpForce;
@@ -38,10 +44,9 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] private float movementMultiplier = 1.0f;
     [SerializeField] private float airMovementMultiplier = 1.2f;
 
+    private bool hasObstacleAbove;
     private float _fallTimeoutDelta;
     public float FallTimeout = 0.5f;
-
-    public float JumpTimeout = 0.50f; //time required before can jump again
 
     [Space] [Header("Checks")] [SerializeField]
     private bool isJumping;
@@ -82,6 +87,7 @@ public class PlayerMovement : PlayerComponent
     private float inputMagnitude = 0f;
     private float _speedChangeRate = 7.0f; //for the animationBlending
     private float animationBlend;
+    [SerializeField] private float gravityValue = 10f;
 
     #region Booleans
 
@@ -93,6 +99,8 @@ public class PlayerMovement : PlayerComponent
     private void Start()
     {
         _fallTimeoutDelta = FallTimeout;
+        playerCollider = _parent.characterCollider.GetComponent<CapsuleCollider>();
+
     }
 
     private void OnEnable()
@@ -139,16 +147,22 @@ public class PlayerMovement : PlayerComponent
         else
             isColliding = _parent.playerRigid.velocity.magnitude < 0.9f && (triggerCollisionsL || triggerCollisionsR);
 
+
         // _parent.playerAnimationComponent.SetColliding(isColliding);
     }
 
     private void HandleMovement()
     {
         if (!isCrouched)
+        {
             TargetSpeed = _parent.playerInputHandlerComponent.GetRunningInput() ? runSpeed : walkSpeed;
+            if (!isGrounded && Math.Abs(TargetSpeed - runSpeed) < 0.1f && isColliding)
+                TargetSpeed = walkSpeed;
+            if (!isGrounded)
+                TargetSpeed = runSpeed;
+        }
         else
             TargetSpeed = crouchSpeed;
-
 
         switch (movementType)
         {
@@ -228,7 +242,6 @@ public class PlayerMovement : PlayerComponent
 
         animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * _speedChangeRate);
         if (animationBlend < 0.1f) animationBlend = 0f;
-
 
         _parent.playerAnimationComponent.SetCharacterSpeed(animationBlend);
         _parent.playerAnimationComponent.SetInputSpeed(inputMagnitude);
@@ -359,6 +372,7 @@ public class PlayerMovement : PlayerComponent
         else
         {
             if (!_parent.playerInputHandlerComponent.GetCrouchingInput()) return;
+            if(hasObstacleAbove)return;
             isCrouched = false;
             _parent.playerAnimationComponent.SetCrouch(false);
         }
@@ -375,6 +389,7 @@ public class PlayerMovement : PlayerComponent
     {
         _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, 0);
     }
+
     public void JumpPhysicsFromAnim()
     {
         Debug.LogWarning("Jumpphysics called");
@@ -383,21 +398,47 @@ public class PlayerMovement : PlayerComponent
         var velocity = _parent.playerRigid.velocity;
         velocity = new Vector3(velocity.x, 0, velocity.y);
         _parent.playerRigid.velocity = velocity;
-        _parent.playerRigid.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        Vector3 jumpVelocity = transform.up * jumpForce;
+        _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x, 0, _parent.playerRigid.velocity.z) + jumpVelocity;
+        
+        // _parent.playerRigid.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         Invoke(nameof(ResetJump), jumpCooldown);
+    }
+
+    private void SetColliderToDefaultSize()
+    {
+        playerCollider.radius = 0.4f;
+        playerCollider.height = 2.597304f;
+        playerCollider.center = new Vector3(-0.000805974f, 1.280554f, 0.002288818f);
+    }
+
+    private void SetColliderToCrouchSize()
+    {
+        playerCollider.height = 1.55f;
+        playerCollider.center = new Vector3(-0.000805974f, 0.77f, 0.002288818f);
+    }
+
+    private void SetColliderToJumpSize()
+    {
+        // playerCollider.height = 1.72f;
+        // playerCollider.center = new Vector3(-0.000805974f, 2f, 0.002288818f);
     }
 
     private void HandleJump()
     {
         if (isGrounded)
         {
+            hasObstacleAbove = Physics.Raycast(playerCenter.position, Vector3.up, playerHeight * 0.5f + 0.2f);
+            Debug.DrawRay(playerCenter.position, Vector3.up * (playerHeight * 0.5f + 0.2f),hasObstacleAbove ? Color.red : Color.green);
+
+            
             _parent.playerAnimationComponent.SetJump(false);
             _parent.playerAnimationComponent.SetFreeFall(false);
 
-            if (_parent.playerInputHandlerComponent.GetJumpingInput() && readyToJump)
+            if (_parent.playerInputHandlerComponent.GetJumpingInput() && readyToJump && !hasObstacleAbove)
             {
                 _parent.playerAnimationComponent.SetJump(true);
-               
             }
         }
         else
@@ -442,9 +483,46 @@ public class PlayerMovement : PlayerComponent
 
     private void GroundCheck()
     {
-        isGrounded = Physics.Raycast(playerCenter.position, Vector3.down, playerHeight * .5f + .2f, groundLayer);
-        Debug.DrawRay(playerCenter.position, Vector3.down, Color.green);
+        bool isGroundedCenter = Physics.Raycast(playerCenter.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        bool isGroundedLeft = Physics.Raycast(playerLeft.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        bool isGroundedRight = Physics.Raycast(playerRight.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+
+        bool isGroundedLeft1 = Physics.Raycast(playerLeft1.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        bool isGroundedRight1 = Physics.Raycast(playerRight1.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+
+        // isGrounded = Physics.Raycast(playerCenter.position, Vector3.down, playerHeight * .5f + .2f, groundLayer);
+        
+        Debug.DrawRay(playerCenter.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
+        Debug.DrawRay(playerLeft.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
+        Debug.DrawRay(playerRight.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
+        Debug.DrawRay(playerLeft1.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
+        Debug.DrawRay(playerRight1.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
+
+        isGrounded = isGroundedCenter || isGroundedLeft || isGroundedRight|| isGroundedLeft1|| isGroundedRight1;
+
+
         _parent.playerAnimationComponent.SetGrounded(isGrounded);
+        if (!isGrounded)
+        {
+            _parent.playerRigid.AddForce(Vector3.down * gravityValue, ForceMode.Acceleration);
+            ChangePhysicalMaterialFriction(0f);
+            SetColliderToJumpSize();
+        }
+        else
+        {
+            ChangePhysicalMaterialFriction(1f);
+            if(isCrouched)
+                SetColliderToCrouchSize(); 
+            else
+                SetColliderToDefaultSize(); 
+        }
+    }
+
+    private void ChangePhysicalMaterialFriction(float frictionValue)
+    {
+        var material = playerCollider.material;
+        material.dynamicFriction = frictionValue;
+        material.staticFriction = frictionValue;
     }
 
     public void ChangeMovementDirection(MovementType type, MovementDirection direction)
