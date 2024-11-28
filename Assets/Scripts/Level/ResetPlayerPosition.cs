@@ -12,7 +12,8 @@ public class ResetPlayerPosition : MonoBehaviour
         {
             GameManager.instance.currentTransitionManager.CompleteTransition();
             GameManager.instance.currentCameraManager.LoseReferences();
-            Invoke("ChangePlayerPosition", 1.1f);
+            GameManager.instance.currentController.playerMovementComponent.DisableAllInput();
+            Invoke("ChangePlayerPosition", 2f);
         }
     }
 
@@ -21,6 +22,8 @@ public class ResetPlayerPosition : MonoBehaviour
         GameManager.instance.currentController.playerRigid.isKinematic = true;
         GameManager.instance.currentController.transform.position = newPosition.position;
         GameManager.instance.currentCameraManager.ReturnReferences();
+        GameManager.instance.currentController.playerMovementComponent.EnableAllInput();
+        GameManager.instance.currentController.ChangeState(PlayerState.Idle);
         GameManager.instance.currentController.playerRigid.isKinematic = false;
     }
 }
