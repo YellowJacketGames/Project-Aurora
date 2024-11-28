@@ -26,6 +26,14 @@ public class MovablePlatformEditor : Editor
                     platform.circularCenter, typeof(Transform), true);
                 platform.radius = EditorGUILayout.FloatField("Radius", platform.radius);
                 break;
+            
+            case MovablePlatform.MovementType.Swing:
+                platform.anchor = (Transform)EditorGUILayout.ObjectField("Anchor Center", platform.anchor, typeof(Transform), true); 
+                platform.minAngle = EditorGUILayout.FloatField("Min Angle", platform.minAngle);
+                platform.maxAngle = EditorGUILayout.FloatField("Max Angle", platform.maxAngle);
+
+                
+                break;
 
         }
 

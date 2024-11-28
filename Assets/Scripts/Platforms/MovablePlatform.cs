@@ -7,6 +7,7 @@ public class MovablePlatform : MonoBehaviour
     {
         Linear,
         Circular,
+        Swing
     }
 
     [Header("General Settings")] public MovementType movementType;
@@ -18,6 +19,11 @@ public class MovablePlatform : MonoBehaviour
     [HideInInspector] public float radius = 5.0f;
     [HideInInspector] public Transform circularCenter;
 
+    [HideInInspector] public Transform anchor;
+    public float minAngle = -100f;
+    public float maxAngle = 100f;    
+    
+    
     private Vector3 centerPoint;
     private float circularAngle;
     private bool movingToB = true;
@@ -25,8 +31,12 @@ public class MovablePlatform : MonoBehaviour
     private List<Transform> passengers;
     private Vector3 previousPosition;
 
+    private PlayerController player;
+
     private void Start()
     {
+        player = GameManager.instance.currentController;
+        
         gameObject.tag = "MovablePlatform";
         passengers = new List<Transform>();
 
@@ -56,9 +66,25 @@ public class MovablePlatform : MonoBehaviour
             case MovementType.Circular:
                 HandleCircularMovement();
                 break;
+            case MovementType.Swing:
+                HandleSwingMovement();
+                break;
         }
     }
 
+    private void HandleSwingMovement()
+    {
+
+        if (passengers.Count <= 0) return; 
+        var direction = player.transform.position - anchor.position;
+        var angle = Mathf.Atan2(direction.y, direction.z) * Mathf.Rad2Deg;
+
+        angle = Mathf.Clamp(angle, minAngle, maxAngle);
+        var targetRotation = Quaternion.Euler(angle, 0, 0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * speed);
+    }
+    
+    
     private void HandleLinearMovement()
     {
         if (pointA == null || pointB == null) return;
