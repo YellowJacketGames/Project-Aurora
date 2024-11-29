@@ -1,24 +1,8 @@
-﻿
-    using UnityEngine;
-
-    public class PlayerCollisionChecksF: PlayerComponent
+﻿    public class PlayerCollisionChecksF: PlayerCollisionChecks
     {
-        private void OnTriggerEnter(Collider other)
+        protected override void ApplyTriggerBool(bool value)
         {
-            if (other.CompareTag("Player")) return;
-            _parent.playerMovementComponent.triggerCollisionsF = true;
+            _parent.playerMovementComponent.triggerCollisionsF = value;
         }
-
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("Player")) return;
-            _parent.playerMovementComponent.triggerCollisionsF = true;
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Player")) return;
-            _parent.playerMovementComponent.triggerCollisionsF = false;
-        }
-        
+      
     }

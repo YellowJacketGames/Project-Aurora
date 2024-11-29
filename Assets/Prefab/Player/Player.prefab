@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2534819930311760812}
   - component: {fileID: 2087011638845267620}
-  - component: {fileID: 7491097123976626956}
+  - component: {fileID: 2245274258454813011}
   m_Layer: 2
   m_Name: CollisionCheckB
   m_TagString: Player
@@ -137,9 +137,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.506687, y: 1.1700001, z: 0.15}
-  m_Center: {x: 0.001819402, y: 1.01338, z: -0.34}
---- !u!114 &7491097123976626956
+  m_Size: {x: 0.5, y: 1.5, z: 0.15}
+  m_Center: {x: 0, y: 1, z: -0.34}
+--- !u!114 &2245274258454813011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2241976265107956817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e45b238d4e4fd2910140b8bf35dc12, type: 3}
+  m_Script: {fileID: 11500000, guid: e84684517e5746889bf4d0a67b613e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4429560512898961726
@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 4846810524457579755}
   - component: {fileID: 4846810524457579753}
   - component: {fileID: 4846810524457579752}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: CollisionCheckR
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1167,8 +1167,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 1.17, z: 0.15}
-  m_Center: {x: 0, y: 1.01338, z: 0.34}
+  m_Size: {x: 0.75, y: 1.5, z: 0.15}
+  m_Center: {x: 0, y: 1, z: 0.34}
 --- !u!114 &4846810524457579752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4425,7 +4425,7 @@ GameObject:
   - component: {fileID: 4846810525446446676}
   - component: {fileID: 4846810525446446682}
   - component: {fileID: 4846810525446446677}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: CollisionCheckL
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4458,8 +4458,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 1.17, z: 0.15}
-  m_Center: {x: 0, y: 1.01338, z: -0.34}
+  m_Size: {x: 0.75, y: 1.5, z: 0.15}
+  m_Center: {x: 0, y: 1, z: -0.34}
 --- !u!114 &4846810525446446677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5750,6 +5750,8 @@ MonoBehaviour:
   isColliding: 0
   triggerCollisionsL: 0
   triggerCollisionsR: 0
+  triggerCollisionsF: 0
+  triggerCollisionsB: 0
   idleConstraints: 0
   movingConstraints: 0
   relativeToMovementSimpleCamera: {fileID: 0}
@@ -6451,7 +6453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705245717607505325}
   - component: {fileID: 1978536016561535335}
-  - component: {fileID: 9201565898421046272}
+  - component: {fileID: 6052015876725732689}
   m_Layer: 2
   m_Name: CollisionCheckF
   m_TagString: Player
@@ -6485,9 +6487,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.51395035, y: 1.1700001, z: 0.15000004}
-  m_Center: {x: 0.0000026375055, y: 1.01338, z: 0.34}
---- !u!114 &9201565898421046272
+  m_Size: {x: 0.5, y: 1.5, z: 0.15000004}
+  m_Center: {x: 0, y: 1, z: 0.34}
+--- !u!114 &6052015876725732689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6496,7 +6498,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6846383571981874666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9f8300b2a674d2bbb417d952bac55ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d7fdf7a26c84f3981ddc284bff89701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3699789673667858583

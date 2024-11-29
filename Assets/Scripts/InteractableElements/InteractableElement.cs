@@ -16,6 +16,8 @@ public class InteractableElement : MonoBehaviour
 
     protected virtual void Awake()
     {
+        gameObject.tag = "Interactable";
+
         popup = GetComponentInChildren<InteractablePopup>();
         if (!popup) return;
         popup.SetElementType(elementType);

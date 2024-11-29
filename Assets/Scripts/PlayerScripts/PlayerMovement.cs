@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using PlayerScripts;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -56,8 +57,10 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] public bool triggerCollisionsL;
     [SerializeField] public bool triggerCollisionsR;
     [SerializeField] public bool triggerCollisionsF;
-
     [SerializeField] public bool triggerCollisionsB;
+
+    private List<PlayerCollisionChecks> _collisionChecks;
+
     // [SerializeField] public bool triggerCollisionsU;
     // [SerializeField] public bool triggerCollisionsD;
 
@@ -102,6 +105,7 @@ public class PlayerMovement : PlayerComponent
     {
         _fallTimeoutDelta = FallTimeout;
         playerCollider = _parent.characterCollider.GetComponent<CapsuleCollider>();
+        _collisionChecks = GetComponentsInChildren<PlayerCollisionChecks>().ToList();
     }
 
     private void OnEnable()
@@ -176,35 +180,86 @@ public class PlayerMovement : PlayerComponent
                 inputMagnitude = ManageDisables(inputMagnitude, true);
                 if (inputMagnitude == 0) targetSpeed = 0.0f;
                 _currentSpeed = inputMagnitude * targetSpeed * Time.deltaTime;
-                float directionH = (!triggerCollisionsL && !triggerCollisionsR)
-                    ? 1
-                    : (triggerCollisionsL
-                        ? 1
-                        : (triggerCollisionsR ? -1 : 0));
+
+
                 if (_currentSpeed != 0)
                     switch (movementDirection)
                     {
                         case MovementDirection.Default:
-                            if (!triggerCollisionsL && !triggerCollisionsR)
-                                _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
-                                    _currentSpeed * targetSpeed * movementMultiplier * directionH);
+                            if (triggerCollisionsR)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsL)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
+
+                            _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
+                                _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot1:
+                            if (triggerCollisionsL)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsR)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
+
                             _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, -
-                                _currentSpeed * targetSpeed * movementMultiplier * directionH);
+                                _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot2: //  this one not used for now i guess
+                            if (triggerCollisionsR)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsL)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
+
                             _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
-                                _currentSpeed * targetSpeed * movementMultiplier * directionH);
+                                _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot3:
+                            if (triggerCollisionsF)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsB)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
+
                             _parent.playerRigid.velocity = new Vector3(
                                 -_currentSpeed * targetSpeed * movementMultiplier,
-                                _parent.playerRigid.velocity.y * directionH, 0);
+                                _parent.playerRigid.velocity.y, 0);
                             break;
                         case MovementDirection.Rot4:
+                            if (triggerCollisionsB)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsF)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
+
                             _parent.playerRigid.velocity = new Vector3(
-                                _currentSpeed * targetSpeed * movementMultiplier * directionH,
+                                _currentSpeed * targetSpeed * movementMultiplier,
                                 _parent.playerRigid.velocity.y, 0);
                             break;
                     }
@@ -212,13 +267,9 @@ public class PlayerMovement : PlayerComponent
                 // if (playerDontSlideOnSlopes) _parent.playerRigid.isKinematic = targetSpeed == 0.0f;
 
                 break;
-            
+
             case MovementType.Vertical:
-                float directionV = (!triggerCollisionsF && !triggerCollisionsB)
-                    ? 1
-                    : (triggerCollisionsF
-                        ? 1
-                        : (triggerCollisionsB ? -1 : 0));
+
                 inputMagnitude = -_parent.playerInputHandlerComponent.GetMovementDirection().y;
                 inputMagnitude = ManageDisables(inputMagnitude, false);
                 if (inputMagnitude == 0) targetSpeed = 0.0f;
@@ -227,26 +278,81 @@ public class PlayerMovement : PlayerComponent
                     switch (movementDirection)
                     {
                         case MovementDirection.Default:
+                            if (triggerCollisionsB)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsF)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
+
                             _parent.playerRigid.velocity =
-                                new Vector3(_currentSpeed * targetSpeed * movementMultiplier * directionV,
+                                new Vector3(_currentSpeed * targetSpeed * movementMultiplier,
                                     _parent.playerRigid.velocity.y, 0);
                             break;
                         case MovementDirection.Rot1:
+                            if (triggerCollisionsF)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsB)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
+
                             _parent.playerRigid.velocity = new Vector3(
-                                -_currentSpeed * targetSpeed * movementMultiplier* directionV,
+                                -_currentSpeed * targetSpeed * movementMultiplier,
                                 _parent.playerRigid.velocity.y, 0);
                             break;
-                        case MovementDirection.Rot2: // Not used for now
+                        case MovementDirection.Rot2: // Not used for now, thats why its broken
+                            return;
+                            if (triggerCollisionsB)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsF)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
                             _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x,
-                                0, _currentSpeed * targetSpeed * movementMultiplier* directionV);
+                                0, _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot3:
+                            if (triggerCollisionsR)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsL)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
                             _parent.playerRigid.velocity = new Vector3(0,
-                                _parent.playerRigid.velocity.y, _currentSpeed * targetSpeed * movementMultiplier* directionV);
+                                _parent.playerRigid.velocity.y,
+                                _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot4:
+                            if (triggerCollisionsL)
+                            {
+                                if (inputMagnitude > 0)
+                                    _currentSpeed = 0;
+                            }
+                            else if (triggerCollisionsR)
+                            {
+                                if (inputMagnitude < 0)
+                                    _currentSpeed = 0;
+                            }
                             _parent.playerRigid.velocity = new Vector3(0,
-                                _parent.playerRigid.velocity.y, -_currentSpeed * targetSpeed * movementMultiplier* directionV);
+                                _parent.playerRigid.velocity.y,
+                                -_currentSpeed * targetSpeed * movementMultiplier);
                             break;
                     }
                 // if (playerDontSlideOnSlopes) _parent.playerRigid.isKinematic = targetSpeed == 0.0f;
@@ -352,7 +458,6 @@ public class PlayerMovement : PlayerComponent
         disableW = true;
         disableS = true;
         readyToJump = false;
-
     }
 
     private void HandleStates()
@@ -386,6 +491,8 @@ public class PlayerMovement : PlayerComponent
             if (!_parent.playerInputHandlerComponent.GetCrouchingInput()) return;
             isCrouched = true;
             _parent.playerAnimationComponent.SetCrouch(true);
+            foreach (var cols in _collisionChecks)
+                cols.SetCrouchDimensions();
         }
         else
         {
@@ -393,6 +500,8 @@ public class PlayerMovement : PlayerComponent
             if (hasObstacleAbove) return;
             isCrouched = false;
             _parent.playerAnimationComponent.SetCrouch(false);
+            foreach (var cols in _collisionChecks)
+                cols.ResetDefaultDimensions();
         }
     }
 

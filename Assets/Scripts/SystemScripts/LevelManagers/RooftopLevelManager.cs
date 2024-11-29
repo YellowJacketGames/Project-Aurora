@@ -51,8 +51,8 @@ public class RooftopLevelManager : LevelManager
             UpdateTimeText(currentTime.ToString("F2"));
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
-            FinishRace();
+        // if (Input.GetKeyDown(KeyCode.L))
+        //     FinishRace();
     }
 
     public void SetUpRace()
@@ -83,6 +83,7 @@ public class RooftopLevelManager : LevelManager
 
     public void FinishRace()
     {
+        return;
         //Deactivate timer
         raceActive = false;
 

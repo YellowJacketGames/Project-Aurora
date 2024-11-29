@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,13 +14,19 @@ public class CameraArea : MonoBehaviour
     protected CinemachineVirtualCamera areaCamera;
 
     [SerializeField] bool inArea;
+    public bool disableInputOnEnter;
+    private void Awake()
+    {
+        gameObject.tag = "CameraArea";
+
+    }
 
     protected virtual void ChangeToArea()
     {
         if (!areaCamera) return;
 
         GameManager.instance.currentCameraManager.ChangeToCameraArea();
-        GameManager.instance.currentController.playerMovementComponent.DisableAllInput();
+       if(disableInputOnEnter) GameManager.instance.currentController.playerMovementComponent.DisableAllInput();
         areaCamera.Priority = 1;
         inArea = true;
     }
@@ -31,7 +38,7 @@ public class CameraArea : MonoBehaviour
         Debug.LogError("Area exited");
         areaCamera.Priority = 0;
         GameManager.instance.currentCameraManager.ReturnFromCameraArea();
-        GameManager.instance.currentController.playerMovementComponent.EnableAllInput();
+     if(disableInputOnEnter)   GameManager.instance.currentController.playerMovementComponent.EnableAllInput();
         inArea = false;
     }
 
