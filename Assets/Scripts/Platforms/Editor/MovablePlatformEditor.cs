@@ -14,6 +14,8 @@ public class MovablePlatformEditor : Editor
 
         switch (platform.movementType)
         {
+            case MovablePlatform.MovementType.Static:
+                break;
             case MovablePlatform.MovementType.Linear:
                 platform.pointA =
                     (Transform)EditorGUILayout.ObjectField("Point A", platform.pointA, typeof(Transform), true);

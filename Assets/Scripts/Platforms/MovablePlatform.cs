@@ -5,6 +5,7 @@ public class MovablePlatform : MonoBehaviour
 {
     public enum MovementType
     {
+        Static,
         Linear,
         Circular,
         Swing
@@ -60,6 +61,8 @@ public class MovablePlatform : MonoBehaviour
 
         switch (movementType)
         {
+            case MovementType.Static:
+                break;
             case MovementType.Linear:
                 HandleLinearMovement();
                 break;

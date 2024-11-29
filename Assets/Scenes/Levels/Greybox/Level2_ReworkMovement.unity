@@ -10573,8 +10573,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420592968}
-  m_LocalRotation: {x: 0, y: -0.57685274, z: 0, w: 0.8168482}
-  m_LocalPosition: {x: 7.404413, y: 2.3500001, z: 34.233116}
+  m_LocalRotation: {x: 0.12542146, y: -0.6958947, z: 0.12542148, w: 0.6958947}
+  m_LocalPosition: {x: 2.8043334, y: 3.7081766, z: -2.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10645,7 +10645,7 @@ PrefabInstance:
     - target: {fileID: 4846810525926298272, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 37.38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4846810525926298272, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
@@ -48093,7 +48093,7 @@ MonoBehaviour:
   - {fileID: 74452593}
   levelMusic: Music_Level2
   levelQuest: {fileID: 11400000, guid: fca323487e85c4a4a9a59dcd8e70f653, type: 2}
-  nextLevel: Level3
+  nextLevel: Level3_Rework
   nextLevelClip: {fileID: 32900000, guid: 6b106515ff948ad4db00d6506eec81dc, type: 3}
 --- !u!4 &1017574333
 Transform:
@@ -98879,7 +98879,7 @@ PrefabInstance:
     - target: {fileID: 5239502621391542430, guid: 486dd82881f3f234cb24328ca69ce839,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.999983
+      value: -18.380016
       objectReference: {fileID: 0}
     - target: {fileID: 5600935507233712634, guid: 486dd82881f3f234cb24328ca69ce839,
         type: 3}
@@ -98894,7 +98894,7 @@ PrefabInstance:
     - target: {fileID: 5600935507729669975, guid: 486dd82881f3f234cb24328ca69ce839,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5620861
+      value: -1.5620852
       objectReference: {fileID: 0}
     - target: {fileID: 5600935507729669975, guid: 486dd82881f3f234cb24328ca69ce839,
         type: 3}
@@ -98904,7 +98904,7 @@ PrefabInstance:
     - target: {fileID: 5600935507729669975, guid: 486dd82881f3f234cb24328ca69ce839,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.233099
+      value: -21.146908
       objectReference: {fileID: 0}
     - target: {fileID: 8614290907722262320, guid: 486dd82881f3f234cb24328ca69ce839,
         type: 3}

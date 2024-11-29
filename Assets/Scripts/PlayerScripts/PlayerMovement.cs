@@ -29,8 +29,8 @@ public class PlayerMovement : PlayerComponent
     [Space] [Header("Ground")] [SerializeField]
     private bool isGrounded;
 
-    private CapsuleCollider playerCollider; 
-    
+    private CapsuleCollider playerCollider;
+
     [SerializeField] private Transform playerCenter;
     [SerializeField] private Transform playerLeft;
     [SerializeField] private Transform playerRight;
@@ -54,8 +54,10 @@ public class PlayerMovement : PlayerComponent
     [SerializeField] private bool isCrouched;
     [SerializeField] private bool isColliding;
     [SerializeField] public bool triggerCollisionsL;
-
     [SerializeField] public bool triggerCollisionsR;
+    [SerializeField] public bool triggerCollisionsF;
+
+    [SerializeField] public bool triggerCollisionsB;
     // [SerializeField] public bool triggerCollisionsU;
     // [SerializeField] public bool triggerCollisionsD;
 
@@ -100,7 +102,6 @@ public class PlayerMovement : PlayerComponent
     {
         _fallTimeoutDelta = FallTimeout;
         playerCollider = _parent.characterCollider.GetComponent<CapsuleCollider>();
-
     }
 
     private void OnEnable()
@@ -145,7 +146,8 @@ public class PlayerMovement : PlayerComponent
         if (_parent.playerInputHandlerComponent.GetMovementDirection().x == 0)
             isColliding = false;
         else
-            isColliding = _parent.playerRigid.velocity.magnitude < 0.9f && (triggerCollisionsL || triggerCollisionsR);
+            isColliding = _parent.playerRigid.velocity.magnitude < 0.9f && (triggerCollisionsL || triggerCollisionsR ||
+                                                                            triggerCollisionsF || triggerCollisionsB);
 
 
         // _parent.playerAnimationComponent.SetColliding(isColliding);
@@ -174,28 +176,35 @@ public class PlayerMovement : PlayerComponent
                 inputMagnitude = ManageDisables(inputMagnitude, true);
                 if (inputMagnitude == 0) targetSpeed = 0.0f;
                 _currentSpeed = inputMagnitude * targetSpeed * Time.deltaTime;
+                float directionH = (!triggerCollisionsL && !triggerCollisionsR)
+                    ? 1
+                    : (triggerCollisionsL
+                        ? 1
+                        : (triggerCollisionsR ? -1 : 0));
                 if (_currentSpeed != 0)
                     switch (movementDirection)
                     {
                         case MovementDirection.Default:
-                            _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
-                                _currentSpeed * targetSpeed * movementMultiplier);
+                            if (!triggerCollisionsL && !triggerCollisionsR)
+                                _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
+                                    _currentSpeed * targetSpeed * movementMultiplier * directionH);
                             break;
                         case MovementDirection.Rot1:
                             _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, -
-                                _currentSpeed * targetSpeed * movementMultiplier);
+                                _currentSpeed * targetSpeed * movementMultiplier * directionH);
                             break;
                         case MovementDirection.Rot2: //  this one not used for now i guess
                             _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
-                                _currentSpeed * targetSpeed * movementMultiplier);
+                                _currentSpeed * targetSpeed * movementMultiplier * directionH);
                             break;
                         case MovementDirection.Rot3:
                             _parent.playerRigid.velocity = new Vector3(
                                 -_currentSpeed * targetSpeed * movementMultiplier,
-                                _parent.playerRigid.velocity.y, 0);
+                                _parent.playerRigid.velocity.y * directionH, 0);
                             break;
                         case MovementDirection.Rot4:
-                            _parent.playerRigid.velocity = new Vector3(_currentSpeed * targetSpeed * movementMultiplier,
+                            _parent.playerRigid.velocity = new Vector3(
+                                _currentSpeed * targetSpeed * movementMultiplier * directionH,
                                 _parent.playerRigid.velocity.y, 0);
                             break;
                     }
@@ -203,7 +212,13 @@ public class PlayerMovement : PlayerComponent
                 // if (playerDontSlideOnSlopes) _parent.playerRigid.isKinematic = targetSpeed == 0.0f;
 
                 break;
+            
             case MovementType.Vertical:
+                float directionV = (!triggerCollisionsF && !triggerCollisionsB)
+                    ? 1
+                    : (triggerCollisionsF
+                        ? 1
+                        : (triggerCollisionsB ? -1 : 0));
                 inputMagnitude = -_parent.playerInputHandlerComponent.GetMovementDirection().y;
                 inputMagnitude = ManageDisables(inputMagnitude, false);
                 if (inputMagnitude == 0) targetSpeed = 0.0f;
@@ -213,25 +228,25 @@ public class PlayerMovement : PlayerComponent
                     {
                         case MovementDirection.Default:
                             _parent.playerRigid.velocity =
-                                new Vector3(_currentSpeed * targetSpeed * movementMultiplier,
+                                new Vector3(_currentSpeed * targetSpeed * movementMultiplier * directionV,
                                     _parent.playerRigid.velocity.y, 0);
                             break;
                         case MovementDirection.Rot1:
                             _parent.playerRigid.velocity = new Vector3(
-                                -_currentSpeed * targetSpeed * movementMultiplier,
+                                -_currentSpeed * targetSpeed * movementMultiplier* directionV,
                                 _parent.playerRigid.velocity.y, 0);
                             break;
                         case MovementDirection.Rot2: // Not used for now
                             _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x,
-                                0, _currentSpeed * targetSpeed * movementMultiplier);
+                                0, _currentSpeed * targetSpeed * movementMultiplier* directionV);
                             break;
                         case MovementDirection.Rot3:
                             _parent.playerRigid.velocity = new Vector3(0,
-                                _parent.playerRigid.velocity.y, _currentSpeed * targetSpeed * movementMultiplier);
+                                _parent.playerRigid.velocity.y, _currentSpeed * targetSpeed * movementMultiplier* directionV);
                             break;
                         case MovementDirection.Rot4:
                             _parent.playerRigid.velocity = new Vector3(0,
-                                _parent.playerRigid.velocity.y, -_currentSpeed * targetSpeed * movementMultiplier);
+                                _parent.playerRigid.velocity.y, -_currentSpeed * targetSpeed * movementMultiplier* directionV);
                             break;
                     }
                 // if (playerDontSlideOnSlopes) _parent.playerRigid.isKinematic = targetSpeed == 0.0f;
@@ -327,6 +342,7 @@ public class PlayerMovement : PlayerComponent
         disableD = false;
         disableW = false;
         disableS = false;
+        readyToJump = true;
     }
 
     public void DisableAllInput()
@@ -335,6 +351,8 @@ public class PlayerMovement : PlayerComponent
         disableD = true;
         disableW = true;
         disableS = true;
+        readyToJump = false;
+
     }
 
     private void HandleStates()
@@ -372,7 +390,7 @@ public class PlayerMovement : PlayerComponent
         else
         {
             if (!_parent.playerInputHandlerComponent.GetCrouchingInput()) return;
-            if(hasObstacleAbove)return;
+            if (hasObstacleAbove) return;
             isCrouched = false;
             _parent.playerAnimationComponent.SetCrouch(false);
         }
@@ -400,8 +418,9 @@ public class PlayerMovement : PlayerComponent
         _parent.playerRigid.velocity = velocity;
 
         Vector3 jumpVelocity = transform.up * jumpForce;
-        _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x, 0, _parent.playerRigid.velocity.z) + jumpVelocity;
-        
+        _parent.playerRigid.velocity = new Vector3(_parent.playerRigid.velocity.x, 0, _parent.playerRigid.velocity.z) +
+                                       jumpVelocity;
+
         // _parent.playerRigid.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         Invoke(nameof(ResetJump), jumpCooldown);
     }
@@ -430,9 +449,10 @@ public class PlayerMovement : PlayerComponent
         if (isGrounded)
         {
             hasObstacleAbove = Physics.Raycast(playerCenter.position, Vector3.up, playerHeight * 0.5f + 0.2f);
-            Debug.DrawRay(playerCenter.position, Vector3.up * (playerHeight * 0.5f + 0.2f),hasObstacleAbove ? Color.red : Color.green);
+            Debug.DrawRay(playerCenter.position, Vector3.up * (playerHeight * 0.5f + 0.2f),
+                hasObstacleAbove ? Color.red : Color.green);
 
-            
+
             _parent.playerAnimationComponent.SetJump(false);
             _parent.playerAnimationComponent.SetFreeFall(false);
 
@@ -483,22 +503,27 @@ public class PlayerMovement : PlayerComponent
 
     private void GroundCheck()
     {
-        bool isGroundedCenter = Physics.Raycast(playerCenter.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
-        bool isGroundedLeft = Physics.Raycast(playerLeft.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
-        bool isGroundedRight = Physics.Raycast(playerRight.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        bool isGroundedCenter =
+            Physics.Raycast(playerCenter.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        bool isGroundedLeft =
+            Physics.Raycast(playerLeft.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        bool isGroundedRight =
+            Physics.Raycast(playerRight.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
 
-        bool isGroundedLeft1 = Physics.Raycast(playerLeft1.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
-        bool isGroundedRight1 = Physics.Raycast(playerRight1.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        bool isGroundedLeft1 =
+            Physics.Raycast(playerLeft1.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        bool isGroundedRight1 =
+            Physics.Raycast(playerRight1.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
 
         // isGrounded = Physics.Raycast(playerCenter.position, Vector3.down, playerHeight * .5f + .2f, groundLayer);
-        
+
         Debug.DrawRay(playerCenter.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
         Debug.DrawRay(playerLeft.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
         Debug.DrawRay(playerRight.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
         Debug.DrawRay(playerLeft1.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
         Debug.DrawRay(playerRight1.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.green);
 
-        isGrounded = isGroundedCenter || isGroundedLeft || isGroundedRight|| isGroundedLeft1|| isGroundedRight1;
+        isGrounded = isGroundedCenter || isGroundedLeft || isGroundedRight || isGroundedLeft1 || isGroundedRight1;
 
 
         _parent.playerAnimationComponent.SetGrounded(isGrounded);
@@ -511,10 +536,10 @@ public class PlayerMovement : PlayerComponent
         else
         {
             ChangePhysicalMaterialFriction(1f);
-            if(isCrouched)
-                SetColliderToCrouchSize(); 
+            if (isCrouched)
+                SetColliderToCrouchSize();
             else
-                SetColliderToDefaultSize(); 
+                SetColliderToDefaultSize();
         }
     }
 

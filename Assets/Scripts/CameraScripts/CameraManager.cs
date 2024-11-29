@@ -89,78 +89,78 @@ public class CameraManager : MonoBehaviour
         if(currentCameraState == CameraStates.PlayerFollow)
         {
             //This area handles the toggle bewteen zoom in and out.
-            #region Zoom in and out
-
-            //if the player isn't in both states that set a different camera, we can perform the toggle.
-            if (shouldToggle)
-            {
-                //if the player does the toggle input
-                if (GameManager.instance.currentController.playerInputHandlerComponent.GetToggleZoomInput())
-                {
-                    //If it's already activated, we just switch the value to do the opposite thing.
-                    //We also reset the timer
-                    if (zoomActivate)
-                    {
-                        zoomed = !zoomed;
-                        zoomTime = 0;
-                    }
-
-                    //If not, we activate the zoom
-                    else
-                    {
-                        zoomActivate = true;
-                    }
-                }
-            }
-            
-
-            //If zoom is active we do the appropiate lerp.
-            if (zoomActivate)
-            {
-
-                //if camera is zoomed out, we zoom it in.
-                if (!zoomed)
-                {
-                    //We do a simple lerp between the camera distance and the value we want.
-                    zoomTime += Time.deltaTime;
-                    float currentZoomValue = Mathf.Lerp(transposerLeft.m_CameraDistance, zoomInValue, zoomTime / zoomDuration); //We get the value from the left camera but it could be either one.
-
-                    //We change the value of both cameras since it could be any of the active, or change during the zoom in and zoom out
-                    transposerLeft.m_CameraDistance = currentZoomValue;
-                    transposerRight.m_CameraDistance = currentZoomValue;
-
-
-                    //If the lerp is done, we reset the activate, set the proper camera state and reset the timer.
-                    if (zoomTime >= zoomDuration)
-                    {
-                        zoomTime = 0;
-                        zoomActivate = false;
-                        zoomed = true;
-                    }
-                }
-
-                //If camera is zoomed in, we zoom it out.
-                else
-                {
-                    //We do a simple lerp between the camera distance and the value we want.
-                    zoomTime += Time.deltaTime;
-                    float currentZoomValue = Mathf.Lerp(transposerLeft.m_CameraDistance, zoomOutValue, zoomTime / zoomDuration); //We get the value from the left camera but it could be either one.
-
-                    //We change the value of both cameras since it could be any of the active, or change during the zoom in and zoom out
-                    transposerLeft.m_CameraDistance = currentZoomValue;
-                    transposerRight.m_CameraDistance = currentZoomValue;
-
-                    //If the lerp is done, we reset the activate, set the proper camera state and reset the timer.
-                    if (zoomTime >= zoomDuration)
-                    {
-                        zoomTime = 0;
-                        zoomActivate = false;
-                        zoomed = false;
-                    }
-                }
-            }
-
-            #endregion
+            // #region Zoom in and out
+            //
+            // //if the player isn't in both states that set a different camera, we can perform the toggle.
+            // if (shouldToggle)
+            // {
+            //     //if the player does the toggle input
+            //     if (GameManager.instance.currentController.playerInputHandlerComponent.GetToggleZoomInput())
+            //     {
+            //         //If it's already activated, we just switch the value to do the opposite thing.
+            //         //We also reset the timer
+            //         if (zoomActivate)
+            //         {
+            //             zoomed = !zoomed;
+            //             zoomTime = 0;
+            //         }
+            //
+            //         //If not, we activate the zoom
+            //         else
+            //         {
+            //             zoomActivate = true;
+            //         }
+            //     }
+            // }
+            //
+            //
+            // //If zoom is active we do the appropiate lerp.
+            // if (zoomActivate)
+            // {
+            //
+            //     //if camera is zoomed out, we zoom it in.
+            //     if (!zoomed)
+            //     {
+            //         //We do a simple lerp between the camera distance and the value we want.
+            //         zoomTime += Time.deltaTime;
+            //         float currentZoomValue = Mathf.Lerp(transposerLeft.m_CameraDistance, zoomInValue, zoomTime / zoomDuration); //We get the value from the left camera but it could be either one.
+            //
+            //         //We change the value of both cameras since it could be any of the active, or change during the zoom in and zoom out
+            //         transposerLeft.m_CameraDistance = currentZoomValue;
+            //         transposerRight.m_CameraDistance = currentZoomValue;
+            //
+            //
+            //         //If the lerp is done, we reset the activate, set the proper camera state and reset the timer.
+            //         if (zoomTime >= zoomDuration)
+            //         {
+            //             zoomTime = 0;
+            //             zoomActivate = false;
+            //             zoomed = true;
+            //         }
+            //     }
+            //
+            //     //If camera is zoomed in, we zoom it out.
+            //     else
+            //     {
+            //         //We do a simple lerp between the camera distance and the value we want.
+            //         zoomTime += Time.deltaTime;
+            //         float currentZoomValue = Mathf.Lerp(transposerLeft.m_CameraDistance, zoomOutValue, zoomTime / zoomDuration); //We get the value from the left camera but it could be either one.
+            //
+            //         //We change the value of both cameras since it could be any of the active, or change during the zoom in and zoom out
+            //         transposerLeft.m_CameraDistance = currentZoomValue;
+            //         transposerRight.m_CameraDistance = currentZoomValue;
+            //
+            //         //If the lerp is done, we reset the activate, set the proper camera state and reset the timer.
+            //         if (zoomTime >= zoomDuration)
+            //         {
+            //             zoomTime = 0;
+            //             zoomActivate = false;
+            //             zoomed = false;
+            //         }
+            //     }
+            // }
+            //
+            // #endregion
 
             //This area handles the change in the camera priorities
             #region Change Between Right and Left

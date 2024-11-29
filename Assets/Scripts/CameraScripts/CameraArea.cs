@@ -19,6 +19,7 @@ public class CameraArea : MonoBehaviour
         if (!areaCamera) return;
 
         GameManager.instance.currentCameraManager.ChangeToCameraArea();
+        GameManager.instance.currentController.playerMovementComponent.DisableAllInput();
         areaCamera.Priority = 1;
         inArea = true;
     }
@@ -30,6 +31,7 @@ public class CameraArea : MonoBehaviour
         Debug.LogError("Area exited");
         areaCamera.Priority = 0;
         GameManager.instance.currentCameraManager.ReturnFromCameraArea();
+        GameManager.instance.currentController.playerMovementComponent.EnableAllInput();
         inArea = false;
     }
 

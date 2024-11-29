@@ -98,7 +98,7 @@ MonoBehaviour:
     m_Value: 5.6
   focalLength:
     m_OverrideState: 1
-    m_Value: 34
+    m_Value: 8
   bladeCount:
     m_OverrideState: 1
     m_Value: 5
@@ -485,7 +485,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.351
+    m_Value: 0.158
   shader: {fileID: 4800000, guid: 60d8f25a29384eb4180805a7112ecb3c, type: 3}
 --- !u!114 &546239901594380357
 MonoBehaviour:
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab22b3400d2f8464d9d467a4e5f30570, type: 3}
   m_Name: Sharpen
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 1
     m_Value: 0
@@ -689,7 +689,7 @@ MonoBehaviour:
     m_Value: 2
   globalDensity:
     m_OverrideState: 1
-    m_Value: 0.166
+    m_Value: 0.052
   fogStartDistance:
     m_OverrideState: 0
     m_Value: 0
@@ -804,10 +804,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae979ba049e535429dde8ab92b28488, type: 3}
   m_Name: Scanlines
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   amount:
     m_OverrideState: 0
     m_Value: 700
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b72aa2546c25764e8eb85a8bbfc41e4, type: 3}
   m_Name: LUT
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 1
     m_Value: 0
