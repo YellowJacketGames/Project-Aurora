@@ -13,7 +13,9 @@ public class CameraManager : MonoBehaviour
     [Header("Current Cameras")]
 
     //The camera that is set when the player is moving to the right
-    [SerializeField] CinemachineVirtualCamera levelCameraRight;
+    [SerializeField]
+    CinemachineVirtualCamera levelCameraRight;
+
     private CinemachineFramingTransposer transposerRight;
 
     //The camera that is set when the player is moving to the left
@@ -31,11 +33,9 @@ public class CameraManager : MonoBehaviour
     //Variable to store the current camera state when we change to a different area.
     private CameraStates previousCameraState;
 
-    [Space]
-    [Header("Camera Variables")]
-    [Space]
-    [Header("Zoom")]
-    [SerializeField] private float zoomInValue;
+    [Space] [Header("Camera Variables")] [Space] [Header("Zoom")] [SerializeField]
+    private float zoomInValue;
+
     [SerializeField] private float zoomOutValue;
 
     private CameraStates currentCameraState;
@@ -45,9 +45,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float zoomTime;
     [SerializeField] private float zoomDuration;
 
-    [Space]
-    [Header("Changing Left/Right")]
-    [SerializeField] private float changeTimer;
+    [Space] [Header("Changing Left/Right")] [SerializeField]
+    private float changeTimer;
+
     [SerializeField] private float _changeTimer;
 
     bool changeToRight;
@@ -56,8 +56,9 @@ public class CameraManager : MonoBehaviour
     bool right;
     bool left;
 
-    bool shouldToggle => GameManager.instance.currentController.CurrentPlayerState != PlayerState.Conversation && GameManager.instance.currentController.CurrentPlayerState != PlayerState.Transition
-        && GameManager.instance.CanPlay();
+    bool shouldToggle => GameManager.instance.currentController.CurrentPlayerState != PlayerState.Conversation &&
+                         GameManager.instance.currentController.CurrentPlayerState != PlayerState.Transition
+                         && GameManager.instance.CanPlay();
 
     private void Awake()
     {
@@ -67,6 +68,7 @@ public class CameraManager : MonoBehaviour
 
         #endregion
     }
+
     private void Start()
     {
         //We set the first camera state to player follow so that it sets the camera to follow the player
@@ -86,7 +88,7 @@ public class CameraManager : MonoBehaviour
     public void Update()
     {
         //If the camera is following the player, we can toggle zoom and look to the left and right.
-        if(currentCameraState == CameraStates.PlayerFollow)
+        if (currentCameraState == CameraStates.PlayerFollow)
         {
             //This area handles the toggle bewteen zoom in and out.
             // #region Zoom in and out
@@ -163,6 +165,7 @@ public class CameraManager : MonoBehaviour
             // #endregion
 
             //This area handles the change in the camera priorities
+
             #region Change Between Right and Left
 
             //If we wanted to change to the right
@@ -170,8 +173,9 @@ public class CameraManager : MonoBehaviour
             {
                 //We begin a timer to check if the player has moved enough to change the camera
                 _changeTimer -= Time.deltaTime;
-                
-                if(_changeTimer <= 0) //if it's done, we deactivate the check, reset the timer and set the camera priority to the right.
+
+                if (_changeTimer <=
+                    0) //if it's done, we deactivate the check, reset the timer and set the camera priority to the right.
                 {
                     changeToRight = false;
                     _changeTimer = changeTimer;
@@ -185,29 +189,41 @@ public class CameraManager : MonoBehaviour
                 //We begin a timer to check if the player has moved enough to change the camera
                 _changeTimer -= Time.deltaTime;
 
-                if (_changeTimer <= 0) //if it's done, we deactivate the check, reset the timer and set the camera priority to the left.
+                if (_changeTimer <=
+                    0) //if it's done, we deactivate the check, reset the timer and set the camera priority to the left.
                 {
                     changeToRight = false;
                     _changeTimer = changeTimer;
                     SetFollowCameraLeft();
                 }
             }
+
             #endregion
         }
-
     }
 
 
     #region Camera Methods
 
     public CinemachineVirtualCamera GetLeftCamera() => levelCameraLeft;
-    public void GetFollowCamerasTransposers() //This method gets the camera framing transposers to change the camera distance for the zooms.
+
+    public void
+        GetFollowCamerasTransposers() //This method gets the camera framing transposers to change the camera distance for the zooms.
     {
         transposerLeft = levelCameraLeft.GetCinemachineComponent<CinemachineFramingTransposer>();
         transposerRight = levelCameraRight.GetCinemachineComponent<CinemachineFramingTransposer>();
     }
 
-    public void ChangeCurrentCameraState(CameraStates currentState) //This just sets the current state to a new one through the parameter.
+    public float GetCamCurrentDistance()
+    {
+        return levelCameraLeft.Priority > levelCameraRight.Priority
+            ? transposerLeft.m_CameraDistance
+            : transposerRight.m_CameraDistance;
+    }
+
+    public void
+        ChangeCurrentCameraState(
+            CameraStates currentState) //This just sets the current state to a new one through the parameter.
     {
         currentCameraState = currentState;
     }
@@ -233,8 +249,11 @@ public class CameraManager : MonoBehaviour
     {
         currentCamera.LookAt = null;
     }
+
     //This region holds all the methods related to camera timers
+
     #region Camera Timers
+
     public void SetCameraRightTimer() //We set the camera timer to the right.
     {
         if (right) //If this method's been called, and the player is already moving to the right, it means the player has cancelled his movement to the other direction, so we reset the direction.
@@ -244,11 +263,11 @@ public class CameraManager : MonoBehaviour
         }
         else //if it's false, it means the player is moving to the opposite direction, so we activate the timer.
         {
-            changeToRight = true;  //We activate the check.
+            changeToRight = true; //We activate the check.
         }
-
     }
-    public void SetCameraLeftTimer()//We set the camera timer to the left.
+
+    public void SetCameraLeftTimer() //We set the camera timer to the left.
     {
         if (left) //If this method's been called, and the player is already moving to the left, it means the player has cancelled his movement to the other direction, so we reset the direction.
         {
@@ -264,7 +283,7 @@ public class CameraManager : MonoBehaviour
     //This is a method to call from the enter idle state in the player controller.
     //If the player stops moving, it isn't moving in any direction.
     //So we need to cancel any change direction timer.
-    public void StopCameraTimer() 
+    public void StopCameraTimer()
     {
         changeToRight = false;
         changeToLeft = false;
@@ -275,14 +294,17 @@ public class CameraManager : MonoBehaviour
     #endregion
 
     //This region holds all the methods related to setting the priorities of the cameras stored in the manager.
+
     #region Set Different Cameras
+
     public void SetFollowCameraRight() //We change the active camera to the dialogue camera.
     {
         ResetAllPriorities(); //We reset all priorities to clean the slate.
         ChangeCurrentCameraState(CameraStates.PlayerFollow); //We set the current state to Follow
 
-        currentCamera = levelCameraRight;  //We store the camera in the currentCamera variable (this doesn't have a use yet but it will be useful if we make transitions or camera movement from this state).
-        levelCameraRight.Priority = 1;//We set the priority to a higher value than the rest.
+        currentCamera =
+            levelCameraRight; //We store the camera in the currentCamera variable (this doesn't have a use yet but it will be useful if we make transitions or camera movement from this state).
+        levelCameraRight.Priority = 1; //We set the priority to a higher value than the rest.
 
         //We set the proper direction and deactivate the other one
         right = true;
@@ -294,7 +316,8 @@ public class CameraManager : MonoBehaviour
         ResetAllPriorities(); //We reset all priorities to clean the slate.
         ChangeCurrentCameraState(CameraStates.PlayerFollow); //We set the current state to Follow
 
-        currentCamera = levelCameraLeft; //We store the camera in the currentCamera variable (this doesn't have a use yet but it will be useful if we make transitions or camera movement from this state).
+        currentCamera =
+            levelCameraLeft; //We store the camera in the currentCamera variable (this doesn't have a use yet but it will be useful if we make transitions or camera movement from this state).
 
         levelCameraLeft.Priority = 1; //We set the priority to a higher value than the rest.
 
@@ -307,7 +330,8 @@ public class CameraManager : MonoBehaviour
     {
         ResetAllPriorities(); //We reset all priorities to clean the slate.
         ChangeCurrentCameraState(CameraStates.Conversation); //We set the current state to Conversation
-        currentCamera = dialogueCamera; //We store the camera in the currentCamera variable (this doesn't have a use yet but it will be useful if we make transitions or camera movement from this state).
+        currentCamera =
+            dialogueCamera; //We store the camera in the currentCamera variable (this doesn't have a use yet but it will be useful if we make transitions or camera movement from this state).
         dialogueCamera.Priority = 1; //We set the priority to a higher value than the rest.
     }
 
@@ -318,7 +342,9 @@ public class CameraManager : MonoBehaviour
         levelCameraLeft = cam;
         levelCameraRight = cam;
         dialogueCamera.Priority = 0;
-    }    public void AssignDialogueCamera(CinemachineVirtualCamera cam, CinemachineVirtualCamera returnCam)
+    }
+
+    public void AssignDialogueCamera(CinemachineVirtualCamera cam, CinemachineVirtualCamera returnCam)
     {
         _oldDialogueCamera = dialogueCamera;
         dialogueCamera = cam;
@@ -341,12 +367,15 @@ public class CameraManager : MonoBehaviour
     #endregion
 
     //This region holds all the methods related to changing to different camera areas.
+
     #region Camera Areas
+
     public void ChangeToCameraArea() //Method to use when changing into a different camera area.
     {
         ResetAllPriorities(); //We reset all priorities.
         previousCameraState = currentCameraState; //We set the previous camera to go back when we leave the area.
-        ChangeCurrentCameraState(CameraStates.PlayerLook); //We set the current state to playerlook, this will change in the future if we have different types of cameras.
+        ChangeCurrentCameraState(CameraStates
+            .PlayerLook); //We set the current state to playerlook, this will change in the future if we have different types of cameras.
     }
 
     public void ReturnFromCameraArea() //Method to use when going back from the area.
@@ -362,10 +391,12 @@ public class CameraManager : MonoBehaviour
                 {
                     SetFollowCameraRight();
                 }
+
                 if (left)
                 {
                     SetFollowCameraLeft();
                 }
+
                 break;
             case CameraStates.Conversation:
                 SetDialogueCamera();
@@ -374,20 +405,25 @@ public class CameraManager : MonoBehaviour
                 break;
         }
     }
-    #endregion
 
     #endregion
 
+    #endregion
+
+    public void ApplyNewDistanceToAllCams(float dist)
+    {
+        transposerLeft.m_CameraDistance = dist;
+        transposerRight.m_CameraDistance = dist;
+    }
 
     [ContextMenu("RotateTest")]
     public void RotateTest()
     {
-        Debug.Log(Vector3.Distance(levelCameraRight.transform.position, GameManager.instance.currentController.transform.position));
-        Quaternion rot = Quaternion.Euler(0,-90,0);
-        levelCameraRight.transform.parent.transform.rotation = rot * levelCameraRight.transform.rotation; 
+        Debug.Log(Vector3.Distance(levelCameraRight.transform.position,
+            GameManager.instance.currentController.transform.position));
+        Quaternion rot = Quaternion.Euler(0, -90, 0);
+        levelCameraRight.transform.parent.transform.rotation = rot * levelCameraRight.transform.rotation;
         // levelCameraLeft.transform.rotation = rot * levelCameraLeft.transform.rotation; 
         // dialogueCamera.transform.rotation = rot * dialogueCamera.transform.rotation; 
     }
-    
-    
 }
