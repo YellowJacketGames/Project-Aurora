@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 3637296002769325983}
   m_Layer: 0
   m_Name: InSpaceText
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -360,6 +360,8 @@ MonoBehaviour:
   textReference: {fileID: 0}
   text: 
   id: 0
+  axis: {x: 0, y: 0, z: 1, w: 0}
   speed: 2
   mask: {fileID: 0}
   triggered: 0
+  amount: 10
