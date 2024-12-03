@@ -66,12 +66,12 @@ public class CodexElement : MonoBehaviour
 
     private void SetOutlineAfterCheckPassword(bool passwordOutput)
     {
-        if (!passwordOutput) //red outline
-        {
-            gameObject.layer = 13;
-            transform.GetChild(0).gameObject.layer = 13;
-        }
-        else
+        // if (!passwordOutput) //red outline
+        // {
+        //     gameObject.layer = 13;
+        //     transform.GetChild(0).gameObject.layer = 13;
+        // }
+        if(passwordOutput)
         {
             gameObject.layer = 12;
             transform.GetChild(0).gameObject.layer = 12;

@@ -21,6 +21,12 @@ public class PlatformsManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        GameManager.instance.currentCameraManager.SetAllCamsTo(
+            GameManager.instance.currentCameraManager.otherCameras[1]); 
+    }
+
     private void OnEnable()
     {
         GameManager.instance.currentTransitionManager.onTransitionFinished.AddListener(LoadPlatformAfterTransition);

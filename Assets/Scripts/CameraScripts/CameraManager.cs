@@ -426,4 +426,12 @@ public class CameraManager : MonoBehaviour
         // levelCameraLeft.transform.rotation = rot * levelCameraLeft.transform.rotation; 
         // dialogueCamera.transform.rotation = rot * dialogueCamera.transform.rotation; 
     }
+
+    public void SetAllCamsTo(CinemachineVirtualCamera cam)
+    {
+        levelCameraLeft = cam;
+        levelCameraRight = cam;
+        dialogueCamera = cam;
+        cam.Priority = 12;
+    }
 }

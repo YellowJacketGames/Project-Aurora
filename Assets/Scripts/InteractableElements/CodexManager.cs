@@ -11,7 +11,11 @@ namespace InteractableElements
         [SerializeField] private CodexGroup[] codexes;
 
         public CodexGroup[] Codexes => codexes;
-        
+
+        public CodexGroup codexesEagle;
+        public CodexGroup codexeCroco;
+        public CodexGroup codexeBull;
+
         [FormerlySerializedAs("currentCodex")] [SerializeField]
         private CodexGroup currentCodexGroup;
 
@@ -24,6 +28,11 @@ namespace InteractableElements
 
         [SerializeField] private CinemachineVirtualCamera puzzleCamera;
         private PuzzleDoorElement _puzzleDoorElement;
+
+
+        private string papire_eagle = "obj_Pergamino_Aguila"; //GameManager.instance.Data.HasObject(valueKey)
+        private string papire_bull = "obj_Pergamino_Toro";
+        private string papire_croco = "obj_Pergamino_Cocodrilo";
 
         private void Awake()
         {
@@ -45,6 +54,8 @@ namespace InteractableElements
             EventsManager.onCodexOut.AddListener(MoveOut);
             EventsManager.OnCodexLeft.AddListener(MoveLeft);
             EventsManager.OnCodexRight.AddListener(MoveRight);
+
+            CheckUnlocks();
         }
 
         private void OnDisable()
@@ -57,6 +68,16 @@ namespace InteractableElements
             EventsManager.OnCodexRight.RemoveListener(MoveRight);
         }
 
+        private void CheckUnlocks()
+        {
+            if (GameManager.instance.Data.HasObject(papire_eagle))
+                codexesEagle.UnlockCodex();
+            if (GameManager.instance.Data.HasObject(papire_croco))
+                codexeCroco.UnlockCodex();
+            if (GameManager.instance.Data.HasObject(papire_bull))
+                codexeBull.UnlockCodex();
+        }
+
         private void MoveUp()
         {
             Debug.Log("MoveUp");
@@ -66,7 +87,7 @@ namespace InteractableElements
                 auxIndex--;
                 if (auxIndex < 0)
                     auxIndex = codexes.Length - 1;
-                
+
                 if (codexes[auxIndex].GetUnlocked())
                 {
                     currentCodexIndex--;
@@ -105,7 +126,7 @@ namespace InteractableElements
                 auxIndex++;
                 if (auxIndex > codexes.Length - 1)
                     auxIndex = 0;
-                if ( codexes[auxIndex].GetUnlocked())
+                if (codexes[auxIndex].GetUnlocked())
                 {
                     currentCodexIndex++;
                     if (currentCodexIndex > codexes.Length - 1)
@@ -137,6 +158,7 @@ namespace InteractableElements
             if (inCodexesTab)
             {
                 inCodexesTab = true;
+                DeselectCodexes();
                 _puzzleDoorElement.ExitPuzzle();
             }
 
@@ -147,7 +169,7 @@ namespace InteractableElements
         {
             if (inCodexesTab)
             {
-                if(!currentCodexGroup.GetUnlocked()) return;
+                if (!currentCodexGroup.GetUnlocked()) return;
                 if (currentCodexGroup.GetDeciphered()) return;
                 inCodexesTab = false;
                 inCodexesElementsTab = true;

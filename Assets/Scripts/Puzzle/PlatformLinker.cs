@@ -7,6 +7,9 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(BoxCollider))]
 public class PlatformLinker : MonoBehaviour
 {
+    [SerializeField] private bool isInitialPlatformLinker = false;
+    [SerializeField] private bool isInitialPlatformLinkerConnector = false;
+
     public int platformId;
     public Transform spawningPosition;
     [SerializeField] private Color gizmosColor;
@@ -59,8 +62,20 @@ public class PlatformLinker : MonoBehaviour
             triggersCanDetect = true;
             return;
         }
+
         if (!other.CompareTag("Player")) return;
         _platformsManager.LoadPlatformWithId(platformLinkerTarget.platformId, platformLinkerTarget);
+        if (isInitialPlatformLinker)
+            StartCoroutine(WaitX(0));
+        else if (isInitialPlatformLinkerConnector) 
+            StartCoroutine(WaitX(1));
+    }
+
+    private IEnumerator WaitX(int index)
+    {
+        yield return new WaitForSeconds(.5f);
+        GameManager.instance.currentCameraManager.SetAllCamsTo(GameManager.instance.currentCameraManager.otherCameras[index]);
+        yield return null;
     }
 
     public void InjectRefs(PlatformsManager pm, int pid)
