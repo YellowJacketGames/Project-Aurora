@@ -2,14 +2,19 @@
 using System.Linq;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace InteractableElements
 {
     public class CodexManager : MonoBehaviour
     {
-        [SerializeField] private Codex[] codexes;
+        [SerializeField] private CodexGroup[] codexes;
 
-        [SerializeField] private Codex currentCodex;
+        public CodexGroup[] Codexes => codexes;
+        
+        [FormerlySerializedAs("currentCodex")] [SerializeField]
+        private CodexGroup currentCodexGroup;
+
         private int currentCodexIndex = 0;
         [SerializeField] private CodexElement currentCodexElement;
 
@@ -23,13 +28,13 @@ namespace InteractableElements
         private void Awake()
         {
             _puzzleDoorElement = GetComponentInParent<PuzzleDoorElement>();
-            codexes = GetComponentsInChildren<Codex>();
+            codexes = GetComponentsInChildren<CodexGroup>();
         }
 
         private void Start()
         {
-            currentCodex = codexes[currentCodexIndex];
-            currentCodex.Select(puzzleCamera);
+            currentCodexGroup = codexes[currentCodexIndex];
+            // currentCodexGroup.Select(puzzleCamera);
         }
 
         private void OnEnable()
@@ -57,30 +62,38 @@ namespace InteractableElements
             Debug.Log("MoveUp");
             if (inCodexesTab)
             {
-                currentCodexIndex--;
-                if (currentCodexIndex < 0)
-                    currentCodexIndex = codexes.Length - 1;
-                currentCodex = codexes[currentCodexIndex];
-                DeselectCodexes();
-                currentCodex.Select(puzzleCamera);
+                var auxIndex = currentCodexIndex;
+                auxIndex--;
+                if (auxIndex < 0)
+                    auxIndex = codexes.Length - 1;
+                
+                if (codexes[auxIndex].GetUnlocked())
+                {
+                    currentCodexIndex--;
+                    if (currentCodexIndex < 0)
+                        currentCodexIndex = codexes.Length - 1;
+                    currentCodexGroup = codexes[currentCodexIndex];
+                    DeselectCodexes();
+                    currentCodexGroup.Select(puzzleCamera);
+                }
             }
 
             if (inCodexesElementsTab)
             {
-                currentCodex.MoveUp();
+                currentCodexGroup.MoveUp();
             }
         }
 
         private void MoveLeft()
         {
             if (inCodexesTab) return;
-            currentCodex.MoveLeft();
+            currentCodexGroup.MoveLeft();
         }
 
         private void MoveRight()
         {
             if (inCodexesTab) return;
-            currentCodex.MoveRight();
+            currentCodexGroup.MoveRight();
         }
 
         private void MoveDown()
@@ -88,17 +101,24 @@ namespace InteractableElements
             Debug.Log("MoveDown");
             if (inCodexesTab)
             {
-                currentCodexIndex++;
-                if (currentCodexIndex > codexes.Length - 1)
-                    currentCodexIndex = 0;
-                currentCodex = codexes[currentCodexIndex];
-                DeselectCodexes();
-                currentCodex.Select(puzzleCamera);
+                var auxIndex = currentCodexIndex;
+                auxIndex++;
+                if (auxIndex > codexes.Length - 1)
+                    auxIndex = 0;
+                if ( codexes[auxIndex].GetUnlocked())
+                {
+                    currentCodexIndex++;
+                    if (currentCodexIndex > codexes.Length - 1)
+                        currentCodexIndex = 0;
+                    currentCodexGroup = codexes[currentCodexIndex];
+                    DeselectCodexes();
+                    currentCodexGroup.Select(puzzleCamera);
+                }
             }
 
             if (inCodexesElementsTab)
             {
-                currentCodex.MoveDown();
+                currentCodexGroup.MoveDown();
             }
         }
 
@@ -110,7 +130,7 @@ namespace InteractableElements
                 inCodexesTab = true;
                 inCodexesElementsTab = false;
                 DeselectCodexes();
-                currentCodex.Select(puzzleCamera);
+                currentCodexGroup.Select(puzzleCamera);
                 return;
             }
 
@@ -127,10 +147,12 @@ namespace InteractableElements
         {
             if (inCodexesTab)
             {
+                if(!currentCodexGroup.GetUnlocked()) return;
+                if (currentCodexGroup.GetDeciphered()) return;
                 inCodexesTab = false;
                 inCodexesElementsTab = true;
                 //3.35 new camera x position, to zoom in
-                currentCodex.SuperSelect(puzzleCamera);
+                currentCodexGroup.SuperSelect(puzzleCamera);
                 return;
             }
 

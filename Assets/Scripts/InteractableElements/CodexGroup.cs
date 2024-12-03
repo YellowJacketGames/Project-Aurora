@@ -4,9 +4,13 @@ using Cinemachine;
 using UnityEngine;
 
 
-public class Codex : MonoBehaviour
+public class CodexGroup : MonoBehaviour
 {
     [SerializeField] private bool unlocked;
+    [SerializeField] private bool deciphered = false;
+    [Space]
+    [SerializeField] private GameObject papireGo;
+
     [SerializeField] public CodexElement selectedElement;
     private int currentElementIndex = 0;
 
@@ -23,6 +27,7 @@ public class Codex : MonoBehaviour
 
     private void Start()
     {
+        papireGo.SetActive(false);
         InitCodexElements();
     }
 
@@ -47,6 +52,7 @@ public class Codex : MonoBehaviour
         TryToMove(camera, true);
     }
 
+
     public void Deselect()
     {
         foreach (var element in codexElements)
@@ -55,9 +61,12 @@ public class Codex : MonoBehaviour
         }
     }
 
+    public bool GetUnlocked() => unlocked;
+    public bool GetDeciphered() => deciphered;
     public void UnlockCodex()
     {
         unlocked = true;
+        papireGo.SetActive(true);
     }
 
     private void InitCodexElements()
@@ -110,6 +119,7 @@ public class Codex : MonoBehaviour
                 correct = false;
         }
 
+        deciphered = correct;
         return correct;
     }
 

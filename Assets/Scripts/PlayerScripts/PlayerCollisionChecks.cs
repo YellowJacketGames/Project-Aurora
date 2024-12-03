@@ -16,19 +16,19 @@ public class PlayerCollisionChecks : PlayerComponent
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Interactable") || other.CompareTag("CameraArea")) return;
+        if (other.CompareTag("Player") || other.CompareTag("Interactable")|| other.CompareTag("IgnorerColliderToPlayer") || other.CompareTag("CameraArea")) return;
         ApplyTriggerBool(true);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player")|| other.CompareTag("Interactable") || other.CompareTag("CameraArea")) return;
+        if (other.CompareTag("Player")|| other.CompareTag("Interactable")|| other.CompareTag("IgnorerColliderToPlayer") || other.CompareTag("CameraArea")) return;
         ApplyTriggerBool(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")|| other.CompareTag("Interactable") || other.CompareTag("CameraArea")) return;
+        if (other.CompareTag("Player")|| other.CompareTag("Interactable")|| other.CompareTag("IgnorerColliderToPlayer") || other.CompareTag("CameraArea")) return;
         ApplyTriggerBool(false);
     }
 

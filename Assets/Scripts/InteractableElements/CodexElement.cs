@@ -23,28 +23,67 @@ public class CodexElement : MonoBehaviour
     [SerializeField] private Material defaultMaterial;
 
     private MeshRenderer _meshRenderer;
+    private CodexGroup _parent;
 
     private void Awake()
     {
+        _parent = GetComponentInParent<CodexGroup>();
         _meshRenderer = GetComponent<MeshRenderer>();
         Deselect();
-        
     }
+
     public void SuperSelect()
     {
-        _meshRenderer.material = innerSelectedMaterial; 
+        // _meshRenderer.material = innerSelectedMaterial;
+        SetOutline(_parent.GetDeciphered());
     }
+
     public void Select()
     {
-        _meshRenderer.material = selectedMaterial; 
+        // _meshRenderer.material = selectedMaterial;
+        SetOutline(_parent.GetDeciphered());
     }
 
     public void Deselect()
     {
-        _meshRenderer.material = defaultMaterial; 
+        // _meshRenderer.material = defaultMaterial;
+        UnsetOutline();
     }
 
-    
+    private void SetOutline(bool green)
+    {
+        if (!green)
+        {
+            gameObject.layer = 11;
+            transform.GetChild(0).gameObject.layer = 11;
+        }
+        else
+        {
+            gameObject.layer = 12;
+            transform.GetChild(0).gameObject.layer = 12;
+        }
+    }
+
+    private void SetOutlineAfterCheckPassword(bool passwordOutput)
+    {
+        if (!passwordOutput) //red outline
+        {
+            gameObject.layer = 13;
+            transform.GetChild(0).gameObject.layer = 13;
+        }
+        else
+        {
+            gameObject.layer = 12;
+            transform.GetChild(0).gameObject.layer = 12;
+        }
+    }
+
+    private void UnsetOutline()
+    {
+        gameObject.layer = 0;
+        transform.GetChild(0).gameObject.layer = 0;
+    }
+
     [ContextMenu("RotateUp")]
     public void RotateUp()
     {
@@ -81,6 +120,9 @@ public class CodexElement : MonoBehaviour
         transform.rotation = Quaternion.Euler(toRotation);
         _rotationCount++;
         isRotating = false;
+        //check pass
+        SetOutlineAfterCheckPassword(_parent.CheckPassword());
+
         yield return null;
     }
 

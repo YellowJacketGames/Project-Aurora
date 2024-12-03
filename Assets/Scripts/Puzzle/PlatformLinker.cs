@@ -54,7 +54,11 @@ public class PlatformLinker : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!triggersCanDetect) return;
+        if (!triggersCanDetect)
+        {
+            triggersCanDetect = true;
+            return;
+        }
         if (!other.CompareTag("Player")) return;
         _platformsManager.LoadPlatformWithId(platformLinkerTarget.platformId, platformLinkerTarget);
     }
