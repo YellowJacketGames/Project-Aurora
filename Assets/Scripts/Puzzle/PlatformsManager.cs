@@ -14,7 +14,7 @@ public class PlatformsManager : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var platform in transform.GetComponentsInChildren<Platform>())
+        foreach (var platform in transform.GetComponentsInChildren<Platform>(true))
         {
             platform.InjectPlatformsManager(this);
             _platforms.Add(platform);
