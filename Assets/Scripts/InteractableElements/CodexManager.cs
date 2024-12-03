@@ -144,7 +144,7 @@ namespace InteractableElements
         }
 
 
-        private void MoveOut()
+        public void MoveOut()
         {
             if (inCodexesElementsTab)
             {
@@ -167,6 +167,11 @@ namespace InteractableElements
 
         private void MoveIn()
         {
+            if (inCodexesElementsTab)
+            {
+                if(currentCodexGroup.selectedElement.IsTryCombinationButton)
+                    currentCodexGroup.MoveIn();
+            }
             if (inCodexesTab)
             {
                 if (!currentCodexGroup.GetUnlocked()) return;
