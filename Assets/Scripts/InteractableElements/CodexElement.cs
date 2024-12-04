@@ -8,7 +8,7 @@ public class CodexElement : MonoBehaviour
     public bool IsTryCombinationButton = false;
 
     [SerializeField] private List<string> displayElements;
-    private int i=0;
+    private int i = 0;
     [SerializeField] private string correctElement;
 
     [SerializeField] private string currentElement;
@@ -32,7 +32,8 @@ public class CodexElement : MonoBehaviour
     {
         _parent = GetComponentInParent<CodexGroup>();
         _meshRenderer = GetComponent<MeshRenderer>();
-        currentElement = displayElements[0];
+        if (!IsTryCombinationButton)
+            currentElement = displayElements[0];
         Deselect();
     }
 
@@ -141,9 +142,10 @@ public class CodexElement : MonoBehaviour
         {
             i--;
             if (i < 0)
-                i = displayElements.Count-1;
+                i = displayElements.Count - 1;
             currentElement = displayElements[i];
         }
+
         //check pass
         yield return null;
     }

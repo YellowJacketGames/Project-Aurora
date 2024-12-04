@@ -108,7 +108,8 @@ public class MainMenuManager3D : MonoBehaviour
     {
         if (GameManager.instance.Data.HasSavedData())
             Continue();
-        NewGame();
+        else
+            NewGame();
     }
 
     public void Exit()

@@ -8,7 +8,6 @@ public class PlatformsManager : MonoBehaviour
 {
     [SerializeField] private List<Platform> _platforms;
     [SerializeField] private bool _debugging;
-
     private int ref_id;
     private PlatformLinker ref_linker;
 
@@ -24,7 +23,7 @@ public class PlatformsManager : MonoBehaviour
     private void Start()
     {
         GameManager.instance.currentCameraManager.SetAllCamsTo(
-            GameManager.instance.currentCameraManager.otherCameras[1]); 
+            GameManager.instance.currentCameraManager.otherCameras[1]);
     }
 
     private void OnEnable()
@@ -34,7 +33,8 @@ public class PlatformsManager : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.instance.currentTransitionManager.onTransitionFinished.RemoveListener(LoadPlatformAfterTransition);
+        GameManager.instance.currentTransitionManager.onTransitionFinished.RemoveListener(
+            LoadPlatformAfterTransition);
     }
 
     private void LoadPlatformAfterTransition()

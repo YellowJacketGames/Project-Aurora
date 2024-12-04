@@ -12,10 +12,11 @@ public class CameraArea : MonoBehaviour
 
     [SerializeField] bool inArea;
     public bool disableInputOnEnter;
+    public bool changeCameraDialogueOnEnter;
+
     private void Awake()
     {
         gameObject.tag = "CameraArea";
-
     }
 
     protected virtual void ChangeToArea()
@@ -23,7 +24,8 @@ public class CameraArea : MonoBehaviour
         if (!areaCamera) return;
 
         GameManager.instance.currentCameraManager.ChangeToCameraArea();
-       if(disableInputOnEnter) GameManager.instance.currentController.playerMovementComponent.DisableAllInput();
+        if (disableInputOnEnter) GameManager.instance.currentController.playerMovementComponent.DisableAllInput();
+        if (changeCameraDialogueOnEnter) GameManager.instance.currentCameraManager.AssignDialogueCamera(areaCamera);
         areaCamera.Priority = 1;
         inArea = true;
     }
@@ -35,7 +37,9 @@ public class CameraArea : MonoBehaviour
         Debug.LogError("Area exited");
         areaCamera.Priority = 0;
         GameManager.instance.currentCameraManager.ReturnFromCameraArea();
-     if(disableInputOnEnter)   GameManager.instance.currentController.playerMovementComponent.EnableAllInput();
+        if (disableInputOnEnter) GameManager.instance.currentController.playerMovementComponent.EnableAllInput();
+        if (changeCameraDialogueOnEnter) GameManager.instance.currentCameraManager.RestoreDialogueCamera();
+
         inArea = false;
     }
 

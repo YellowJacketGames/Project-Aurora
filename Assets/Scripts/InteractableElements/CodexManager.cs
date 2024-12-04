@@ -29,7 +29,7 @@ namespace InteractableElements
         [SerializeField] private CinemachineVirtualCamera puzzleCamera;
         private PuzzleDoorElement _puzzleDoorElement;
 
-
+        private Animator _animator;
         private string papire_eagle = "obj_Pergamino_Aguila"; //GameManager.instance.Data.HasObject(valueKey)
         private string papire_bull = "obj_Pergamino_Toro";
         private string papire_croco = "obj_Pergamino_Cocodrilo";
@@ -38,6 +38,7 @@ namespace InteractableElements
         {
             _puzzleDoorElement = GetComponentInParent<PuzzleDoorElement>();
             codexes = GetComponentsInChildren<CodexGroup>();
+            _animator = GetComponentInParent<Animator>();
         }
 
         private void Start()
@@ -152,6 +153,8 @@ namespace InteractableElements
                 inCodexesElementsTab = false;
                 DeselectCodexes();
                 currentCodexGroup.Select(puzzleCamera);
+                if (CheckPuzzleCompleted())
+                    TriggerEndAnimPuzzle();
                 return;
             }
 
@@ -186,6 +189,26 @@ namespace InteractableElements
             Debug.Log("MoveIn");
         }
 
+        private bool CheckPuzzleCompleted()
+        {
+            bool finished = true;
+            foreach (var codex in codexes)
+                if (!codex.GetDeciphered())
+                    finished = false;
+            return finished;
+        }
+
+        private void TriggerEndAnimPuzzle()
+        {
+            //implement animator to door parent
+            _animator.SetTrigger("OpenDoor");
+            //TODO- wen sfx trigger victory sound
+            
+            inCodexesTab = true;
+            DeselectCodexes();
+            _puzzleDoorElement.ExitPuzzle();
+            
+        }
         private void DeselectCodexes()
         {
             foreach (var codex in codexes)

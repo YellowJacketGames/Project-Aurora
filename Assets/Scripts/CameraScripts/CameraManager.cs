@@ -344,6 +344,12 @@ public class CameraManager : MonoBehaviour
         dialogueCamera.Priority = 0;
     }
 
+    public void RestoreDialogueCamera()
+    {
+        dialogueCamera = _oldDialogueCamera;
+        dialogueCamera.Priority = 0;
+    }
+
     public void AssignDialogueCamera(CinemachineVirtualCamera cam, CinemachineVirtualCamera returnCam)
     {
         _oldDialogueCamera = dialogueCamera;
