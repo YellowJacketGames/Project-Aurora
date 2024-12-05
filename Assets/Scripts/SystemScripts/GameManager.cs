@@ -237,6 +237,10 @@ public class GameManager : MonoBehaviour
         print("data.progressionIndex  -> " + data.progressionIndex);
     }
 
+    public bool IsSpanishSet()
+    {
+        return data.language != SavingData.Language.ENG;
+    }
 
     public void ResetData()
     {

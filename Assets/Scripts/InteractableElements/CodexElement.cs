@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class CodexElement : MonoBehaviour
 {
+    public bool IsTryCombinationButton = false;
+
     [SerializeField] private List<string> displayElements;
+    private int i = 0;
     [SerializeField] private string correctElement;
 
     [SerializeField] private string currentElement;
@@ -23,47 +26,94 @@ public class CodexElement : MonoBehaviour
     [SerializeField] private Material defaultMaterial;
 
     private MeshRenderer _meshRenderer;
+    private CodexGroup _parent;
 
     private void Awake()
     {
+        _parent = GetComponentInParent<CodexGroup>();
         _meshRenderer = GetComponent<MeshRenderer>();
+        if (!IsTryCombinationButton)
+            currentElement = displayElements[0];
         Deselect();
-        
     }
+
     public void SuperSelect()
     {
-        _meshRenderer.material = innerSelectedMaterial; 
+        // _meshRenderer.material = innerSelectedMaterial;
+        SetOutline(_parent.GetDeciphered());
     }
+
     public void Select()
     {
-        _meshRenderer.material = selectedMaterial; 
+        // _meshRenderer.material = selectedMaterial;
+        SetOutline(_parent.GetDeciphered());
     }
 
     public void Deselect()
     {
-        _meshRenderer.material = defaultMaterial; 
+        // _meshRenderer.material = defaultMaterial;
+        UnsetOutline();
     }
 
-    
+    private void SetOutline(bool green)
+    {
+        if (!green)
+        {
+            gameObject.layer = 11;
+            transform.GetChild(0).gameObject.layer = 11;
+        }
+        else
+        {
+            gameObject.layer = 12;
+            transform.GetChild(0).gameObject.layer = 12;
+        }
+    }
+
+    public void SetOutlineAfterCheckPassword(bool passwordOutput)
+    {
+        if (IsTryCombinationButton)
+            if (!passwordOutput) //red outline
+            {
+                gameObject.layer = 13;
+                transform.GetChild(0).gameObject.layer = 13;
+            }
+
+        if (passwordOutput)
+        {
+            gameObject.layer = 12;
+            transform.GetChild(0).gameObject.layer = 12;
+        }
+    }
+
+    private void UnsetOutline()
+    {
+        gameObject.layer = 0;
+        transform.GetChild(0).gameObject.layer = 0;
+    }
+
     [ContextMenu("RotateUp")]
     public void RotateUp()
     {
-        TryToRotate(-1);
+        if (!IsTryCombinationButton)
+            TryToRotate(-1);
     }
 
     [ContextMenu("RotateDown")]
     public void RotateDown()
     {
-        TryToRotate(1);
+        if (!IsTryCombinationButton)
+            TryToRotate(1);
     }
 
     private void TryToRotate(int direction)
     {
         if (isRotating) return;
-        StartCoroutine(SlerpRotationTo(direction * rotationAxis * _rotationAmount * _rotationCount));
+        Vector3 targetEuler = transform.eulerAngles + (direction * rotationAxis * _rotationAmount);
+        // direction * rotationAxis * _rotationAmount * _rotationCount)
+        StartCoroutine(SlerpRotationTo(targetEuler, direction));
     }
 
-    private IEnumerator SlerpRotationTo(Vector3 toRotation)
+    private IEnumerator SlerpRotationTo(Vector3 toRotation, float direction)
     {
         isRotating = true;
         float elapsed_time = 0f;
@@ -81,6 +131,22 @@ public class CodexElement : MonoBehaviour
         transform.rotation = Quaternion.Euler(toRotation);
         _rotationCount++;
         isRotating = false;
+        if (direction < 0)
+        {
+            i++;
+            if (i > displayElements.Count)
+                i = 0;
+            currentElement = displayElements[i];
+        }
+        else
+        {
+            i--;
+            if (i < 0)
+                i = displayElements.Count - 1;
+            currentElement = displayElements[i];
+        }
+
+        //check pass
         yield return null;
     }
 

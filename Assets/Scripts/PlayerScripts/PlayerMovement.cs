@@ -51,8 +51,9 @@ public class PlayerMovement : PlayerComponent
 
     [Space] [Header("Checks")] [SerializeField]
     private bool isJumping;
-
-    [SerializeField] private bool isCrouched;
+    [Space] [Header("Can Jump Condition")] [SerializeField]
+    public bool handConfiguredCanJump = true; 
+    [Space] [SerializeField] private bool isCrouched;
     [SerializeField] private bool isColliding;
     [SerializeField] public bool triggerCollisionsL;
     [SerializeField] public bool triggerCollisionsR;
@@ -186,60 +187,72 @@ public class PlayerMovement : PlayerComponent
                     switch (movementDirection)
                     {
                         case MovementDirection.Default:
-                            if (triggerCollisionsR)
+                            if(handConfiguredCanJump)
                             {
-                                if (inputMagnitude > 0)
-                                    _currentSpeed = 0;
-                            }
-                            else if (triggerCollisionsL)
-                            {
-                                if (inputMagnitude < 0)
-                                    _currentSpeed = 0;
+                                if (triggerCollisionsR)
+                                {
+                                    if (inputMagnitude > 0)
+                                        _currentSpeed = 0;
+                                }
+                                else if (triggerCollisionsL)
+                                {
+                                    if (inputMagnitude < 0)
+                                        _currentSpeed = 0;
+                                }
                             }
 
                             _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
                                 _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot1:
-                            if (triggerCollisionsL)
+                            if(handConfiguredCanJump)
                             {
-                                if (inputMagnitude > 0)
-                                    _currentSpeed = 0;
-                            }
-                            else if (triggerCollisionsR)
-                            {
-                                if (inputMagnitude < 0)
-                                    _currentSpeed = 0;
+                                if (triggerCollisionsL)
+                                {
+                                    if (inputMagnitude > 0)
+                                        _currentSpeed = 0;
+                                }
+                                else if (triggerCollisionsR)
+                                {
+                                    if (inputMagnitude < 0)
+                                        _currentSpeed = 0;
+                                }
                             }
 
                             _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, -
                                 _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot2: //  this one not used for now i guess
-                            if (triggerCollisionsR)
+                            if(handConfiguredCanJump)
                             {
-                                if (inputMagnitude > 0)
-                                    _currentSpeed = 0;
-                            }
-                            else if (triggerCollisionsL)
-                            {
-                                if (inputMagnitude < 0)
-                                    _currentSpeed = 0;
+                                if (triggerCollisionsR)
+                                {
+                                    if (inputMagnitude > 0)
+                                        _currentSpeed = 0;
+                                }
+                                else if (triggerCollisionsL)
+                                {
+                                    if (inputMagnitude < 0)
+                                        _currentSpeed = 0;
+                                }
                             }
 
                             _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y,
                                 _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot3:
-                            if (triggerCollisionsF)
+                            if(handConfiguredCanJump)
                             {
-                                if (inputMagnitude > 0)
-                                    _currentSpeed = 0;
-                            }
-                            else if (triggerCollisionsB)
-                            {
-                                if (inputMagnitude < 0)
-                                    _currentSpeed = 0;
+                                if (triggerCollisionsF)
+                                {
+                                    if (inputMagnitude > 0)
+                                        _currentSpeed = 0;
+                                }
+                                else if (triggerCollisionsB)
+                                {
+                                    if (inputMagnitude < 0)
+                                        _currentSpeed = 0;
+                                }
                             }
 
                             _parent.playerRigid.velocity = new Vector3(
@@ -247,15 +260,18 @@ public class PlayerMovement : PlayerComponent
                                 _parent.playerRigid.velocity.y, 0);
                             break;
                         case MovementDirection.Rot4:
-                            if (triggerCollisionsB)
+                            if(handConfiguredCanJump)
                             {
-                                if (inputMagnitude > 0)
-                                    _currentSpeed = 0;
-                            }
-                            else if (triggerCollisionsF)
-                            {
-                                if (inputMagnitude < 0)
-                                    _currentSpeed = 0;
+                                if (triggerCollisionsB)
+                                {
+                                    if (inputMagnitude > 0)
+                                        _currentSpeed = 0;
+                                }
+                                else if (triggerCollisionsF)
+                                {
+                                    if (inputMagnitude < 0)
+                                        _currentSpeed = 0;
+                                }
                             }
 
                             _parent.playerRigid.velocity = new Vector3(
@@ -278,31 +294,36 @@ public class PlayerMovement : PlayerComponent
                     switch (movementDirection)
                     {
                         case MovementDirection.Default:
-                            if (triggerCollisionsB)
+                            if(handConfiguredCanJump)
                             {
-                                if (inputMagnitude > 0)
-                                    _currentSpeed = 0;
+                                if (triggerCollisionsB)
+                                {
+                                    if (inputMagnitude > 0)
+                                        _currentSpeed = 0;
+                                }
+                                else if (triggerCollisionsF)
+                                {
+                                    if (inputMagnitude < 0)
+                                        _currentSpeed = 0;
+                                }
                             }
-                            else if (triggerCollisionsF)
-                            {
-                                if (inputMagnitude < 0)
-                                    _currentSpeed = 0;
-                            }
-
                             _parent.playerRigid.velocity =
                                 new Vector3(_currentSpeed * targetSpeed * movementMultiplier,
                                     _parent.playerRigid.velocity.y, 0);
                             break;
                         case MovementDirection.Rot1:
-                            if (triggerCollisionsF)
+                            if(handConfiguredCanJump)
                             {
-                                if (inputMagnitude > 0)
-                                    _currentSpeed = 0;
-                            }
-                            else if (triggerCollisionsB)
-                            {
-                                if (inputMagnitude < 0)
-                                    _currentSpeed = 0;
+                                if (triggerCollisionsF)
+                                {
+                                    if (inputMagnitude > 0)
+                                        _currentSpeed = 0;
+                                }
+                                else if (triggerCollisionsB)
+                                {
+                                    if (inputMagnitude < 0)
+                                        _currentSpeed = 0;
+                                }
                             }
 
                             _parent.playerRigid.velocity = new Vector3(
@@ -325,30 +346,36 @@ public class PlayerMovement : PlayerComponent
                                 0, _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot3:
-                            if (triggerCollisionsR)
+                            if(handConfiguredCanJump)
                             {
-                                if (inputMagnitude > 0)
-                                    _currentSpeed = 0;
-                            }
-                            else if (triggerCollisionsL)
-                            {
-                                if (inputMagnitude < 0)
-                                    _currentSpeed = 0;
+                                if (triggerCollisionsR)
+                                {
+                                    if (inputMagnitude > 0)
+                                        _currentSpeed = 0;
+                                }
+                                else if (triggerCollisionsL)
+                                {
+                                    if (inputMagnitude < 0)
+                                        _currentSpeed = 0;
+                                }
                             }
                             _parent.playerRigid.velocity = new Vector3(0,
                                 _parent.playerRigid.velocity.y,
                                 _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot4:
-                            if (triggerCollisionsL)
+                            if(handConfiguredCanJump)
                             {
-                                if (inputMagnitude > 0)
-                                    _currentSpeed = 0;
-                            }
-                            else if (triggerCollisionsR)
-                            {
-                                if (inputMagnitude < 0)
-                                    _currentSpeed = 0;
+                                if (triggerCollisionsL)
+                                {
+                                    if (inputMagnitude > 0)
+                                        _currentSpeed = 0;
+                                }
+                                else if (triggerCollisionsR)
+                                {
+                                    if (inputMagnitude < 0)
+                                        _currentSpeed = 0;
+                                }
                             }
                             _parent.playerRigid.velocity = new Vector3(0,
                                 _parent.playerRigid.velocity.y,
@@ -555,6 +582,8 @@ public class PlayerMovement : PlayerComponent
 
     private void HandleJump()
     {
+        if(!handConfiguredCanJump) return;
+
         if (isGrounded)
         {
             hasObstacleAbove = Physics.Raycast(playerCenter.position, Vector3.up, playerHeight * 0.5f + 0.2f);

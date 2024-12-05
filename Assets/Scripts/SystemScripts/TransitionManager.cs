@@ -12,6 +12,7 @@ public class TransitionManager : MonoBehaviour
 
     //Bools to check which function to do
     bool fadeIn;
+
     bool fadeOut;
     Effects transitionEffects;
 
@@ -23,13 +24,13 @@ public class TransitionManager : MonoBehaviour
     bool specificLevel = false;
 
     [SerializeField] private Image transitionImage;
-    [Range(0f, 1f)]
-    [SerializeField] float transitionDuration;
+    [Range(0f, 1f)] [SerializeField] float transitionDuration;
 
     [SerializeField] float transitionTime = 0;
     [SerializeField] private bool shouldTriggerLoadingClip;
 
     public UnityEvent onTransitionFinished;
+
     private void Start()
     {
         //Give reference to Game Manager
@@ -39,17 +40,19 @@ public class TransitionManager : MonoBehaviour
         SetFadeOut();
         transitionEffects = new Effects();
     }
+
     private void Update()
     {
         if (fadeIn) //If faden in has been set, execute the method 
         {
-            if(transitionEffects.FadeIn(transitionImage, transitionDuration))
+            if (transitionEffects.FadeIn(transitionImage, transitionDuration))
             {
                 fadeIn = false; //When the transition is finished, we make sure the transition stops
 
                 //
-                onTransitionFinished?.Invoke();
-                
+                if (!nextLevel && !quitGame && !mainMenu)
+                    onTransitionFinished?.Invoke();
+
                 if (completeTransition)
                 {
                     completeTransition = false;
@@ -79,7 +82,6 @@ public class TransitionManager : MonoBehaviour
                 {
                     resetLevel = false;
                     GameManager.instance.ResetLevel();
-
                 }
 
                 if (specificLevel)
@@ -97,8 +99,9 @@ public class TransitionManager : MonoBehaviour
                 fadeOut = false; //When the transition is finished, we make sure the transition stops
 
                 //Since we're exiting the transition, we also need to change to player state to idle
-                if(GameManager.instance.currentController != null && GameManager.instance.currentController.CurrentPlayerState == PlayerState.Transition)
-                GameManager.instance.currentController.ChangeState(PlayerState.Idle);
+                if (GameManager.instance.currentController != null &&
+                    GameManager.instance.currentController.CurrentPlayerState == PlayerState.Transition)
+                    GameManager.instance.currentController.ChangeState(PlayerState.Idle);
             }
         }
     }
@@ -107,14 +110,17 @@ public class TransitionManager : MonoBehaviour
 
     public void SetFadeIn() //Set the transition to fade In
     {
-        if(GameManager.instance.currentController != null)
-        GameManager.instance.currentController.ChangeState(PlayerState.Transition); //Since we're entering a transition, we set the player state to transition
+        if (GameManager.instance.currentController != null)
+            GameManager.instance.currentController
+                .ChangeState(PlayerState
+                    .Transition); //Since we're entering a transition, we set the player state to transition
 
         if (!fadeOut)
             fadeIn = true;
     }
 
     public void SetLoadingClip() => shouldTriggerLoadingClip = true;
+
     public void CompleteTransition()
     {
         SetFadeIn();
@@ -126,37 +132,41 @@ public class TransitionManager : MonoBehaviour
         SetFadeIn();
         mainMenu = true;
     }
-    
+
     public void NextLevel()
     {
         SetFadeIn();
         nextLevel = true;
     }
+
     public void SpecificLevel(string level)
     {
         GameManager.instance.SetLevelToLoad(level);
         SetFadeIn();
         specificLevel = true;
-        
     }
+
     public void ResetLevel()
     {
         SetFadeIn();
         resetLevel = true;
     }
+
     public void QuitGame()
     {
         SetFadeIn();
         quitGame = true;
     }
+
     public void SetFadeOut() //Set the transition to fade out
     {
-        if(!fadeIn)
-        fadeOut = true;
+        if (!fadeIn)
+            fadeOut = true;
     }
+
     public bool ReturnTransitionStatus() //This returns true if either transition is playing and false if none are
     {
-        if(fadeIn || fadeOut)
+        if (fadeIn || fadeOut)
         {
             return true;
         }
@@ -165,5 +175,6 @@ public class TransitionManager : MonoBehaviour
             return false;
         }
     }
+
     #endregion
 }

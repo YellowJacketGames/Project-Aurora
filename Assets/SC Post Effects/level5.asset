@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.067
+    m_Value: 1
   brightness:
     m_OverrideState: 0
     m_Value: {x: 0, y: 1}
@@ -440,6 +440,7 @@ MonoBehaviour:
   - {fileID: 1887827290423715242}
   - {fileID: -4194999660907582430}
   - {fileID: 2921333931664704133}
+  - {fileID: 6710883004597943665}
 --- !u!114 &318946768857646538
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -475,18 +476,18 @@ MonoBehaviour:
   active: 0
   amount:
     m_OverrideState: 1
-    m_Value: 0.322
+    m_Value: 1
   resolution:
     m_OverrideState: 0
     m_Value: 240
   resolutionPreset:
     m_OverrideState: 1
-    m_Value: 600
+    m_Value: 160
   preserveAspectRatio:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   centerPixel:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   shader: {fileID: 4800000, guid: 418afc1867615f1408a4c6de9d799560, type: 3}
 --- !u!114 &1097008267836231032
@@ -504,40 +505,40 @@ MonoBehaviour:
   active: 1
   debug:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
   mode:
     m_OverrideState: 1
     m_Value: 2
   invertFadeDistance:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   distanceFade:
     m_OverrideState: 1
     m_Value: 1
   startFadeDistance:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   endFadeDistance:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1000
   sensitivityDepth:
     m_OverrideState: 0
     m_Value: 0
   sensitivityNormals:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 0
   lumThreshold:
     m_OverrideState: 1
-    m_Value: 0.01
+    m_Value: 0.368
   edgeColor:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
   edgeExp:
     m_OverrideState: 1
     m_Value: 3.3
   edgeSize:
     m_OverrideState: 1
-    m_Value: 4
+    m_Value: 1
   edgeOpacity:
     m_OverrideState: 1
     m_Value: 1
@@ -632,12 +633,12 @@ MonoBehaviour:
   active: 0
   mode:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 1
   intensity:
     m_OverrideState: 1
     m_Value: 1
   colorRamp:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 0b5345cf23ab840779a8cbf1b89f355a, type: 3}
     dimension: 1
   shader: {fileID: 4800000, guid: 050cb486d6ed1c54bbc94f0ef4ea8c25, type: 3}
@@ -653,7 +654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74483714bbf784b45b0c9c7c76035dd8, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   useSceneSettings:
     m_OverrideState: 0
     m_Value: 0
@@ -662,7 +663,7 @@ MonoBehaviour:
     m_Value: 2
   globalDensity:
     m_OverrideState: 1
-    m_Value: 0.166
+    m_Value: 1
   fogStartDistance:
     m_OverrideState: 0
     m_Value: 0
@@ -671,12 +672,12 @@ MonoBehaviour:
     m_Value: 600
   colorSource:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   fogColor:
     m_OverrideState: 1
-    m_Value: {r: 0.040939845, g: 0.14753127, b: 0.3773585, a: 1}
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
   fogColorGradient:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {fileID: 0}
     dimension: 1
   gradientDistance:
@@ -690,7 +691,7 @@ MonoBehaviour:
     m_Value: 1
   distanceDensity:
     m_OverrideState: 1
-    m_Value: 1.34
+    m_Value: 1.61
   useRadialDistance:
     m_OverrideState: 0
     m_Value: 1
@@ -849,7 +850,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 2
   scatter:
     m_OverrideState: 1
     m_Value: 0.071
@@ -897,6 +898,33 @@ MonoBehaviour:
   texture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
+--- !u!114 &6710883004597943665
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4084fdf355ba7b74ca4d26495e077c9a, type: 3}
+  m_Name: SpeedLines
+  m_EditorClassIdentifier: 
+  active: 0
+  noiseTex:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  intensity:
+    m_OverrideState: 0
+    m_Value: 0
+  size:
+    m_OverrideState: 0
+    m_Value: 0.5
+  falloff:
+    m_OverrideState: 0
+    m_Value: 0.25
+  shader: {fileID: 0}
 --- !u!114 &9033469488465860764
 MonoBehaviour:
   m_ObjectHideFlags: 3

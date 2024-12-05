@@ -344,6 +344,12 @@ public class CameraManager : MonoBehaviour
         dialogueCamera.Priority = 0;
     }
 
+    public void RestoreDialogueCamera()
+    {
+        dialogueCamera = _oldDialogueCamera;
+        dialogueCamera.Priority = 0;
+    }
+
     public void AssignDialogueCamera(CinemachineVirtualCamera cam, CinemachineVirtualCamera returnCam)
     {
         _oldDialogueCamera = dialogueCamera;
@@ -425,5 +431,13 @@ public class CameraManager : MonoBehaviour
         levelCameraRight.transform.parent.transform.rotation = rot * levelCameraRight.transform.rotation;
         // levelCameraLeft.transform.rotation = rot * levelCameraLeft.transform.rotation; 
         // dialogueCamera.transform.rotation = rot * dialogueCamera.transform.rotation; 
+    }
+
+    public void SetAllCamsTo(CinemachineVirtualCamera cam)
+    {
+        levelCameraLeft = cam;
+        levelCameraRight = cam;
+        dialogueCamera = cam;
+        cam.Priority = 12;
     }
 }

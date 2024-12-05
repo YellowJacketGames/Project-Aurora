@@ -108,7 +108,8 @@ public class MainMenuManager3D : MonoBehaviour
     {
         if (GameManager.instance.Data.HasSavedData())
             Continue();
-        NewGame();
+        else
+            NewGame();
     }
 
     public void Exit()
@@ -130,7 +131,16 @@ public class MainMenuManager3D : MonoBehaviour
         GameManager.instance.currentTransitionManager.SetLoadingClip();
         GameManager.instance.currentTransitionManager.NextLevel();
     }
-
+    public void SetEspLanguage()
+    {
+        GameManager.instance.Data.ChangeLanguageTo(SavingData.Language.ESP);
+        EventsManager.InvokeChangeLang(GameManager.instance.Data.language);
+    }
+    public void SetEngLanguage()
+    {
+        GameManager.instance.Data.ChangeLanguageTo(SavingData.Language.ENG);
+        EventsManager.InvokeChangeLang(GameManager.instance.Data.language);
+    }
     private void Update()
     {
         Hover();

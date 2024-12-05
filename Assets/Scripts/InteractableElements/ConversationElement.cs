@@ -2,21 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
+using UnityEngine.Serialization;
 
 public class ConversationElement : InteractableElement
 {
-    [Header("Conversation")] [SerializeField]
-    TextAsset elementDialogue;
+    [FormerlySerializedAs("elementDialogue")] [Header("Conversation")] [SerializeField]
+    TextAsset elementDialogueESP;
+
+    [SerializeField] TextAsset elementDialogueENG;
 
     [SerializeField] Speaker conversationSpeaker;
 
     [ContextMenu("On Interact")]
     public override void OnInteract()
     {
+        TextAsset usableText = null;
+        if(elementDialogueENG != null && elementDialogueESP != null)
+            usableText = GameManager.instance.IsSpanishSet() ? elementDialogueESP : elementDialogueENG;
+
         //if we forgot to add the dialogue asset to the element, it should warn us and not execute the code
-        if (elementDialogue != null)
+        if (usableText != null)
         {
-            Story dialogue = new Story(elementDialogue.text);
+            Story dialogue = new Story(usableText.text);
 
             if (conversationSpeaker != null)
             {
@@ -51,11 +58,12 @@ public class ConversationElement : InteractableElement
 
     public void ChangeDialogue(TextAsset dialogue)
     {
-        elementDialogue = dialogue;
+        elementDialogueESP = dialogue;
     }
 
     public override bool HasDialogue()
     {
-        return elementDialogue != null;
+        TextAsset usableText = GameManager.instance.IsSpanishSet() ? elementDialogueESP : elementDialogueENG;
+        return usableText != null;
     }
 }

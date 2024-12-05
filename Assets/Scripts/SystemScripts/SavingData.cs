@@ -8,7 +8,7 @@ public class SavingData
     public int progressionIndex;
     public List<string> objectsIds;
     public List<string> typewritesIds;
-
+    public Language language;
     //game settings configuration - res, vol, quality.. 
 
 
@@ -63,6 +63,10 @@ public class SavingData
         SavingManager.SaveNew(GameManager.instance.Data);
     }
 
+    public void ChangeLanguageTo(Language language)
+    {
+        this.language = language;
+    }
     public SavingData(int progressionIndex)
     {
         this.progressionIndex = progressionIndex;
@@ -73,6 +77,7 @@ public class SavingData
     private void ResetData()
     {
         progressionIndex = 0;
+        language = Language.ESP;
         objectsIds = new List<string>();
         typewritesIds = new List<string>();
     }
@@ -81,5 +86,11 @@ public class SavingData
     {
         progressionIndex++;
         SavingManager.SaveNew(GameManager.instance.Data);
+    }
+    [Serializable]
+    public enum Language
+    {
+        ESP,
+        ENG,
     }
 }

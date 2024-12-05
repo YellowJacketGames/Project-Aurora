@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using InteractableElements;
 using UnityEngine;
 
 public class PuzzleDoorElement : InteractableElement
@@ -29,20 +31,46 @@ public class PuzzleDoorElement : InteractableElement
     [SerializeField] private CinemachineVirtualCamera puzzleCamera;
     [SerializeField] private CinemachineVirtualCamera levelCamera;
     [SerializeField] private Camera camera;
+    private CodexManager _codexManager;
+    private bool shouldEnter = false;
 
     protected override void Awake()
     {
         base.Awake();
         camera = Camera.main;
         playerLayer = LayerMask.NameToLayer("Player");
+        _codexManager = GetComponentInChildren<CodexManager>();
+    }
+
+    private void OnEnable()
+    {
+        foreach (var codex in _codexManager.Codexes)
+            if (codex.GetUnlocked())
+                shouldEnter = true;
+
+        ignorePopup = !shouldEnter;
     }
 
     public override void OnInteract()
     {
+        if (ignorePopup) return;
         SetPuzzleCamera();
+        ZoomToAvailable();
         ChangeInputScheme(true);
         HideInteractPrompt();
         ignorePopup = true;
+    }
+
+    private void ZoomToAvailable()
+    {
+        CodexGroup selectedCodex = null;
+        foreach (var codex in _codexManager.Codexes)
+            if (codex.GetUnlocked())
+                selectedCodex = codex;
+
+        if (selectedCodex)
+            selectedCodex.Select(puzzleCamera);
+        
     }
 
     public void ExitPuzzle()

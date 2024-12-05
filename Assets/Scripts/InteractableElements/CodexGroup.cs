@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections;
 using Cinemachine;
+using InteractableElements;
 using UnityEngine;
 
 
-public class Codex : MonoBehaviour
+public class CodexGroup : MonoBehaviour
 {
     [SerializeField] private bool unlocked;
+    [SerializeField] private bool deciphered = false;
+    [Space] [SerializeField] private GameObject papireGo;
+
     [SerializeField] public CodexElement selectedElement;
     private int currentElementIndex = 0;
 
@@ -14,15 +18,17 @@ public class Codex : MonoBehaviour
     [SerializeField] private string[] correctPassword;
     [SerializeField] private float max_time = 2f;
     [SerializeField] private float camY;
-
+    private CodexManager _manager;
     private void Awake()
     {
+        _manager = GetComponentInParent<CodexManager>();
         codexElements = GetComponentsInChildren<CodexElement>();
         selectedElement = codexElements[currentElementIndex];
     }
 
     private void Start()
     {
+        papireGo.SetActive(false);
         InitCodexElements();
     }
 
@@ -42,10 +48,12 @@ public class Codex : MonoBehaviour
         {
             element.Deselect();
         }
+
         selectedElement.SuperSelect();
 
         TryToMove(camera, true);
     }
+
 
     public void Deselect()
     {
@@ -55,14 +63,18 @@ public class Codex : MonoBehaviour
         }
     }
 
+    public bool GetUnlocked() => unlocked;
+    public bool GetDeciphered() => deciphered;
+
     public void UnlockCodex()
     {
         unlocked = true;
+        papireGo.SetActive(true);
     }
 
     private void InitCodexElements()
     {
-        for (int i = 0; i < codexElements.Length; i++)
+        for (int i = 0; i < codexElements.Length-1; i++)
         {
             codexElements[i].Init(correctPassword[i]);
         }
@@ -98,6 +110,15 @@ public class Codex : MonoBehaviour
         selectedElement.RotateDown();
     }
 
+    public void MoveIn() //only used to press the unlock btn 
+    {
+        bool correct = CheckPassword();
+        foreach (var codexElement in codexElements)
+            codexElement.SetOutlineAfterCheckPassword(correct);
+
+        if (correct)
+            _manager.MoveOut();
+    }
 
     public bool CheckPassword()
     {
@@ -110,6 +131,7 @@ public class Codex : MonoBehaviour
                 correct = false;
         }
 
+        deciphered = correct;
         return correct;
     }
 

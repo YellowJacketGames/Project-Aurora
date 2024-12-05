@@ -122,7 +122,11 @@ public class ObjectClass : ScriptableObject //This is a scriptable object to mak
 
         obj.objectId = newId;
         obj.objectName = chars[1];
-
+        
+        if (chars.Length >= 3)
+            obj.objectName += " " + chars[2];
+        
+        
         obj.objectIcon = GetIconFromResources(obj);
 
         switch (chars[2])
