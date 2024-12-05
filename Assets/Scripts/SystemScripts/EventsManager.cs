@@ -18,6 +18,12 @@ public static class EventsManager
 
     public static UnityEvent OnWaterDropHitPlayer = new UnityEvent();
 
+    public static UnityEvent<SavingData.Language> OnLanguageChanged = new UnityEvent<SavingData.Language>();
+
+    public static void InvokeChangeLang(SavingData.Language language)
+    {
+        OnLanguageChanged?.Invoke(language);
+    }
     public static void InvokeConversationEvent(string eventName)
     {
         if (HasConversationEvent(eventName))

@@ -31,6 +31,7 @@ namespace DefaultNamespace
             StartCoroutine(SimulateClickEffect());
         }
 
+
         private System.Collections.IEnumerator SimulateClickEffect()
         {
             if (target == null) yield break;
