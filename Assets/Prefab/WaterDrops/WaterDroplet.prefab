@@ -129,8 +129,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.45098042, g: 0.9960785, b: 0, a: 1}
-  m_Intensity: 5
-  m_Range: 4
+  m_Intensity: 1
+  m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -171,7 +171,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -208,9 +208,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1914624557438448910}
-  - component: {fileID: 3138154110891074003}
   - component: {fileID: 893815852541501327}
   - component: {fileID: 5549814236205340529}
+  - component: {fileID: 3313519342124326125}
   m_Layer: 0
   m_Name: WaterDroplet
   m_TagString: Untagged
@@ -234,19 +234,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &3138154110891074003
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3621216949647965008}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.15
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &893815852541501327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,3 +264,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!65 &3313519342124326125
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3621216949647965008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1, z: 0.45}
+  m_Center: {x: 0, y: 0, z: 0.0024350137}

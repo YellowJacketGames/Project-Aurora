@@ -6,7 +6,7 @@ public class ResetPlayerPosition : MonoBehaviour
 {
     [SerializeField] private Transform newPosition;
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -17,7 +17,7 @@ public class ResetPlayerPosition : MonoBehaviour
         }
     }
 
-    public void ChangePlayerPosition()
+    public virtual void ChangePlayerPosition()
     {
         GameManager.instance.currentController.playerRigid.isKinematic = true;
         GameManager.instance.currentController.transform.position = newPosition.position;

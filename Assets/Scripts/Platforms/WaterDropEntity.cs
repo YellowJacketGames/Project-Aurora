@@ -53,7 +53,7 @@ namespace Platforms
                 _objectPooling.ReturnToPool(gameObject);
                 Debug.Log("Player water hit!");
             }
-            else
+            else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 _objectPooling.ReturnToPool(gameObject);
         }
 
