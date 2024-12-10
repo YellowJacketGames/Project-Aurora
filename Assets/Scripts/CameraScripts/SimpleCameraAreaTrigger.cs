@@ -9,6 +9,7 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
     [SerializeField] private SimpleCamAreaTType type;
     [SerializeField] private bool enableBothDir;
     [SerializeField] private bool shouldRestorePreviousMovementType;
+    [SerializeField] private bool disableCameraSwitchingToManager = false;
     [SerializeField] protected CinemachineVirtualCamera cameraArea;
     [SerializeField] protected CinemachineVirtualCamera dialogueCamera;
     [SerializeField] private FreezePlayerXTime _freezePlayerXTime;
@@ -40,9 +41,12 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        if (dialogueCamera)
-            GameManager.instance.currentCameraManager.AssignDialogueCamera(dialogueCamera, cameraArea);
-        else GameManager.instance.currentCameraManager.AssignDialogueCamera(cameraArea);
+        if (!disableCameraSwitchingToManager)
+        {
+            if (dialogueCamera)
+                GameManager.instance.currentCameraManager.AssignDialogueCamera(dialogueCamera, cameraArea);
+            else GameManager.instance.currentCameraManager.AssignDialogueCamera(cameraArea);
+        }
 
         if (type.Equals(SimpleCamAreaTType.ENTER))
             ManageEnterType();
@@ -91,7 +95,7 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
 
     private void ReturnOldCamera()
     {
-        if (!cameraArea)
+        if (cameraArea)
         {
             cameraArea.Priority = 0;
             GameManager.instance.currentCameraManager.ReturnFromCameraArea();

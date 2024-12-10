@@ -5,6 +5,7 @@ using UnityEngine;
 public class ResetPlayerPosition : MonoBehaviour
 {
     [SerializeField] private Transform newPosition;
+    [SerializeField] private float transitionwaittime = 2f;
 
     protected virtual void OnTriggerEnter(Collider other)
     {
@@ -13,7 +14,7 @@ public class ResetPlayerPosition : MonoBehaviour
             GameManager.instance.currentTransitionManager.CompleteTransition();
             GameManager.instance.currentCameraManager.LoseReferences();
             GameManager.instance.currentController.playerMovementComponent.DisableAllInput();
-            Invoke("ChangePlayerPosition", 2f);
+            Invoke("ChangePlayerPosition", transitionwaittime);
         }
     }
 
@@ -25,5 +26,15 @@ public class ResetPlayerPosition : MonoBehaviour
         GameManager.instance.currentController.playerMovementComponent.EnableAllInput();
         GameManager.instance.currentController.ChangeState(PlayerState.Idle);
         GameManager.instance.currentController.playerRigid.isKinematic = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Vector3 objectSize = transform.localScale;
+        Gizmos.DrawWireCube(transform.position, objectSize);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(newPosition.position, 0.2f);
     }
 }

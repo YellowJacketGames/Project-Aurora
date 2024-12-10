@@ -16,7 +16,7 @@ public static class EventsManager
     public static UnityEvent onMinigameExit = new UnityEvent();
     private static Dictionary<string, UnityEvent> conversationEvents = new Dictionary<string, UnityEvent>();
 
-    public static UnityEvent OnWaterDropHitPlayer = new UnityEvent();
+    // public static UnityEvent OnWaterDropHitPlayer = new UnityEvent();
 
     public static UnityEvent<SavingData.Language> OnLanguageChanged = new UnityEvent<SavingData.Language>();
 

@@ -21,7 +21,10 @@ public class TriggerDisableElement : MonoBehaviour
    private void OnDrawGizmos()
    {
       Gizmos.color = Color.green;
-      Vector3 objectSize = transform.localScale;
-      Gizmos.DrawWireCube(transform.position, objectSize);
+      Matrix4x4 originalMatrix = Gizmos.matrix;
+      Gizmos.matrix = transform.localToWorldMatrix;
+      Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+      Gizmos.matrix = originalMatrix;
+
    }
 }

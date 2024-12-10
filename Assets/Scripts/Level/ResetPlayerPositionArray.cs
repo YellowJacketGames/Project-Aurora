@@ -33,29 +33,24 @@ public class ResetPlayerPositionArray : MonoBehaviour
 
     private Transform GetClosestCheckpoint()
     {
+        return null; //not working correctly
+        
         Transform closest = null;
         var shortestDistanceSquared = float.MaxValue;
 
-        foreach (var checkpoint in newPositions)
+        foreach (Transform checkpoint in newPositions)
         {
-            if (!(checkpoint.position.z < playerTransform.position.z)) continue;
-            var distanceSquared = (checkpoint.position - playerTransform.position).sqrMagnitude;
-
-            if (!(distanceSquared < shortestDistanceSquared)) continue;
-            shortestDistanceSquared = distanceSquared;
-            closest = checkpoint;
-        }
-
-        if (closest != null) return closest; //if there is no checkpoint behind player, get any checkpoint
-        {
-            foreach (var checkpoint in newPositions)
+            if (checkpoint.position.z < playerTransform.position.z)
             {
                 var distanceSquared = (checkpoint.position - playerTransform.position).sqrMagnitude;
-                if (!(distanceSquared < shortestDistanceSquared)) continue;
-                shortestDistanceSquared = distanceSquared;
-                closest = checkpoint;
+                if (distanceSquared < shortestDistanceSquared)
+                {
+                    shortestDistanceSquared = distanceSquared;
+                    closest = checkpoint;
+                }
             }
         }
+
         return closest;
     }
 
