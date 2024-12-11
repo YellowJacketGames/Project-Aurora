@@ -66,6 +66,7 @@ public class SavingData
     public void ChangeLanguageTo(Language language)
     {
         this.language = language;
+        SavingManager.SaveNew(GameManager.instance.Data);
     }
     public SavingData(int progressionIndex)
     {

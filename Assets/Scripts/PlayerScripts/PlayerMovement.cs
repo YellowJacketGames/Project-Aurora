@@ -476,6 +476,10 @@ public class PlayerMovement : PlayerComponent
         disableW = false;
         disableS = false;
         readyToJump = true;
+        triggerCollisionsL = false;
+        triggerCollisionsR = false;
+        triggerCollisionsF = false;
+        triggerCollisionsB = false;
     }
 
     public void DisableAllInput()
