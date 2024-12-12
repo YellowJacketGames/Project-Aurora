@@ -437,6 +437,7 @@ public class PlayerConversation : PlayerComponent
                     case "give_item":
                         valueKey = splitTag[1];
                         ObjectClass obj = new ObjectClass();
+                        ScriptableObject.CreateInstance<ObjectClass>();
                         obj = obj.CreateObject(valueKey);
                         if(GameManager.instance.Data.HasObject(valueKey)) return;
                         _parent.playerInventoryComponent.AddObjectToKeyInventory(obj);

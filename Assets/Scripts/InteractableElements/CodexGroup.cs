@@ -19,6 +19,7 @@ public class CodexGroup : MonoBehaviour
     [SerializeField] private float max_time = 2f;
     [SerializeField] private float camY;
     private CodexManager _manager;
+
     private void Awake()
     {
         _manager = GetComponentInParent<CodexManager>();
@@ -28,7 +29,6 @@ public class CodexGroup : MonoBehaviour
 
     private void Start()
     {
-        papireGo.SetActive(false);
         InitCodexElements();
     }
 
@@ -74,7 +74,7 @@ public class CodexGroup : MonoBehaviour
 
     private void InitCodexElements()
     {
-        for (int i = 0; i < codexElements.Length-1; i++)
+        for (int i = 0; i < codexElements.Length - 1; i++)
         {
             codexElements[i].Init(correctPassword[i]);
         }
