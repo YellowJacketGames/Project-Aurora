@@ -3702,6 +3702,8 @@ MonoBehaviour:
     progressionIndex: 0
     objectsIds: []
     typewritesIds: []
+    language: 0
+  levelToLoad: 
   loadingScreenClip: {fileID: 32900000, guid: e0ace3f70483b76498b194a09572fd8f, type: 3}
   basicLoadingScreenClip: {fileID: 32900000, guid: e0ace3f70483b76498b194a09572fd8f,
     type: 3}
@@ -6940,122 +6942,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: filter
-      value: 
-      objectReference: {fileID: 1866122580}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 2180efbe806e78a499f0bf1fe903cd8c, type: 3}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[10].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6eaf0bef8e0df8a41ad425066fffb3f3, type: 3}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[10].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[10].name
-      value: Music_Level4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[11].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 634e11c929b53074993eac1b61888f9e, type: 3}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[11].name
-      value: Click
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[12].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 2b9bb976ab947f74db36bbd79a77ba7f, type: 3}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[12].name
-      value: Select
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[12].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[12].volume
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[9].soundType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[10].soundType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602461586223124983, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-        type: 3}
-      propertyPath: sounds.Array.data[12].originalVolume
-      value: 0.7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634531fe9dd38da4794e3e6b7f6c9b9c, type: 3}
---- !u!1 &2602461586388310522 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2602461586223124976, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 170625034}
-  m_PrefabAsset: {fileID: 0}
---- !u!169 &1866122580
-AudioLowPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2602461586388310522}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_LowpassResonanceQ: 1
-  lowpassLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.12542064
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!81 &1866122581
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2602461586388310522}
-  m_Enabled: 1
 --- !u!4 &2602461586388310524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2602461586223124982, guid: 634531fe9dd38da4794e3e6b7f6c9b9c,
@@ -7068,7 +6956,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 170625034}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2602461586388310522}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d81de54fb1c2e8e498933a9a05bf5dc9, type: 3}

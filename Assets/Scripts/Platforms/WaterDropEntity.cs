@@ -56,6 +56,7 @@ namespace Platforms
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.name.Equals("PlayerInteractor")) return;
+            if (other.gameObject.layer == LayerMask.NameToLayer("WaterLayerIgnorer")) return;
 
             if (other.gameObject.CompareTag("Player"))
             {

@@ -19,8 +19,8 @@ public class MainMenuManager3D : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera creditsCamera;
 
 
-    [SerializeField] private GameObject NewGameButtonGroup;
-    [SerializeField] private GameObject ContinueButtonGroup;
+    // [SerializeField] private GameObject NewGameButtonGroup;
+    // [SerializeField] private GameObject ContinueButtonGroup;
 
     private string targetLayer = "MainMenuElement";
     private Camera _camera;
@@ -110,16 +110,16 @@ public class MainMenuManager3D : MonoBehaviour
 
     private void LoadGameButtons()
     {
-        if (GameManager.instance.Data.HasSavedData())
-        {
-            ContinueButtonGroup.SetActive(true);
-            NewGameButtonGroup.SetActive(true);
-        }
-        else
-        {
-            NewGameButtonGroup.SetActive(true);
-            ContinueButtonGroup.SetActive(false);
-        }
+        // if (GameManager.instance.Data.HasSavedData())
+        // {
+        //     ContinueButtonGroup.SetActive(true);
+        //     NewGameButtonGroup.SetActive(true);
+        // }
+        // else
+        // {
+        //     NewGameButtonGroup.SetActive(true);
+        //     ContinueButtonGroup.SetActive(false);
+        // }
     }
 
     public void LoadGame()

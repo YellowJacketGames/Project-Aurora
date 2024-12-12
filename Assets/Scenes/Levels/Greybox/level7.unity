@@ -802,6 +802,7 @@ MonoBehaviour:
   type: 1
   enableBothDir: 0
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 2054314660}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -4299,7 +4300,8 @@ MonoBehaviour:
   hasBeenInteracted: 0
   ignoreInteraction: 0
   ignorePopup: 0
-  elementDialogue: {fileID: 4900000, guid: 6c6bc0de69b9d95458857d4bb2d2ae47, type: 3}
+  elementDialogueESP: {fileID: 4900000, guid: 6c6bc0de69b9d95458857d4bb2d2ae47, type: 3}
+  elementDialogueENG: {fileID: 0}
   conversationSpeaker: {fileID: 11400000, guid: 730586f6a5d200b4180628d5cde85a30,
     type: 2}
 --- !u!65 &158436411
@@ -4615,6 +4617,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaCamera: {fileID: 2054314660}
   inArea: 0
+  disableInputOnEnter: 0
+  changeCameraDialogueOnEnter: 0
   newMovementType: 0
   newMovementDirection: 4
   shouldRestorePreviousMovementType: 0
@@ -5312,7 +5316,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5412,6 +5416,7 @@ MonoBehaviour:
   type: 0
   enableBothDir: 1
   shouldRestorePreviousMovementType: 1
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 312865127}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -6754,6 +6759,7 @@ MonoBehaviour:
   type: 0
   enableBothDir: 1
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 2054314660}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -6833,6 +6839,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaCamera: {fileID: 2054314660}
   inArea: 0
+  disableInputOnEnter: 0
+  changeCameraDialogueOnEnter: 0
   newMovementType: 0
   newMovementDirection: 4
   shouldRestorePreviousMovementType: 0
@@ -7334,6 +7342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaCamera: {fileID: 2033241939}
   inArea: 0
+  disableInputOnEnter: 0
+  changeCameraDialogueOnEnter: 0
   newMovementType: 0
   newMovementDirection: 1
   shouldRestorePreviousMovementType: 0
@@ -7740,6 +7750,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaCamera: {fileID: 312865127}
   inArea: 0
+  disableInputOnEnter: 0
+  changeCameraDialogueOnEnter: 0
   newMovementType: 0
   newMovementDirection: 3
   shouldRestorePreviousMovementType: 0
@@ -8435,6 +8447,7 @@ MonoBehaviour:
   type: 1
   enableBothDir: 0
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 2054314660}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -8558,6 +8571,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaCamera: {fileID: 1675648595}
   inArea: 0
+  disableInputOnEnter: 0
+  changeCameraDialogueOnEnter: 0
   newMovementType: 0
   newMovementDirection: 0
   shouldRestorePreviousMovementType: 0
@@ -9491,7 +9506,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9721,6 +9736,7 @@ MonoBehaviour:
   type: 1
   enableBothDir: 0
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 1675648595}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -10126,9 +10142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelEvents: []
-  levelMusic: 
+  levelMusic: Music_Level7
   levelQuest: {fileID: 0}
-  nextLevel: 
+  nextLevel: level8
   nextLevelClip: {fileID: 0}
 --- !u!4 &1017574333
 Transform:
@@ -10178,6 +10194,7 @@ MonoBehaviour:
   type: 1
   enableBothDir: 1
   shouldRestorePreviousMovementType: 1
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 2033241939}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -10508,6 +10525,7 @@ MonoBehaviour:
   type: 0
   enableBothDir: 1
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 1675648595}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -10781,6 +10799,7 @@ MonoBehaviour:
   type: 1
   enableBothDir: 0
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 1675648595}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -11327,6 +11346,7 @@ MonoBehaviour:
   type: 0
   enableBothDir: 1
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 2033241939}
   dialogueCamera: {fileID: 797593186}
   _freezePlayerXTime: {fileID: 0}
@@ -11574,6 +11594,7 @@ MonoBehaviour:
   type: 1
   enableBothDir: 0
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 2033241939}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -12010,6 +12031,7 @@ MonoBehaviour:
   type: 1
   enableBothDir: 0
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 2033241939}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
@@ -12371,6 +12393,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaCamera: {fileID: 1675648595}
   inArea: 0
+  disableInputOnEnter: 0
+  changeCameraDialogueOnEnter: 0
   newMovementType: 0
   newMovementDirection: 0
   shouldRestorePreviousMovementType: 0
@@ -12743,6 +12767,7 @@ MonoBehaviour:
   type: 0
   enableBothDir: 1
   shouldRestorePreviousMovementType: 0
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 2054314660}
   dialogueCamera: {fileID: 797593186}
   _freezePlayerXTime: {fileID: 0}
@@ -12816,7 +12841,8 @@ MonoBehaviour:
   hasBeenInteracted: 0
   ignoreInteraction: 0
   ignorePopup: 0
-  elementDialogue: {fileID: 4900000, guid: 1e8cc4c8d4963c94db8cc3d611d90bec, type: 3}
+  elementDialogueESP: {fileID: 4900000, guid: 1e8cc4c8d4963c94db8cc3d611d90bec, type: 3}
+  elementDialogueENG: {fileID: 0}
   conversationSpeaker: {fileID: 11400000, guid: 6e00998869e85c64ea24b58aaea0794f,
     type: 2}
 --- !u!1 &1558852426 stripped
@@ -23422,6 +23448,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1462455406074886799, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1470915058880382943, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
       propertyPath: m_Layer
@@ -23692,6 +23723,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2290311117314828683, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 2293508152179002935, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
       propertyPath: m_Layer
@@ -23846,6 +23882,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756636464580107693, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2759648854397019176, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
@@ -24401,6 +24442,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360127636407464145, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4388196959602964615, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
@@ -25041,6 +25087,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983933644049266372, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4999463617712245682, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
@@ -25906,6 +25957,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518650447353329252, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7544062475791605673, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
@@ -28733,6 +28789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaCamera: {fileID: 2054314660}
   inArea: 0
+  disableInputOnEnter: 0
+  changeCameraDialogueOnEnter: 0
   newMovementType: 0
   newMovementDirection: 4
   shouldRestorePreviousMovementType: 0
@@ -29479,6 +29537,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaCamera: {fileID: 2033241939}
   inArea: 0
+  disableInputOnEnter: 0
+  changeCameraDialogueOnEnter: 0
   newMovementType: 0
   newMovementDirection: 1
   shouldRestorePreviousMovementType: 0
@@ -30197,7 +30257,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30252,7 +30312,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30424,6 +30484,7 @@ MonoBehaviour:
   type: 1
   enableBothDir: 1
   shouldRestorePreviousMovementType: 1
+  disableCameraSwitchingToManager: 0
   cameraArea: {fileID: 1675648595}
   dialogueCamera: {fileID: 0}
   _freezePlayerXTime: {fileID: 0}
