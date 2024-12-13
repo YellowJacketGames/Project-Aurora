@@ -50,7 +50,7 @@ MonoBehaviour:
   musicMixer: {fileID: 24300002, guid: c8ea09f53faf0a64093fb2e835016b0d, type: 2}
   sounds:
   - name: Typewriter
-    clip: {fileID: 8300000, guid: f7e785b4cb05a0e4886df872c4746a22, type: 3}
+    clip: {fileID: 8300000, guid: 2180efbe806e78a499f0bf1fe903cd8c, type: 3}
     soundType: 0
     loop: 0
     playOnAwake: 0
@@ -69,13 +69,13 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
-  - name: DoorOpen
-    clip: {fileID: 8300000, guid: be730fe8e4517724f88861c6aae11cc9, type: 3}
+  - name: Boat_sound
+    clip: {fileID: 8300000, guid: 19d9da5f2b85bf74c9bcbef5ac397724, type: 3}
     soundType: 0
     loop: 0
     playOnAwake: 0
-    originalVolume: 1
-    volume: 1
+    originalVolume: 0.7
+    volume: 0.75
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.06
+    volume: 0.015
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.06
+    volume: 0.015
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
@@ -149,6 +149,26 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
+  - name: Music_LevelMenu
+    clip: {fileID: 8300000, guid: 152298e97e550b94a9c9df0722d0969e, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.1
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Music_Level0
+    clip: {fileID: 8300000, guid: 37a03a2978930d948859d163e95472a5, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.1
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
   - name: Music_Level1
     clip: {fileID: 8300000, guid: 542a839b09aec254188765ec58a940c7, type: 3}
     soundType: 1
@@ -185,7 +205,7 @@ MonoBehaviour:
     loop: 1
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.7
+    volume: 0.16
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
@@ -246,16 +266,6 @@ MonoBehaviour:
     playOnAwake: 0
     originalVolume: 0.7
     volume: 0.7
-    pitch: 1
-    source: {fileID: 0}
-    sourceObject: {fileID: 0}
-  - name: Music_LevelMenu
-    clip: {fileID: 8300000, guid: 152298e97e550b94a9c9df0722d0969e, type: 3}
-    soundType: 1
-    loop: 1
-    playOnAwake: 0
-    originalVolume: 0.7
-    volume: 0.1
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
