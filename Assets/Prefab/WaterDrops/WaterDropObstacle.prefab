@@ -180,7 +180,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4456905810360137289}
-  m_Mesh: {fileID: 4300000, guid: abc00000000015465194034188790562, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 3047c6eec316f6149bcd860c3e4a5142, type: 3}
 --- !u!1 &7042272344455395157
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,8 +258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2000cbee6bd43929e225da95a8e73be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newPosition: {fileID: 0}
   waterdropPrefab: {fileID: 3621216949647965008, guid: 550ab9929fa6c5d488f0e4426f04b399,
     type: 3}
+  initialDelay: 0
   dropWaitTime: 2
   poolSize: 4
   dropperStartPos: {fileID: 7042272344455395156}
