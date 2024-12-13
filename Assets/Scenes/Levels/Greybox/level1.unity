@@ -6585,7 +6585,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -23511,6 +23511,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4846810524427775359, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846810524427775359, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846810524470660865, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: OnlyActiveLvl1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846810524689588291, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846810524689588291, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846810524998208129, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846810525881474090, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: OnlyActiveLvl1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846810525911358922, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4846810525926298261, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
       propertyPath: m_Name
@@ -23574,6 +23614,11 @@ PrefabInstance:
     - target: {fileID: 4846810525926298272, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846810526218027271, guid: 00e805e2881d00846ab161b3cb765b68,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7709916074905475794, guid: 00e805e2881d00846ab161b3cb765b68,
@@ -36095,7 +36140,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

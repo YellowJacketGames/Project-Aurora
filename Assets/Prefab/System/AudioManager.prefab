@@ -90,12 +90,22 @@ MonoBehaviour:
     source: {fileID: 0}
     sourceObject: {fileID: 0}
   - name: Walk
-    clip: {fileID: 8300000, guid: 8574388b09db547409a9e4de11c62a81, type: 3}
+    clip: {fileID: 8300000, guid: f5848303a08fb004fb6e41a962703110, type: 3}
     soundType: 0
     loop: 0
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.7
+    volume: 0.06
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Run
+    clip: {fileID: 8300000, guid: f5848303a08fb004fb6e41a962703110, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.06
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
@@ -111,36 +121,6 @@ MonoBehaviour:
     sourceObject: {fileID: 0}
   - name: PoliceSiren
     clip: {fileID: 8300000, guid: 26c99ab5004077140a09160ce45c06cf, type: 3}
-    soundType: 0
-    loop: 0
-    playOnAwake: 0
-    originalVolume: 0.7
-    volume: 0.7
-    pitch: 1
-    source: {fileID: 0}
-    sourceObject: {fileID: 0}
-  - name: Music_Level1
-    clip: {fileID: 8300000, guid: 09f77c37fa5555f46bfd45cac64119d9, type: 3}
-    soundType: 1
-    loop: 1
-    playOnAwake: 0
-    originalVolume: 0.7
-    volume: 0.7
-    pitch: 1
-    source: {fileID: 0}
-    sourceObject: {fileID: 0}
-  - name: Music_Level2
-    clip: {fileID: 8300000, guid: 902ab71bedf3ea64e9c32840af01b4ca, type: 3}
-    soundType: 1
-    loop: 1
-    playOnAwake: 0
-    originalVolume: 0.7
-    volume: 0.294
-    pitch: 1
-    source: {fileID: 0}
-    sourceObject: {fileID: 0}
-  - name: Music_Level3
-    clip: {fileID: 8300000, guid: 902ab71bedf3ea64e9c32840af01b4ca, type: 3}
     soundType: 0
     loop: 0
     playOnAwake: 0
@@ -169,33 +149,33 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
-  - name: Music_Level6
-    clip: {fileID: 8300000, guid: fca7d7de86ba88346993f25cdf2c0ea0, type: 3}
+  - name: Music_Level1
+    clip: {fileID: 8300000, guid: 542a839b09aec254188765ec58a940c7, type: 3}
     soundType: 1
     loop: 1
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.7
+    volume: 0.08
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
-  - name: Music_Level7
-    clip: {fileID: 8300000, guid: 2222e599091e1764a8e9792520af47fb, type: 3}
+  - name: Music_Level2
+    clip: {fileID: 8300000, guid: 902ab71bedf3ea64e9c32840af01b4ca, type: 3}
     soundType: 1
     loop: 1
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.7
+    volume: 0.06
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
-  - name: Music_Level9
-    clip: {fileID: 8300000, guid: 90bd325f3a0f94d4d8f5c8f8d71b2ef9, type: 3}
-    soundType: 1
-    loop: 1
+  - name: Music_Level3
+    clip: {fileID: 8300000, guid: 902ab71bedf3ea64e9c32840af01b4ca, type: 3}
+    soundType: 0
+    loop: 0
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.7
+    volume: 0.08
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
@@ -209,13 +189,53 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
+  - name: Music_Level5
+    clip: {fileID: 8300000, guid: a8c2c7fe9bd84ab45880a70a01653c25, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.08
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Music_Level6
+    clip: {fileID: 8300000, guid: fca7d7de86ba88346993f25cdf2c0ea0, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.08
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Music_Level7
+    clip: {fileID: 8300000, guid: 2222e599091e1764a8e9792520af47fb, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.08
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
   - name: Music_Level8
     clip: {fileID: 8300000, guid: f0fd5ab5a937f2642af9a362183f0aa2, type: 3}
     soundType: 1
     loop: 1
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.7
+    volume: 0.1
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Music_Level9
+    clip: {fileID: 8300000, guid: 90bd325f3a0f94d4d8f5c8f8d71b2ef9, type: 3}
+    soundType: 1
+    loop: 1
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.08
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
@@ -235,7 +255,7 @@ MonoBehaviour:
     loop: 1
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.224
+    volume: 0.1
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}

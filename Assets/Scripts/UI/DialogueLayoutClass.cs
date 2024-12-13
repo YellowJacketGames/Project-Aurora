@@ -4,19 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using ImageEffects;
-public class DialogueLayoutClass : MonoBehaviour //This class is used to create a variable for the different layouts in the dialogue box
+
+public class
+    DialogueLayoutClass : MonoBehaviour //This class is used to create a variable for the different layouts in the dialogue box
 {
-    private Speaker currentSpeaker; //Variable to store the current speaker, not necessary at the moment but could be useful in the future
+    private Speaker
+        currentSpeaker; //Variable to store the current speaker, not necessary at the moment but could be useful in the future
+
     private Effects portraitEffects; //Effects to do stuff with the portrait
 
     //Dialogue layout components
-    [Header("Dialogue Layout Components")]
-    [SerializeField] private TextMeshProUGUI speakerName; 
+    public bool OnlyActiveLvl1;
+
+    [Header("Dialogue Layout Components")] [SerializeField]
+    private TextMeshProUGUI speakerName;
+
     [SerializeField] private Image speakerPortrait;
     [SerializeField] private GameObject parent;
-    [Space]
-    [Header("Dialogue Layout Variables")]
-    [SerializeField] private float portraitTime = 0.3f; //Variable to change how much time the portrait takes to fade in and out
+
+    [Space] [Header("Dialogue Layout Variables")] [SerializeField]
+    private float portraitTime = 0.3f; //Variable to change how much time the portrait takes to fade in and out
+
     [SerializeField] private InteractDirection direction;
     bool fillingLayout;
     bool deactivatingLayout;
@@ -25,9 +33,10 @@ public class DialogueLayoutClass : MonoBehaviour //This class is used to create 
     {
         portraitEffects = new Effects();
     }
+
     public void FillLayout(Speaker s) //this method fills the references with the data from the scriptable objects
     {
-        if(currentSpeaker != s) //We fill the components with the speaker data
+        if (currentSpeaker != s) //We fill the components with the speaker data
         {
             currentSpeaker = s;
         }
@@ -38,11 +47,13 @@ public class DialogueLayoutClass : MonoBehaviour //This class is used to create 
         {
             case InteractDirection.Left:
                 speakerPortrait.sprite = currentSpeaker.speakerPortraitLeft;
-                speakerPortrait.SetNativeSize();
+                if (!OnlyActiveLvl1)
+                    speakerPortrait.SetNativeSize();
                 break;
             case InteractDirection.Right:
                 speakerPortrait.sprite = currentSpeaker.speakerPortraitRight;
-                speakerPortrait.SetNativeSize();
+                if (!OnlyActiveLvl1)
+                    speakerPortrait.SetNativeSize();
                 break;
             default:
                 break;
@@ -83,5 +94,4 @@ public class DialogueLayoutClass : MonoBehaviour //This class is used to create 
     {
         return currentSpeaker;
     }
-
 }
