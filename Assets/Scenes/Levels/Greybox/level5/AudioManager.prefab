@@ -88,12 +88,12 @@ MonoBehaviour:
     source: {fileID: 0}
     sourceObject: {fileID: 0}
   - name: Walk
-    clip: {fileID: 8300000, guid: 8574388b09db547409a9e4de11c62a81, type: 3}
+    clip: {fileID: 8300000, guid: f5848303a08fb004fb6e41a962703110, type: 3}
     soundType: 0
     loop: 0
     playOnAwake: 0
     originalVolume: 0.7
-    volume: 0.7
+    volume: 0.065
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}
@@ -164,6 +164,16 @@ MonoBehaviour:
     playOnAwake: 0
     originalVolume: 0.7
     volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    sourceObject: {fileID: 0}
+  - name: Run
+    clip: {fileID: 8300000, guid: 811df967cb0e4eb4fab896c701de347a, type: 3}
+    soundType: 0
+    loop: 0
+    playOnAwake: 0
+    originalVolume: 0.7
+    volume: 0.065
     pitch: 1
     source: {fileID: 0}
     sourceObject: {fileID: 0}

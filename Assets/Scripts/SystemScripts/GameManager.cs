@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     public string[] LevelNames => levelNames;
     [SerializeField] private SavingData data;
     public SavingData Data => data;
-    [SerializeField]  private string levelToLoad;
+    [SerializeField] private string levelToLoad;
     private int levelIndex = 0;
 
     [SerializeField] VideoClip loadingScreenClip;
@@ -67,7 +67,10 @@ public class GameManager : MonoBehaviour
         shouldSave = true;
         if (!shouldSave) return;
         if (SavingManager.HasDataSaved())
+        {
             data = SavingManager.Load<SavingData>();
+            EventsManager.InvokeChangeLang(Data.language);
+        }
         else
             SavingManager.SaveNew(new SavingData());
     }

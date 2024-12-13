@@ -19,6 +19,9 @@ public class MainMenuManager3D : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera creditsCamera;
 
 
+    // [SerializeField] private GameObject NewGameButtonGroup;
+    // [SerializeField] private GameObject ContinueButtonGroup;
+
     private string targetLayer = "MainMenuElement";
     private Camera _camera;
 
@@ -30,6 +33,7 @@ public class MainMenuManager3D : MonoBehaviour
     private void Start()
     {
         GameManager.instance.currentTransitionManager.SetFadeOut();
+        LoadGameButtons();
     }
 
     public void ZoomOutCamToDefault()
@@ -104,6 +108,20 @@ public class MainMenuManager3D : MonoBehaviour
         creditsCamera.Priority = 5;
     }
 
+    private void LoadGameButtons()
+    {
+        // if (GameManager.instance.Data.HasSavedData())
+        // {
+        //     ContinueButtonGroup.SetActive(true);
+        //     NewGameButtonGroup.SetActive(true);
+        // }
+        // else
+        // {
+        //     NewGameButtonGroup.SetActive(true);
+        //     ContinueButtonGroup.SetActive(false);
+        // }
+    }
+
     public void LoadGame()
     {
         if (GameManager.instance.Data.HasSavedData())
@@ -131,16 +149,19 @@ public class MainMenuManager3D : MonoBehaviour
         GameManager.instance.currentTransitionManager.SetLoadingClip();
         GameManager.instance.currentTransitionManager.NextLevel();
     }
+
     public void SetEspLanguage()
     {
         GameManager.instance.Data.ChangeLanguageTo(SavingData.Language.ESP);
         EventsManager.InvokeChangeLang(GameManager.instance.Data.language);
     }
+
     public void SetEngLanguage()
     {
         GameManager.instance.Data.ChangeLanguageTo(SavingData.Language.ENG);
         EventsManager.InvokeChangeLang(GameManager.instance.Data.language);
     }
+
     private void Update()
     {
         Hover();

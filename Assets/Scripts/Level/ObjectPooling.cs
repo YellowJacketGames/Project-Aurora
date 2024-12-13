@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,11 @@ public class ObjectPooling : MonoBehaviour
 {
     public List<Pool> pools;
     protected Dictionary<string, Queue<GameObject>> _poolDictionary;
+
+    private void Awake()
+    {
+        ClearPools();
+    }
 
     protected virtual void Init()
     {
@@ -30,12 +36,28 @@ public class ObjectPooling : MonoBehaviour
         _poolDictionary = new Dictionary<string, Queue<GameObject>>();
     }
 
-    public void CreateNewPool(Pool newPool)
+    public virtual void CreateNewPool(Pool newPool)
     {
+        if (_poolDictionary.Count > 0)
+            if (_poolDictionary.ContainsKey(newPool.tag))
+            {
+                Debug.LogWarning($"Pool with tag {newPool.tag}. Exists already! Cant add another one.");
+                return;
+            }
+
+
         pools.Add(newPool);
-        ClearPools();
-        Init();
+        var objectPool = new Queue<GameObject>();
+        for (var i = 0; i < newPool.size; i++)
+        {
+            var obj = Instantiate(newPool.prefab);
+            obj.SetActive(false);
+            objectPool.Enqueue(obj);
+        }
+
+        _poolDictionary.Add(newPool.tag, objectPool);
     }
+
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {

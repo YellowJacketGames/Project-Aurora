@@ -130,6 +130,7 @@ public class AudioManager : MonoBehaviour
         if (newSound != null)
         {
             newSound.source.PlayOneShot(newSound.clip);
+            Debug.Log("Sound-> " + newSound.source.pitch + " pitch");
         }
         else
         {
@@ -167,7 +168,7 @@ public class AudioManager : MonoBehaviour
         {
             newSound.source.pitch = randomPitch;
             Play(newSound);
-            ResetSound(newSound);
+            // ResetSound(newSound);
         }
         else
         {

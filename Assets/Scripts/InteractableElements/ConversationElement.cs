@@ -20,6 +20,9 @@ public class ConversationElement : InteractableElement
         if(elementDialogueENG != null && elementDialogueESP != null)
             usableText = GameManager.instance.IsSpanishSet() ? elementDialogueESP : elementDialogueENG;
 
+        //temp to allow dialogues while there is no ENG file yet 
+        if (elementDialogueENG == null)
+            usableText = elementDialogueESP;
         //if we forgot to add the dialogue asset to the element, it should warn us and not execute the code
         if (usableText != null)
         {

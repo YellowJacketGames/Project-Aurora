@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newPosition: {fileID: 1972409037}
+  transitionwaittime: 2
 --- !u!65 &1056955
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1756,7 +1757,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75023901}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.614, y: 45.25, z: 191.62001}
+  m_LocalPosition: {x: 2.614, y: 43.46, z: 191.62001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2215,7 +2216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98076457}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.66, y: 45.25, z: 194.88899}
+  m_LocalPosition: {x: 2.66, y: 43.46, z: 194.88899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6912,7 +6913,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -7945,7 +7946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1031079496, guid: abc00000000005435104089524643732, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.45
+      value: 17.76
       objectReference: {fileID: 0}
     - target: {fileID: 1031079496, guid: abc00000000005435104089524643732, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9104,6 +9105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newPosition: {fileID: 744242589}
+  transitionwaittime: 2
 --- !u!65 &572593641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14733,7 +14735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927053132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.496, y: 43.688, z: 193.02}
+  m_LocalPosition: {x: -3.496, y: 41.898003, z: 193.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17621,6 +17623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newPosition: {fileID: 482703280}
+  transitionwaittime: 2
 --- !u!65 &1098055858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20010,6 +20013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newPosition: {fileID: 1019830311}
+  transitionwaittime: 2
 --- !u!65 &1307243838
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22502,7 +22506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544528929}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.66, y: 45.25, z: 187.729}
+  m_LocalPosition: {x: 2.66, y: 43.46, z: 187.729}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24209,7 +24213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703073728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.88, y: 43.995, z: 190.16}
+  m_LocalPosition: {x: -1.88, y: 42.205, z: 190.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31519,6 +31523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newPosition: {fileID: 1792600016}
+  transitionwaittime: 2
 --- !u!65 &1932561895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34746,6 +34751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newPosition: {fileID: 1592611778}
+  transitionwaittime: 2
 --- !u!65 &2130153444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35336,6 +35342,7 @@ MonoBehaviour:
   areaCamera: {fileID: 2178235197411983189}
   inArea: 0
   disableInputOnEnter: 1
+  changeCameraDialogueOnEnter: 0
 --- !u!1 &2178235198448976787
 GameObject:
   m_ObjectHideFlags: 0
@@ -36233,7 +36240,7 @@ PrefabInstance:
     - target: {fileID: 2349016124078051978, guid: d6179356cb849d54b82356a1ff0167c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 38.47
+      value: 39.78
       objectReference: {fileID: 0}
     - target: {fileID: 2349016124078051978, guid: d6179356cb849d54b82356a1ff0167c6,
         type: 3}
