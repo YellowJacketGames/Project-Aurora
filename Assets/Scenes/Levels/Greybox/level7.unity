@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 87711749}
   m_Layer: 0
   m_Name: Platform_swipeCam_B_exit
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4598,7 +4598,7 @@ GameObject:
   - component: {fileID: 262475039}
   m_Layer: 0
   m_Name: Platform_swipeCam_4_1
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5316,7 +5316,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 36, y: 24}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5396,7 +5396,7 @@ GameObject:
   - component: {fileID: 353045107}
   m_Layer: 0
   m_Name: Platform_swipeCam_B_enter_inner
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5890,7 +5890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420592968}
   m_LocalRotation: {x: -0.04135527, y: 0.70589644, z: -0.04135527, w: -0.70589644}
-  m_LocalPosition: {x: 7.52, y: 4.78, z: 0}
+  m_LocalPosition: {x: 7.135919, y: 4.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6333,7 +6333,7 @@ GameObject:
   - component: {fileID: 432901301}
   m_Layer: 0
   m_Name: GameObject (2)
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6739,7 +6739,7 @@ GameObject:
   - component: {fileID: 557414026}
   m_Layer: 0
   m_Name: Platform_swipeCam_B_enter
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6820,7 +6820,7 @@ GameObject:
   - component: {fileID: 561233222}
   m_Layer: 0
   m_Name: Platform_swipeCam_4_3 (1)
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7323,7 +7323,7 @@ GameObject:
   - component: {fileID: 596919260}
   m_Layer: 0
   m_Name: Platform_swipeCam_3_2
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7731,7 +7731,7 @@ GameObject:
   - component: {fileID: 618310162}
   m_Layer: 0
   m_Name: Platform_swipeCam_2
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8427,7 +8427,7 @@ GameObject:
   - component: {fileID: 676723439}
   m_Layer: 0
   m_Name: Platform_swipeCam_B_exit
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8552,7 +8552,7 @@ GameObject:
   - component: {fileID: 698370789}
   m_Layer: 0
   m_Name: Platform_swipeCam_1_3
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9315,7 +9315,7 @@ GameObject:
   - component: {fileID: 754377648}
   m_Layer: 0
   m_Name: LimitColliders
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9417,7 +9417,7 @@ GameObject:
   - component: {fileID: 784300821}
   m_Layer: 0
   m_Name: BackSide
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9506,7 +9506,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 36, y: 24}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9676,7 +9676,7 @@ GameObject:
   - component: {fileID: 909906291}
   m_Layer: 0
   m_Name: FrontSide
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9716,7 +9716,7 @@ GameObject:
   - component: {fileID: 924419305}
   m_Layer: 0
   m_Name: Platform_swipeCam_1_2_exit2
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10174,7 +10174,7 @@ GameObject:
   - component: {fileID: 1027325283}
   m_Layer: 0
   m_Name: 'Platform_swipeCam_B_exit_inner '
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10477,7 +10477,7 @@ GameObject:
   - component: {fileID: 1084357345}
   m_Layer: 0
   m_Name: Platform_swipeCam_1_Enter
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10779,7 +10779,7 @@ GameObject:
   - component: {fileID: 1160285439}
   m_Layer: 0
   m_Name: Platform_swipeCam_1_2_exit1
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11276,7 +11276,7 @@ GameObject:
   - component: {fileID: 1248154526}
   m_Layer: 0
   m_Name: Swipecams
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11326,7 +11326,7 @@ GameObject:
   - component: {fileID: 1259030330}
   m_Layer: 0
   m_Name: Platform_swipeCam_B_enter
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11403,7 +11403,7 @@ GameObject:
   - component: {fileID: 1263901585}
   m_Layer: 0
   m_Name: GameObject (1)
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11574,7 +11574,7 @@ GameObject:
   - component: {fileID: 1279610474}
   m_Layer: 0
   m_Name: Platform_swipeCam_B_exit
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11714,7 +11714,7 @@ GameObject:
   - component: {fileID: 1344660179}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11900,7 +11900,7 @@ GameObject:
   - component: {fileID: 1362852249}
   m_Layer: 0
   m_Name: RightSide
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12011,7 +12011,7 @@ GameObject:
   - component: {fileID: 1418811884}
   m_Layer: 0
   m_Name: Platform_swipeCam_B_exit2
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12374,7 +12374,7 @@ GameObject:
   - component: {fileID: 1464900313}
   m_Layer: 0
   m_Name: Platform_swipeCam_1_1
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12734,7 +12734,7 @@ GameObject:
   - component: {fileID: 1477118623}
   m_Layer: 0
   m_Name: Platform_swipeCam_1_2_1
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22838,7 +22838,7 @@ GameObject:
   - component: {fileID: 1593959165}
   m_Layer: 0
   m_Name: LeftSide
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24951,7 +24951,7 @@ PrefabInstance:
     - target: {fileID: 4846810525926298272, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.48
+      value: -0.8640808
       objectReference: {fileID: 0}
     - target: {fileID: 4846810525926298272, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
@@ -25001,7 +25001,7 @@ PrefabInstance:
     - target: {fileID: 4846810525926298274, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
       propertyPath: horizontalAndVerticalMovement
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4846810525953056720, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
@@ -28770,7 +28770,7 @@ GameObject:
   - component: {fileID: 1828782445}
   m_Layer: 0
   m_Name: Platform_swipeCam_4_3
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29342,7 +29342,7 @@ GameObject:
   - component: {fileID: 1883174237}
   m_Layer: 0
   m_Name: GameObject (3)
-  m_TagString: Untagged
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29518,7 +29518,7 @@ GameObject:
   - component: {fileID: 1934421820}
   m_Layer: 0
   m_Name: Platform_swipeCam_3_1
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30257,7 +30257,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 36, y: 24}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30312,7 +30312,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 36, y: 24}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30451,7 +30451,7 @@ GameObject:
   - component: {fileID: 2111081912}
   m_Layer: 0
   m_Name: Platform_swipeCam_1_2_1_EXIT
-  m_TagString: Ground
+  m_TagString: CameraArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
