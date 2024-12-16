@@ -150,6 +150,7 @@ public class MainMenuManager3D : MonoBehaviour
         GameManager.instance.currentLevelManager.SetNextLevelName(GameManager.instance.LevelNames[index]);
         GameManager.instance.currentLevelManager.SetNextLevel();
         // GameManager.instance.SetLevelToLoad(GameManager.instance.LevelNames[index]);
+        GameManager.instance.currentLevelManager.EndLevelMusic();
         GameManager.instance.currentTransitionManager.SetLoadingClip();
         GameManager.instance.currentTransitionManager.NextLevel();
     }
