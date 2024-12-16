@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
             loadingScreenClip = clip;
     }
 
-
+    
     public void IncrementProgression()
     {
         if (!shouldSave) return;

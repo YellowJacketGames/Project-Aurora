@@ -100,8 +100,6 @@ public class PlayerConversation : PlayerComponent
             (int eventIndex) => { GameManager.instance.currentLevelManager.TriggerEvent(eventIndex); });
 
         currentDialogue.BindExternalFunction("StopTyping", (string none) => { canContinue = false; });
-
-
         currentDialogue.BindExternalFunction("NextLevel", (string none) =>
         {
             GameManager.instance.currentLevelManager.SetNextLevel();

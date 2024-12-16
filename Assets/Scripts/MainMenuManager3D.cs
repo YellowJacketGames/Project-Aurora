@@ -145,7 +145,11 @@ public class MainMenuManager3D : MonoBehaviour
     private void Continue()
     {
         var index = GameManager.instance.Data.progressionIndex;
-        GameManager.instance.SetLevelToLoad(GameManager.instance.LevelNames[index]);
+        // GameManager.instance.currentTransitionManager.SpecificLevel(GameManager.instance.LevelNames[index]);
+
+        GameManager.instance.currentLevelManager.SetNextLevelName(GameManager.instance.LevelNames[index]);
+        GameManager.instance.currentLevelManager.SetNextLevel();
+        // GameManager.instance.SetLevelToLoad(GameManager.instance.LevelNames[index]);
         GameManager.instance.currentTransitionManager.SetLoadingClip();
         GameManager.instance.currentTransitionManager.NextLevel();
     }
@@ -175,7 +179,9 @@ public class MainMenuManager3D : MonoBehaviour
     {
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
+        foreach (var selectableObject in selectableObjects)
+            selectableObject.PerformResetHoverAction();
+        
         var layerMask = LayerMask.GetMask(targetLayer);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {

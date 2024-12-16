@@ -285,8 +285,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.7282789, z: 1}
+  m_Center: {x: 0, y: 0.36413947, z: 0}
 --- !u!23 &49675065
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -851,7 +851,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: LOGROS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8e2c60f0bcae71469d5690087b7a613, type: 2}
   m_sharedMaterial: {fileID: -6674159741424778674, guid: f8e2c60f0bcae71469d5690087b7a613,
@@ -1356,8 +1356,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.5840908, z: 1}
+  m_Center: {x: 0, y: 0.29204538, z: 0}
 --- !u!23 &247225297
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1801,7 +1801,7 @@ PrefabInstance:
         type: 3}
       propertyPath: currentLevelManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1017574334}
     - target: {fileID: 3394038318219316947, guid: 034d0bd9c86dafb409a3ec3696514d49,
         type: 3}
       propertyPath: currentCameraManager
@@ -2301,8 +2301,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 45, y: 50, z: 30}
-  m_Center: {x: 1.09, y: 21.45, z: -6.4}
+  m_Size: {x: 44.999992, y: 62.527847, z: 29.999998}
+  m_Center: {x: 1.0899999, y: 27.713932, z: -6.4000006}
 --- !u!114 &442564748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3621,7 +3621,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "CR\xC9DITOS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8e2c60f0bcae71469d5690087b7a613, type: 2}
   m_sharedMaterial: {fileID: -6674159741424778674, guid: f8e2c60f0bcae71469d5690087b7a613,
@@ -5427,8 +5427,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.6499066, z: 1}
+  m_Center: {x: 0, y: 0.32495284, z: 0}
 --- !u!23 &960966024
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7517,8 +7517,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.27, y: 1.06, z: 2.53}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.27, y: 1.5718201, z: 2.53}
+  m_Center: {x: 0, y: 0.25591063, z: 0}
 --- !u!4 &1300615883
 Transform:
   m_ObjectHideFlags: 0
@@ -9035,7 +9035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAY
+  m_text: JUGAR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8e2c60f0bcae71469d5690087b7a613, type: 2}
   m_sharedMaterial: {fileID: -6674159741424778674, guid: f8e2c60f0bcae71469d5690087b7a613,
@@ -9515,7 +9515,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 1
   m_Cameras: []
-  m_RendererIndex: 1
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -20988,14 +20988,14 @@ MonoBehaviour:
   m_CameraType: 0
   m_Cameras:
   - {fileID: 1582603476}
-  m_RendererIndex: 1
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -21044,7 +21044,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &1828117035
@@ -21795,7 +21795,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: SALIR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8e2c60f0bcae71469d5690087b7a613, type: 2}
   m_sharedMaterial: {fileID: -6674159741424778674, guid: f8e2c60f0bcae71469d5690087b7a613,
@@ -22352,7 +22352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: OPCIONES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8e2c60f0bcae71469d5690087b7a613, type: 2}
   m_sharedMaterial: {fileID: -6674159741424778674, guid: f8e2c60f0bcae71469d5690087b7a613,
@@ -23250,8 +23250,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.26202768, y: 0.7948244, z: 0.8064753}
-  m_Center: {x: 0.011583303, y: 0.089351654, z: 0.50380987}
+  m_Size: {x: 0.26202768, y: 0.98126626, z: 0.8064754}
+  m_Center: {x: 0.011583303, y: 0.18257198, z: 0.5038099}
 --- !u!114 &8915486615826744731
 MonoBehaviour:
   m_ObjectHideFlags: 0

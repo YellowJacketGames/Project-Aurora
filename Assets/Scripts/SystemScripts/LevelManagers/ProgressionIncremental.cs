@@ -6,7 +6,7 @@ public class ProgressionIncremental : MonoBehaviour
 
     private void Start()
     {
-        if (levelIndexId != GameManager.instance.Data.progressionIndex)
+        if (levelIndexId > GameManager.instance.Data.progressionIndex)
             GameManager.instance.IncrementProgression();
     }
 }

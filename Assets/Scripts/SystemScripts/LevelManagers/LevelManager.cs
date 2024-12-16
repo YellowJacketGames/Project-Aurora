@@ -17,6 +17,9 @@ public class LevelManager : MonoBehaviour
     protected bool playtestingMoveScene;
 
     [SerializeField] string nextLevel;
+    
+    public void SetNextLevelName(string nextLevel) { this.nextLevel = nextLevel;}
+    
     public VideoClip nextLevelClip;
     private void Awake()
     {
