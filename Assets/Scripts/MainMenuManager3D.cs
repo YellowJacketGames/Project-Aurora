@@ -18,7 +18,7 @@ public class MainMenuManager3D : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera achievementsCamera;
     [SerializeField] private CinemachineVirtualCamera creditsCamera;
 
-
+    [Space(10)] [SerializeField] private GameObject uiConfigDisplay; 
     // [SerializeField] private GameObject NewGameButtonGroup;
     // [SerializeField] private GameObject ContinueButtonGroup;
 
@@ -40,6 +40,7 @@ public class MainMenuManager3D : MonoBehaviour
     {
         if (!defaultCamera || !exitCamera || !configCamera || !achievementsCamera || !creditsCamera) return;
         AllTextsSetActive(true);
+        uiConfigDisplay.SetActive(false);
         exitCamera.Priority = 0;
         playCamera.Priority = 0;
         configCamera.Priority = 0;
@@ -64,6 +65,7 @@ public class MainMenuManager3D : MonoBehaviour
     {
         if (!defaultCamera || !exitCamera || !configCamera || !achievementsCamera || !creditsCamera) return;
         AllTextsSetActive(false);
+        uiConfigDisplay.SetActive(true);
         defaultCamera.Priority = 0;
         exitCamera.Priority = 0;
         playCamera.Priority = 0;

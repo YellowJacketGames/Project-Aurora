@@ -9,6 +9,8 @@ public class SavingData
     public List<string> objectsIds;
     public List<string> typewritesIds;
     public Language language;
+    public float musicVolume;
+    public float soundVolume;
     //game settings configuration - res, vol, quality.. 
 
 
@@ -32,6 +34,7 @@ public class SavingData
     {
         return (objectsIds.Any(id => id.Equals(objectId)));
     }
+
     public void RemoveObject(string objectId)
     {
         if (!objectsIds.Any(id => id.Equals(objectId))) return;
@@ -53,7 +56,7 @@ public class SavingData
 
     public bool HasTypewrite(string typewriteId)
     {
-        return (typewritesIds.Any(id => id.Equals(typewriteId))) ;
+        return (typewritesIds.Any(id => id.Equals(typewriteId)));
     }
 
     public void RemoveTypewrite(string typewriteId)
@@ -68,6 +71,16 @@ public class SavingData
         this.language = language;
         SavingManager.SaveNew(GameManager.instance.Data);
     }
+
+    public void SetMusicVolume(float value)
+    {
+        musicVolume = value;
+    }
+    public void SetSoundVolume(float value)
+    {
+        soundVolume = value;
+    }
+
     public SavingData(int progressionIndex)
     {
         this.progressionIndex = progressionIndex;
@@ -81,6 +94,8 @@ public class SavingData
         language = Language.ESP;
         objectsIds = new List<string>();
         typewritesIds = new List<string>();
+        musicVolume = 1.0f;
+        soundVolume = 1.0f;
     }
 
     public void IncrementProgression()
@@ -88,6 +103,7 @@ public class SavingData
         progressionIndex++;
         SavingManager.SaveNew(GameManager.instance.Data);
     }
+
     [Serializable]
     public enum Language
     {
