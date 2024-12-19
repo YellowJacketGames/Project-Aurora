@@ -444,9 +444,15 @@ public class PlayerConversation : PlayerComponent
 
                     case "give_item":
                         valueKey = splitTag[1];
-                        ObjectClass obj = new ObjectClass();
-                        ScriptableObject.CreateInstance<ObjectClass>();
-                        obj = obj.CreateObject(valueKey);
+                        // ObjectClass obj = new ObjectClass();
+                        // ScriptableObject.CreateInstance<ObjectClass>();
+                        // obj = obj.CreateObject(valueKey);
+                        ObjectClass obj = Resources.Load<ObjectClass>($"ScriptableObjects/Objects/KeyObjects/{valueKey}");
+                        if (obj == null)
+                        {
+                            Debug.LogError($"El objeto con clave '{valueKey}' no se encontró en Resources/ScriptableObjects/Objects/KeyObjects/");
+                            return;
+                        }
                         if (GameManager.instance.Data.HasObject(valueKey)) return;
                         _parent.playerInventoryComponent.AddObjectToKeyInventory(obj);
                         GameManager.instance.Data.AddObject(valueKey);
