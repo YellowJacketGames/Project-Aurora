@@ -49,10 +49,14 @@ public class
                 speakerPortrait.sprite = currentSpeaker.speakerPortraitLeft;
                 if (!OnlyActiveLvl1)
                     speakerPortrait.SetNativeSize();
+                else if (currentSpeaker.name.Equals("Federico"))
+                    speakerPortrait.SetNativeSize();
                 break;
             case InteractDirection.Right:
                 speakerPortrait.sprite = currentSpeaker.speakerPortraitRight;
                 if (!OnlyActiveLvl1)
+                    speakerPortrait.SetNativeSize();
+                else if (currentSpeaker.name.Equals("Federico"))
                     speakerPortrait.SetNativeSize();
                 break;
             default:

@@ -80,5 +80,19 @@ public class PauseGame : MonoBehaviour
 
     #endregion
 
+    [SerializeField] private GameObject optionsGroup;
+    [SerializeField] private GameObject defaultGroup;
+    public void OpenPauseSettings()
+    {
+        optionsGroup.SetActive(true);
+        defaultGroup.SetActive(false);
+    }
+
+    public void ClosePauseSettings()
+    {
+        optionsGroup.SetActive(false);
+        defaultGroup.SetActive(true);
+        
+    }
 
 }

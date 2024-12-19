@@ -10,25 +10,25 @@ using UINavigation;
 
 public class PlayerConversation : PlayerComponent
 {
-    [Header("Dialogue Components")]
-    private Story currentDialogue;
+    [Header("Dialogue Components")] private Story currentDialogue;
 
     //This are variables to fix a small bug with the input of both action maps clashing when the dialogue is finished.
     [SerializeField] float storyFinishedTimer = 0.5f;
     float _storyFinishedTimer;
     bool storyfinished; //bool to check if the story is done
     string nextLine;
-    
-    [Header("Choices Components")]
-    [SerializeField] private List<ChoiceClass> dialogueChoices;
+
+    [Header("Choices Components")] [SerializeField]
+    private List<ChoiceClass> dialogueChoices;
+
     private NavigateOptions choiceNavigation = new NavigateOptions();
 
     private Coroutine displayLine; //Variable to stop the coroutine
     public bool canContinue;
 
-    [Space]
-    [Header("Speaker Variables")]
-    [SerializeField] private Speaker playerSpeaker;
+    [Space] [Header("Speaker Variables")] [SerializeField]
+    private Speaker playerSpeaker;
+
     private Speaker newSpeaker;
 
 
@@ -37,6 +37,7 @@ public class PlayerConversation : PlayerComponent
         canContinue = true;
         _storyFinishedTimer = storyFinishedTimer;
     }
+
     public void BeginStory()
     {
         SetStoryExternalFunctions();
@@ -58,17 +59,18 @@ public class PlayerConversation : PlayerComponent
             HandleTags();
         }
     }
+
     public void SetStoryExternalFunctions()
     {
         #region Set external functions
 
         currentDialogue.BindExternalFunction("CheckIfHasItem", (string itemId) =>
         {
-            if(GameManager.instance.Data.HasObject(itemId))
+            if (GameManager.instance.Data.HasObject(itemId))
                 currentDialogue.variablesState["hasItem"] = true;
             else
                 currentDialogue.variablesState["hasItem"] = false;
-                
+
             // if (_parent.playerInventoryComponent.CheckIfObjectIsInInventory(itemId))
             // {
             //     currentDialogue.variablesState["hasItem"] = true;
@@ -77,7 +79,6 @@ public class PlayerConversation : PlayerComponent
             // {
             //     currentDialogue.variablesState["hasItem"] = false;
             // }
-
         });
 
         currentDialogue.BindExternalFunction("CheckIfHasQuest", (int questIndex) =>
@@ -90,50 +91,33 @@ public class PlayerConversation : PlayerComponent
             {
                 currentDialogue.variablesState["hasQuest"] = false;
             }
-
         });
 
-        currentDialogue.BindExternalFunction("GoToNextObjective", (string none) =>
-        {
-            GameManager.instance.questManager.UpdateObjective();
-        });
+        currentDialogue.BindExternalFunction("GoToNextObjective",
+            (string none) => { GameManager.instance.questManager.UpdateObjective(); });
 
-        currentDialogue.BindExternalFunction("CallEvent", (int eventIndex) =>
-        {
-            GameManager.instance.currentLevelManager.TriggerEvent(eventIndex);
-        });
+        currentDialogue.BindExternalFunction("CallEvent",
+            (int eventIndex) => { GameManager.instance.currentLevelManager.TriggerEvent(eventIndex); });
 
-        currentDialogue.BindExternalFunction("StopTyping", (string none) =>
-        {
-            canContinue = false;
-        });
-
-
+        currentDialogue.BindExternalFunction("StopTyping", (string none) => { canContinue = false; });
         currentDialogue.BindExternalFunction("NextLevel", (string none) =>
         {
             GameManager.instance.currentLevelManager.SetNextLevel();
             GameManager.instance.currentTransitionManager.NextLevel();
         });
 
-        currentDialogue.BindExternalFunction("GoToMainMenu", (string none) =>
-        {
-            GameManager.instance.currentTransitionManager.GoToMainMenu();
-        });
-        currentDialogue.BindExternalFunction("BeginTransition", (string none) =>
-        {
-            GameManager.instance.currentTransitionManager.CompleteTransition();
+        currentDialogue.BindExternalFunction("GoToMainMenu",
+            (string none) => { GameManager.instance.currentTransitionManager.GoToMainMenu(); });
+        currentDialogue.BindExternalFunction("BeginTransition",
+            (string none) => { GameManager.instance.currentTransitionManager.CompleteTransition(); });
 
-        });
-
-        currentDialogue.BindExternalFunction("PlayAudio", (string audioName) =>
-        {
-            AudioManager.instance.Play(audioName);
-        });
+        currentDialogue.BindExternalFunction("PlayAudio",
+            (string audioName) => { AudioManager.instance.Play(audioName); });
 
         currentDialogue.BindExternalFunction("SetNewSpeaker", (string newSpeaker) =>
         {
             Speaker s = Resources.Load("ScriptableObjects/Speakers/" + newSpeaker) as Speaker;
-            
+
 
             // switch (GameManager.instance.currentController.playerInteractComponent.GetCurrentDirection())
             // {
@@ -164,14 +148,13 @@ public class PlayerConversation : PlayerComponent
         });
         currentDialogue.BindExternalFunction("DoorMoveCameraToSecondPhase", (string none) =>
         {
-            DoorLevelManager specialManager = GameManager.instance.currentLevelManager as DoorLevelManager;   
+            DoorLevelManager specialManager = GameManager.instance.currentLevelManager as DoorLevelManager;
             specialManager.MoveCameraToSecondPhase();
-            
         });
 
         currentDialogue.BindExternalFunction("HasInteractedCheck", (string none) =>
         {
-            if(_parent.playerInteractComponent.GetCurrentElement() != null)
+            if (_parent.playerInteractComponent.GetCurrentElement() != null)
             {
                 _parent.playerInteractComponent.GetCurrentElement().hasBeenInteracted = true;
             }
@@ -181,9 +164,9 @@ public class PlayerConversation : PlayerComponent
         {
             if (_parent.playerInteractComponent.GetCurrentElement() != null)
             {
-                currentDialogue.variablesState["hasInteracted"] = _parent.playerInteractComponent.GetCurrentElement().hasBeenInteracted;
+                currentDialogue.variablesState["hasInteracted"] =
+                    _parent.playerInteractComponent.GetCurrentElement().hasBeenInteracted;
             }
-
         });
 
         #region Level 3 specific Conversation Methods
@@ -192,14 +175,12 @@ public class PlayerConversation : PlayerComponent
         {
             DoorLevelManager specialManager = GameManager.instance.currentLevelManager as DoorLevelManager;
             specialManager.ResetDoorLevel();
-            
         });
 
         currentDialogue.BindExternalFunction("AdvanceDoors", (string none) =>
         {
             DoorLevelManager specialManager = GameManager.instance.currentLevelManager as DoorLevelManager;
             specialManager.ProgressLevel();
-
         });
 
         #endregion
@@ -210,25 +191,26 @@ public class PlayerConversation : PlayerComponent
         {
             RooftopLevelManager specialManager = GameManager.instance.currentLevelManager as RooftopLevelManager;
             specialManager.SetUpRace();
-
         });
 
         currentDialogue.BindExternalFunction("FinishRace", (string none) =>
         {
             RooftopLevelManager specialManager = GameManager.instance.currentLevelManager as RooftopLevelManager;
             specialManager.FinishRace();
-
         });
+
         #endregion
 
         #endregion
     }
 
     public void FixedUpdate()
-    {       
-        if (_parent.CurrentPlayerState == PlayerState.Conversation) //We only execute this if we're in the conversation state
+    {
+        if (_parent.CurrentPlayerState ==
+            PlayerState.Conversation) //We only execute this if we're in the conversation state
         {
-            if (_parent.playerInputHandlerComponent.GetAcceptInput()) //If we input the continue button, it will continue the story
+            if (_parent.playerInputHandlerComponent
+                .GetAcceptInput()) //If we input the continue button, it will continue the story
             {
                 if (canContinue || currentDialogue.canContinue)
                 {
@@ -253,7 +235,8 @@ public class PlayerConversation : PlayerComponent
         return playerSpeaker;
     }
 
-    #region Story 
+    #region Story
+
     public void ContinueStory() //Method to make story continue
     {
         if (currentDialogue.canContinue) // The first condition is if the story can continue to the next line
@@ -281,9 +264,11 @@ public class PlayerConversation : PlayerComponent
         {
             //This part of the continue story method is reserved for finishing the story or waiting for choices to be answered
 
-            if (_parent.playerUIComponent.ReturnTypingStatus()) //If this is the last line before the story can move on, we display it fully
+            if (_parent.playerUIComponent
+                .ReturnTypingStatus()) //If this is the last line before the story can move on, we display it fully
             {
-                if (displayLine != null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
+                if (displayLine !=
+                    null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
                 {
                     StopCoroutine(displayLine);
                     displayLine = null;
@@ -294,23 +279,24 @@ public class PlayerConversation : PlayerComponent
             }
             else
             {
-                if (currentDialogue.currentChoices.Count <= 0) //If there are no choices to be answered (since that also makes the dialogue not able to continue) we finish the story
+                if (currentDialogue.currentChoices.Count <=
+                    0) //If there are no choices to be answered (since that also makes the dialogue not able to continue) we finish the story
                 {
                     _parent.playerUIComponent.HideConversationBox(); //Deactivating the dialogue ui
 
                     storyfinished = true;
                 }
             }
-
         }
     }
-    
+
     public void SkipLine()
     {
         AudioManager.instance.Stop("Typewriter");
 
         //If we want to continue the story but the text is appearing currently we skip over to the next line
-        if (displayLine != null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
+        if (displayLine !=
+            null) //We make sure to stop the coroutine so that we don't start another one and they overlap, it could cause bugs
         {
             StopCoroutine(displayLine);
             displayLine = null;
@@ -326,6 +312,7 @@ public class PlayerConversation : PlayerComponent
         //If there are any choices avaible, we display them
         DisplayChoices();
     }
+
     public void FinishStory() //This method is only performed when there is no more dialogue in the current story
     {
         //We set a timer so that the accept and jump input don't overlap
@@ -336,11 +323,12 @@ public class PlayerConversation : PlayerComponent
         {
             _storyFinishedTimer = storyFinishedTimer;
             Debug.Log("Story Finished");
-            Debug.Log("Timer: "+_storyFinishedTimer);
+            Debug.Log("Timer: " + _storyFinishedTimer);
             storyfinished = false;
             _parent.ChangeState(PlayerState.Idle);
         }
     }
+
     public void SetCurrentDialogue(Story dialogue) //Method to change the Current Dialogue
     {
         currentDialogue = dialogue;
@@ -349,18 +337,20 @@ public class PlayerConversation : PlayerComponent
     #endregion
 
     #region Choices
+
     public void DisplayChoices() //Method to display the different choices
     {
-        if(currentDialogue.currentChoices.Count > 0) //Execute only if there are choices to display
+        if (currentDialogue.currentChoices.Count > 0) //Execute only if there are choices to display
         {
-            foreach(ChoiceClass c in dialogueChoices)
+            foreach (ChoiceClass c in dialogueChoices)
             {
                 c.ReturnParent().SetActive(false);
             }
 
-            for (int i = 0; i < currentDialogue.currentChoices.Count; i++) //Go through every choice avaible and fill out the variables
+            for (int i = 0;
+                 i < currentDialogue.currentChoices.Count;
+                 i++) //Go through every choice avaible and fill out the variables
             {
-                
                 if (dialogueChoices[i] == null)
                     break;
                 dialogueChoices[i].SetChoice(currentDialogue.currentChoices[i]);
@@ -369,7 +359,7 @@ public class PlayerConversation : PlayerComponent
             StartCoroutine(choiceNavigation.SelectFirstOption(dialogueChoices[0].ReturnParent()));
         }
     }
-    
+
     public void AssignChoices(int index) //Method to execute the coices when it appears
     {
         currentDialogue.ChooseChoiceIndex(index);
@@ -400,7 +390,7 @@ public class PlayerConversation : PlayerComponent
 
     private void HandleTags() //This is a method to get the speakers in a dialogue and give them the reference to the UI
     {
-        if(currentDialogue.currentTags.Count > 0) //if we have a tag, we perform the 
+        if (currentDialogue.currentTags.Count > 0) //if we have a tag, we perform the 
         {
             foreach (string tag in currentDialogue.currentTags)
             {
@@ -409,37 +399,61 @@ public class PlayerConversation : PlayerComponent
 
                 string tagKey = splitTag[0];
 
+                const string eventPrefix = "invoke_event_";
+                if (tagKey.StartsWith(eventPrefix))
+                {
+                    Debug.Log("EVENTOOOO");
+                    string eventName = tagKey.Substring(eventPrefix.Length);
+                    EventsManager.InvokeConversationEvent(eventName);
+                    return;
+                }
+
+                const string soundPrefix = "play_sound";
+                if (tagKey.StartsWith(soundPrefix))
+                {
+                    string clipName = splitTag[1];
+                    AudioManager.instance.Play(clipName);
+                    return;
+                }
+
                 switch (tagKey)
                 {
                     case "speaker":
                         string valueKey = splitTag[1];
-                            int numberValue = System.Convert.ToInt32(valueKey);
+                        int numberValue = System.Convert.ToInt32(valueKey);
 
-                            switch (numberValue)
-                            {
-                                case 0:
-                                    _parent.playerUIComponent.SetDialogueLayout(playerSpeaker);
-                                    break;
+                        switch (numberValue)
+                        {
+                            case 0:
+                                _parent.playerUIComponent.SetDialogueLayout(playerSpeaker);
+                                break;
 
-                                case 1:
-                                    _parent.playerUIComponent.SetDialogueLayout(newSpeaker);
-                                    break;
+                            case 1:
+                                _parent.playerUIComponent.SetDialogueLayout(newSpeaker);
+                                break;
 
-                                case 2:
-                                    _parent.playerUIComponent.DeactivateDialogueLayout();
-                                    break;
+                            case 2:
+                                _parent.playerUIComponent.DeactivateDialogueLayout();
+                                break;
 
-                                default:
-                                    break;
-                            }
+                            default:
+                                break;
+                        }
+
                         break;
 
                     case "give_item":
                         valueKey = splitTag[1];
-                        ObjectClass obj = new ObjectClass();
-                        ScriptableObject.CreateInstance<ObjectClass>();
-                        obj = obj.CreateObject(valueKey);
-                        if(GameManager.instance.Data.HasObject(valueKey)) return;
+                        // ObjectClass obj = new ObjectClass();
+                        // ScriptableObject.CreateInstance<ObjectClass>();
+                        // obj = obj.CreateObject(valueKey);
+                        ObjectClass obj = Resources.Load<ObjectClass>($"ScriptableObjects/Objects/KeyObjects/{valueKey}");
+                        if (obj == null)
+                        {
+                            Debug.LogError($"El objeto con clave '{valueKey}' no se encontró en Resources/ScriptableObjects/Objects/KeyObjects/");
+                            return;
+                        }
+                        if (GameManager.instance.Data.HasObject(valueKey)) return;
                         _parent.playerInventoryComponent.AddObjectToKeyInventory(obj);
                         GameManager.instance.Data.AddObject(valueKey);
                         break;
@@ -450,28 +464,17 @@ public class PlayerConversation : PlayerComponent
                             _parent.playerInventoryComponent.UseItem(valueKey);
                         }
 
-                        if(!GameManager.instance.Data.HasObject(valueKey)) return;
-                            GameManager.instance.Data.RemoveObject(valueKey);
+                        if (!GameManager.instance.Data.HasObject(valueKey)) return;
+                        GameManager.instance.Data.RemoveObject(valueKey);
                         break;
-                    
                     default:
 
-                        const string eventPrefix = "invoke_event_";
-                        if (tagKey.StartsWith(eventPrefix))
-                        {
-                            Debug.Log("EVENTOOOO");
-                            string eventName = tagKey.Substring(eventPrefix.Length);
-                            EventsManager.InvokeConversationEvent(eventName);
-                            return;
-                        }
-                        
-                        
                         Debug.LogWarning("Tag not found use for");
                         break;
                 }
             }
         }
     }
-    
+
     #endregion
 }

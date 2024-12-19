@@ -130,7 +130,7 @@ public class AudioManager : MonoBehaviour
         if (newSound != null)
         {
             newSound.source.PlayOneShot(newSound.clip);
-            Debug.Log("Sound-> " + newSound.source.pitch + " pitch");
+            // Debug.Log("Sound-> " + newSound.source.pitch + " pitch");
         }
         else
         {

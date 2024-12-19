@@ -18,7 +18,7 @@ public class MainMenuManager3D : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera achievementsCamera;
     [SerializeField] private CinemachineVirtualCamera creditsCamera;
 
-
+    [Space(10)] [SerializeField] private GameObject uiConfigDisplay; 
     // [SerializeField] private GameObject NewGameButtonGroup;
     // [SerializeField] private GameObject ContinueButtonGroup;
 
@@ -40,6 +40,7 @@ public class MainMenuManager3D : MonoBehaviour
     {
         if (!defaultCamera || !exitCamera || !configCamera || !achievementsCamera || !creditsCamera) return;
         AllTextsSetActive(true);
+        uiConfigDisplay.SetActive(false);
         exitCamera.Priority = 0;
         playCamera.Priority = 0;
         configCamera.Priority = 0;
@@ -64,6 +65,7 @@ public class MainMenuManager3D : MonoBehaviour
     {
         if (!defaultCamera || !exitCamera || !configCamera || !achievementsCamera || !creditsCamera) return;
         AllTextsSetActive(false);
+        uiConfigDisplay.SetActive(true);
         defaultCamera.Priority = 0;
         exitCamera.Priority = 0;
         playCamera.Priority = 0;
@@ -145,7 +147,12 @@ public class MainMenuManager3D : MonoBehaviour
     private void Continue()
     {
         var index = GameManager.instance.Data.progressionIndex;
-        GameManager.instance.SetLevelToLoad(GameManager.instance.LevelNames[index]);
+        // GameManager.instance.currentTransitionManager.SpecificLevel(GameManager.instance.LevelNames[index]);
+
+        GameManager.instance.currentLevelManager.SetNextLevelName(GameManager.instance.LevelNames[index]);
+        GameManager.instance.currentLevelManager.SetNextLevel();
+        // GameManager.instance.SetLevelToLoad(GameManager.instance.LevelNames[index]);
+        GameManager.instance.currentLevelManager.EndLevelMusic();
         GameManager.instance.currentTransitionManager.SetLoadingClip();
         GameManager.instance.currentTransitionManager.NextLevel();
     }
@@ -175,7 +182,9 @@ public class MainMenuManager3D : MonoBehaviour
     {
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
+        foreach (var selectableObject in selectableObjects)
+            selectableObject.PerformResetHoverAction();
+        
         var layerMask = LayerMask.GetMask(targetLayer);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
