@@ -10,7 +10,7 @@ public class IngameTextElement : MonoBehaviour
     [SerializeField] private TMP_Text textReference;
     [SerializeField] private string text;
     [Range(0, 54)] [SerializeField] private int id;
-    [SerializeField] private Vector4 axis = new Vector4(0, 0, 1, 0);
+    [SerializeField] private Vector4 axis; //= new Vector4(0, 0, 1, 0)
     [SerializeField] private float speed = 2f; //*100
 
     [SerializeField] private RectMask2D mask;
@@ -18,6 +18,8 @@ public class IngameTextElement : MonoBehaviour
     private IngameTextManager ingameTextManager;
     private float elapsed_time;
     [SerializeField] private float amount = 10;
+    [Space(10)] [SerializeField] private float walkAnimSpeed = 0.8f;
+    [SerializeField] private float runAnimSpeed = 2f;
 
     private void Awake()
     {
@@ -39,7 +41,7 @@ public class IngameTextElement : MonoBehaviour
 
     private void HandleSpeedChange(float newSpeed)
     {
-        speed = newSpeed > 10 ? 2.0f : 0.8f; //running
+        speed = newSpeed > 10 ? runAnimSpeed : walkAnimSpeed; //running
     }
 
     private void Init()
