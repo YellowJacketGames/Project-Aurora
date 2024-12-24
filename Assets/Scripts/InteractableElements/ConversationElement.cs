@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 public class ConversationElement : InteractableElement
 {
+    public bool disableComponent = false;
+    
+    
     [FormerlySerializedAs("elementDialogue")] [Header("Conversation")] [SerializeField]
     TextAsset elementDialogueESP;
 
@@ -16,6 +19,8 @@ public class ConversationElement : InteractableElement
     [ContextMenu("On Interact")]
     public override void OnInteract()
     {
+        if(disableComponent) return;
+        
         TextAsset usableText = null;
         if(elementDialogueENG != null && elementDialogueESP != null)
             usableText = GameManager.instance.IsSpanishSet() ? elementDialogueESP : elementDialogueENG;

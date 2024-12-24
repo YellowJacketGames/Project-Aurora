@@ -5,13 +5,13 @@ using Cinemachine;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using Ink.Runtime;
 
 public class BallMinigame : InteractableElement
 {
     private int playerLayer;
     [SerializeField] private string objectName;
-    [Space(10)]
-    [SerializeField] private CinemachineVirtualCamera minigameCamera;
+    [Space(10)] [SerializeField] private CinemachineVirtualCamera minigameCamera;
     [SerializeField] private CinemachineVirtualCamera levelCamera;
     [SerializeField] private Camera camera;
 
@@ -29,6 +29,13 @@ public class BallMinigame : InteractableElement
 
     private Coroutine minigameCorr;
     private bool minigameGaveTicket = false;
+
+    [Header("Conversation")] [SerializeField]
+    TextAsset elementDialogueESP;
+
+    [SerializeField] TextAsset elementDialogueENG;
+
+    [SerializeField] Speaker conversationSpeaker;
 
     private void OnEnable()
     {
@@ -54,21 +61,25 @@ public class BallMinigame : InteractableElement
             return;
         }
 
-        if (GameManager.instance.Data.HowManyOf(objectName)>=3) return;
-        GameManager.instance.canAddMultipleInstancesOfSameId = true;
-        GameManager.instance.currentController.playerInventoryComponent.AddObjectToKeyInventory(obj);
-        GameManager.instance.Data.AddObject(objectName);
-        GameManager.instance.canAddMultipleInstancesOfSameId = false;
-        minigameGaveTicket = true;
+        if (GameManager.instance.Data.HowManyOf(objectName) < 3)
+        {
+            GameManager.instance.canAddMultipleInstancesOfSameId = true;
+            GameManager.instance.currentController.playerInventoryComponent.AddObjectToKeyInventory(obj);
+            GameManager.instance.Data.AddObject(objectName);
+            GameManager.instance.canAddMultipleInstancesOfSameId = false;
+            GameManager.instance.currentLevelManager.GetEvent(3).GetComponent<EnableZoltar>().EnableZoltarDialogation();
+            minigameGaveTicket = true;
+        }
         StartCoroutine(GoBack());
-        
     }
+
     private IEnumerator GoBack()
     {
         yield return new WaitForSeconds(1);
         ExitMinigame();
         yield return null;
     }
+
     protected override void Awake()
     {
         _cans = GetComponentsInChildren<Can>();
@@ -82,6 +93,65 @@ public class BallMinigame : InteractableElement
 
     public override void OnInteract()
     {
+        TextAsset usableText = null;
+        if (elementDialogueENG != null && elementDialogueESP != null)
+            usableText = GameManager.instance.IsSpanishSet() ? elementDialogueESP : elementDialogueENG;
+
+        //temp to allow dialogues while there is no ENG file yet 
+        if (elementDialogueENG == null)
+            usableText = elementDialogueESP;
+        //if we forgot to add the dialogue asset to the element, it should warn us and not execute the code
+        if (usableText != null)
+        {
+            Story dialogue = new Story(usableText.text);
+
+            if (conversationSpeaker != null)
+            {
+                GameManager.instance.currentController.playerConversationComponent.SetNewSpeaker(conversationSpeaker);
+
+                switch (GameManager.instance.currentController.playerConversationComponent.GetPlayerSpeaker()
+                            .currentDirection)
+                {
+                    case InteractDirection.Left:
+                        conversationSpeaker.currentDirection = InteractDirection.Right;
+                        break;
+                    case InteractDirection.Right:
+                        conversationSpeaker.currentDirection = InteractDirection.Left;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(dialogue);
+            GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
+        }
+        else
+        {
+            Debug.LogWarning("The element " + elementName +
+                             " is a dialogue element and does not possess a ink story file");
+            return;
+        }
+
+        base.OnInteract();
+        return;
+        SetMinigameCamera();
+        ChangeInputScheme(true);
+        HideInteractPrompt();
+        ignorePopup = true;
+        if (minigameCorr != null)
+        {
+            StopCoroutine(minigameCorr);
+            ResetGameStuff();
+        }
+
+        minigameCorr = StartCoroutine(StartMinigameCorr());
+    }
+
+
+    public void StartMinigameFromInvoker()
+    {
+        GameManager.instance.currentController.ChangeState(PlayerState.Idle);
         SetMinigameCamera();
         ChangeInputScheme(true);
         HideInteractPrompt();

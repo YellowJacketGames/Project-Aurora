@@ -4,26 +4,35 @@ using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Ink.Runtime;
 
 public class HorseMinigame : InteractableElement
 {
     private int playerLayer;
 
     [SerializeField] private string objectName;
-    [Space(10)] 
-    [FormerlySerializedAs("puzzleCamera")] [SerializeField]
+
+    [Space(10)] [FormerlySerializedAs("puzzleCamera")] [SerializeField]
     private CinemachineVirtualCamera minigameCamera;
 
     [SerializeField] private CinemachineVirtualCamera levelCamera;
     [SerializeField] private Camera camera;
 
-    public  Horse selectedHorse;
+    public Horse selectedHorse;
     [SerializeField] private List<Horse> _horses;
 
     [SerializeField] private TMP_Text countdownText;
     [SerializeField] private bool winner;
     private bool aHorseFinished = false;
     private bool minigameGaveTicket = false;
+
+    [Header("Conversation")] [SerializeField]
+    TextAsset elementDialogueESP;
+
+    [SerializeField] TextAsset elementDialogueENG;
+
+    [SerializeField] Speaker conversationSpeaker;
+
     private void OnEnable()
     {
         if (selectedHorse)
@@ -36,13 +45,12 @@ public class HorseMinigame : InteractableElement
         if (selectedHorse)
             EventsManager.OnCodexDown.RemoveListener(selectedHorse.IncreaseTicks);
         EventsManager.onMinigameExit.RemoveListener(ExitMinigame);
-
     }
 
     public void CheckIfWinner(Horse horse)
     {
-        if(aHorseFinished) return;
-        
+        if (aHorseFinished) return;
+
         if (horse == selectedHorse)
             winner = true;
         else
@@ -52,9 +60,10 @@ public class HorseMinigame : InteractableElement
         {
             h.StopRunning();
         }
-        countdownText.text = winner  ? "Has ganado!" : "Has perdido";
+
+        countdownText.text = winner ? "Has ganado!" : "Has perdido";
         if (!winner) return;
-        if(minigameGaveTicket) return;
+        if (minigameGaveTicket) return;
         ObjectClass obj = Resources.Load<ObjectClass>($"ScriptableObjects/Objects/KeyObjects/{objectName}");
         if (obj == null)
         {
@@ -63,40 +72,97 @@ public class HorseMinigame : InteractableElement
             return;
         }
 
-        
-        if (GameManager.instance.Data.HowManyOf(objectName)>=3) return;
-        GameManager.instance.canAddMultipleInstancesOfSameId = true;
-        GameManager.instance.currentController.playerInventoryComponent.AddObjectToKeyInventory(obj);
-        GameManager.instance.Data.AddObject(objectName);
-        GameManager.instance.canAddMultipleInstancesOfSameId = false;
-        minigameGaveTicket = true;
+
+        if (GameManager.instance.Data.HowManyOf(objectName) < 3)
+        {
+            GameManager.instance.canAddMultipleInstancesOfSameId = true;
+            GameManager.instance.currentController.playerInventoryComponent.AddObjectToKeyInventory(obj);
+            GameManager.instance.Data.AddObject(objectName);
+            GameManager.instance.canAddMultipleInstancesOfSameId = false;
+            GameManager.instance.currentLevelManager.GetEvent(3).GetComponent<EnableZoltar>().EnableZoltarDialogation();
+            minigameGaveTicket = true;
+        }
+
         StartCoroutine(GoBack());
     }
+
     private IEnumerator GoBack()
     {
         yield return new WaitForSeconds(1);
         ExitMinigame();
         yield return null;
     }
+
     protected override void Awake()
     {
         foreach (var horse in _horses)
             horse.InjectParentRef(this);
-        
+
         base.Awake();
         camera = Camera.main;
         playerLayer = LayerMask.NameToLayer("Player");
-        
     }
 
     public override void OnInteract()
     {
+        TextAsset usableText = null;
+        if (elementDialogueENG != null && elementDialogueESP != null)
+            usableText = GameManager.instance.IsSpanishSet() ? elementDialogueESP : elementDialogueENG;
+
+        //temp to allow dialogues while there is no ENG file yet 
+        if (elementDialogueENG == null)
+            usableText = elementDialogueESP;
+        //if we forgot to add the dialogue asset to the element, it should warn us and not execute the code
+        if (usableText != null)
+        {
+            Story dialogue = new Story(usableText.text);
+
+            if (conversationSpeaker != null)
+            {
+                GameManager.instance.currentController.playerConversationComponent.SetNewSpeaker(conversationSpeaker);
+
+                switch (GameManager.instance.currentController.playerConversationComponent.GetPlayerSpeaker()
+                            .currentDirection)
+                {
+                    case InteractDirection.Left:
+                        conversationSpeaker.currentDirection = InteractDirection.Right;
+                        break;
+                    case InteractDirection.Right:
+                        conversationSpeaker.currentDirection = InteractDirection.Left;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(dialogue);
+            GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
+        }
+        else
+        {
+            Debug.LogWarning("The element " + elementName +
+                             " is a dialogue element and does not possess a ink story file");
+            return;
+        }
+
+        base.OnInteract();
+        return;
         SetMinigameCamera();
         ChangeInputScheme(true);
         HideInteractPrompt();
         ignorePopup = true;
         StartCoroutine(StartMinigameCorr());
+    }
 
+    public void StartMinigameFromInvoker()
+    {
+        GameManager.instance.currentController.ChangeState(PlayerState.Idle);
+
+        SetMinigameCamera();
+        ChangeInputScheme(true);
+        HideInteractPrompt();
+        ignorePopup = true;
+        StartCoroutine(StartMinigameCorr());
     }
 
     private IEnumerator StartMinigameCorr()
@@ -108,12 +174,13 @@ public class HorseMinigame : InteractableElement
             countdownText.text = i.ToString();
             yield return new WaitForSeconds(1f);
         }
+
         countdownText.text = "";
 
         StartMinigame();
         yield return null;
     }
-    
+
     private void StartMinigame()
     {
         foreach (var horse in _horses)
@@ -121,7 +188,7 @@ public class HorseMinigame : InteractableElement
             horse.StartRace();
         }
     }
-    
+
     public void ExitMinigame()
     {
         ResetMainCamera();
@@ -133,6 +200,7 @@ public class HorseMinigame : InteractableElement
         {
             horse.Reset();
         }
+
         winner = false;
         aHorseFinished = false;
     }
