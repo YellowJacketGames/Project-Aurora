@@ -12,8 +12,8 @@ using Random = UnityEngine.Random;
 public class WaterMinigame : InteractableElement
 {
     private int playerLayer;
-
-    [SerializeField] private CinemachineVirtualCamera minigameCamera;
+    [SerializeField] private string objectName;
+    [Space(10)] [SerializeField] private CinemachineVirtualCamera minigameCamera;
     [SerializeField] private CinemachineVirtualCamera levelCamera;
     [SerializeField] private Camera camera;
 
@@ -32,6 +32,7 @@ public class WaterMinigame : InteractableElement
     [SerializeField] private bool isShooting;
     [SerializeField] private float score;
     [SerializeField] private int targetScore = 1000;
+    private bool minigameGaveTicket = false;
 
     private void OnEnable()
     {
@@ -110,7 +111,7 @@ public class WaterMinigame : InteractableElement
             Vector3 mousePos = Input.mousePosition;
             Ray ray = camera.ScreenPointToRay(mousePos);
             RaycastHit[] hits;
-            hits = Physics.SphereCastAll(ray, 0.5f, Mathf.Infinity, raycastLayer);
+            hits = Physics.SphereCastAll(ray, 0.15f, Mathf.Infinity, raycastLayer);
 
             if (hits.Length > 0)
             {
@@ -120,7 +121,7 @@ public class WaterMinigame : InteractableElement
 
                 foreach (var hit in hits)
                     if (isShooting && hit.collider.CompareTag("HitPoint"))
-                        score += 0.2f;
+                        score += 0.5f;
 
                 waterGun.UpdatePoint(targetPos);
                 Vector3 direction = (targetPos - waterGun.transform.position).normalized;
@@ -142,7 +143,31 @@ public class WaterMinigame : InteractableElement
         {
             winner = true;
             countdownText.text = winner ? "Has ganado!" : "Has perdido";
+            if (!winner) return;
+            if (minigameGaveTicket) return;
+            ObjectClass obj = Resources.Load<ObjectClass>($"ScriptableObjects/Objects/KeyObjects/{objectName}");
+            if (obj == null)
+            {
+                Debug.LogError(
+                    $"El objeto con clave '{objectName}' no se encontró en Resources/ScriptableObjects/Objects/KeyObjects/");
+                return;
+            }
+
+            if (GameManager.instance.Data.HowManyOf(objectName) >= 3) return;
+            GameManager.instance.canAddMultipleInstancesOfSameId = true;
+            GameManager.instance.currentController.playerInventoryComponent.AddObjectToKeyInventory(obj);
+            GameManager.instance.Data.AddObject(objectName);
+            GameManager.instance.canAddMultipleInstancesOfSameId = false;
+            minigameGaveTicket = true;
+            StartCoroutine(GoBack());
         }
+    }
+
+    private IEnumerator GoBack()
+    {
+        yield return new WaitForSeconds(1);
+        ExitMinigame();
+        yield return null;
     }
 
     private IEnumerator UpdateHitObjects()

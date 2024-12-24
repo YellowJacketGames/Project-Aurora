@@ -200,7 +200,11 @@ public class PlayerConversation : PlayerComponent
         });
 
         #endregion
-
+        // currentDialogue.BindExternalFunction("FinishRace", (string none) => check if has item multiple ?
+        // {
+        //     RooftopLevelManager specialManager = GameManager.instance.currentLevelManager as RooftopLevelManager;
+        //     specialManager.FinishRace();
+        // });
         #endregion
     }
 

@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] VideoClip loadingScreenClip;
     [SerializeField] VideoClip basicLoadingScreenClip;
 
+    
+    public bool canAddMultipleInstancesOfSameId = false;
+
     private void Start()
     {
         shouldSave = true;

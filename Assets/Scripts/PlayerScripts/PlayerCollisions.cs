@@ -67,7 +67,7 @@ public class PlayerCollisions : PlayerComponent
     private void OnTriggerExit(Collider other)
     {
         if (!other.TryGetComponent<InteractableElement>(out InteractableElement element)) return;
-        if (!other.GetComponent<InteractableElement>().HasDialogue()) return;
+        // if (!other.GetComponent<InteractableElement>().HasDialogue()) return;
         element.HideInteractPrompt();
         // _parent.playerUIComponent.HideInteractPrompt();  -- antiguo, cierra en el HUD
         _parent.playerInteractComponent.SetCurrentElement(null);

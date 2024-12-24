@@ -12,18 +12,22 @@ public class PlayerInventory : PlayerComponent
     private List<ObjectClass> typewriterObjectInventory = new List<ObjectClass>();
 
 
-
     //This region holds every method to add items to the inventory
+
     #region Add to Inventory
-    private void AddObjectToInventory(ObjectClass newObject, List<ObjectClass> currentInventory)  //This is a generic method so that we don't write the same code twice, it is used in the later methods
+
+    private void
+        AddObjectToInventory(ObjectClass newObject,
+            List<ObjectClass> currentInventory) //This is a generic method so that we don't write the same code twice, it is used in the later methods
     {
         //First we check if the player already has this object in his inventory
-
-        foreach (ObjectClass o in currentInventory)
-        {
-            if (o.CompareId(newObject)) //if some object in the inventory is the same, it doesn't store it and ends the method
-                return;
-        }
+        if (!GameManager.instance.canAddMultipleInstancesOfSameId)
+            foreach (ObjectClass o in currentInventory)
+            {
+                if (o.CompareId(
+                        newObject)) //if some object in the inventory is the same, it doesn't store it and ends the method
+                    return;
+            }
 
 
         currentInventory.Add(newObject); //We add it to the list
@@ -33,7 +37,8 @@ public class PlayerInventory : PlayerComponent
 
     public void AddObjectToKeyInventory(ObjectClass newObject)
     {
-        AddObjectToInventory(newObject, keyObjectInventory); //TODO: This is not persistent between levels, as the player is instantiated with the level.
+        AddObjectToInventory(newObject,
+            keyObjectInventory); //TODO: This is not persistent between levels, as the player is instantiated with the level.
     }
 
     public void AddObjectToTypewriterInventory(ObjectClass newObject)
@@ -41,7 +46,6 @@ public class PlayerInventory : PlayerComponent
         GameManager.instance.AddTyperwriterKey(newObject);
 
         AddObjectToInventory(newObject, typewriterObjectInventory);
-        
     }
 
     #endregion
@@ -95,7 +99,8 @@ public class PlayerInventory : PlayerComponent
         return false;
     }
 
-    public ObjectClass GetItemFromInventory(string objectId) //This method gets and item from the inventory with the item ID
+    public ObjectClass
+        GetItemFromInventory(string objectId) //This method gets and item from the inventory with the item ID
     {
         foreach (ObjectClass o in keyObjectInventory)
         {
@@ -116,7 +121,4 @@ public class PlayerInventory : PlayerComponent
     {
         return typewriterObjectInventory;
     }
-
 }
-
-

@@ -10,6 +10,7 @@ public class SavingData
     public List<string> typewritesIds;
     public Language language;
     public float musicVolume;
+
     public float soundVolume;
     //game settings configuration - res, vol, quality.. 
 
@@ -21,13 +22,19 @@ public class SavingData
 
     public void AddObject(string objectId)
     {
-        if (objectsIds.Any(id => id.Equals(objectId)))
-            return;
+        if (!GameManager.instance.canAddMultipleInstancesOfSameId)
+            if (objectsIds.Any(id => id.Equals(objectId)))
+                return;
         objectsIds.Add(objectId);
         // asi hace para crear un scriptableObject del id. por si hiciese falta usar un so por alguna razon
         // ObjectClass obj = new ObjectClass();
         // obj = obj.CreateObject(objectId);
         SavingManager.SaveNew(GameManager.instance.Data);
+    }
+
+    public int HowManyOf(string objectId)
+    {
+        return objectsIds.Count(id => id.Equals(objectId));
     }
 
     public bool HasObject(string objectId)
@@ -76,6 +83,7 @@ public class SavingData
     {
         musicVolume = value;
     }
+
     public void SetSoundVolume(float value)
     {
         soundVolume = value;

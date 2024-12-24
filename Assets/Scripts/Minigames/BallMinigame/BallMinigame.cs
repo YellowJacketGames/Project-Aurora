@@ -9,6 +9,8 @@ using UnityEngine;
 public class BallMinigame : InteractableElement
 {
     private int playerLayer;
+    [SerializeField] private string objectName;
+    [Space(10)]
     [SerializeField] private CinemachineVirtualCamera minigameCamera;
     [SerializeField] private CinemachineVirtualCamera levelCamera;
     [SerializeField] private Camera camera;
@@ -26,6 +28,7 @@ public class BallMinigame : InteractableElement
 
 
     private Coroutine minigameCorr;
+    private bool minigameGaveTicket = false;
 
     private void OnEnable()
     {
@@ -41,8 +44,31 @@ public class BallMinigame : InteractableElement
     {
         winner = remainingCans == 0;
         countdownText.text = winner ? "Has ganado!" : "Has perdido";
-    }
+        if (!winner) return;
+        if (minigameGaveTicket) return;
+        ObjectClass obj = Resources.Load<ObjectClass>($"ScriptableObjects/Objects/KeyObjects/{objectName}");
+        if (obj == null)
+        {
+            Debug.LogError(
+                $"El objeto con clave '{objectName}' no se encontró en Resources/ScriptableObjects/Objects/KeyObjects/");
+            return;
+        }
 
+        if (GameManager.instance.Data.HowManyOf(objectName)>=3) return;
+        GameManager.instance.canAddMultipleInstancesOfSameId = true;
+        GameManager.instance.currentController.playerInventoryComponent.AddObjectToKeyInventory(obj);
+        GameManager.instance.Data.AddObject(objectName);
+        GameManager.instance.canAddMultipleInstancesOfSameId = false;
+        minigameGaveTicket = true;
+        StartCoroutine(GoBack());
+        
+    }
+    private IEnumerator GoBack()
+    {
+        yield return new WaitForSeconds(1);
+        ExitMinigame();
+        yield return null;
+    }
     protected override void Awake()
     {
         _cans = GetComponentsInChildren<Can>();
