@@ -67,9 +67,14 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
             obj.SetActive(false);
     }
 
+    public bool iflevel8 = false;
+
     private void ManageExitType()
     {
-        TrySetNewCamera();
+        if (!iflevel8)
+            TrySetNewCamera();
+        else
+            ReturnOldCamera();
         TryRestoreMovement();
         foreach (var obj in enableOnExit)
             obj.SetActive(true);
@@ -95,13 +100,9 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
 
     private void ReturnOldCamera()
     {
-        if (cameraArea)
-        {
+       
             cameraArea.Priority = 0;
-            GameManager.instance.currentCameraManager.ReturnFromCameraArea();
-        }
-        else
-            TrySetNewCamera();
+            GameManager.instance.currentCameraManager.SetFollowCameraLeft();
     }
 
     private void TryUpdatePlayerMovement()

@@ -4819,7 +4819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11745,6 +11745,10 @@ PrefabInstance:
     - target: {fileID: 1070159417, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
       propertyPath: m_TrackedObjectOffset.z
       value: -0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532693841, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
+      propertyPath: m_CameraDistance
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1607135818, guid: ef4edc4c34e234a45bc851d774640f0d, type: 3}
       propertyPath: m_Name
