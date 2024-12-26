@@ -69,7 +69,7 @@ public class SimpleCameraAreaTrigger : MonoBehaviour
 
     private void ManageExitType()
     {
-        ReturnOldCamera();
+        TrySetNewCamera();
         TryRestoreMovement();
         foreach (var obj in enableOnExit)
             obj.SetActive(true);
