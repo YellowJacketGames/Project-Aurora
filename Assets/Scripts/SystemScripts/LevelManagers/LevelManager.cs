@@ -75,6 +75,7 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
+        return;
         if (!playtestingMoveScene)
         {
             if (Input.GetKeyDown(KeyCode.K))

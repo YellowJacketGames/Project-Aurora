@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using DefaultNamespace;
@@ -21,6 +22,7 @@ public class MainMenuManager3D : MonoBehaviour
     [Space(10)] [SerializeField] private GameObject uiConfigDisplay;
     [SerializeField] private GameObject backButtonCanvas;
 
+    [SerializeField] private CreditsScroller creditsCanvas;
     // [SerializeField] private GameObject NewGameButtonGroup;
     // [SerializeField] private GameObject ContinueButtonGroup;
 
@@ -50,6 +52,9 @@ public class MainMenuManager3D : MonoBehaviour
         achievementsCamera.Priority = 0;
         defaultCamera.Priority = 5;
         backButtonCanvas.SetActive(false);
+        creditsCanvas.Deactivate();
+        creditsCanvas.gameObject.SetActive(false);
+
     }
 
     public void ZoomInCamToPlay()
@@ -113,7 +118,16 @@ public class MainMenuManager3D : MonoBehaviour
         achievementsCamera.Priority = 0;
         exitCamera.Priority = 0;
         creditsCamera.Priority = 5;
+        StartCoroutine(ActivateCreditsFade());
         backButtonCanvas.SetActive(true);
+    }
+
+    private IEnumerator ActivateCreditsFade()
+    {
+        yield return new WaitForSeconds(2.0f);
+        creditsCanvas.gameObject.SetActive(true);
+        creditsCanvas.Activate();
+        yield return null;
     }
 
     private void LoadGameButtons()
