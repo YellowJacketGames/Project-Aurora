@@ -4967,6 +4967,7 @@ MonoBehaviour:
   hasBeenInteracted: 0
   ignoreInteraction: 0
   ignorePopup: 0
+  disableComponent: 0
   elementDialogueESP: {fileID: 4900000, guid: d2a77239132bf5940be0e9ccc8d89064, type: 3}
   elementDialogueENG: {fileID: 0}
   conversationSpeaker: {fileID: 11400000, guid: 27f24a08ba797b940b4cf857b0d7ff0b,
@@ -14126,6 +14127,116 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 489185208}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &493842591
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4554478314687421547, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Name
+      value: Tecla_ (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421547, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421557, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421557, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f031073b106a1940b917eca655a5a44, type: 2}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -33.783455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.691655
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.38615927
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5923521
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5923521
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.38615927
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 113.799
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: useCollision
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 0fffa7f10ec24e84187b86c589b84c40,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!1001 &495281489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20186,6 +20297,7 @@ MonoBehaviour:
   hasBeenInteracted: 0
   ignoreInteraction: 0
   ignorePopup: 0
+  disableComponent: 0
   elementDialogueESP: {fileID: 4900000, guid: d2a77239132bf5940be0e9ccc8d89064, type: 3}
   elementDialogueENG: {fileID: 0}
   conversationSpeaker: {fileID: 11400000, guid: 375db2decccc36e428e1e4a2e68ac3b1,
@@ -22828,7 +22940,7 @@ PrefabInstance:
     - target: {fileID: 4846810525926298274, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
       propertyPath: disableA
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4846810525926298274, guid: 00e805e2881d00846ab161b3cb765b68,
         type: 3}
@@ -24575,6 +24687,116 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 921362206}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &924060968
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4554478314687421547, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Name
+      value: Tecla_
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421547, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421557, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421557, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a7ace9d3b266d84385f65ef417be923, type: 2}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -33.783455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.691655
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.38615927
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5923521
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5923521
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.38615927
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 113.799
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: useCollision
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: f43ed5aaae332634e906f34bfb42be96,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!1001 &957627556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41879,6 +42101,7 @@ MonoBehaviour:
   hasBeenInteracted: 0
   ignoreInteraction: 0
   ignorePopup: 0
+  disableComponent: 0
   elementDialogueESP: {fileID: 4900000, guid: 5dbfaa390e658a74eb6f7f424b4bc45e, type: 3}
   elementDialogueENG: {fileID: 0}
   conversationSpeaker: {fileID: 11400000, guid: 375db2decccc36e428e1e4a2e68ac3b1,

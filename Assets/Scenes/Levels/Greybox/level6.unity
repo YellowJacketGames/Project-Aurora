@@ -401,7 +401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1031273860, guid: abc00000000015221406487746989080, type: 3}
       propertyPath: m_RootOrder
-      value: 102
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1031273860, guid: abc00000000015221406487746989080, type: 3}
       propertyPath: m_LocalScale.x
@@ -7140,6 +7140,7 @@ MonoBehaviour:
   enableOnExit: []
   disableOnExit: []
   freezePlayerOnEnter: 1
+  iflevel8: 0
 --- !u!4 &361615065
 Transform:
   m_ObjectHideFlags: 0
@@ -7879,6 +7880,7 @@ MonoBehaviour:
   disableOnExit:
   - {fileID: 418812341}
   freezePlayerOnEnter: 1
+  iflevel8: 0
 --- !u!1 &420592968
 GameObject:
   m_ObjectHideFlags: 0
@@ -8929,6 +8931,7 @@ MonoBehaviour:
   disableOnExit:
   - {fileID: 561235761}
   freezePlayerOnEnter: 1
+  iflevel8: 0
 --- !u!1001 &564919718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9793,7 +9796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1031284182, guid: abc00000000004634127362252931290, type: 3}
       propertyPath: m_RootOrder
-      value: 101
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 1031284182, guid: abc00000000004634127362252931290, type: 3}
       propertyPath: m_LocalScale.x
@@ -10086,6 +10089,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TypewriterObject
       objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421557, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 901d6362010d13f40bd83ca4ba36e955, type: 2}
     - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
         type: 3}
       propertyPath: m_RootOrder
@@ -10141,6 +10149,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 57d0e35e57d452747adf1dd5f0b96f7d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!4 &699876828 stripped
@@ -42164,6 +42178,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TypewriterObject (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421557, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3431831f44c2e4949a09ffd484e49f10, type: 2}
     - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
         type: 3}
       propertyPath: m_RootOrder
@@ -42219,6 +42238,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 5952d492801d689499a622a3c002223f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!4 &1640869516 stripped
@@ -42815,6 +42840,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TypewriterObject (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421557, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c382d04fdae17d48b21bb32698061da, type: 2}
     - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
         type: 3}
       propertyPath: m_RootOrder
@@ -42870,6 +42900,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 32a969f4004b0df47906fbc193906147,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!4 &1677828378 stripped
@@ -46206,6 +46242,7 @@ MonoBehaviour:
   enableOnExit: []
   disableOnExit: []
   freezePlayerOnEnter: 1
+  iflevel8: 0
 --- !u!4 &2027513821
 Transform:
   m_ObjectHideFlags: 0
@@ -46558,7 +46595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1031273860, guid: abc00000000015221406487746989080, type: 3}
       propertyPath: m_RootOrder
-      value: 103
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 1031273860, guid: abc00000000015221406487746989080, type: 3}
       propertyPath: m_LocalScale.x

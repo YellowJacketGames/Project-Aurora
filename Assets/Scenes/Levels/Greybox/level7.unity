@@ -1122,6 +1122,7 @@ MonoBehaviour:
   disableOnExit:
   - {fileID: 87711747}
   freezePlayerOnEnter: 0
+  iflevel8: 0
 --- !u!65 &87711750
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5578,6 +5579,101 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc00000000010364239749210193298, type: 3}
+--- !u!1001 &246385479
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4554478314687421547, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Name
+      value: TypewriterObject (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421557, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fb0a16f9aec4a1341b21714696cb248c, type: 2}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f3671bb0e29eb044be9d8a4814d5291,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!1001 &247205423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7508,6 +7604,7 @@ MonoBehaviour:
   enableOnExit: []
   disableOnExit: []
   freezePlayerOnEnter: 1
+  iflevel8: 0
 --- !u!65 &353045108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10290,6 +10387,101 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 512091591}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &515405941
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4554478314687421547, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Name
+      value: TypewriterObject (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421557, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2dc92b33f791ec4595e1570c023ff2c, type: 2}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5899999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554478314687421559, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048713839332815932, guid: 9447aae9d0c18424dbc3c095645fd672,
+        type: 3}
+      propertyPath: assignedObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a6a83c12b98e474d87d67c3a27a89f7,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9447aae9d0c18424dbc3c095645fd672, type: 3}
 --- !u!1001 &516423539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10606,6 +10798,7 @@ MonoBehaviour:
   enableOnExit: []
   disableOnExit: []
   freezePlayerOnEnter: 0
+  iflevel8: 0
 --- !u!65 &557414027
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13125,6 +13318,7 @@ MonoBehaviour:
   disableOnExit:
   - {fileID: 676723438}
   freezePlayerOnEnter: 0
+  iflevel8: 0
 --- !u!65 &676723440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16443,6 +16637,7 @@ MonoBehaviour:
   - {fileID: 1160285438}
   - {fileID: 924419304}
   freezePlayerOnEnter: 0
+  iflevel8: 0
 --- !u!65 &924419307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17692,6 +17887,7 @@ MonoBehaviour:
   disableOnExit:
   - {fileID: 1027325282}
   freezePlayerOnEnter: 1
+  iflevel8: 0
 --- !u!65 &1027325284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18272,6 +18468,7 @@ MonoBehaviour:
   enableOnExit: []
   disableOnExit: []
   freezePlayerOnEnter: 0
+  iflevel8: 0
 --- !u!1001 &1085514848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19534,6 +19731,7 @@ MonoBehaviour:
   - {fileID: 1160285438}
   - {fileID: 924419304}
   freezePlayerOnEnter: 0
+  iflevel8: 0
 --- !u!65 &1160285441
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20932,6 +21130,7 @@ MonoBehaviour:
   enableOnExit: []
   disableOnExit: []
   freezePlayerOnEnter: 0
+  iflevel8: 0
 --- !u!65 &1259030331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21253,6 +21452,7 @@ MonoBehaviour:
   disableOnExit:
   - {fileID: 1279610473}
   freezePlayerOnEnter: 0
+  iflevel8: 0
 --- !u!65 &1279610475
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22504,6 +22704,7 @@ MonoBehaviour:
   enableOnExit: []
   disableOnExit: []
   freezePlayerOnEnter: 1
+  iflevel8: 0
 --- !u!4 &1414294005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9008234485570298747, guid: ef4edc4c34e234a45bc851d774640f0d,
@@ -22596,6 +22797,7 @@ MonoBehaviour:
   disableOnExit:
   - {fileID: 1418811883}
   freezePlayerOnEnter: 0
+  iflevel8: 0
 --- !u!65 &1418811885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26848,6 +27050,7 @@ MonoBehaviour:
   enableOnExit: []
   disableOnExit: []
   freezePlayerOnEnter: 1
+  iflevel8: 0
 --- !u!4 &1477118631
 Transform:
   m_ObjectHideFlags: 0
@@ -48950,6 +49153,7 @@ MonoBehaviour:
   disableOnExit:
   - {fileID: 2111081911}
   freezePlayerOnEnter: 1
+  iflevel8: 0
 --- !u!4 &2111081914
 Transform:
   m_ObjectHideFlags: 0

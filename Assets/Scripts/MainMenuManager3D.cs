@@ -18,7 +18,9 @@ public class MainMenuManager3D : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera achievementsCamera;
     [SerializeField] private CinemachineVirtualCamera creditsCamera;
 
-    [Space(10)] [SerializeField] private GameObject uiConfigDisplay; 
+    [Space(10)] [SerializeField] private GameObject uiConfigDisplay;
+    [SerializeField] private GameObject backButtonCanvas;
+
     // [SerializeField] private GameObject NewGameButtonGroup;
     // [SerializeField] private GameObject ContinueButtonGroup;
 
@@ -47,6 +49,7 @@ public class MainMenuManager3D : MonoBehaviour
         creditsCamera.Priority = 0;
         achievementsCamera.Priority = 0;
         defaultCamera.Priority = 5;
+        backButtonCanvas.SetActive(false);
     }
 
     public void ZoomInCamToPlay()
@@ -72,6 +75,7 @@ public class MainMenuManager3D : MonoBehaviour
         creditsCamera.Priority = 0;
         achievementsCamera.Priority = 0;
         configCamera.Priority = 5;
+        backButtonCanvas.SetActive(true);
     }
 
     public void ZoomInCamToExit()
@@ -96,6 +100,7 @@ public class MainMenuManager3D : MonoBehaviour
         creditsCamera.Priority = 0;
         exitCamera.Priority = 0;
         achievementsCamera.Priority = 5;
+        backButtonCanvas.SetActive(true);
     }
 
     public void ZoomInCamToCredits()
@@ -108,6 +113,7 @@ public class MainMenuManager3D : MonoBehaviour
         achievementsCamera.Priority = 0;
         exitCamera.Priority = 0;
         creditsCamera.Priority = 5;
+        backButtonCanvas.SetActive(true);
     }
 
     private void LoadGameButtons()
@@ -184,7 +190,7 @@ public class MainMenuManager3D : MonoBehaviour
         RaycastHit hit;
         foreach (var selectableObject in selectableObjects)
             selectableObject.PerformResetHoverAction();
-        
+
         var layerMask = LayerMask.GetMask(targetLayer);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
