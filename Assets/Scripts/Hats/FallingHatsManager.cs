@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,10 +9,13 @@ public class FallingHatsManager : MonoBehaviour
     [SerializeField] private FallingHat.Axis axis;
     [SerializeField] private GameObject hatPrefab;
     [SerializeField] private int initialPoolSize = 35;
-    [Header("if player is walking, spawn speed")]
-    [SerializeField] private float w_spawnSpeed = 5f;
-    [Header("if player is running, spawn speed")]   
-    [SerializeField] private float r_spawnSpeed = 10f;
+
+    [Header("if player is walking, spawn speed")] [SerializeField]
+    private float w_spawnSpeed = 5f;
+
+    [Header("if player is running, spawn speed")] [SerializeField]
+    private float r_spawnSpeed = 10f;
+
     private float spawnSpeed = 1f;
     [SerializeField] private List<Material> hatsMaterials;
     [SerializeField] private List<Mesh> hatsMeshes;
@@ -27,21 +31,29 @@ public class FallingHatsManager : MonoBehaviour
     private void Start()
     {
         UpdatePosition();
+        StartCoroutine(WaitToLoad());
+    }
+
+    private IEnumerator WaitToLoad()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
         pooling = GameManager.instance.currentLevelObjectPoolingManager;
         Pool pool = new Pool("Hats", hatPrefab, initialPoolSize);
         pooling.CreateNewPool(pool);
         pooling.FallingHatsManagerRef = this;
+        yield return null;
     }
 
     private void OnEnable()
     {
         GameManager.instance.currentController.playerMovementComponent.OnTargetSpeedChanged += HandleSpeedChange;
     }
+
     private void OnDisable()
     {
         GameManager.instance.currentController.playerMovementComponent.OnTargetSpeedChanged -= HandleSpeedChange;
-
     }
+
     private void HandleSpeedChange(float newSpeed)
     {
         spawnSpeed = newSpeed > 10 ? r_spawnSpeed : w_spawnSpeed; //running
@@ -49,6 +61,8 @@ public class FallingHatsManager : MonoBehaviour
 
     private void Update()
     {
+        if (pooling == null)
+            return;
         if (stopHats)
         {
             StopActiveHats();

@@ -6,7 +6,7 @@ EXTERNAL CheckIfHasItem(string itemName)
 EXTERNAL NextLevel(string none)
 
 ===NIVEL_9_01===
-La terraza del Chrysler Building… 
+La terraza del Chrysler Building… #speaker:0
 Al fin un poco de aire puro. Es justo lo que necesitaba. #speaker:0
 ¡Déjeme! ¡No intente convencerme! #speaker:1
 *¿Cómo? ¿Qué le ocurre? #speaker:0

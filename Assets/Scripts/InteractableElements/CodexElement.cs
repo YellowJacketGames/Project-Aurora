@@ -134,7 +134,7 @@ public class CodexElement : MonoBehaviour
         if (direction < 0)
         {
             i++;
-            if (i > displayElements.Count)
+            if (i > displayElements.Count - 1)
                 i = 0;
             currentElement = displayElements[i];
         }

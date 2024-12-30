@@ -9,7 +9,7 @@ namespace InteractableElements
     public class CodexManager : MonoBehaviour
     {
         [SerializeField] private CodexGroup[] codexes;
-
+        public GameObject guideCanvas;
         public CodexGroup[] Codexes => codexes;
 
         public CodexGroup codexesEagle;
@@ -162,6 +162,7 @@ namespace InteractableElements
             {
                 inCodexesTab = true;
                 DeselectCodexes();
+                guideCanvas.SetActive(false);
                 _puzzleDoorElement.ExitPuzzle();
             }
 
@@ -170,6 +171,7 @@ namespace InteractableElements
 
         private void MoveIn()
         {
+            guideCanvas.SetActive(true);
             if (inCodexesElementsTab)
             {
                 if(currentCodexGroup.selectedElement.IsTryCombinationButton)

@@ -58,6 +58,7 @@ public class PuzzleDoorElement : InteractableElement
         ZoomToAvailable();
         ChangeInputScheme(true);
         HideInteractPrompt();
+        _codexManager.guideCanvas.SetActive(true);
         ignorePopup = true;
     }
 
@@ -70,7 +71,6 @@ public class PuzzleDoorElement : InteractableElement
 
         if (selectedCodex)
             selectedCodex.Select(puzzleCamera);
-        
     }
 
     public void ExitPuzzle()
@@ -78,6 +78,7 @@ public class PuzzleDoorElement : InteractableElement
         ResetMainCamera();
         ChangeInputScheme(false);
         HideInteractPrompt();
+        _codexManager.guideCanvas.SetActive(false);
         ignorePopup = false;
     }
 
