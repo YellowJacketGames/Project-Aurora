@@ -725,7 +725,7 @@ public class PlayerMovement : PlayerComponent
     public void FreezePlayer()
     {
         _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, 0);
-
+        handConfiguredCanJump = false;
         return;
         switch (movementType)
         {
@@ -744,6 +744,7 @@ public class PlayerMovement : PlayerComponent
 
     public void UnfreezePlayer()
     {
+        handConfiguredCanJump = true;
         return;
         switch (movementType)
         {
