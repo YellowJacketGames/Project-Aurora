@@ -480,6 +480,8 @@ public class PlayerMovement : PlayerComponent
         triggerCollisionsR = false;
         triggerCollisionsF = false;
         triggerCollisionsB = false;
+        _parent.playerAnimationComponent.SetFreeFall(false);
+
     }
 
     public void DisableAllInput()
