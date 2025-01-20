@@ -3281,7 +3281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelEvents: []
   levelMusic: Music_Level0
-  levelQuest: {fileID: 0}
+  levelQuest: {fileID: 11400000, guid: ea6a5c9e89d79d049a1a6df19c31e643, type: 2}
   nextLevel: Level1
   nextLevelClip: {fileID: 0}
   initialDialogue: {fileID: 4900000, guid: 45c11396f594aed4b9788d89b2796d39, type: 3}
@@ -15071,7 +15071,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

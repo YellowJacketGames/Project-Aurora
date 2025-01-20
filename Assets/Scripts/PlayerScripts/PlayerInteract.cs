@@ -13,6 +13,7 @@ public class PlayerInteract : PlayerComponent
     //bool to check if the player can interact with the other elements
     bool shouldInteract => _parent.CurrentPlayerState != PlayerState.Jump &&
                            _parent.CurrentPlayerState != PlayerState.Transition && 
+                           _parent.CurrentPlayerState != PlayerState.InAir && 
                            _parent.CurrentPlayerState != PlayerState.Conversation &&
                            currentElement != null && CanInteract && GameManager.instance.CanPlay();
 
