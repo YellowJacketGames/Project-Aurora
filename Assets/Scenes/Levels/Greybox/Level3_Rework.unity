@@ -11952,8 +11952,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420592968}
-  m_LocalRotation: {x: 0.12542146, y: -0.6958947, z: 0.12542148, w: 0.6958947}
-  m_LocalPosition: {x: 2.8043334, y: 3.7081766, z: -2.69}
+  m_LocalRotation: {x: -0.06162845, y: 0.70441604, z: -0.06162845, w: -0.70441604}
+  m_LocalPosition: {x: 0.15, y: 1.836, z: -27.679983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28100,7 +28100,10 @@ MonoBehaviour:
   levelMusic: Music_Level4
   levelQuest: {fileID: 11400000, guid: 3e730c824fb217f468bde89c963f30c0, type: 2}
   nextLevel: Level4
-  nextLevelClip: {fileID: 32900000, guid: dd930df0239af0149bc3b722f585feec, type: 3}
+  espVideoClip: {fileID: 32900000, guid: dfae2c23f47b64f47b223c6e6448333b, type: 3}
+  engVideoClip: {fileID: 32900000, guid: ec9d735aa36328b44ae16b30fd2f5f19, type: 3}
+  espAudioClip: {fileID: 8300000, guid: 7658a6d4461764447b62aa1dd4288e57, type: 3}
+  engAudioClip: {fileID: 8300000, guid: fdea6820d3ef64944a783bdc24ba118f, type: 3}
   layerSongBase: {fileID: 148822648}
   layeredSong:
   - {fileID: 1489686073}

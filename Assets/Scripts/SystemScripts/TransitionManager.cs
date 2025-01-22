@@ -62,7 +62,7 @@ public class TransitionManager : MonoBehaviour
                 if (nextLevel)
                 {
                     nextLevel = false;
-                    GameManager.instance.GoToNextLevel(shouldTriggerLoadingClip);
+                    GameManager.instance.GoToNextLevel();
                     shouldTriggerLoadingClip = false;
                 }
 

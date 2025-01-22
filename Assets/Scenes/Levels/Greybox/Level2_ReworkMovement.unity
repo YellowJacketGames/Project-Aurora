@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0189127, g: 0.052722007, b: 0.14513204, a: 1}
+  m_IndirectSpecularColor: {r: 0.018913224, g: 0.052723102, b: 0.1451333, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8912,8 +8912,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420592968}
-  m_LocalRotation: {x: 0, y: -0.57685274, z: 0, w: 0.8168482}
-  m_LocalPosition: {x: 7.404414, y: 2.3500001, z: -3.1468914}
+  m_LocalRotation: {x: -0.06162845, y: 0.70441604, z: -0.06162845, w: -0.70441604}
+  m_LocalPosition: {x: 0.15, y: 1.836, z: -27.679983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46262,7 +46262,10 @@ MonoBehaviour:
   levelMusic: Music_Level2
   levelQuest: {fileID: 11400000, guid: fca323487e85c4a4a9a59dcd8e70f653, type: 2}
   nextLevel: Level3_Rework
-  nextLevelClip: {fileID: 32900000, guid: 6b106515ff948ad4db00d6506eec81dc, type: 3}
+  espVideoClip: {fileID: 32900000, guid: a4163c1d39c409d47a6a0d029fdb6faa, type: 3}
+  engVideoClip: {fileID: 32900000, guid: 11e09298e1becad418edbd26329d4bc7, type: 3}
+  espAudioClip: {fileID: 8300000, guid: 3e9a9a10f1271d14c89c2c0da6dc5f39, type: 3}
+  engAudioClip: {fileID: 8300000, guid: 40ac2e24d677b4448a37c7a639bc1fa2, type: 3}
 --- !u!4 &1017574333
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-using System.Collections; 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
@@ -17,15 +17,27 @@ public class LevelManager : MonoBehaviour
     protected bool playtestingMoveScene;
 
     [SerializeField] string nextLevel;
-    
-    public void SetNextLevelName(string nextLevel) { this.nextLevel = nextLevel;}
-    
-    public VideoClip nextLevelClip;
+
+    public void SetNextLevelName(string nextLevel)
+    {
+        this.nextLevel = nextLevel;
+    }
+
+
+    [SerializeField] private VideoClip espVideoClip;
+    [SerializeField] private VideoClip engVideoClip;
+
+    [SerializeField] private AudioClip espAudioClip;
+    [SerializeField] private AudioClip engAudioClip;
+
+    public VideoClip NextLevelVideoClip => GetVideoClip();
+    public AudioClip NextLevelAudioClip => GetAudioClip();
+
     private void Awake()
     {
         GameManager.instance.currentLevelManager = this;
-       
     }
+
     public virtual void Start()
     {
         //Set GameManager reference
@@ -36,6 +48,7 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(Camera.main.GetComponent<AudioListener>());
         }
+
         GameManager.instance.questManager.gameObject.SetActive(true);
         GameManager.instance.questManager.SetCurrentQuest();
         playtestingMoveScene = false;
@@ -45,32 +58,48 @@ public class LevelManager : MonoBehaviour
     {
         GameManager.instance.SetLevelToLoad(nextLevel);
     }
+
     public virtual void SetLevelMusic()
     {
         AudioManager.instance.FadeIn(levelMusic, true);
     }
+
     public virtual void EndLevelMusic()
     {
         AudioManager.instance.FadeOut(levelMusic);
     }
+
     public void TriggerEvent(int eventToTrigger) //Method to trigger an specific event
     {
-        if(levelEvents.Length <= 0) //If there are no events stored in the list, we don't execute the method.
+        if (levelEvents.Length <= 0) //If there are no events stored in the list, we don't execute the method.
         {
             Debug.Log("There are no events in this level manager");
             return;
         }
 
-        if(eventToTrigger >= levelEvents.Length || levelEvents[eventToTrigger] == null) //if the event we're trying to call is not on the list, we don't execute the method.
+        if (eventToTrigger >= levelEvents.Length ||
+            levelEvents[eventToTrigger] ==
+            null) //if the event we're trying to call is not on the list, we don't execute the method.
         {
             Debug.Log("The event you tried to trigger does not exist");
             return;
         }
+
         if (!levelEvents[eventToTrigger].HasBeenTriggered()) //if the event has not been triggered yet, we call it.
         {
             currentEvent = levelEvents[eventToTrigger];
             levelEvents[eventToTrigger].OnEvent();
         }
+    }
+
+    private VideoClip GetVideoClip()
+    {
+        return GameManager.instance.IsSpanishSet() ? espVideoClip : engVideoClip;
+    }
+
+    private AudioClip GetAudioClip()
+    {
+        return GameManager.instance.IsSpanishSet() ? espAudioClip : engAudioClip;
     }
 
     private void Update()
@@ -86,9 +115,10 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
     public bool IsCurrentEventRunning()
     {
-        if(currentEvent != null)
+        if (currentEvent != null)
         {
             if (currentEvent.IsEventRunning())
             {

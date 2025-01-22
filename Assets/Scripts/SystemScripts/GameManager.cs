@@ -59,10 +59,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string levelToLoad;
     private int levelIndex = 0;
 
-    [SerializeField] VideoClip loadingScreenClip;
-    [SerializeField] VideoClip basicLoadingScreenClip;
+    [SerializeField] VideoClip loadingScreenVideoClip;
+    [SerializeField] AudioClip loadingScreenAudioClip;
 
-    
+
     public bool canAddMultipleInstancesOfSameId = false;
 
     private void Start()
@@ -106,25 +106,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GoToNextLevel(bool triggerTransition)
+    public void GoToNextLevel()
     {
         Debug.Log("Loading Next Level");
         questManager.DeactivateQuestUI();
 
         //Level settings after ending a level
-        if (currentLevelManager != null)
-        {
-            currentLevelManager.EndLevelMusic();
-            SetLoadingScreenClip(currentLevelManager.nextLevelClip);
-            currentLevelManager.SetNextLevel();
-        }
-        else
-        {
-            if (triggerTransition)
-                SetLoadingScreenClip(basicLoadingScreenClip);
-        }
-
-        //Set the level index and begin the transition
+        if (currentLevelManager == null) return;
+        
+        currentLevelManager.EndLevelMusic();
+        SetLoadingScreenClip(currentLevelManager.NextLevelVideoClip);
+        SetLoadingScreenAudioClip(currentLevelManager.NextLevelAudioClip);
+        currentLevelManager.SetNextLevel();
         levelIndex++;
         StartCoroutine(LoadLevel("LoadingScreen"));
     }
@@ -134,7 +127,8 @@ public class GameManager : MonoBehaviour
         //End the music
         questManager.DeactivateQuestUI();
 
-        SetLoadingScreenClip(basicLoadingScreenClip);
+        SetLoadingScreenClip(null); //logo video setted in transitioning scene 
+        SetLoadingScreenAudioClip(null);
         if (currentLevelManager != null)
             currentLevelManager.EndLevelMusic();
 
@@ -223,18 +217,31 @@ public class GameManager : MonoBehaviour
         return levelToLoad;
     }
 
-    public VideoClip GetLoadingScreenClip()
+    public VideoClip GetLoadingScreenVideoClip()
     {
-        return loadingScreenClip;
+        var returnerVal = loadingScreenVideoClip;
+        loadingScreenVideoClip = null;
+        return returnerVal;
+    }
+
+    public AudioClip GetLoadingScreeAudioClip()
+    {
+        var returnerVal = loadingScreenAudioClip;
+        loadingScreenAudioClip = null;
+        return returnerVal;
     }
 
     public void SetLoadingScreenClip(VideoClip clip)
     {
-        if (clip != null)
-            loadingScreenClip = clip;
+        loadingScreenVideoClip = clip;
     }
 
-    
+    public void SetLoadingScreenAudioClip(AudioClip clip)
+    {
+        loadingScreenAudioClip = clip;
+    }
+
+
     public void IncrementProgression()
     {
         if (!shouldSave) return;

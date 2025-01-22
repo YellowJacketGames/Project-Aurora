@@ -55,6 +55,8 @@ public class PlayerMovement : PlayerComponent
     [Space] [Header("Can Jump Condition")] [SerializeField]
     public bool handConfiguredCanJump = true;
 
+    public bool jumpUnlocked = true;
+
     [Space] [SerializeField] private bool isCrouched;
     [SerializeField] private bool isColliding;
     [SerializeField] public bool triggerCollisionsL;
@@ -189,7 +191,7 @@ public class PlayerMovement : PlayerComponent
                     switch (movementDirection)
                     {
                         case MovementDirection.Default:
-                            if (handConfiguredCanJump)
+                            if (jumpUnlocked)
                             {
                                 if (triggerCollisionsR)
                                 {
@@ -207,7 +209,7 @@ public class PlayerMovement : PlayerComponent
                                 _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot1:
-                            if (handConfiguredCanJump)
+                            if (jumpUnlocked)
                             {
                                 if (triggerCollisionsL)
                                 {
@@ -225,7 +227,7 @@ public class PlayerMovement : PlayerComponent
                                 _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot2: //  this one not used for now i guess
-                            if (handConfiguredCanJump)
+                            if (jumpUnlocked)
                             {
                                 if (triggerCollisionsR)
                                 {
@@ -243,7 +245,7 @@ public class PlayerMovement : PlayerComponent
                                 _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot3:
-                            if (handConfiguredCanJump)
+                            if (jumpUnlocked)
                             {
                                 if (triggerCollisionsF)
                                 {
@@ -262,7 +264,7 @@ public class PlayerMovement : PlayerComponent
                                 _parent.playerRigid.velocity.y, 0);
                             break;
                         case MovementDirection.Rot4:
-                            if (handConfiguredCanJump)
+                            if (jumpUnlocked)
                             {
                                 if (triggerCollisionsB)
                                 {
@@ -296,7 +298,7 @@ public class PlayerMovement : PlayerComponent
                     switch (movementDirection)
                     {
                         case MovementDirection.Default:
-                            if (handConfiguredCanJump)
+                            if (jumpUnlocked)
                             {
                                 if (triggerCollisionsB)
                                 {
@@ -315,7 +317,7 @@ public class PlayerMovement : PlayerComponent
                                     _parent.playerRigid.velocity.y, 0);
                             break;
                         case MovementDirection.Rot1:
-                            if (handConfiguredCanJump)
+                            if (jumpUnlocked)
                             {
                                 if (triggerCollisionsF)
                                 {
@@ -350,7 +352,7 @@ public class PlayerMovement : PlayerComponent
                                 0, _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot3:
-                            if (handConfiguredCanJump)
+                            if (jumpUnlocked)
                             {
                                 if (triggerCollisionsR)
                                 {
@@ -369,7 +371,7 @@ public class PlayerMovement : PlayerComponent
                                 _currentSpeed * targetSpeed * movementMultiplier);
                             break;
                         case MovementDirection.Rot4:
-                            if (handConfiguredCanJump)
+                            if (jumpUnlocked)
                             {
                                 if (triggerCollisionsL)
                                 {
@@ -596,6 +598,7 @@ public class PlayerMovement : PlayerComponent
     private void HandleJump()
     {
         if (!handConfiguredCanJump) return;
+        if (!jumpUnlocked) return;
 
         if (isGrounded)
         {
@@ -735,7 +738,7 @@ public class PlayerMovement : PlayerComponent
     {
         _parent.playerRigid.velocity = new Vector3(0, _parent.playerRigid.velocity.y, 0);
         if (_parent.CurrentPlayerState != PlayerState.Idle)
-            handConfiguredCanJump = false;
+            jumpUnlocked = false;
         return;
         switch (movementType)
         {
@@ -754,7 +757,7 @@ public class PlayerMovement : PlayerComponent
 
     public void UnfreezePlayer()
     {
-        handConfiguredCanJump = true;
+        jumpUnlocked = true;
         return;
         switch (movementType)
         {

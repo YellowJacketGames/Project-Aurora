@@ -11387,7 +11387,10 @@ MonoBehaviour:
   levelMusic: Music_LevelMenu
   levelQuest: {fileID: 0}
   nextLevel: Level0
-  nextLevelClip: {fileID: 0}
+  espVideoClip: {fileID: 0}
+  engVideoClip: {fileID: 0}
+  espAudioClip: {fileID: 0}
+  engAudioClip: {fileID: 0}
 --- !u!1 &1033536426
 GameObject:
   m_ObjectHideFlags: 0
@@ -33923,7 +33926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1946742126
 MonoBehaviour:
   m_ObjectHideFlags: 0

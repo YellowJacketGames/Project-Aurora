@@ -6784,8 +6784,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420592968}
-  m_LocalRotation: {x: 0, y: -0.57685274, z: 0, w: 0.8168482}
-  m_LocalPosition: {x: 6.6327376, y: 2.44, z: -34.543312}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
+  m_LocalPosition: {x: 4.6314816, y: 1.5900002, z: -31.470007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21220,7 +21220,10 @@ MonoBehaviour:
   levelMusic: Music_Level1
   levelQuest: {fileID: 11400000, guid: 1aaf225dcde53ef43aefcb73a53a54bf, type: 2}
   nextLevel: Level2_ReworkMovement
-  nextLevelClip: {fileID: 32900000, guid: 6b106515ff948ad4db00d6506eec81dc, type: 3}
+  espVideoClip: {fileID: 32900000, guid: 91057012d6e033e45ad299f4ecd8cc06, type: 3}
+  engVideoClip: {fileID: 32900000, guid: 45b2cbf41d2114d47be4e161df27c8cd, type: 3}
+  espAudioClip: {fileID: 8300000, guid: e552d10519b446e41ae468a58ba40151, type: 3}
+  engAudioClip: {fileID: 8300000, guid: f61cca27559dcd94f8808f744774c4a1, type: 3}
 --- !u!4 &1017574333
 Transform:
   m_ObjectHideFlags: 0
@@ -36451,7 +36454,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
