@@ -161,6 +161,7 @@ public class MainMenuManager3D : MonoBehaviour
     {
         GameManager.instance.ClearTypewriterInventory();
         GameManager.instance.ResetData();
+        GameManager.instance.currentLevelManager.EndLevelMusic();
         GameManager.instance.currentTransitionManager.SpecificLevel("Cutscene");
     }
 

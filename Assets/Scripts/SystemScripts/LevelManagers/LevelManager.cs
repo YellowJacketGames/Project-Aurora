@@ -64,7 +64,7 @@ public class LevelManager : MonoBehaviour
         AudioManager.instance.FadeIn(levelMusic, true);
     }
 
-    public virtual void EndLevelMusic()
+    public void EndLevelMusic()
     {
         AudioManager.instance.FadeOut(levelMusic);
     }
