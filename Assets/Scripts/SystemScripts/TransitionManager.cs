@@ -154,6 +154,7 @@ public class TransitionManager : MonoBehaviour
 
     public void QuitGame()
     {
+        SteamManager.Instance.DisconnectFromSteam();
         SetFadeIn();
         quitGame = true;
     }
