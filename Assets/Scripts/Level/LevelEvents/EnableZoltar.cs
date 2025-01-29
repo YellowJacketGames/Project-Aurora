@@ -8,8 +8,15 @@ public class EnableZoltar : LevelEvent
 
     private void Start()
     {
+        amount = GameManager.instance.Data.HowManyOf("obj_Tícket_Minigame");
         zoltarObject.ignorePopup = true;
         zoltarObject.disableComponent = true;
+        if (amount >= 3)
+        {
+            zoltarObject.ignorePopup = false;
+            zoltarObject.disableComponent = false;
+        }
+        
     }
 
     public void EnableZoltarDialogation()

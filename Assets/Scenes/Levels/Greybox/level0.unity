@@ -1743,11 +1743,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1636252397}
     m_Modifications:
-    - target: {fileID: 919132147846729959, guid: d310b8a50d5d030439ac9e384c838154,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8391732976045095749, guid: d310b8a50d5d030439ac9e384c838154,
         type: 3}
       propertyPath: m_Name
@@ -1757,21 +1752,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9168972611196625407, guid: d310b8a50d5d030439ac9e384c838154,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.29113978
-      objectReference: {fileID: 0}
-    - target: {fileID: 9168972611196625407, guid: d310b8a50d5d030439ac9e384c838154,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.29113978
-      objectReference: {fileID: 0}
-    - target: {fileID: 9168972611196625407, guid: d310b8a50d5d030439ac9e384c838154,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.29113978
       objectReference: {fileID: 0}
     - target: {fileID: 9168972611196625407, guid: d310b8a50d5d030439ac9e384c838154,
         type: 3}
@@ -1823,35 +1803,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 919132147846729959, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 6686441249912453295, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8553662608452786443, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 5537799717958124996, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8933241015346187188, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 4195841243084778755, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 5668902229292183241, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8521589664926398638, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 3690990057361569037, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 7716526803192460109, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 6571886498632899491, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8100310914856854741, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 7209699817445652458, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 4710171229014715489, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8907814006025867206, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 4981629618573322419, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 7802741515970315957, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 6473730217751799800, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8971321610637060294, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8526768829321376788, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 6216095736871975462, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 6811052336506534686, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8987425395536528208, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8740563288479368882, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 4104305452595480093, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 8589891020824444865, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 5783933745474409472, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
-    - {fileID: 7450806982464922376, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d310b8a50d5d030439ac9e384c838154, type: 3}
 --- !u!4 &634764236 stripped
 Transform:
@@ -15074,7 +15026,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 36, y: 24}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

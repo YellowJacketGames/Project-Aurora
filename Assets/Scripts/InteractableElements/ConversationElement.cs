@@ -10,11 +10,11 @@ public class ConversationElement : InteractableElement
     
     
     [FormerlySerializedAs("elementDialogue")] [Header("Conversation")] [SerializeField]
-    TextAsset elementDialogueESP;
+   public TextAsset elementDialogueESP;
 
-    [SerializeField] TextAsset elementDialogueENG;
+    [SerializeField] public TextAsset elementDialogueENG;
 
-    [SerializeField] Speaker conversationSpeaker;
+    [SerializeField] public Speaker conversationSpeaker;
 
     [ContextMenu("On Interact")]
     public override void OnInteract()

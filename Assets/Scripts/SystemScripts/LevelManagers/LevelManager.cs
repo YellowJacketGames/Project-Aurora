@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] string levelMusic;
     public Quest levelQuest;
 
+    public bool enableRetriggering = false;
 
     bool playtest;
     protected bool playtestingMoveScene;
@@ -85,7 +86,12 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        if (!levelEvents[eventToTrigger].HasBeenTriggered()) //if the event has not been triggered yet, we call it.
+        if (enableRetriggering)
+        {
+            currentEvent = levelEvents[eventToTrigger];
+            levelEvents[eventToTrigger].OnEvent();
+        }
+        else if (!levelEvents[eventToTrigger].HasBeenTriggered()) //if the event has not been triggered yet, we call it.
         {
             currentEvent = levelEvents[eventToTrigger];
             levelEvents[eventToTrigger].OnEvent();
