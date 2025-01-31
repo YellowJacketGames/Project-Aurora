@@ -16,6 +16,8 @@ public class BuildingRooftopsEvent : LevelEvent
     public override void OnEvent()
     {
         base.OnEvent();
+        var trf = GameManager.instance.currentController.transform;
+        trf.position = new Vector3(1.960314f, trf.position.y, trf.position.z);
         StartCoroutine(RiseBuilding());
     }
 
