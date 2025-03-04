@@ -5579,6 +5579,81 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc00000000010364239749210193298, type: 3}
+--- !u!1 &245997922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 245997926}
+  - component: {fileID: 245997925}
+  - component: {fileID: 245997924}
+  - component: {fileID: 245997923}
+  m_Layer: 0
+  m_Name: ACH_10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &245997923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245997922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2fbcd1e05606247a8af4ad6a5b023b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievement: 10
+  achType: 2
+  waitTimeSeconds: 0
+--- !u!65 &245997924
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245997922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &245997925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245997922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553bf35b0b6671745b0edcf26846d32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievement: 10
+--- !u!4 &245997926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245997922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.01, y: 20.89, z: 0.7}
+  m_LocalScale: {x: 9, y: 1, z: 9}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &246385479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17779,6 +17854,7 @@ MonoBehaviour:
   levelEvents: []
   levelMusic: Music_Level7
   levelQuest: {fileID: 11400000, guid: a84043fbdb22eee4799b45e72ca08f4b, type: 2}
+  enableRetriggering: 0
   nextLevel: level8
   espVideoClip: {fileID: 32900000, guid: aa571414156dac042af5f65fb78e50e7, type: 3}
   engVideoClip: {fileID: 32900000, guid: 2ba6a21c4ec14a24992ae40cc3ae17a6, type: 3}

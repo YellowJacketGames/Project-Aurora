@@ -107,7 +107,7 @@ Para encontrarse, tendrá que perderse primero. Y, si quiere perderse, Harlem es
 El paraíso de los negros. La cuna del jazz. El lugar donde encontrará lo que busca, aunque no sepa aún qué está buscando.#speaker:1  
 Tome… #speaker:1 #give_item:obj_PasaporteSellado_key 
 
-¡Mi pasaporte sellado! #speaker:0
+¡Mi pasaporte sellado! #speaker:0 #trigger_achievement:ACH_1
 
 Se lo ha ganado por aguantar las preguntas de este viejo capitán. Un consejo: cambie su fotografía cuanto antes… #speaker:1
 Sí… Ese retrato bordea la luz del asesinato y la esquina nocturna donde el ladrón espera para robar carteras. #speaker:0

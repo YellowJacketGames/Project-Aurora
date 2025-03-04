@@ -58,6 +58,8 @@ public class SavingData
         if (typewritesIds.Any(id => id.Equals(typewriteId)))
             return;
         typewritesIds.Add(typewriteId);
+        if(typewritesIds.Count >= 27)
+            SteamManager.Instance.UnlockAchievement(SteamAchievements.ACH_13); //steamworks bug can't add ach type progression
         SavingManager.SaveNew(GameManager.instance.Data);
     }
 

@@ -82,6 +82,6 @@ Harlem es la voz de los oprimidos.
 Harlem será la voz de Federico. 
 Qué extraña conversación... No entendí nada, pero ahora siento que la ciudad me habla.#speaker:0 
 Ahora siento que he aprendido el idioma de esta ciudad. 
-Pero, sobre todo, siento que esta noche ha dado a luz un poema: “Ciudad sin sueño”.
+Pero, sobre todo, siento que esta noche ha dado a luz un poema: “Ciudad sin sueño”. #trigger_achievement:ACH_6
 ~NextLevel("none")
  ->END

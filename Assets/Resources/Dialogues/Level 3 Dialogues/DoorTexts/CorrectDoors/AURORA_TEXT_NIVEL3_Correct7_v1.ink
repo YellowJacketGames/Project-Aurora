@@ -19,6 +19,6 @@ Pero, Henry, ¿qué haces aquí?#speaker:0
 Tú me arrastras y voy. Tü me dices que me vuelva y te sigo por el aire como una brizna de hierba.#speaker:0
 ¡No es momento de palabras, Federico! ¡Es momento de bailar!#speaker:1
 ¡Oye cómo la música se apodera de tu cuerpo! 
-¡Pasa a la fiesta! ¡Te lo has ganado!
+¡Pasa a la fiesta! ¡Te lo has ganado!#trigger_achievement:ACH_4
 ~NextLevel("none")
 ->DoorFunctions

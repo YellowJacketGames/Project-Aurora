@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.018913224, g: 0.052723102, b: 0.1451333, a: 1}
+  m_IndirectSpecularColor: {r: 0.0189127, g: 0.052722007, b: 0.14513204, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2944,6 +2944,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &135871765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135871762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee6b85b93dda741894e50b0d49468d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakToAllAchievement: {fileID: 689926095}
 --- !u!1 &137830679
 GameObject:
   m_ObjectHideFlags: 0
@@ -8912,8 +8925,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420592968}
-  m_LocalRotation: {x: -0.06162845, y: 0.70441604, z: -0.06162845, w: -0.70441604}
-  m_LocalPosition: {x: 0.15, y: 1.836, z: -27.679983}
+  m_LocalRotation: {x: 0, y: -0.57685274, z: 0, w: 0.8168482}
+  m_LocalPosition: {x: 7.404414, y: 2.3500001, z: -3.1468914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34764,6 +34777,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 685211464}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &689926094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689926096}
+  - component: {fileID: 689926095}
+  m_Layer: 0
+  m_Name: ACH_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &689926095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689926094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345627ebc0c0d4c4183fc8d8ec5bb375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievement: 2
+  achType: 2
+--- !u!4 &689926096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689926094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697059671
 GameObject:
   m_ObjectHideFlags: 0
@@ -46261,6 +46320,7 @@ MonoBehaviour:
   - {fileID: 74452593}
   levelMusic: Music_Level2
   levelQuest: {fileID: 11400000, guid: fca323487e85c4a4a9a59dcd8e70f653, type: 2}
+  enableRetriggering: 0
   nextLevel: Level3_Rework
   espVideoClip: {fileID: 32900000, guid: a4163c1d39c409d47a6a0d029fdb6faa, type: 3}
   engVideoClip: {fileID: 32900000, guid: 11e09298e1becad418edbd26329d4bc7, type: 3}
@@ -67057,6 +67117,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1313002580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313002577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee6b85b93dda741894e50b0d49468d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakToAllAchievement: {fileID: 689926095}
 --- !u!1001 &1316064377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67484,6 +67557,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.026146, y: 3.3166144, z: 6.324867}
   m_Center: {x: 0.3252871, y: 1.1583072, z: 2.6624339}
+--- !u!114 &1344533654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344533649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee6b85b93dda741894e50b0d49468d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakToAllAchievement: {fileID: 689926095}
 --- !u!1 &1348281884
 GameObject:
   m_ObjectHideFlags: 0
@@ -83394,6 +83480,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1707657328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707657324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee6b85b93dda741894e50b0d49468d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakToAllAchievement: {fileID: 689926095}
 --- !u!1001 &1742069175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92196,6 +92295,19 @@ CapsuleCollider:
   m_Height: 3.2199984
   m_Direction: 1
   m_Center: {x: 0, y: 0.6099992, z: 0}
+--- !u!114 &1871722269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871722266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee6b85b93dda741894e50b0d49468d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakToAllAchievement: {fileID: 689926095}
 --- !u!1001 &1884496033
 PrefabInstance:
   m_ObjectHideFlags: 0

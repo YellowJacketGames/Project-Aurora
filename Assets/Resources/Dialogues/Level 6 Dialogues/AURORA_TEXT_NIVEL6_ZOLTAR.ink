@@ -13,7 +13,7 @@ A veces, el futuro puede alterar tu presente… #speaker:1
 No sé ni quién soy. Quizá es mejor que guarde la profecía para más adelante… #speaker:0 
 Sabia decisión, Federico. Ahora, prepárate para conocer la mejor zona de Nueva York. #speaker:1  
 Miedo me da… #speaker:0 
-Federico García Lorca, ¡vamos a Harlem! #speaker:1
+Federico García Lorca, ¡vamos a Harlem! #speaker:1 #trigger_achievement:ACH_8
 
 ~NextLevel("none")
  ->END

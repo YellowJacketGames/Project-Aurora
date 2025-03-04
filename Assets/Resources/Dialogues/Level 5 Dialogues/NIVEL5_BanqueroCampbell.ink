@@ -52,7 +52,7 @@ Me ofrezco a gritar en el valle donde el Hudson se emborracha con aceite. #speak
 Es lo único que nos importa, señor. Que se rinda. #speaker:1
 Que deje de ser usted para ser Nueva York. #speaker:1
 Acepto. ¿Entonces? #speaker:0
-Entonces cumple con los requisitos para recibir su dinero. Es lo que quería escuchar. Enhorabuena, señor. Recibirá su dinero. Espero que disfrute de su estancia en Nueva York. #speaker:1
+Entonces cumple con los requisitos para recibir su dinero. Es lo que quería escuchar. Enhorabuena, señor. Recibirá su dinero. Espero que disfrute de su estancia en Nueva York. #speaker:1 #trigger_achievement:ACH_7
 ~NextLevel("none")
 ->END 
 

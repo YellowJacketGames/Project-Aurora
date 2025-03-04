@@ -18,7 +18,7 @@ Intente explicarlo.#speaker:0
 Algo así como “regocijos ociosos para el alma que conectan la realidad con un mundo inexistente”. #speaker:1
 ¡Vende libros!#speaker:0
 No, tome esto, que se lo ha ganado por llegar hasta lo más alto.#speaker:1//Give tecla B
-¡Oh, gracias! #speaker:0
+¡Oh, gracias! #speaker:0 #trigger_achievement:ACH_3
 Y ahora, ya sabe lo que le espera, ¿no? #speaker:1
 Sí, déjeme a mí decirlo… ¡Policía!#speaker:0
 ->DoorFunctions

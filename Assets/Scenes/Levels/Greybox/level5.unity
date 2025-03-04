@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009012722, g: 0.013102869, b: 0.020503528, a: 1}
+  m_IndirectSpecularColor: {r: 0.009012707, g: 0.013102867, b: 0.020503506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8309,6 +8309,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7384928}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &104754944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104754946}
+  - component: {fileID: 104754945}
+  m_Layer: 0
+  m_Name: ACH_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &104754945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104754944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2fbcd1e05606247a8af4ad6a5b023b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievement: 7
+  achType: 2
+--- !u!4 &104754946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104754944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &105699374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124689,6 +124735,7 @@ MonoBehaviour:
   levelEvents: []
   levelMusic: Music_Level5
   levelQuest: {fileID: 11400000, guid: 598526181a5c2994fa78206c320d8c43, type: 2}
+  enableRetriggering: 0
   nextLevel: level6
   espVideoClip: {fileID: 32900000, guid: d912445f427d59b4b9b9ebc17b8c4115, type: 3}
   engVideoClip: {fileID: 32900000, guid: 9d0256f63de37c84486e4177d6b318df, type: 3}

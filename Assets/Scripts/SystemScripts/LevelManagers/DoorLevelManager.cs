@@ -146,6 +146,7 @@ public class DoorLevelManager : LevelManager
         StartCoroutine(EnableInteraction(false, 0));
         Invoke("ResetPlayer", 1f);
         MoveCameraToFirstPhase();
+        BroadcastMessage("ACH_4_FAILED");
     }
 
     private  IEnumerator EnableInteraction(bool enable, float time)

@@ -20208,6 +20208,81 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &788734661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 788734665}
+  - component: {fileID: 788734664}
+  - component: {fileID: 788734663}
+  - component: {fileID: 788734662}
+  m_Layer: 0
+  m_Name: ACH_11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &788734662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788734661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2fbcd1e05606247a8af4ad6a5b023b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievement: 11
+  achType: 2
+  waitTimeSeconds: 0
+--- !u!65 &788734663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788734661}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &788734664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788734661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553bf35b0b6671745b0edcf26846d32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievement: 11
+--- !u!4 &788734665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788734661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.51, y: -26.86, z: 164.7}
+  m_LocalScale: {x: 9, y: 1, z: 9}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &791048978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25351,6 +25426,7 @@ MonoBehaviour:
   levelEvents: []
   levelMusic: Music_Level8
   levelQuest: {fileID: 11400000, guid: 489abfd6f10aa4c4f900d4d43ee7e17b, type: 2}
+  enableRetriggering: 0
   nextLevel: level9
   espVideoClip: {fileID: 32900000, guid: 0f300259433b345449aac6abfaebe355, type: 3}
   engVideoClip: {fileID: 32900000, guid: df78cbde4bff34940bc2c5c1d92c769e, type: 3}

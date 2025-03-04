@@ -53,6 +53,7 @@ public class ConversationElement : InteractableElement
 
             GameManager.instance.currentController.playerConversationComponent.SetCurrentDialogue(dialogue);
             GameManager.instance.currentController.ChangeState(PlayerState.Conversation);
+            BroadcastMessage("OnInteracted");
         }
         else
         {

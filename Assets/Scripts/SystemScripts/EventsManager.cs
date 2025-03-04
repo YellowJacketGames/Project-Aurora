@@ -19,7 +19,13 @@ public static class EventsManager
     // public static UnityEvent OnWaterDropHitPlayer = new UnityEvent();
 
     public static UnityEvent<SavingData.Language> OnLanguageChanged = new UnityEvent<SavingData.Language>();
+    public static UnityEvent<SteamAchievements> onAchievementCalled = new UnityEvent<SteamAchievements> ();
 
+
+    public static void InvokeAchievementUnlock(SteamAchievements achievement)
+    {
+        onAchievementCalled?.Invoke(achievement);
+    }
     public static void InvokeChangeLang(SavingData.Language language)
     {
         OnLanguageChanged?.Invoke(language);

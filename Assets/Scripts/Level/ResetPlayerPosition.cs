@@ -20,6 +20,7 @@ public class ResetPlayerPosition : MonoBehaviour
 
     public virtual void ChangePlayerPosition()
     {
+        BroadcastMessage("ACH_5_FAILED");
         GameManager.instance.currentController.playerRigid.isKinematic = true;
         GameManager.instance.currentController.transform.position = newPosition.position;
         GameManager.instance.currentCameraManager.ReturnReferences();

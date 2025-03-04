@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -470,6 +471,10 @@ public class PlayerConversation : PlayerComponent
 
                         if (!GameManager.instance.Data.HasObject(valueKey)) return;
                         GameManager.instance.Data.RemoveObject(valueKey);
+                        break;
+                    case "trigger_achievement":
+                        valueKey = splitTag[1];
+                        EventsManager.InvokeAchievementUnlock((SteamAchievements)Enum.Parse(typeof(SteamAchievements), valueKey,true));
                         break;
                     default:
 
